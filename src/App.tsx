@@ -51,7 +51,7 @@ export default function App() {
           <Route path="/demande-devis" element={<QuotePage />} />
           
           {/* Calculateur */}
-          <Route path="/calculateur" element={<CalculateurPage />} />
+          <Route path="/calculateur-pro" element={<CalculateurPage />} />
           
           {/* Blog */}
           <Route path="/blog" element={<BlogPage />} />

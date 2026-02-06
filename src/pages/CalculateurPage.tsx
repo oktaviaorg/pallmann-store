@@ -135,9 +135,9 @@ const CalculateurPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Calculateur de surface parquet | Pallmann Store</title>
+        <title>Calculateur PRO parquet | Pallmann Store</title>
         <meta name="description" content="Calculez vos besoins en vitrificateur, huile et produits pour parquet. Estimez la quantité exacte selon votre surface et type de projet." />
-        <link rel="canonical" href="https://pallmann-store.com/calculateur" />
+        <link rel="canonical" href="https://pallmann-store.com/calculateur-pro" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
@@ -160,7 +160,7 @@ const CalculateurPage: React.FC = () => {
                 Outil gratuit
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-                Calculateur de Surface
+                Calculateur PRO
               </h1>
               <p className="text-xl text-white/80 max-w-2xl mx-auto">
                 Estimez précisément vos besoins en produits Pallmann selon votre surface et type de finition

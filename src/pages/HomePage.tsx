@@ -480,7 +480,7 @@ const HomePage: React.FC = () => {
           <div className="bg-gradient-to-r from-[#F8FAFC] to-[#F8FAFC] py-6 border-y border-[#BCCCDC]">
             <div className="max-w-7xl mx-auto px-4">
               <Link 
-                to="/calculateur"
+                to="/calculateur-pro"
                 className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#E67E22]/20 hover:border-[#E67E22] transition-all hover:shadow-xl group"
               >
                 <div className="flex items-center gap-4">
@@ -489,7 +489,7 @@ const HomePage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-[#1A2634] group-hover:text-[#E67E22] transition-colors">
-                      🧮 Calculateur de Surface
+                      🧮 Calculateur PRO
                     </h3>
                     <p className="text-[#627D98]">
                       Estimez vos besoins en produits selon votre surface — <strong>Gratuit</strong>
@@ -499,7 +499,7 @@ const HomePage: React.FC = () => {
                 <div className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold"
                   style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                 >
-                  Calculer mes besoins
+                  Accéder au Calculateur PRO
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
