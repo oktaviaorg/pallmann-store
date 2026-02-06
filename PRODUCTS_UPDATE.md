@@ -108,8 +108,29 @@ Prix TTC = Prix HT × 1.20
 | 041124 | Disque Ø150 zirco velcro gr80 (50p) | 105,82€ |
 | 063017 | Disque Ø150 zirco velcro gr100 (50p) | 103,02€ |
 
-## 3. Fichiers modifiés
+## 3. Nouveaux articles du blog
+
+Exécuter `sql/blog_articles.sql` dans Supabase pour :
+1. Supprimer les anciens articles ponceur-parquet
+2. Créer 4 nouveaux articles orientés Pallmann Store :
+
+| Titre | Slug |
+|-------|------|
+| Comment choisir son vitrificateur PALL-X | guide-vitrificateur-pall-x-choisir |
+| MAGIC OIL 2K : l'huile professionnelle | magic-oil-2k-huile-professionnelle-parquet |
+| Entretien parquet vitrifié : FINISH CARE | entretien-parquet-vitrifie-finish-care-pallmann |
+| Guide des abrasifs pour ponceuses | guide-abrasifs-ponceuse-parquet-pallmann |
+
+## 4. Page PRO (/pro)
+
+La page PRO est déjà en place avec :
+- Formulaire inscription (entreprise, SIRET, email, téléphone)
+- Enregistrement dans table `pro_requests`
+- Liens dans Header et Footer ✓
+
+## 5. Fichiers modifiés
 
 - `src/lib/CartContext.tsx` - Ajout deliveryMode, calcul frais 9.90€/article
 - `src/pages/CartPage.tsx` - Interface de sélection livraison/retrait
-- `sql/update_products.sql` - Nouveau fichier SQL pour les produits
+- `sql/update_products.sql` - Mise à jour prix produits
+- `sql/blog_articles.sql` - Nouveaux articles blog Pallmann
