@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import ProBanner from '../components/ProBanner';
 import MarqueeBanner from '../components/MarqueeBanner';
 import SurfaceCalculator from '../components/SurfaceCalculator';
 import Footer from '../components/Footer';
@@ -306,6 +307,7 @@ const HomePage: React.FC = () => {
     return (
       <div className="min-h-screen flex flex-col bg-[#FFFCF8]">
         <Header />
+        <ProBanner />
         <MarqueeBanner />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
@@ -331,6 +333,7 @@ const HomePage: React.FC = () => {
 
       <div className="min-h-screen flex flex-col bg-[#FFFCF8]">
         <Header />
+        <ProBanner />
         <MarqueeBanner />
         <TrustBar />
         <CartReminder />
@@ -760,48 +763,6 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               )}
-
-              {/* Code promo PRO */}
-              <div className="mt-4 pt-4 border-t border-gray-100">
-                <div className="flex items-center gap-2 mb-2">
-                  <Tag className="w-4 h-4 text-[#8B5A2B]" />
-                  <span className="text-sm font-bold text-[#2D1A0D]">Vous êtes PRO ? Entrez votre code remise</span>
-                </div>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="CODE PRO..."
-                    value={promoCode}
-                    onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                    className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#C4943D] focus:border-transparent transition-all uppercase text-[#2D1A0D] font-mono"
-                  />
-                  <button
-                    onClick={validatePromoCode}
-                    disabled={checkingCode || !promoCode.trim()}
-                    className="px-6 py-2 text-white font-bold rounded-xl transition-all disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
-                  >
-                    {checkingCode ? '...' : 'Appliquer'}
-                  </button>
-                </div>
-                {validatedCode && (
-                  <div className="mt-2 flex items-center justify-between bg-green-50 p-3 rounded-xl border border-green-200">
-                    <div className="flex items-center gap-2 text-green-700 text-sm">
-                      <CheckCircle className="w-5 h-5" />
-                      <span><strong>{validatedCode.company_name}</strong> • Remise {validatedCode.discount_percent}% sur tout !</span>
-                    </div>
-                    <button onClick={clearPromoCode} className="text-red-500 hover:text-red-700">
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
-                {codeError && (
-                  <div className="mt-2 flex items-center gap-2 text-red-500 text-sm">
-                    <XCircle className="w-4 h-4" />
-                    <span>{codeError}</span>
-                  </div>
-                )}
-              </div>
 
               {/* Results count */}
               {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm) && (
