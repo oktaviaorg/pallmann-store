@@ -1,0 +1,497 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+/* Variables CSS pour le thème clair (par défaut) */
+:root {
+  --bg: #fafaf8;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --line: rgba(0,0,0,.08);
+  --accent: #d9b45a;
+  --accent-ghost: rgba(217, 180, 90, 0.15);
+  --r-card: 24px;
+  --r-elm: 12px;
+  --shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+
+/* Variables CSS pour le mode sombre */
+.dark {
+  --bg: #0f1b2b;
+  --card: #142237;
+  --text: #ffffff;
+  --muted: #9bb0c3;
+  --line: rgba(255,255,255,.08);
+  --accent: #d9b45a;
+  --accent-ghost: rgba(217, 180, 90, 0.15);
+  --shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+/* Animations personnalisées */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-15px); 
+  }
+}
+
+@keyframes bounceSubtle {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-8px); 
+  }
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: 200% 50%; 
+  }
+  100% { 
+    background-position: -200% 50%; 
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Nouvelles tailles pour personnage agrandi */
+.w-144 {
+  width: 36rem; /* 576px */
+}
+
+.h-144 {
+  height: 36rem; /* 576px */
+}
+
+.w-180 {
+  width: 45rem; /* 720px */
+}
+
+.h-180 {
+  height: 45rem; /* 720px */
+}
+
+.w-72 {
+  width: 18rem; /* 288px */
+}
+
+.h-72 {
+  height: 18rem; /* 288px */
+}
+
+.w-84 {
+  width: 21rem; /* 336px */
+}
+
+.h-84 {
+  height: 21rem; /* 336px */
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+/* Classes d'animation */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounceSubtle 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Animation pour le bandeau défilant */
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Animations pour les éléments interactifs */
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styles pour les formulaires */
+.form-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Styles pour les étoiles */
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+/* Fix boutons CTA Hero qui débordent sur mobile */
+@media (max-width: 640px) {
+  section a[href^="tel:"],
+  section a[href^="https://wa.me"],
+  section button {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Conteneur des boutons CTA */
+  .flex.flex-col.gap-3.w-full {
+    max-width: 100%;
+    padding-right: 0;
+  }
+}
+
+/* Optimisations mobile */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .text-responsive {
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+  }
+  
+  /* Optimisations pour les petits écrans */
+  .form-card {
+    padding: 16px;
+    max-width: 100%;
+    margin: 0 4px;
+  }
+  
+  /* Amélioration des zones de touch */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Espacement optimisé mobile */
+  .mobile-spacing {
+    padding: 8px 12px;
+  }
+  
+  /* Texte adaptatif mobile */
+  .mobile-text {
+    font-size: clamp(14px, 4vw, 16px);
+    line-height: 1.5;
+  }
+  
+  /* Boutons optimisés mobile */
+  .mobile-button {
+    padding: 10px 16px;
+    font-size: 16px; /* Évite le zoom sur iOS */
+    border-radius: 8px;
+  }
+  
+  /* Inputs optimisés mobile */
+  .mobile-input {
+    font-size: 16px; /* Évite le zoom sur iOS */
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+  
+  /* Curseur range optimisé mobile */
+  input[type="range"] {
+    height: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  input[type="range"]::-webkit-slider-track {
+    background: linear-gradient(to right, #d9b45a 0%, #d9b45a var(--progress, 0%), rgba(255,255,255,0.1) var(--progress, 0%), rgba(255,255,255,0.1) 100%);
+    height: 8px;
+    border-radius: 4px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #d9b45a;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+    margin-top: -8px;
+  }
+  
+  input[type="range"]::-moz-range-track {
+    background: linear-gradient(to right, #d9b45a 0%, #d9b45a var(--progress, 0%), rgba(255,255,255,0.1) var(--progress, 0%), rgba(255,255,255,0.1) 100%);
+    height: 8px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #d9b45a;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+    border: none;
+  }
+}
+
+/* Optimisations pour très petits écrans */
+@media (max-width: 375px) {
+  .form-card {
+    padding: 12px;
+    margin: 0 2px;
+  }
+  
+  .mobile-spacing {
+    padding: 6px 10px;
+  }
+  
+  .mobile-text {
+    font-size: 13px;
+  }
+  
+  /* Réduction des espacements sur très petits écrans */
+  .space-y-6 > * + * {
+    margin-top: 1rem !important;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 0.75rem !important;
+  }
+  
+  /* Boutons plus compacts */
+  .mobile-button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Optimisations pour écrans moyens */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .form-card {
+    max-width: 420px;
+    padding: 24px;
+  }
+}
+
+/* Amélioration des performances d'animation mobile */
+@media (max-width: 768px) {
+  .animate-float,
+  .animate-bounce-subtle,
+  .animate-shimmer {
+    animation-duration: 2s !important;
+    animation-iteration-count: infinite !important;
+  }
+  
+  /* Réduction des effets visuels sur mobile */
+  .hover\:scale-105:hover {
+    transform: scale(1.02);
+  }
+  
+  .hover\:shadow-xl:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Optimisation du curseur sur mobile */
+  input[type="range"] {
+    height: 10px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    height: 28px;
+    width: 28px;
+    margin-top: -9px;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    height: 28px;
+    width: 28px;
+  }
+}
+
+/* Formulaire compact et moderne */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  max-width: 420px;
+  width: 100%;
+  backdrop-filter: blur(16px);
+}
+
+.form-card__title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.form-card__title .icon {
+  width: 28px;
+  height: 28px;
+  color: var(--accent);
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.input {
+  width: 100%;
+  background: #0f1b2b;
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--text);
+  padding: 14px 16px;
+  border-radius: var(--r-elm);
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  font-size: 15px;
+}
+
+.input::placeholder {
+  color: #6f879d;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ghost);
+  background: #102035;
+}
+
+/* Effets visuels */
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(217, 180, 90, 0.3);
+}
+
+.shadow-glow-lg {
+  box-shadow: 0 0 40px rgba(217, 180, 90, 0.5);
+}
+
+/* Styles pour les éléments interactifs */
+.btn-primary {
+  background: linear-gradient(135deg, #d9b45a 0%, #FFD36D 100%);
+  color: #181D27;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles pour les badges */
+.badge {
+  background: rgba(217, 180, 90, 0.1);
+  border: 1px solid rgba(217, 180, 90, 0.3);
+  color: #d9b45a;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+
+/* Styles pour les stats */
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9bb0c3;
+  font-size: 14px;
+}
+
+.stat-value {
+  color: #ffffff;
+  font-weight: 700;
+}

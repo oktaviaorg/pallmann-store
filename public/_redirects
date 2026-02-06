@@ -1,0 +1,17 @@
+# Redirect www to non-www
+https://www.ponceur-parquet.fr/* https://ponceur-parquet.fr/:splat 301!
+
+# Old URL redirects
+/confidentialite /politique-confidentialite 301
+/confidentialite/ /politique-confidentialite 301
+
+# Block tag pages (not implemented)
+/blog/tag/* /blog 301
+
+# Allow direct access to static files
+/llms.txt /llms.txt 200
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
+
+# Handle all routes for SPA
+/* /index.html 200

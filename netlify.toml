@@ -1,0 +1,265 @@
+[build]
+command = "npx vite build"
+publish = "dist"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[[redirects]]
+from = "/services"
+to = "/services/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/gallery"
+to = "/gallery/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/about"
+to = "/about/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog"
+to = "/blog/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/reviews"
+to = "/reviews/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/confidentialite"
+to = "/confidentialite/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/cgv"
+to = "/cgv/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/mentions-legales"
+to = "/about/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/landing/colmar-mulhouse"
+to = "/landing/colmar-mulhouse/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/:slug"
+to = "/blog/:slug/"
+status = 301
+force = true
+
+[redirects.conditions]
+Path = "!/blog/:slug/"
+
+[[redirects]]
+from = "/blog/tag/:tag"
+to = "/blog/tag/:tag/"
+status = 301
+force = true
+
+[redirects.conditions]
+Path = "!/blog/tag/:tag/"
+
+[[redirects]]
+from = "/blog/tag/rénovation"
+to = "/blog/tag/rénovation/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag/tarifs"
+to = "/blog/tag/tarifs/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag/décapage bois"
+to = "/blog/tag/décapage%20bois/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+force = false
+
+[[redirects]]
+from = "/blog/tag"
+to = "/blog/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag/"
+to = "/blog/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/articles/*"
+to = "/blog/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/simple/*"
+to = "/blog/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/*.php"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/*.asp"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/*.jsp"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/admin/*"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/wp-admin/*"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/wp-content/*"
+to = "/404"
+status = 404
+force = true
+
+[[redirects]]
+from = "/blog/simple"
+to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/blog/articles"
+to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/blog/:slug"
+to = "/blog/:slug/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag/:tag"
+to = "/blog/tag/:tag/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag/:tag/*"
+to = "/blog/tag/:tag/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/comment-huiler-parquet-ancien-guide-complet-finition-naturelle"
+to = "/blog/comment-huiler-parquet-ancien-guide-complet-finition-naturelle/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/poncage-parquet-ancien-strasbourg-redonnez-charme-sol-bois"
+to = "/blog/poncage-parquet-ancien-strasbourg-redonnez-charme-sol-bois/"
+status = 301
+force = true
+
+[[redirects]]
+from = "http://ponceur-parquet.fr/*"
+to = "https://ponceur-parquet.fr/"
+status = 301
+force = true
+
+[[redirects]]
+from = "http://www.ponceur-parquet.fr/*"
+to = "https://ponceur-parquet.fr/"
+status = 301
+force = true
+
+[[redirects]]
+from = "https://www.ponceur-parquet.fr/*"
+to = "https://ponceur-parquet.fr/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag"
+to = "/blog/"
+status = 301
+force = true
+
+[[redirects]]
+from = "/blog/tag/"
+to = "/blog/"
+status = 301
+force = true
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Robots-Tag = "index, follow"
+Content-Security-Policy = "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data:; font-src 'self' https: data:;"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+Referrer-Policy = "strict-origin-when-cross-origin"
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+
+[[headers]]
+for = "/blog/*"
+
+[headers.values]
+X-Robots-Tag = "index, follow, max-snippet:-1, max-image-preview:large"
+Cache-Control = "public, max-age=3600"
+
+[[headers]]
+for = "/sitemap.xml"
+
+[headers.values]
+Content-Type = "application/xml; charset=utf-8"
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "/404"
+
+[headers.values]
+X-Robots-Tag = "noindex, nofollow"
+Cache-Control = "no-cache, no-store, must-revalidate"

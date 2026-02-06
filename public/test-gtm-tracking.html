@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test GTM Tracking - Ponceur Parquet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1e293b;
+            border-bottom: 3px solid #c4a04f;
+            padding-bottom: 15px;
+        }
+        .test-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            border-left: 4px solid #c4a04f;
+        }
+        .success {
+            color: #16a34a;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc2626;
+            font-weight: bold;
+        }
+        button {
+            background: #c4a04f;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #a38842;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .badge-success {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .badge-error {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Test GTM Tracking - GTM-W2M8N5GZ</h1>
+
+        <div class="test-section">
+            <h2>1️⃣ Vérification de la balise GTM</h2>
+            <button onclick="checkGTMTag()">Tester la balise GTM</button>
+            <div id="gtm-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>2️⃣ Vérification du DataLayer</h2>
+            <button onclick="checkDataLayer()">Afficher le DataLayer</button>
+            <div id="datalayer-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>3️⃣ Test d'événement personnalisé</h2>
+            <button onclick="sendTestEvent()">Envoyer un événement test</button>
+            <div id="event-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>4️⃣ Simuler un changement de page</h2>
+            <button onclick="simulatePageview()">Simuler Pageview</button>
+            <div id="pageview-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Résumé des tests</h2>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkGTMTag() {
+            const result = document.getElementById('gtm-result');
+            const gtmScript = document.querySelector('script[src*="GTM-W2M8N5GZ"]');
+
+            if (gtmScript) {
+                result.innerHTML = `
+                    <p class="success">✅ Script GTM trouvé</p>
+                    <pre>${gtmScript.src}</pre>
+                `;
+            } else {
+                result.innerHTML = `
+                    <p class="error">❌ Script GTM non trouvé</p>
+                    <p>La balise GTM-W2M8N5GZ n'est pas détectée sur cette page.</p>
+                `;
+            }
+            updateSummary();
+        }
+
+        function checkDataLayer() {
+            const result = document.getElementById('datalayer-result');
+
+            if (window.dataLayer && Array.isArray(window.dataLayer)) {
+                const pageviews = window.dataLayer.filter(item => item.event === 'pageview');
+                result.innerHTML = `
+                    <p class="success">✅ DataLayer trouvé (${window.dataLayer.length} événements)</p>
+                    <p><strong>Pageviews détectés:</strong> ${pageviews.length}</p>
+                    <pre>${JSON.stringify(window.dataLayer, null, 2)}</pre>
+                `;
+            } else {
+                result.innerHTML = `
+                    <p class="error">❌ DataLayer non trouvé</p>
+                `;
+            }
+            updateSummary();
+        }
+
+        function sendTestEvent() {
+            const result = document.getElementById('event-result');
+
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'test_event',
+                    test_data: {
+                        timestamp: new Date().toISOString(),
+                        source: 'test_page'
+                    }
+                });
+
+                result.innerHTML = `
+                    <p class="success">✅ Événement envoyé</p>
+                    <pre>
+Event: test_event
+Timestamp: ${new Date().toISOString()}
+                    </pre>
+                `;
+            } else {
+                result.innerHTML = `
+                    <p class="error">❌ DataLayer non disponible</p>
+                `;
+            }
+            updateSummary();
+        }
+
+        function simulatePageview() {
+            const result = document.getElementById('pageview-result');
+
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'pageview',
+                    page: {
+                        path: '/test-page',
+                        url: window.location.href,
+                        title: 'Test Pageview'
+                    }
+                });
+
+                result.innerHTML = `
+                    <p class="success">✅ Pageview simulé</p>
+                    <pre>
+Event: pageview
+Path: /test-page
+URL: ${window.location.href}
+Title: Test Pageview
+                    </pre>
+                `;
+            } else {
+                result.innerHTML = `
+                    <p class="error">❌ DataLayer non disponible</p>
+                `;
+            }
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const results = document.getElementById('results');
+            const gtmScript = document.querySelector('script[src*="GTM-W2M8N5GZ"]');
+            const hasDataLayer = window.dataLayer && Array.isArray(window.dataLayer);
+
+            let summary = '<h3>État du tracking:</h3><ul>';
+
+            if (gtmScript) {
+                summary += '<li class="success">✅ Script GTM chargé (GTM-W2M8N5GZ)</li>';
+            } else {
+                summary += '<li class="error">❌ Script GTM manquant</li>';
+            }
+
+            if (hasDataLayer) {
+                summary += `<li class="success">✅ DataLayer actif (${window.dataLayer.length} événements)</li>`;
+            } else {
+                summary += '<li class="error">❌ DataLayer non disponible</li>';
+            }
+
+            summary += '</ul>';
+
+            if (gtmScript && hasDataLayer) {
+                summary += `
+                    <div style="margin-top: 20px; padding: 15px; background: #dcfce7; border-radius: 8px; border-left: 4px solid #16a34a;">
+                        <strong>✅ Configuration correcte</strong>
+                        <p>GTM-W2M8N5GZ est correctement configuré et fonctionnel sur cette page.</p>
+                    </div>
+                `;
+            } else {
+                summary += `
+                    <div style="margin-top: 20px; padding: 15px; background: #fee2e2; border-radius: 8px; border-left: 4px solid #dc2626;">
+                        <strong>❌ Configuration incomplète</strong>
+                        <p>Vérifiez que le code GTM est bien présent dans le fichier index.html.</p>
+                    </div>
+                `;
+            }
+
+            results.innerHTML = summary;
+        }
+
+        // Auto-check au chargement
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                checkGTMTag();
+                checkDataLayer();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

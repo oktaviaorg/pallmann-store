@@ -1,0 +1,57 @@
+User-agent: *
+# Autorisations globales
+Allow: /
+Allow: /llms.txt
+
+# Blocage Administration & Technique
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /api/
+Disallow: /blog/admin/
+Disallow: /thank-you
+
+# Nettoyage SEO & Doublons
+Disallow: /blog/tag/
+Disallow: /blog?q=
+Disallow: /blog?search=
+Disallow: /blog/simple/
+Disallow: /blog/articles/
+
+# Blocage des paramètres de tracking
+Disallow: /*?utm_
+Disallow: /*&utm_
+Disallow: /*?ref=
+Disallow: /*&ref=
+Disallow: /*?source=
+Disallow: /*&source=
+Disallow: /*?fbclid=
+Disallow: /*&fbclid=
+Disallow: /*?gclid=
+Disallow: /*&gclid=
+Disallow: /*?msclkid=
+Disallow: /*&msclkid=
+
+# Blocage extensions et fichiers non-web
+Disallow: /*.json
+Disallow: /*.php
+Disallow: /*.asp
+Disallow: /*.jsp
+Disallow: /*.cgi
+
+# Gestion de la charge (Optionnel)
+Crawl-delay: 1
+
+# Instructions spécifiques
+User-agent: Googlebot
+Allow: /blog/
+Allow: /services
+Allow: /gallery
+Allow: /reviews
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Sitemap
+Sitemap: https://ponceur-parquet.fr/sitemap.xml

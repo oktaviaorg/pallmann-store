@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test GTM - Ponceur-Parquet.fr</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #c4a04f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #b08e45;
+        }
+        .event-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .phone-link {
+            color: #c4a04f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .phone-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test des événements Google Tag Manager</h1>
+    <p>Cette page permet de tester les événements GTM configurés pour ponceur-parquet.fr</p>
+    
+    <div class="test-section">
+        <h2>1. Test Conversion Linker</h2>
+        <p>Le Conversion Linker se déclenche automatiquement au chargement de la page.</p>
+        <div id="linker-status">✅ Conversion Linker chargé</div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test Suivi des conversions</h2>
+        <button class="test-button" onclick="testFormSubmission()">
+            Simuler soumission formulaire devis
+        </button>
+        <button class="test-button" onclick="testThankYouPage()">
+            Simuler page de remerciement
+        </button>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Remarketing</h2>
+        <p>Le remarketing se déclenche automatiquement sur toutes les pages.</p>
+        <button class="test-button" onclick="testServicePageView()">
+            Simuler consultation service
+        </button>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test Suivi des appels</h2>
+        <p>Cliquez sur le numéro pour tester le suivi des appels :</p>
+        <a href="tel:+33757821306" class="phone-link" onclick="testPhoneClick()">
+            📞 07 57 82 13 06
+        </a>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Test Données utilisateur</h2>
+        <button class="test-button" onclick="testUserProvidedData()">
+            Simuler données utilisateur enrichies
+        </button>
+    </div>
+
+    <div class="test-section">
+        <h2>6. Test Consentement cookies</h2>
+        <button class="test-button" onclick="testCookieConsent('all')">
+            Accepter tous les cookies
+        </button>
+        <button class="test-button" onclick="testCookieConsent('essential')">
+            Cookies essentiels uniquement
+        </button>
+    </div>
+
+    <div class="test-section">
+        <h2>Journal des événements</h2>
+        <div id="event-log" class="event-log">
+            Les événements GTM apparaîtront ici...
+        </div>
+        <button class="test-button" onclick="clearLog()">Effacer le journal</button>
+    </div>
+
+    <script>
+        // Initialiser dataLayer si pas déjà fait
+        window.dataLayer = window.dataLayer || [];
+        
+        // Fonction pour logger les événements
+        function logEvent(eventData) {
+            const log = document.getElementById('event-log');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `[${timestamp}] ${JSON.stringify(eventData, null, 2)}\n`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // Override dataLayer.push pour capturer les événements
+        const originalPush = window.dataLayer.push;
+        window.dataLayer.push = function(eventData) {
+            logEvent(eventData);
+            return originalPush.call(this, eventData);
+        };
+
+        // Tests des événements
+        function testFormSubmission() {
+            window.dataLayer.push({
+                event: 'form_submission',
+                event_category: 'engagement',
+                event_label: 'devis_request',
+                form_type: 'devis',
+                surface: 50,
+                service_type: 'poncage_vitrification',
+                postal_code: '68000',
+                estimated_value: 2100,
+                measurement_id: 'G-KYNJN3TK0C',
+                user_data: {
+                    email: 'test@example.com',
+                    phone: '+33757821306',
+                    first_name: 'Jean',
+                    last_name: 'Dupont',
+                    address: {
+                        postal_code: '68000'
+                    }
+                }
+            });
+            
+            // Also send directly to GA4
+            if (window.gtag) {
+                window.gtag('event', 'form_submission', {
+                    event_category: 'engagement',
+                    event_label: 'devis_request',
+                    value: 2100,
+                    currency: 'EUR'
+                });
+            }
+        }
+
+        function testThankYouPage() {
+            window.dataLayer.push({
+                event: 'conversion',
+                event_category: 'conversion',
+                event_label: 'thank_you_page',
+                conversion_value: 2100,
+                currency: 'EUR'
+            });
+        }
+
+        function testServicePageView() {
+            window.dataLayer.push({
+                event: 'service_page_view',
+                event_category: 'engagement',
+                event_label: 'poncage_parquet',
+                service_name: 'poncage_parquet'
+            });
+        }
+
+        function testPhoneClick() {
+            window.dataLayer.push({
+                event: 'phone_click',
+                event_category: 'engagement',
+                event_label: 'phone_call',
+                phone_number: '+33757821306',
+                source: 'test_page'
+            });
+        }
+
+        function testUserProvidedData() {
+            window.dataLayer.push({
+                event: 'user_provided_data',
+                event_category: 'conversion',
+                event_label: 'enhanced_conversion',
+                user_data: {
+                    email: 'test@example.com',
+                    phone: '+33757821306',
+                    first_name: 'Jean',
+                    last_name: 'Dupont',
+                    address: {
+                        postal_code: '68000'
+                    }
+                }
+            });
+        }
+
+        function testCookieConsent(type) {
+            const analytics = type === 'all';
+            const marketing = type === 'all';
+            
+            window.dataLayer.push({
+                event: 'cookie_consent',
+                event_category: 'privacy',
+                event_label: type,
+                consent_type: type,
+                analytics_consent: analytics,
+                marketing_consent: marketing
+            });
+        }
+
+        function clearLog() {
+            document.getElementById('event-log').innerHTML = 'Journal effacé...\n';
+        }
+
+        // Log initial
+        logEvent({ message: 'Page de test GTM chargée', timestamp: new Date().toISOString() });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# Parquet abîmé par locataire : responsabilités, recours et solutions de rénovation
+
+<div class="profile-selector" style="background: linear-gradient(135deg, #f6f8fb 0%, #e9ecf0 100%); padding: 2.5rem; border-radius: 16px; margin: 2rem 0; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+  <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #1a202c;">👋 Vous êtes...</h2>
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; max-width: 800px; margin: 0 auto;">
+    <a href="#proprietaire" style="flex: 1; min-width: 200px; background: #2563eb; color: white; padding: 1rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 2px 4px rgba(37,99,235,0.3);">🏠 Propriétaire bailleur</a>
+    <a href="#locataire" style="flex: 1; min-width: 200px; background: #059669; color: white; padding: 1rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 2px 4px rgba(5,150,105,0.3);">🔑 Locataire</a>
+    <a href="#agence" style="flex: 1; min-width: 200px; background: #dc2626; color: white; padding: 1rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 2px 4px rgba(220,38,38,0.3);">🏢 Agence immobilière</a>
+  </div>
+</div>
+
+---
+
+<section id="proprietaire" style="scroll-margin-top: 100px; background: #eff6ff; padding: 2.5rem; border-radius: 16px; margin: 3rem 0; border-left: 6px solid #2563eb;">
+
+## 🏠 Propriétaire bailleur : Comment récupérer les frais de rénovation ?
+
+### Vos droits et recours face à un parquet abîmé
+
+En tant que propriétaire, vous êtes en droit d'exiger que votre locataire vous restitue le logement dans l'état où il l'a reçu, **usure normale exceptée**. Un parquet abîmé par négligence ou mauvais usage peut justifier une retenue sur le dépôt de garantie.
+
+#### 🎯 Différencier usure normale et dégradation anormale
+
+**Usure normale (à votre charge) :**
+- Micro-rayures superficielles dues au passage quotidien
+- Léger ternissement du vernis après plusieurs années
+- Petites marques de frottement dans les zones de circulation
+
+**Dégradations anormales (à la charge du locataire) :**
+- Rayures profondes causées par des meubles déplacés sans protection
+- Taches incrustées (vin, graisse, brûlures de cigarettes)
+- Lames gondolées par infiltration d'eau non signalée
+- Arrachements ou trous
+- Usure excessive par rapport à la durée d'occupation
+
+</section>
