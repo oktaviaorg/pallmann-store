@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import MarqueeBanner from '../components/MarqueeBanner';
+import SurfaceCalculator from '../components/SurfaceCalculator';
 import Footer from '../components/Footer';
 import TrustBar from '../components/TrustBar';
 import CartReminder from '../components/CartReminder';
@@ -589,6 +590,13 @@ const HomePage: React.FC = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Calculator Section */}
+          <div className="max-w-7xl mx-auto px-4 py-12 bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF]">
+            <div className="max-w-xl mx-auto">
+              <SurfaceCalculator />
             </div>
           </div>
 
