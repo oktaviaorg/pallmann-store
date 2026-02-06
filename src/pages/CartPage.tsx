@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { useCart } from '../lib/CartContext';
-import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag } from 'lucide-react';
+import { useCart, PICKUP_ADDRESS, DeliveryMode } from '../lib/CartContext';
+import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag, MapPin, Package } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -13,6 +13,7 @@ const CartPage: React.FC = () => {
   const { 
     items, 
     companyCode,
+    deliveryMode,
     removeItem, 
     updateQuantity, 
     subtotalHT, 
@@ -21,7 +22,8 @@ const CartPage: React.FC = () => {
     totalHT, 
     totalTTC,
     itemCount,
-    clearCart
+    clearCart,
+    setDeliveryMode
   } = useCart();
 
   const [customerInfo, setCustomerInfo] = useState({
@@ -62,6 +64,8 @@ const CartPage: React.FC = () => {
             code: companyCode.code,
             discount_percent: companyCode.discount_percent,
           } : null,
+          deliveryMode,
+          pickupAddress: deliveryMode === 'pickup' ? PICKUP_ADDRESS.full : null,
           subtotalHT,
           discountAmount,
           shippingHT,
@@ -184,6 +188,76 @@ const CartPage: React.FC = () => {
 
               {/* Résumé et formulaire */}
               <div className="space-y-6">
+                {/* Mode de livraison */}
+                <div className="bg-white rounded-xl shadow-md p-6">
+                  <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
+                    <Package className="w-5 h-5 text-[#FF6600]" />
+                    Mode de livraison
+                  </h2>
+                  
+                  <div className="space-y-3">
+                    {/* Option Livraison */}
+                    <label className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                      deliveryMode === 'delivery' 
+                        ? 'border-[#FF6600] bg-orange-50' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}>
+                      <input
+                        type="radio"
+                        name="deliveryMode"
+                        value="delivery"
+                        checked={deliveryMode === 'delivery'}
+                        onChange={() => setDeliveryMode('delivery')}
+                        className="mt-1 accent-[#FF6600]"
+                      />
+                      <div className="flex-grow">
+                        <div className="flex items-center gap-2">
+                          <Truck className="w-4 h-4 text-[#FF6600]" />
+                          <span className="font-semibold">Livraison France</span>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">
+                          9,90€ HT / article
+                        </p>
+                        <p className="text-xs text-green-600 mt-1">
+                          ✓ Franco de port à partir de 630€ HT
+                        </p>
+                      </div>
+                      <span className="font-bold text-[#FF6600]">
+                        {subtotalHT - discountAmount >= 630 ? 'Offert' : `${(itemCount * 9.90).toFixed(2)}€`}
+                      </span>
+                    </label>
+
+                    {/* Option Retrait */}
+                    <label className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                      deliveryMode === 'pickup' 
+                        ? 'border-[#FF6600] bg-orange-50' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}>
+                      <input
+                        type="radio"
+                        name="deliveryMode"
+                        value="pickup"
+                        checked={deliveryMode === 'pickup'}
+                        onChange={() => setDeliveryMode('pickup')}
+                        className="mt-1 accent-[#FF6600]"
+                      />
+                      <div className="flex-grow">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-[#FF6600]" />
+                          <span className="font-semibold">Retrait sur place</span>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {PICKUP_ADDRESS.full}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Sur rendez-vous uniquement
+                        </p>
+                      </div>
+                      <span className="font-bold text-green-600">GRATUIT</span>
+                    </label>
+                  </div>
+                </div>
+
                 {/* Résumé */}
                 <div className="bg-white rounded-xl shadow-md p-6">
                   <h2 className="font-bold text-lg mb-4">Récapitulatif</h2>
@@ -206,13 +280,17 @@ const CartPage: React.FC = () => {
                     
                     <div className="flex justify-between">
                       <span className="flex items-center gap-1">
-                        <Truck className="w-4 h-4" />
-                        Livraison
+                        {deliveryMode === 'pickup' ? (
+                          <MapPin className="w-4 h-4" />
+                        ) : (
+                          <Truck className="w-4 h-4" />
+                        )}
+                        {deliveryMode === 'pickup' ? 'Retrait' : 'Livraison'}
                       </span>
-                      <span>{shippingHT === 0 ? <span className="text-green-600">Offerte</span> : `${shippingHT.toFixed(2)}€`}</span>
+                      <span>{shippingHT === 0 ? <span className="text-green-600">Offert</span> : `${shippingHT.toFixed(2)}€`}</span>
                     </div>
                     
-                    {shippingHT > 0 && (
+                    {deliveryMode === 'delivery' && shippingHT > 0 && (
                       <p className="text-xs text-gray-500">Franco de port à partir de 630€ HT</p>
                     )}
                     

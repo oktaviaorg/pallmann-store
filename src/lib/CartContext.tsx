@@ -16,14 +16,18 @@ interface CompanyCode {
   discount_percent: number;
 }
 
+export type DeliveryMode = 'delivery' | 'pickup';
+
 interface CartContextType {
   items: CartItem[];
   companyCode: CompanyCode | null;
+  deliveryMode: DeliveryMode;
   addItem: (item: Omit<CartItem, 'quantity'>) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   setCompanyCode: (code: CompanyCode | null) => void;
+  setDeliveryMode: (mode: DeliveryMode) => void;
   subtotalHT: number;
   discountAmount: number;
   shippingHT: number;
@@ -35,8 +39,15 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const SHIPPING_THRESHOLD = 630; // Franco à partir de 630€ HT
-const SHIPPING_COST = 15; // 15€ HT si < 630€
+const SHIPPING_PER_ITEM = 9.90; // 9,90€ HT par article
 const TVA_RATE = 0.20;
+
+export const PICKUP_ADDRESS = {
+  street: '6 rue du Commerce',
+  city: 'Herrlisheim près Colmar',
+  postalCode: '68420',
+  full: '6 rue du Commerce, 68420 Herrlisheim près Colmar'
+};
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
@@ -47,6 +58,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [companyCode, setCompanyCode] = useState<CompanyCode | null>(() => {
     const saved = localStorage.getItem('pallmann-company-code');
     return saved ? JSON.parse(saved) : null;
+  });
+
+  const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>(() => {
+    const saved = localStorage.getItem('pallmann-delivery-mode');
+    return (saved === 'pickup' ? 'pickup' : 'delivery') as DeliveryMode;
   });
 
   useEffect(() => {
@@ -60,6 +76,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem('pallmann-company-code');
     }
   }, [companyCode]);
+
+  useEffect(() => {
+    localStorage.setItem('pallmann-delivery-mode', deliveryMode);
+  }, [deliveryMode]);
 
   const addItem = (item: Omit<CartItem, 'quantity'>) => {
     setItems(prev => {
@@ -99,23 +119,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
   
   const subtotalAfterDiscount = subtotalHT - discountAmount;
   
-  const shippingHT = subtotalAfterDiscount >= SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  
+  // Frais de port: gratuit si retrait, 9.90€/article sinon (franco à 630€ HT)
+  const shippingHT = deliveryMode === 'pickup' 
+    ? 0 
+    : subtotalAfterDiscount >= SHIPPING_THRESHOLD 
+      ? 0 
+      : itemCount * SHIPPING_PER_ITEM;
   
   const totalHT = subtotalAfterDiscount + shippingHT;
   
   const totalTTC = totalHT * (1 + TVA_RATE);
-  
-  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <CartContext.Provider value={{
       items,
       companyCode,
+      deliveryMode,
       addItem,
       removeItem,
       updateQuantity,
       clearCart,
       setCompanyCode,
+      setDeliveryMode,
       subtotalHT,
       discountAmount,
       shippingHT,
