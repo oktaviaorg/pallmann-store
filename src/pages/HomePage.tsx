@@ -14,9 +14,12 @@ import {
   Tag, 
   CheckCircle, 
   XCircle,
+  X,
   Plus,
-  Star
+  Star,
+  FileText
 } from 'lucide-react';
+import { useQuote } from '../lib/QuoteContext';
 
 interface Product {
   id: string;
@@ -68,6 +71,7 @@ const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
   const { addItem, companyCode, setCompanyCode } = useCart();
+  const { addItem: addToQuote, isInQuote } = useQuote();
   
   // Code promo pro
   const [promoCode, setPromoCode] = useState('');
@@ -75,6 +79,7 @@ const HomePage: React.FC = () => {
   const [codeError, setCodeError] = useState('');
   const [checkingCode, setCheckingCode] = useState(false);
   const [addedToCart, setAddedToCart] = useState<string | null>(null);
+  const [addedToQuote, setAddedToQuote] = useState<string | null>(null);
 
   const validatePromoCode = async () => {
     if (!promoCode.trim()) return;
@@ -110,6 +115,13 @@ const HomePage: React.FC = () => {
     return price * (1 - validatedCode.discount_percent / 100);
   };
 
+  const clearPromoCode = () => {
+    setValidatedCode(null);
+    setCompanyCode(null);
+    setPromoCode('');
+    localStorage.removeItem('pallmann-company-code');
+  };
+
   const handleAddToCart = (product: Product) => {
     if (!product.price_public_ht) return;
     
@@ -123,6 +135,21 @@ const HomePage: React.FC = () => {
     
     setAddedToCart(product.id);
     setTimeout(() => setAddedToCart(null), 2000);
+  };
+
+  const handleAddToQuote = (product: Product) => {
+    if (!product.price_public_ht) return;
+    
+    addToQuote({
+      id: product.id,
+      name: product.name,
+      price_ht: product.price_public_ht,
+      image_url: product.image_url,
+      unit: product.unit || 'L',
+    });
+    
+    setAddedToQuote(product.id);
+    setTimeout(() => setAddedToQuote(null), 2000);
   };
 
   useEffect(() => {
@@ -320,9 +347,18 @@ const HomePage: React.FC = () => {
                   </button>
                 </div>
                 {validatedCode && (
-                  <div className="mt-2 flex items-center gap-2 text-green-600 text-sm">
-                    <CheckCircle className="w-4 h-4" />
-                    <span><strong>{validatedCode.company_name}</strong> - Remise {validatedCode.discount_percent}% appliquée !</span>
+                  <div className="mt-2 flex items-center justify-between bg-green-50 p-2 rounded-lg">
+                    <div className="flex items-center gap-2 text-green-600 text-sm">
+                      <CheckCircle className="w-4 h-4" />
+                      <span><strong>{validatedCode.company_name}</strong> - Remise {validatedCode.discount_percent}% appliquée !</span>
+                    </div>
+                    <button
+                      onClick={clearPromoCode}
+                      className="p-1 hover:bg-green-100 rounded-full transition-colors text-green-700"
+                      title="Supprimer le code"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
                   </div>
                 )}
                 {codeError && (
@@ -434,34 +470,64 @@ const HomePage: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Add to Cart Button */}
-                    <div className="p-5 pt-0">
+                    {/* Action Buttons */}
+                    <div className="p-5 pt-0 space-y-2">
                       {product.price_public_ht ? (
-                        <button
-                          onClick={() => handleAddToCart(product)}
-                          className={`w-full py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-                            addedToCart === product.id 
-                              ? 'bg-green-500 text-white' 
-                              : 'bg-[#FF6600] hover:bg-[#e65c00] text-white'
-                          }`}
-                        >
-                          {addedToCart === product.id ? (
-                            <>
-                              <CheckCircle className="w-4 h-4" />
-                              Ajouté !
-                            </>
-                          ) : (
-                            <>
-                              <Plus className="w-4 h-4" />
-                              Ajouter au panier
-                            </>
-                          )}
-                        </button>
+                        <>
+                          <button
+                            onClick={() => handleAddToCart(product)}
+                            className={`w-full py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                              addedToCart === product.id 
+                                ? 'bg-green-500 text-white' 
+                                : 'bg-[#FF6600] hover:bg-[#e65c00] text-white'
+                            }`}
+                          >
+                            {addedToCart === product.id ? (
+                              <>
+                                <CheckCircle className="w-4 h-4" />
+                                Ajouté !
+                              </>
+                            ) : (
+                              <>
+                                <Plus className="w-4 h-4" />
+                                Ajouter au panier
+                              </>
+                            )}
+                          </button>
+                          <button
+                            onClick={() => handleAddToQuote(product)}
+                            className={`w-full py-2 rounded-lg font-semibold text-xs transition-all flex items-center justify-center gap-2 ${
+                              addedToQuote === product.id 
+                                ? 'bg-gray-700 text-white' 
+                                : isInQuote(product.id)
+                                  ? 'bg-gray-200 text-gray-600'
+                                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                            }`}
+                          >
+                            {addedToQuote === product.id ? (
+                              <>
+                                <CheckCircle className="w-3 h-3" />
+                                Ajouté au devis
+                              </>
+                            ) : isInQuote(product.id) ? (
+                              <>
+                                <FileText className="w-3 h-3" />
+                                Dans le devis
+                              </>
+                            ) : (
+                              <>
+                                <FileText className="w-3 h-3" />
+                                Ajouter au devis
+                              </>
+                            )}
+                          </button>
+                        </>
                       ) : (
                         <Link
-                          to={`/contact?produit=${encodeURIComponent(product.name)}`}
+                          to="/demande-devis"
                           className="w-full py-3 rounded-lg font-bold text-sm bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center gap-2 transition-all"
                         >
+                          <FileText className="w-4 h-4" />
                           Demander un devis
                         </Link>
                       )}

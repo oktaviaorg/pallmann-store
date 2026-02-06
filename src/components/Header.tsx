@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Menu, X, ShoppingCart, FileText } from 'lucide-react';
 import { useCart } from '../lib/CartContext';
+import { useQuote } from '../lib/QuoteContext';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { itemCount } = useCart();
+  const { itemCount: quoteItemCount } = useQuote();
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -58,6 +60,20 @@ const Header: React.FC = () => {
               Contact
             </a>
 
+            {/* Demande de devis */}
+            <Link
+              to="/demande-devis"
+              className="relative flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-lg font-bold transition-all"
+            >
+              <FileText className="w-5 h-5" />
+              <span className="hidden lg:inline">Devis</span>
+              {quoteItemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#FF6600] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                  {quoteItemCount}
+                </span>
+              )}
+            </Link>
+
             {/* Panier */}
             <Link
               to="/panier"
@@ -74,7 +90,18 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
+            <Link
+              to="/demande-devis"
+              className="relative p-2"
+            >
+              <FileText className="w-6 h-6 text-gray-700" />
+              {quoteItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#FF6600] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                  {quoteItemCount}
+                </span>
+              )}
+            </Link>
             <Link
               to="/panier"
               className="relative p-2"
@@ -123,6 +150,13 @@ const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Espace PRO
+            </Link>
+            <Link
+              to="/demande-devis"
+              className={`block px-4 py-3 rounded-lg text-base font-semibold transition-colors ${isActive('/demande-devis') ? 'bg-[#FF6600]/10 text-[#FF6600]' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Demande de devis
             </Link>
             <a
               href="mailto:contact@pallmann-store.com"
