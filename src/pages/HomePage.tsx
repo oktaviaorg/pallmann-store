@@ -619,47 +619,102 @@ const HomePage: React.FC = () => {
 
             {/* Filters */}
             <div className="bg-white rounded-2xl shadow-card p-4 md:p-6 mb-8 border border-gray-100">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {/* Search */}
-                <div className="relative md:col-span-2">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#64748B]" />
-                  <input
-                    type="text"
-                    placeholder="Rechercher un produit..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
-                  />
-                </div>
-
-                {/* Category Filter */}
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => {
-                    setSelectedCategory(e.target.value);
-                    setSelectedSubcategory('all');
-                  }}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
-                >
-                  <option value="all">Toutes catégories</option>
-                  {categories.map(cat => (
-                    <option key={cat.id} value={cat.id}>{cat.name}</option>
-                  ))}
-                </select>
-
-                {/* Subcategory Filter */}
-                <select
-                  value={selectedSubcategory}
-                  onChange={(e) => setSelectedSubcategory(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all disabled:bg-gray-50 disabled:text-gray-400 text-[#0F172A]"
-                  disabled={selectedCategory === 'all'}
-                >
-                  <option value="all">Sous-catégories</option>
-                  {filteredSubcategories.map(sub => (
-                    <option key={sub.id} value={sub.id}>{sub.name}</option>
-                  ))}
-                </select>
+              {/* Search */}
+              <div className="relative mb-6">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#64748B]" />
+                <input
+                  type="text"
+                  placeholder="Rechercher un produit..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
+                />
               </div>
+
+              {/* Category Pills */}
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Filter className="w-4 h-4 text-[#64748B]" />
+                  <span className="text-sm font-semibold text-[#64748B]">Catégories</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedCategory('all');
+                      setSelectedSubcategory('all');
+                    }}
+                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                      selectedCategory === 'all'
+                        ? 'text-white shadow-md'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
+                  >
+                    Tout voir ({products.length})
+                  </button>
+                  {categories.map(cat => {
+                    const count = products.filter(p => {
+                      const sub = subcategories.find(s => s.id === p.subcategory_id);
+                      return sub?.category_id === cat.id;
+                    }).length;
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setSelectedCategory(cat.id);
+                          setSelectedSubcategory('all');
+                        }}
+                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                          selectedCategory === cat.id
+                            ? 'text-white shadow-md'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
+                      >
+                        {cat.name} ({count})
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Subcategory Pills (shown when category selected) */}
+              {selectedCategory !== 'all' && filteredSubcategories.length > 0 && (
+                <div className="mb-4 pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-2 mb-3">
+                    <ChevronRight className="w-4 h-4 text-[#64748B]" />
+                    <span className="text-sm font-semibold text-[#64748B]">Sous-catégories</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setSelectedSubcategory('all')}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                        selectedSubcategory === 'all'
+                          ? 'bg-[#2563EB] text-white'
+                          : 'bg-blue-50 text-[#2563EB] hover:bg-blue-100'
+                      }`}
+                    >
+                      Toutes
+                    </button>
+                    {filteredSubcategories.map(sub => {
+                      const count = products.filter(p => p.subcategory_id === sub.id).length;
+                      return (
+                        <button
+                          key={sub.id}
+                          onClick={() => setSelectedSubcategory(sub.id)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                            selectedSubcategory === sub.id
+                              ? 'bg-[#2563EB] text-white'
+                              : 'bg-blue-50 text-[#2563EB] hover:bg-blue-100'
+                          }`}
+                        >
+                          {sub.name} ({count})
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Code promo PRO */}
               <div className="mt-4 pt-4 border-t border-gray-100">
