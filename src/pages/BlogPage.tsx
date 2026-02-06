@@ -37,7 +37,7 @@ const BlogPage: React.FC = () => {
   const fetchArticles = async () => {
     try {
       const { data, error } = await supabase
-        .from('articles')
+        .from('pallmann_articles')
         .select('*')
         .eq('published', true)
         .order('updated_at', { ascending: false });
