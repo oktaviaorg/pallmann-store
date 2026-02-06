@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Plus, 
   CheckCircle, 
@@ -49,6 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   addedToQuote,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { t } = useTranslation();
 
   const getDiscountedPrice = (price: number): number => {
     if (!validatedCode) return price;
@@ -130,7 +132,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
             >
               <Plus className="w-4 h-4" />
-              Ajout rapide
+              {t('common.addToCart')}
             </button>
           </div>
         )}
@@ -237,12 +239,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {addedToCart ? (
                 <>
                   <CheckCircle className="w-5 h-5" />
-                  Ajouté au panier !
+                  ✓ {t('common.cart')}
                 </>
               ) : (
                 <>
                   <ShoppingCart className="w-5 h-5" />
-                  Ajouter au panier
+                  {t('common.addToCart')}
                 </>
               )}
             </button>
@@ -261,17 +263,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {addedToQuote ? (
                 <>
                   <CheckCircle className="w-3 h-3" />
-                  Ajouté au devis
+                  ✓ {t('common.quote')}
                 </>
               ) : isInQuote ? (
                 <>
                   <FileText className="w-3 h-3" />
-                  Dans le devis ✓
+                  {t('common.quote')} ✓
                 </>
               ) : (
                 <>
                   <FileText className="w-3 h-3" />
-                  + Ajouter au devis
+                  + {t('common.addToQuote')}
                 </>
               )}
             </button>
@@ -283,7 +285,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
           >
             <FileText className="w-5 h-5" />
-            Demander un devis
+            {t('machines.requestQuote')}
           </Link>
         )}
       </div>

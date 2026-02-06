@@ -1,0 +1,73 @@
+{
+  "common": {
+    "home": "Startseite",
+    "shop": "Shop",
+    "cart": "Warenkorb",
+    "quote": "Angebot",
+    "pro": "Profi-Bereich",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "search": "Suchen...",
+    "addToCart": "In den Warenkorb",
+    "addToQuote": "Zum Angebot hinzufügen",
+    "viewDetails": "Details anzeigen",
+    "buyNow": "Jetzt kaufen",
+    "price": "Preis",
+    "quantity": "Menge",
+    "total": "Gesamt",
+    "checkout": "Zur Kasse",
+    "continueShopping": "Weiter einkaufen",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "delivery": "Lieferung",
+    "pickup": "Abholung vor Ort",
+    "freePickup": "Kostenlos - Abholung in Herrlisheim",
+    "shippingFrance": "Lieferung Frankreich",
+    "freeShipping": "Versandkostenfrei ab 630€ netto",
+    "perItem": "pro Artikel"
+  },
+  "hero": {
+    "title": "PALLMANN STORE",
+    "subtitle": "Professionelle Lacke, Öle und Klebstoffe für Parkett",
+    "cta": "Produkte entdecken"
+  },
+  "machines": {
+    "title": "Professionelle Ausrüstung",
+    "subtitle": "Hochwertige Schleifmaschinen",
+    "requestQuote": "Angebot anfordern"
+  },
+  "categories": {
+    "all": "Alle Produkte",
+    "vitrificateurs": "Lacke",
+    "huiles": "Öle",
+    "colles": "Klebstoffe",
+    "abrasifs": "Schleifmittel",
+    "machines": "Maschinen",
+    "entretien": "Pflege"
+  },
+  "pro": {
+    "title": "Profi-Bereich",
+    "subtitle": "Profitieren Sie von Vorzugspreisen",
+    "requestCode": "Profi-Code anfordern",
+    "companyName": "Firmenname",
+    "siret": "Handelsregister-Nr.",
+    "contactName": "Ansprechpartner",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "message": "Nachricht",
+    "submit": "Anfrage senden"
+  },
+  "footer": {
+    "company": "Groupe Epenon SARL",
+    "address": "6 rue du Commerce, 68420 Herrlisheim près Colmar",
+    "contact": "Kontakt",
+    "legal": "Impressum",
+    "cgv": "AGB",
+    "privacy": "Datenschutz"
+  },
+  "trust": {
+    "authentic": "Original Pallmann Produkte",
+    "shipping": "Lieferung in ganz Frankreich",
+    "secure": "Sichere Zahlung",
+    "expert": "Expertenberatung"
+  }
+}

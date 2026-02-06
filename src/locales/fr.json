@@ -1,0 +1,73 @@
+{
+  "common": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "cart": "Panier",
+    "quote": "Devis",
+    "pro": "Espace Pro",
+    "blog": "Blog",
+    "contact": "Contact",
+    "search": "Rechercher...",
+    "addToCart": "Ajouter au panier",
+    "addToQuote": "Ajouter au devis",
+    "viewDetails": "Voir détails",
+    "buyNow": "Commander",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "total": "Total",
+    "checkout": "Passer commande",
+    "continueShopping": "Continuer mes achats",
+    "emptyCart": "Votre panier est vide",
+    "delivery": "Livraison",
+    "pickup": "Retrait sur place",
+    "freePickup": "Gratuit - Retrait à Herrlisheim",
+    "shippingFrance": "Livraison France",
+    "freeShipping": "Franco de port dès 630€ HT",
+    "perItem": "par article"
+  },
+  "hero": {
+    "title": "PALLMANN STORE",
+    "subtitle": "Vitrificateurs, huiles et colles professionnels pour parquet",
+    "cta": "Découvrir nos produits"
+  },
+  "machines": {
+    "title": "Équipement Professionnel",
+    "subtitle": "Machines de ponçage haut de gamme",
+    "requestQuote": "Demander un devis"
+  },
+  "categories": {
+    "all": "Tous les produits",
+    "vitrificateurs": "Vitrificateurs",
+    "huiles": "Huiles",
+    "colles": "Colles",
+    "abrasifs": "Abrasifs",
+    "machines": "Machines",
+    "entretien": "Entretien"
+  },
+  "pro": {
+    "title": "Espace Professionnel",
+    "subtitle": "Bénéficiez de tarifs préférentiels",
+    "requestCode": "Demander mon code pro",
+    "companyName": "Nom de l'entreprise",
+    "siret": "SIRET",
+    "contactName": "Nom du contact",
+    "email": "Email",
+    "phone": "Téléphone",
+    "message": "Message",
+    "submit": "Envoyer ma demande"
+  },
+  "footer": {
+    "company": "Groupe Epenon SARL",
+    "address": "6 rue du Commerce, 68420 Herrlisheim près Colmar",
+    "contact": "Contact",
+    "legal": "Mentions légales",
+    "cgv": "CGV",
+    "privacy": "Confidentialité"
+  },
+  "trust": {
+    "authentic": "Produits Pallmann authentiques",
+    "shipping": "Livraison France entière",
+    "secure": "Paiement sécurisé",
+    "expert": "Conseils d'experts"
+  }
+}

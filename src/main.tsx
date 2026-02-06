@@ -8,6 +8,7 @@ import App from './App.tsx';
 import SEOCanonicalOptimizer from './components/SEOCanonicalOptimizer';
 import SEO404Manager from './components/SEO404Manager';
 import SEOEnhancer from './components/SEOEnhancer';
+import './lib/i18n';
 import './index.css';
 
 // Enable dark mode by default

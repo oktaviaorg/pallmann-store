@@ -1,27 +1,30 @@
 import React from 'react';
-import { Shield, Truck, Award, HeadphonesIcon, CreditCard, CheckCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Shield, Truck, Award, HeadphonesIcon } from 'lucide-react';
 
 const TrustBar: React.FC = () => {
+  const { t } = useTranslation();
+
   const trustItems = [
     {
       icon: Award,
-      title: 'Produits Authentiques',
-      subtitle: '100% Pallmann officiel',
+      titleKey: 'trust.authentic',
+      subtitle: '100% Pallmann',
     },
     {
       icon: Truck,
-      title: 'Livraison Rapide',
-      subtitle: '48-72h en France',
+      titleKey: 'trust.shipping',
+      subtitle: '48-72h',
     },
     {
       icon: Shield,
-      title: 'Paiement Sécurisé',
-      subtitle: 'CB, Virement, Chèque',
+      titleKey: 'trust.secure',
+      subtitle: 'CB, Virement',
     },
     {
       icon: HeadphonesIcon,
-      title: 'Conseils Experts',
-      subtitle: 'Équipe pro à votre écoute',
+      titleKey: 'trust.expert',
+      subtitle: 'Pro team',
     },
   ];
 
@@ -36,7 +39,7 @@ const TrustBar: React.FC = () => {
             >
               <item.icon className="w-5 h-5 text-[#2563EB] flex-shrink-0" />
               <div className="text-left">
-                <p className="text-xs font-bold text-[#0F172A] leading-tight">{item.title}</p>
+                <p className="text-xs font-bold text-[#0F172A] leading-tight">{t(item.titleKey)}</p>
                 <p className="text-[10px] text-[#64748B]">{item.subtitle}</p>
               </div>
             </div>

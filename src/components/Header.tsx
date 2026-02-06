@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Menu, X, ShoppingCart, FileText, Sparkles, Package } from 'lucide-react';
 import { useCart } from '../lib/CartContext';
 import { useQuote } from '../lib/QuoteContext';
+import LanguageSelector from './LanguageSelector';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { itemCount, totalHT } = useCart();
   const { itemCount: quoteItemCount } = useQuote();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -49,7 +52,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-4">
             <Link
               to="/"
               className={`transition-all font-semibold ${
@@ -58,7 +61,7 @@ const Header: React.FC = () => {
                   : 'text-[#64748B] hover:text-[#2563EB]'
               }`}
             >
-              Boutique
+              {t('common.shop')}
             </Link>
             <Link
               to="/blog"
@@ -68,7 +71,7 @@ const Header: React.FC = () => {
                   : 'text-[#64748B] hover:text-[#2563EB]'
               }`}
             >
-              Blog
+              {t('common.blog')}
             </Link>
             <Link
               to="/pro"
@@ -79,14 +82,17 @@ const Header: React.FC = () => {
               }`}
             >
               <Sparkles className="w-4 h-4" />
-              Espace PRO
+              {t('common.pro')}
             </Link>
             <a
               href="mailto:contact@pallmann-store.com"
               className="transition-all font-semibold text-[#64748B] hover:text-[#2563EB]"
             >
-              Contact
+              {t('common.contact')}
             </a>
+
+            {/* Language Selector */}
+            <LanguageSelector />
 
             {/* Demande de devis */}
             <Link
@@ -94,7 +100,7 @@ const Header: React.FC = () => {
               className="relative flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
             >
               <FileText className="w-5 h-5" />
-              <span className="hidden lg:inline">Devis</span>
+              <span className="hidden lg:inline">{t('common.quote')}</span>
               {quoteItemCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-[#7C3AED] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse">
                   {quoteItemCount}
@@ -110,7 +116,7 @@ const Header: React.FC = () => {
             >
               <ShoppingCart className="w-5 h-5" />
               <span className="hidden lg:inline">
-                {itemCount > 0 ? `${totalHT.toFixed(0)}€` : 'Panier'}
+                {itemCount > 0 ? `${totalHT.toFixed(0)}€` : t('common.cart')}
               </span>
               {itemCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold shadow-md">
@@ -122,6 +128,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
+            <LanguageSelector />
             <Link
               to="/demande-devis"
               className="relative p-2"
@@ -171,7 +178,7 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              🛒 Boutique
+              🛒 {t('common.shop')}
             </Link>
             <Link
               to="/blog"
@@ -182,7 +189,7 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              📝 Blog
+              📝 {t('common.blog')}
             </Link>
             <Link
               to="/pro"
@@ -193,7 +200,7 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              ⭐ Espace PRO
+              ⭐ {t('common.pro')}
             </Link>
             <Link
               to="/demande-devis"
@@ -204,21 +211,21 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              📋 Demande de devis
+              📋 {t('common.quote')}
             </Link>
             <a
               href="mailto:contact@pallmann-store.com"
               className="block px-4 py-3 rounded-xl text-base font-semibold text-[#64748B] hover:bg-[#F8FAFC] transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              ✉️ Contact
+              ✉️ {t('common.contact')}
             </a>
             
             {/* Mobile cart summary */}
             {itemCount > 0 && (
               <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#EFF6FF] to-[#F5F3FF] border border-blue-100">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold text-[#0F172A]">Votre panier</span>
+                  <span className="font-semibold text-[#0F172A]">{t('common.cart')}</span>
                   <span className="font-bold text-[#2563EB]">{totalHT.toFixed(2)}€ HT</span>
                 </div>
                 <Link
@@ -227,7 +234,7 @@ const Header: React.FC = () => {
                   style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Commander ({itemCount} article{itemCount > 1 ? 's' : ''})
+                  {t('common.checkout')} ({itemCount} article{itemCount > 1 ? 's' : ''})
                 </Link>
               </div>
             )}

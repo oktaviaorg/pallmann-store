@@ -1,0 +1,73 @@
+{
+  "common": {
+    "home": "Home",
+    "shop": "Shop",
+    "cart": "Cart",
+    "quote": "Quote",
+    "pro": "Pro Area",
+    "blog": "Blog",
+    "contact": "Contact",
+    "search": "Search...",
+    "addToCart": "Add to cart",
+    "addToQuote": "Add to quote",
+    "viewDetails": "View details",
+    "buyNow": "Buy now",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continueShopping": "Continue shopping",
+    "emptyCart": "Your cart is empty",
+    "delivery": "Delivery",
+    "pickup": "Store pickup",
+    "freePickup": "Free - Pickup in Herrlisheim",
+    "shippingFrance": "France delivery",
+    "freeShipping": "Free shipping from €630 excl. VAT",
+    "perItem": "per item"
+  },
+  "hero": {
+    "title": "PALLMANN STORE",
+    "subtitle": "Professional varnishes, oils and adhesives for parquet",
+    "cta": "Discover our products"
+  },
+  "machines": {
+    "title": "Professional Equipment",
+    "subtitle": "High-end sanding machines",
+    "requestQuote": "Request a quote"
+  },
+  "categories": {
+    "all": "All products",
+    "vitrificateurs": "Varnishes",
+    "huiles": "Oils",
+    "colles": "Adhesives",
+    "abrasifs": "Abrasives",
+    "machines": "Machines",
+    "entretien": "Maintenance"
+  },
+  "pro": {
+    "title": "Professional Area",
+    "subtitle": "Get preferential rates",
+    "requestCode": "Request my pro code",
+    "companyName": "Company name",
+    "siret": "Company ID",
+    "contactName": "Contact name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Send request"
+  },
+  "footer": {
+    "company": "Groupe Epenon SARL",
+    "address": "6 rue du Commerce, 68420 Herrlisheim près Colmar, France",
+    "contact": "Contact",
+    "legal": "Legal notice",
+    "cgv": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "trust": {
+    "authentic": "Authentic Pallmann products",
+    "shipping": "Delivery throughout France",
+    "secure": "Secure payment",
+    "expert": "Expert advice"
+  }
+}
