@@ -213,14 +213,12 @@ const HomePage: React.FC = () => {
   };
 
   const handleAddToQuote = (product: Product) => {
-    if (!product.price_public_ht) return;
-    
     addToQuote({
       id: product.id,
       name: product.name,
-      price_ht: product.price_public_ht,
+      price_ht: product.price_public_ht || 0, // Prix à définir par le technicien
       image_url: product.image_url,
-      unit: product.unit || 'L',
+      unit: product.unit || 'unité',
     });
     
     setAddedToQuote(product.id);

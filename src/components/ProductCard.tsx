@@ -224,70 +224,62 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Action Buttons - TRÈS VISIBLES */}
       <div className="p-4 pt-0 space-y-2">
-        {product.price_public_ht ? (
-          <>
-            {/* Main CTA */}
-            <button
-              onClick={() => onAddToCart(product)}
-              className={`w-full py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-                addedToCart 
-                  ? 'bg-green-500 text-white' 
-                  : 'text-white shadow-md hover:shadow-xl hover:-translate-y-0.5'
-              }`}
-              style={!addedToCart ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
-            >
-              {addedToCart ? (
-                <>
-                  <CheckCircle className="w-5 h-5" />
-                  ✓ {t('common.cart')}
-                </>
-              ) : (
-                <>
-                  <ShoppingCart className="w-5 h-5" />
-                  {t('common.addToCart')}
-                </>
-              )}
-            </button>
-            
-            {/* Secondary CTA */}
-            <button
-              onClick={() => onAddToQuote(product)}
-              className={`w-full py-2 rounded-xl font-semibold text-xs transition-all flex items-center justify-center gap-2 ${
-                addedToQuote 
-                  ? 'bg-[#0F172A] text-white' 
-                  : isInQuote
-                    ? 'bg-[#EDE9FE] text-[#7C3AED] border border-[#7C3AED]/20'
-                    : 'bg-[#F8FAFC] hover:bg-[#EFF6FF] text-[#64748B] border border-gray-200'
-              }`}
-            >
-              {addedToQuote ? (
-                <>
-                  <CheckCircle className="w-3 h-3" />
-                  ✓ {t('common.quote')}
-                </>
-              ) : isInQuote ? (
-                <>
-                  <FileText className="w-3 h-3" />
-                  {t('common.quote')} ✓
-                </>
-              ) : (
-                <>
-                  <FileText className="w-3 h-3" />
-                  + {t('common.addToQuote')}
-                </>
-              )}
-            </button>
-          </>
-        ) : (
-          <Link
-            to="/demande-devis"
-            className="w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-            style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+        {/* Bouton Panier - seulement si prix défini */}
+        {product.price_public_ht && (
+          <button
+            onClick={() => onAddToCart(product)}
+            className={`w-full py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+              addedToCart 
+                ? 'bg-green-500 text-white' 
+                : 'text-white shadow-md hover:shadow-xl hover:-translate-y-0.5'
+            }`}
+            style={!addedToCart ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
           >
-            <FileText className="w-5 h-5" />
-            {t('machines.requestQuote')}
-          </Link>
+            {addedToCart ? (
+              <>
+                <CheckCircle className="w-5 h-5" />
+                ✓ {t('common.cart')}
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="w-5 h-5" />
+                {t('common.addToCart')}
+              </>
+            )}
+          </button>
         )}
+        
+        {/* Bouton Devis - TOUJOURS visible */}
+        <button
+          onClick={() => onAddToQuote(product)}
+          className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
+            addedToQuote 
+              ? 'bg-[#0F172A] text-white' 
+              : isInQuote
+                ? 'bg-[#EDE9FE] text-[#7C3AED] border border-[#7C3AED]/20'
+                : product.price_public_ht
+                  ? 'bg-[#F8FAFC] hover:bg-[#EFF6FF] text-[#64748B] border border-gray-200'
+                  : 'text-white shadow-md hover:shadow-xl'
+          }`}
+          style={!product.price_public_ht && !addedToQuote && !isInQuote ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
+        >
+          {addedToQuote ? (
+            <>
+              <CheckCircle className="w-4 h-4" />
+              ✓ {t('common.quote')}
+            </>
+          ) : isInQuote ? (
+            <>
+              <FileText className="w-4 h-4" />
+              {t('common.quote')} ✓
+            </>
+          ) : (
+            <>
+              <FileText className="w-4 h-4" />
+              + {t('common.addToQuote')}
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
