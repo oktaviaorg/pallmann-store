@@ -531,10 +531,35 @@ CREATE TABLE IF NOT EXISTS pro_requests (
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Index pour recherche rapide
 CREATE INDEX IF NOT EXISTS idx_pro_requests_email ON pro_requests(email);
 CREATE INDEX IF NOT EXISTS idx_pro_requests_status ON pro_requests(status);
 */
+
+-- ============================================
+-- 4. TABLE quote_requests (demandes de devis)
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS quote_requests (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  products JSONB NOT NULL,
+  company_name TEXT,
+  contact_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  address TEXT,
+  city TEXT,
+  postal_code TEXT,
+  message TEXT,
+  total_ht DECIMAL(10,2),
+  status TEXT DEFAULT 'pending',
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Index pour recherche rapide
+CREATE INDEX IF NOT EXISTS idx_quote_requests_email ON quote_requests(email);
+CREATE INDEX IF NOT EXISTS idx_quote_requests_status ON quote_requests(status);
+CREATE INDEX IF NOT EXISTS idx_quote_requests_created ON quote_requests(created_at DESC);
 
 -- Vérification
 -- SELECT title, slug FROM articles ORDER BY created_at DESC;

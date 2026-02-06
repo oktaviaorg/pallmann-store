@@ -128,9 +128,43 @@ La page PRO est déjà en place avec :
 - Enregistrement dans table `pro_requests`
 - Liens dans Header et Footer ✓
 
-## 5. Fichiers modifiés
+## 5. Fonctionnalité Demande de Devis ✅
+
+Déjà implémenté :
+- **Bouton "Ajouter au devis"** sur chaque produit (HomePage)
+- **Icône Devis** dans le Header avec badge compteur
+- **Page /demande-devis** avec formulaire complet
+- **QuoteContext** pour gérer le panier de devis (localStorage)
+- **Lien dans le Footer**
+
+### Table Supabase `quote_requests`
+```sql
+-- À exécuter dans Supabase (voir sql/blog_articles.sql)
+CREATE TABLE IF NOT EXISTS quote_requests (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  products JSONB NOT NULL,
+  company_name TEXT,
+  contact_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  address TEXT,
+  city TEXT,
+  postal_code TEXT,
+  message TEXT,
+  total_ht DECIMAL(10,2),
+  status TEXT DEFAULT 'pending',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+## 6. Fichiers modifiés
 
 - `src/lib/CartContext.tsx` - Ajout deliveryMode, calcul frais 9.90€/article
+- `src/lib/QuoteContext.tsx` - Contexte pour panier devis
 - `src/pages/CartPage.tsx` - Interface de sélection livraison/retrait
+- `src/pages/QuotePage.tsx` - Page demande de devis
+- `src/pages/HomePage.tsx` - Boutons ajout panier + devis
+- `src/components/Header.tsx` - Icône devis avec badge
+- `src/components/Footer.tsx` - Lien demande de devis
 - `sql/update_products.sql` - Mise à jour prix produits
-- `sql/blog_articles.sql` - Nouveaux articles blog Pallmann
+- `sql/blog_articles.sql` - Articles blog + table quote_requests
