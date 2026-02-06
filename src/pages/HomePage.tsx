@@ -77,6 +77,7 @@ const HomePage: React.FC = () => {
   const [promoCode, setPromoCode] = useState('');
   const [validatedCode, setValidatedCode] = useState<CompanyCode | null>(companyCode);
   const [codeError, setCodeError] = useState('');
+  const [codeRemoved, setCodeRemoved] = useState(false);
   const [checkingCode, setCheckingCode] = useState(false);
   const [addedToCart, setAddedToCart] = useState<string | null>(null);
   const [addedToQuote, setAddedToQuote] = useState<string | null>(null);
@@ -119,7 +120,11 @@ const HomePage: React.FC = () => {
     setValidatedCode(null);
     setCompanyCode(null);
     setPromoCode('');
+    setCodeError('');
     localStorage.removeItem('pallmann-company-code');
+    // Afficher message de confirmation
+    setCodeRemoved(true);
+    setTimeout(() => setCodeRemoved(false), 3000);
   };
 
   const handleAddToCart = (product: Product) => {
@@ -347,18 +352,25 @@ const HomePage: React.FC = () => {
                   </button>
                 </div>
                 {validatedCode && (
-                  <div className="mt-2 flex items-center justify-between bg-green-50 p-2 rounded-lg">
+                  <div className="mt-2 flex items-center justify-between bg-green-50 p-3 rounded-lg border border-green-200">
                     <div className="flex items-center gap-2 text-green-600 text-sm">
                       <CheckCircle className="w-4 h-4" />
                       <span><strong>{validatedCode.company_name}</strong> - Remise {validatedCode.discount_percent}% appliquée !</span>
                     </div>
                     <button
                       onClick={clearPromoCode}
-                      className="p-1 hover:bg-green-100 rounded-full transition-colors text-green-700"
-                      title="Supprimer le code"
+                      className="flex items-center gap-1 px-2 py-1 bg-red-100 hover:bg-red-200 text-red-600 rounded-md transition-colors text-xs font-semibold"
+                      title="Supprimer le code promo"
                     >
-                      <X className="w-4 h-4" />
+                      <X className="w-3 h-3" />
+                      Supprimer
                     </button>
+                  </div>
+                )}
+                {codeRemoved && (
+                  <div className="mt-2 flex items-center gap-2 text-blue-600 bg-blue-50 p-2 rounded-lg text-sm">
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Code promo supprimé - Prix publics rétablis</span>
                   </div>
                 )}
                 {codeError && (

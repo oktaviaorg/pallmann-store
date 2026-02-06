@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCart, PICKUP_ADDRESS, DeliveryMode } from '../lib/CartContext';
-import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag, MapPin, Package } from 'lucide-react';
+import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag, MapPin, Package, X } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -23,7 +23,8 @@ const CartPage: React.FC = () => {
     totalTTC,
     itemCount,
     clearCart,
-    setDeliveryMode
+    setDeliveryMode,
+    setCompanyCode
   } = useCart();
 
   const [customerInfo, setCustomerInfo] = useState({
@@ -269,12 +270,24 @@ const CartPage: React.FC = () => {
                     </div>
                     
                     {companyCode && (
-                      <div className="flex justify-between text-green-600">
+                      <div className="flex justify-between items-center text-green-600 bg-green-50 -mx-2 px-2 py-1 rounded">
                         <span className="flex items-center gap-1">
                           <Tag className="w-4 h-4" />
-                          Remise {companyCode.discount_percent}%
+                          Remise {companyCode.discount_percent}% ({companyCode.company_name})
                         </span>
-                        <span>-{discountAmount.toFixed(2)}€</span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">-{discountAmount.toFixed(2)}€</span>
+                          <button
+                            onClick={() => {
+                              setCompanyCode(null);
+                              localStorage.removeItem('pallmann-company-code');
+                            }}
+                            className="p-1 hover:bg-red-100 rounded text-red-500 transition-colors"
+                            title="Supprimer le code promo"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
                       </div>
                     )}
                     
