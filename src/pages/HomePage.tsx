@@ -195,7 +195,7 @@ const HomePage: React.FC = () => {
         <Header />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#ff9900] mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF6600] mx-auto"></div>
             <p className="mt-4 text-gray-600">Chargement de la boutique...</p>
           </div>
         </main>
@@ -220,26 +220,26 @@ const HomePage: React.FC = () => {
 
         <main className="flex-grow">
           {/* Hero Section */}
-          <div className="bg-gradient-to-r from-[#003366] to-[#004d99] py-12 lg:py-16">
+          <div className="bg-gradient-to-r from-[#FF6600] to-[#ff8c40] py-12 lg:py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
                   Produits Pallmann
                 </h1>
-                <p className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-6">
+                <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-6">
                   Vitrificateurs, huiles, colles et accessoires professionnels pour sublimer vos parquets
                 </p>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-blue-100">
+                <div className="flex flex-wrap justify-center gap-4 text-sm text-white/90">
                   <span className="flex items-center gap-2">
-                    <Star className="w-4 h-4 text-[#ff9900]" />
+                    <Star className="w-4 h-4 text-white" />
                     Qualité professionnelle
                   </span>
                   <span className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-[#ff9900]" />
+                    <CheckCircle className="w-4 h-4 text-white" />
                     Livraison rapide
                   </span>
                   <span className="flex items-center gap-2">
-                    <Tag className="w-4 h-4 text-[#ff9900]" />
+                    <Tag className="w-4 h-4 text-white" />
                     Franco dès 630€ HT
                   </span>
                 </div>
@@ -251,7 +251,7 @@ const HomePage: React.FC = () => {
             {/* Filters Section */}
             <div className="bg-white rounded-xl shadow-md p-6 mb-8">
               <div className="flex items-center gap-2 mb-4">
-                <Filter className="w-5 h-5 text-[#ff9900]" />
+                <Filter className="w-5 h-5 text-[#FF6600]" />
                 <h2 className="text-lg font-bold text-gray-900">Filtrer les produits</h2>
               </div>
 
@@ -264,7 +264,7 @@ const HomePage: React.FC = () => {
                     placeholder="Rechercher un produit..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent transition-all"
                   />
                 </div>
 
@@ -275,7 +275,7 @@ const HomePage: React.FC = () => {
                     setSelectedCategory(e.target.value);
                     setSelectedSubcategory('all');
                   }}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent transition-all"
                 >
                   <option value="all">Toutes les catégories</option>
                   {categories.map(cat => (
@@ -287,7 +287,7 @@ const HomePage: React.FC = () => {
                 <select
                   value={selectedSubcategory}
                   onChange={(e) => setSelectedSubcategory(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all disabled:bg-gray-100"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent transition-all disabled:bg-gray-100"
                   disabled={selectedCategory === 'all'}
                 >
                   <option value="all">Toutes les sous-catégories</option>
@@ -300,7 +300,7 @@ const HomePage: React.FC = () => {
               {/* Code promo PRO */}
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <div className="flex items-center gap-2 mb-2">
-                  <Tag className="w-4 h-4 text-[#ff9900]" />
+                  <Tag className="w-4 h-4 text-[#FF6600]" />
                   <span className="text-sm font-semibold text-gray-700">Code professionnel</span>
                 </div>
                 <div className="flex gap-2">
@@ -309,12 +309,12 @@ const HomePage: React.FC = () => {
                     placeholder="Entrez votre code pro..."
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all uppercase"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent transition-all uppercase"
                   />
                   <button
                     onClick={validatePromoCode}
                     disabled={checkingCode || !promoCode.trim()}
-                    className="px-4 py-2 bg-[#ff9900] hover:bg-[#e68a00] text-white font-semibold rounded-lg transition-all disabled:opacity-50"
+                    className="px-4 py-2 bg-[#FF6600] hover:bg-[#e65c00] text-white font-semibold rounded-lg transition-all disabled:opacity-50"
                   >
                     {checkingCode ? '...' : 'Valider'}
                   </button>
@@ -344,7 +344,7 @@ const HomePage: React.FC = () => {
                       setSelectedSubcategory('all');
                       setSearchTerm('');
                     }}
-                    className="ml-auto text-[#ff9900] hover:text-[#e68a00] font-semibold transition-colors"
+                    className="ml-auto text-[#FF6600] hover:text-[#e65c00] font-semibold transition-colors"
                   >
                     Réinitialiser les filtres
                   </button>
@@ -363,7 +363,7 @@ const HomePage: React.FC = () => {
                     {/* Category Badge */}
                     {product.category_name && (
                       <div className="absolute top-3 left-3 z-10">
-                        <span className="bg-[#003366] text-white px-3 py-1 rounded-md text-xs font-bold">
+                        <span className="bg-gray-800 text-white px-3 py-1 rounded-md text-xs font-bold">
                           {product.category_name}
                         </span>
                       </div>
@@ -382,7 +382,7 @@ const HomePage: React.FC = () => {
 
                     {/* Card Body */}
                     <div className="p-5 flex-grow flex flex-col">
-                      <h3 className="text-base font-bold text-gray-900 mb-1 group-hover:text-[#ff9900] transition-colors line-clamp-2">
+                      <h3 className="text-base font-bold text-gray-900 mb-1 group-hover:text-[#FF6600] transition-colors line-clamp-2">
                         {product.name}
                       </h3>
                       {product.subcategory_name && (
@@ -413,7 +413,7 @@ const HomePage: React.FC = () => {
                             </div>
                           ) : (
                             <div>
-                              <span className="text-xl font-bold text-[#ff9900]">{product.price_public_ht.toFixed(2)}€</span>
+                              <span className="text-xl font-bold text-[#FF6600]">{product.price_public_ht.toFixed(2)}€</span>
                               <span className="text-xs text-gray-500"> HT/{product.unit || 'L'}</span>
                             </div>
                           )}
@@ -426,7 +426,7 @@ const HomePage: React.FC = () => {
                           href={product.pdf_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-[#ff9900] transition-colors mb-3"
+                          className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-[#FF6600] transition-colors mb-3"
                         >
                           <Download className="w-3 h-3" />
                           <span>Fiche technique</span>
@@ -442,7 +442,7 @@ const HomePage: React.FC = () => {
                           className={`w-full py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
                             addedToCart === product.id 
                               ? 'bg-green-500 text-white' 
-                              : 'bg-[#ff9900] hover:bg-[#e68a00] text-white'
+                              : 'bg-[#FF6600] hover:bg-[#e65c00] text-white'
                           }`}
                         >
                           {addedToCart === product.id ? (
@@ -460,7 +460,7 @@ const HomePage: React.FC = () => {
                       ) : (
                         <Link
                           to={`/contact?produit=${encodeURIComponent(product.name)}`}
-                          className="w-full py-3 rounded-lg font-bold text-sm bg-[#003366] hover:bg-[#002244] text-white flex items-center justify-center gap-2 transition-all"
+                          className="w-full py-3 rounded-lg font-bold text-sm bg-gray-800 hover:bg-gray-700 text-white flex items-center justify-center gap-2 transition-all"
                         >
                           Demander un devis
                         </Link>
@@ -484,7 +484,7 @@ const HomePage: React.FC = () => {
                     setSelectedSubcategory('all');
                     setSearchTerm('');
                   }}
-                  className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#e68a00] text-white px-6 py-3 rounded-lg font-bold transition-colors"
+                  className="inline-flex items-center gap-2 bg-[#FF6600] hover:bg-[#e65c00] text-white px-6 py-3 rounded-lg font-bold transition-colors"
                 >
                   Réinitialiser les filtres
                 </button>
@@ -492,13 +492,13 @@ const HomePage: React.FC = () => {
             )}
 
             {/* Shipping Info */}
-            <div className="mt-12 bg-gradient-to-r from-[#003366] to-[#004d99] rounded-xl p-8 text-center text-white">
+            <div className="mt-12 bg-gradient-to-r from-[#FF6600] to-[#ff8c40] rounded-xl p-8 text-center text-white">
               <h2 className="text-2xl font-bold mb-4">Livraison professionnelle</h2>
-              <p className="text-blue-100 mb-4">
+              <p className="text-white/90 mb-4">
                 Franco de port à partir de 630€ HT • Livraison en 48-72h ouvrées
               </p>
-              <p className="text-sm text-blue-200">
-                Pour toute question, contactez-nous : <a href="mailto:contact@pallmann-store.com" className="text-[#ff9900] hover:underline">contact@pallmann-store.com</a>
+              <p className="text-sm text-white/80">
+                Pour toute question, contactez-nous : <a href="mailto:contact@pallmann-store.com" className="text-white font-semibold hover:underline">contact@pallmann-store.com</a>
               </p>
             </div>
           </div>

@@ -5,7 +5,21 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Pallmann Orange - couleur principale
         primary: {
+          50: '#fff7f0',
+          100: '#ffede0',
+          200: '#ffd9bf',
+          300: '#ffb580',
+          400: '#ff8c40',
+          500: '#FF6600',
+          600: '#e65c00',
+          700: '#cc5200',
+          800: '#a34200',
+          900: '#7a3100',
+        },
+        // Ancien primary gold (legacy)
+        gold: {
           50: '#fefbf3',
           100: '#fef7e6',
           200: '#fdecc0',
@@ -30,29 +44,16 @@ export default {
           900: '#181D27',
         },
         accent: {
-          50: '#fefbf3',
-          100: '#fef7e6',
-          200: '#fdecc0',
-          300: '#fbd894',
-          400: '#f8c166',
-          500: '#d9b45a',
-          600: '#b8944a',
-          700: '#9d7f3f',
-          800: '#826a34',
-          900: '#6b5529',
-        },
-        // Nouvelle palette harmonisée avec l'or
-        gold: {
-          50: '#fefbf3',
-          100: '#fef7e6',
-          200: '#fdecc0',
-          300: '#fbd894',
-          400: '#f8c166',
-          500: '#d9b45a',
-          600: '#c4a04f',
-          700: '#b08e45',
-          800: '#9c7c3b',
-          900: '#886a31',
+          50: '#fff7f0',
+          100: '#ffede0',
+          200: '#ffd9bf',
+          300: '#ffb580',
+          400: '#ff8c40',
+          500: '#FF6600',
+          600: '#e65c00',
+          700: '#cc5200',
+          800: '#a34200',
+          900: '#7a3100',
         },
         // Couleur complémentaire bleu marine profond
         navy: {
@@ -252,8 +253,8 @@ export default {
         'soft': '0 4px 20px rgba(0, 0, 0, 0.08)',
         'medium': '0 8px 30px rgba(0, 0, 0, 0.12)',
         'strong': '0 20px 40px rgba(0, 0, 0, 0.2)',
-        'glow': '0 0 20px rgba(196, 160, 79, 0.3)',
-        'glow-lg': '0 0 40px rgba(196, 160, 79, 0.5)',
+        'glow': '0 0 20px rgba(255, 102, 0, 0.3)',
+        'glow-lg': '0 0 40px rgba(255, 102, 0, 0.5)',
       },
       // Ajout de classes utilitaires mobiles
       extend: {

@@ -6,12 +6,12 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#003366] text-white mt-auto">
+    <footer className="bg-gray-900 text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-bold text-white mb-4">
+            <h3 className="text-xl font-bold text-[#FF6600] mb-4">
               Pallmann Store
             </h3>
             <p className="text-gray-300 text-sm mb-4">
@@ -24,12 +24,12 @@ const Footer: React.FC = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold text-[#ff9900] mb-4">Contact</h4>
+            <h4 className="text-lg font-semibold text-[#FF6600] mb-4">Contact</h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="mailto:contact@pallmann-store.com"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#ff9900] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[#FF6600] transition-colors"
                 >
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <span>contact@pallmann-store.com</span>
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               <li>
                 <a
                   href="tel:+33389210000"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#ff9900] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[#FF6600] transition-colors"
                 >
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span>03 89 21 00 00</span>
@@ -57,20 +57,25 @@ const Footer: React.FC = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-lg font-semibold text-[#ff9900] mb-4">Navigation</h4>
+            <h4 className="text-lg font-semibold text-[#FF6600] mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-[#ff9900] transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-[#FF6600] transition-colors">
                   Boutique
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-300 hover:text-[#ff9900] transition-colors">
+                <Link to="/blog" className="text-gray-300 hover:text-[#FF6600] transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/panier" className="text-gray-300 hover:text-[#ff9900] transition-colors">
+                <Link to="/pro" className="text-gray-300 hover:text-[#FF6600] transition-colors">
+                  Espace PRO
+                </Link>
+              </li>
+              <li>
+                <Link to="/panier" className="text-gray-300 hover:text-[#FF6600] transition-colors">
                   Panier
                 </Link>
               </li>
@@ -87,15 +92,15 @@ const Footer: React.FC = () => {
               © {currentYear} Pallmann Store - Groupe Renoline SARL. Tous droits réservés.
             </p>
             <div className="flex flex-wrap gap-4 text-sm justify-center">
-              <Link to="/mentions-legales" className="text-gray-400 hover:text-[#ff9900] transition-colors">
+              <Link to="/mentions-legales" className="text-gray-400 hover:text-[#FF6600] transition-colors">
                 Mentions légales
               </Link>
               <span className="text-gray-600">•</span>
-              <Link to="/cgv" className="text-gray-400 hover:text-[#ff9900] transition-colors">
+              <Link to="/cgv" className="text-gray-400 hover:text-[#FF6600] transition-colors">
                 CGV
               </Link>
               <span className="text-gray-600">•</span>
-              <Link to="/politique-confidentialite" className="text-gray-400 hover:text-[#ff9900] transition-colors">
+              <Link to="/politique-confidentialite" className="text-gray-400 hover:text-[#FF6600] transition-colors">
                 Confidentialité
               </Link>
             </div>

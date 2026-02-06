@@ -106,7 +106,7 @@ const CartPage: React.FC = () => {
               <p className="text-gray-600 mb-8">Découvrez nos produits Pallmann professionnels</p>
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#e68a00] text-white px-8 py-4 rounded-lg font-bold transition-all"
+                className="inline-flex items-center gap-2 bg-[#FF6600] hover:bg-[#e65c00] text-white px-8 py-4 rounded-lg font-bold transition-all"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Retour à la boutique
@@ -129,7 +129,7 @@ const CartPage: React.FC = () => {
         <main className="flex-grow pt-24 pb-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-              <ShoppingCart className="w-8 h-8 text-[#ff9900]" />
+              <ShoppingCart className="w-8 h-8 text-[#FF6600]" />
               Votre panier ({itemCount} article{itemCount > 1 ? 's' : ''})
             </h1>
 
@@ -143,7 +143,7 @@ const CartPage: React.FC = () => {
                     )}
                     <div className="flex-grow">
                       <h3 className="font-bold text-gray-900">{item.name}</h3>
-                      <p className="text-[#ff9900] font-bold">{item.price_ht.toFixed(2)}€ HT/{item.unit || 'L'}</p>
+                      <p className="text-[#FF6600] font-bold">{item.price_ht.toFixed(2)}€ HT/{item.unit || 'L'}</p>
                       
                       <div className="flex items-center gap-3 mt-3">
                         <button
@@ -175,7 +175,7 @@ const CartPage: React.FC = () => {
 
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 text-[#ff9900] hover:text-[#e68a00] font-semibold"
+                  className="inline-flex items-center gap-2 text-[#FF6600] hover:text-[#e65c00] font-semibold"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Continuer mes achats
@@ -225,7 +225,7 @@ const CartPage: React.FC = () => {
                         <span>TVA (20%)</span>
                         <span>{(totalTTC - totalHT).toFixed(2)}€</span>
                       </div>
-                      <div className="flex justify-between font-bold text-xl text-[#ff9900] mt-2">
+                      <div className="flex justify-between font-bold text-xl text-[#FF6600] mt-2">
                         <span>Total TTC</span>
                         <span>{totalTTC.toFixed(2)}€</span>
                       </div>
@@ -243,7 +243,7 @@ const CartPage: React.FC = () => {
                       placeholder="Email *"
                       value={customerInfo.email}
                       onChange={e => setCustomerInfo({...customerInfo, email: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
                       required
                     />
                     <input
@@ -251,7 +251,7 @@ const CartPage: React.FC = () => {
                       placeholder="Nom / Entreprise *"
                       value={customerInfo.name}
                       onChange={e => setCustomerInfo({...customerInfo, name: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
                       required
                     />
                     <input
@@ -259,14 +259,14 @@ const CartPage: React.FC = () => {
                       placeholder="Téléphone"
                       value={customerInfo.phone}
                       onChange={e => setCustomerInfo({...customerInfo, phone: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
                     />
                     <input
                       type="text"
                       placeholder="Adresse de livraison *"
                       value={customerInfo.address}
                       onChange={e => setCustomerInfo({...customerInfo, address: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
                       required
                     />
                     <div className="grid grid-cols-2 gap-4">
@@ -275,14 +275,14 @@ const CartPage: React.FC = () => {
                         placeholder="Code postal"
                         value={customerInfo.postalCode}
                         onChange={e => setCustomerInfo({...customerInfo, postalCode: e.target.value})}
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
                       />
                       <input
                         type="text"
                         placeholder="Ville"
                         value={customerInfo.city}
                         onChange={e => setCustomerInfo({...customerInfo, city: e.target.value})}
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -294,7 +294,7 @@ const CartPage: React.FC = () => {
                   <button
                     onClick={handleCheckout}
                     disabled={loading}
-                    className="w-full mt-6 bg-[#ff9900] hover:bg-[#e68a00] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all"
+                    className="w-full mt-6 bg-[#FF6600] hover:bg-[#e65c00] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all"
                   >
                     {loading ? (
                       'Chargement...'

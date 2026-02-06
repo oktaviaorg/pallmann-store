@@ -16,6 +16,9 @@ import MentionsLegales from './pages/MentionsLegales';
 import CGV from './pages/CGV';
 import PolitiqueConfidentialite from './pages/PolitiqueConfidentialite';
 
+// Page PRO
+import ProPage from './pages/ProPage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -39,6 +42,9 @@ export default function App() {
         {/* Blog */}
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<ArticlePage />} />
+        
+        {/* Page PRO */}
+        <Route path="/pro" element={<ProPage />} />
         
         {/* Pages légales */}
         <Route path="/mentions-legales" element={<MentionsLegales />} />
