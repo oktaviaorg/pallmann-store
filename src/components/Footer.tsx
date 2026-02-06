@@ -36,11 +36,11 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="mailto:contact@pallmann-store.com"
+                  href="mailto:contact@pallmann-store.com | 📞 07 57 82 13 06"
                   className="flex items-center gap-2 text-gray-400 hover:text-[#7C3AED] transition-colors"
                 >
                   <Mail className="w-4 h-4 flex-shrink-0 text-[#2563EB]" />
-                  <span>contact@pallmann-store.com</span>
+                  <span>contact@pallmann-store.com | 📞 07 57 82 13 06</span>
                 </a>
               </li>
               <li>
