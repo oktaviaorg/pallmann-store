@@ -50,15 +50,15 @@ const CheckoutSuccessPage: React.FC = () => {
                 <Package className="w-6 h-6 text-[#ff9900] flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold">Livraison</h3>
-                  <p className="text-sm text-gray-600">Votre commande sera expédiée sous 24-48h ouvrées</p>
+                  <p className="text-sm text-gray-600">Votre commande sera expédiée sous 48-72h ouvrées</p>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/boutique"
-                className="inline-flex items-center justify-center gap-2 bg-[#ff9900] hover:bg-[#f0c300] text-white px-8 py-4 rounded-lg font-bold transition-all"
+                to="/"
+                className="inline-flex items-center justify-center gap-2 bg-[#ff9900] hover:bg-[#e68a00] text-white px-8 py-4 rounded-lg font-bold transition-all"
               >
                 Continuer mes achats
                 <ArrowRight className="w-5 h-5" />

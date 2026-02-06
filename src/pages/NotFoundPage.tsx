@@ -1,26 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Home, ArrowLeft, Search, Phone } from 'lucide-react';
+import { Home, ArrowLeft, ShoppingCart } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Helmet>
-        <title>Page non trouvée - 404 | Les Ponceurs Réunis</title>
-        <meta name="description" content="La page que vous recherchez n'existe pas ou a été déplacée. Retournez à l'accueil pour découvrir nos services de ponçage et rénovation de parquet en Alsace." />
+        <title>Page non trouvée - 404 | Pallmann Store</title>
+        <meta name="description" content="La page que vous recherchez n'existe pas ou a été déplacée." />
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://ponceursreunis.com/404" />
       </Helmet>
 
       <Header />
 
       <main className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16">
-        <div className="max-w-2xl w-full text-center">
+        <div className="max-w-lg w-full text-center">
           <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-[#d9b45a] to-[#b8941a] rounded-full mb-6 shadow-xl">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-[#ff9900] rounded-full mb-6 shadow-xl">
               <span className="text-5xl font-bold text-white">404</span>
             </div>
 
@@ -28,81 +27,69 @@ export default function NotFoundPage() {
               Page non trouvée
             </h1>
 
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
-              <br />
-              Pas de souci, nous sommes là pour vous aider !
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               to="/"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-[#d9b45a] to-[#b8941a] text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#ff9900] hover:bg-[#e68a00] text-white rounded-lg font-bold shadow-lg transition-all"
             >
-              <Home className="w-5 h-5" />
-              Retour à l'accueil
+              <ShoppingCart className="w-5 h-5" />
+              Retour à la boutique
             </Link>
 
             <Link
-              to="/services"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white text-gray-900 rounded-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 border-2 border-gray-200"
+              to="/blog"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white text-gray-900 rounded-lg font-bold shadow-lg hover:bg-gray-100 transition-all border border-gray-200"
             >
-              <Search className="w-5 h-5" />
-              Nos services
+              Voir le blog
             </Link>
           </div>
 
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-xl border-2 border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Pages populaires
+          <div className="bg-white rounded-xl p-6 shadow-md">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              Pages utiles
             </h2>
 
-            <div className="grid grid-cols-1 gap-3 text-left">
+            <div className="space-y-3 text-left">
               <Link
                 to="/"
-                className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#f5f0e8] to-white rounded-lg hover:from-[#d9b45a]/10 hover:to-[#b8941a]/10 transition-all duration-300 group"
+                className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg hover:bg-[#ff9900]/10 transition-all group"
               >
-                <ArrowLeft className="w-4 h-4 text-[#b8941a] group-hover:translate-x-1 transition-transform" />
-                <span className="font-medium text-gray-900">Accueil - Devis gratuit en ligne</span>
-              </Link>
-
-              <Link
-                to="/services"
-                className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#f5f0e8] to-white rounded-lg hover:from-[#d9b45a]/10 hover:to-[#b8941a]/10 transition-all duration-300 group"
-              >
-                <ArrowLeft className="w-4 h-4 text-[#b8941a] group-hover:translate-x-1 transition-transform" />
-                <span className="font-medium text-gray-900">Nos services de ponçage et rénovation</span>
-              </Link>
-
-              <Link
-                to="/gallery"
-                className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#f5f0e8] to-white rounded-lg hover:from-[#d9b45a]/10 hover:to-[#b8941a]/10 transition-all duration-300 group"
-              >
-                <ArrowLeft className="w-4 h-4 text-[#b8941a] group-hover:translate-x-1 transition-transform" />
-                <span className="font-medium text-gray-900">Galerie de nos réalisations</span>
+                <ArrowLeft className="w-4 h-4 text-[#ff9900]" />
+                <span className="font-medium text-gray-900">Boutique - Produits Pallmann</span>
               </Link>
 
               <Link
                 to="/blog"
-                className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-[#f5f0e8] to-white rounded-lg hover:from-[#d9b45a]/10 hover:to-[#b8941a]/10 transition-all duration-300 group"
+                className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg hover:bg-[#ff9900]/10 transition-all group"
               >
-                <ArrowLeft className="w-4 h-4 text-[#b8941a] group-hover:translate-x-1 transition-transform" />
-                <span className="font-medium text-gray-900">Blog - Conseils et actualités</span>
+                <ArrowLeft className="w-4 h-4 text-[#ff9900]" />
+                <span className="font-medium text-gray-900">Blog - Conseils parquet</span>
+              </Link>
+
+              <Link
+                to="/panier"
+                className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg hover:bg-[#ff9900]/10 transition-all group"
+              >
+                <ArrowLeft className="w-4 h-4 text-[#ff9900]" />
+                <span className="font-medium text-gray-900">Mon panier</span>
               </Link>
             </div>
           </div>
 
-          <div className="mt-8 p-6 bg-gradient-to-br from-[#0f1b2b] to-[#1a2942] rounded-2xl shadow-xl border-2 border-[#d9b45a]/20">
-            <p className="text-white text-lg mb-4 font-medium">
-              Besoin d'aide ? Contactez-nous directement
+          <div className="mt-8 p-6 bg-[#003366] rounded-xl text-white">
+            <p className="mb-4">
+              Besoin d'aide ?
             </p>
             <a
-              href="tel:+33757821306"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#d9b45a] to-[#b8941a] text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+              href="mailto:contact@pallmann-store.com"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#ff9900] hover:bg-[#e68a00] text-white rounded-lg font-bold transition-all"
             >
-              <Phone className="w-5 h-5" />
-              07 57 82 13 06
+              Nous contacter
             </a>
           </div>
         </div>

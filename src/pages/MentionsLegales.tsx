@@ -6,10 +6,10 @@ import { Building, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function MentionsLegales() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Helmet>
-        <title>Mentions Légales | Les Ponceurs Réunis</title>
-        <meta name="description" content="Mentions légales du site Les Ponceurs Réunis - ponceur-parquet.fr" />
+        <title>Mentions Légales | Pallmann Store</title>
+        <meta name="description" content="Mentions légales du site Pallmann Store - pallmann-store.com" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
 
@@ -18,53 +18,49 @@ export default function MentionsLegales() {
       <main className="flex-1 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200">
-            <h1 className="text-4xl font-bold text-gray-900 mb-8 pb-4 border-b-4 border-[#d9b45a]">
+            <h1 className="text-4xl font-bold text-gray-900 mb-8 pb-4 border-b-4 border-[#ff9900]">
               Mentions Légales
             </h1>
 
             <div className="space-y-8 text-gray-700">
               <section>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                  <Building className="w-6 h-6 text-[#b8941a]" />
+                  <Building className="w-6 h-6 text-[#ff9900]" />
                   Informations sur l'entreprise
                 </h2>
                 <div className="space-y-2 pl-9">
-                  <p><strong>Raison sociale :</strong> Les Ponceurs Réunis</p>
-                  <p><strong>Forme juridique :</strong> Entreprise individuelle</p>
-                  <p><strong>Numéro SIRET :</strong> 83205951300016</p>
+                  <p><strong>Raison sociale :</strong> Pallmann Store - Groupe Renoline SARL</p>
+                  <p><strong>Forme juridique :</strong> SARL (Société à Responsabilité Limitée)</p>
+                  <p><strong>Numéro SIRET :</strong> 832 059 513 00016</p>
                   <p><strong>Numéro TVA intracommunautaire :</strong> FR48832059513</p>
-                  <p><strong>Responsable de publication :</strong> Julien D.</p>
+                  <p><strong>Capital social :</strong> 10 000 €</p>
+                  <p><strong>Responsable de publication :</strong> Julien Dietemann</p>
                 </div>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                  <MapPin className="w-6 h-6 text-[#b8941a]" />
+                  <MapPin className="w-6 h-6 text-[#ff9900]" />
                   Siège social
                 </h2>
                 <div className="space-y-2 pl-9">
-                  <p>Les Ponceurs Réunis</p>
-                  <p>Alsace, France</p>
-                  <p>Zone d'intervention : Strasbourg, Colmar, Mulhouse, Belfort</p>
+                  <p>Groupe Renoline SARL</p>
+                  <p>6 rue du Commerce</p>
+                  <p>68420 Herrlisheim près Colmar</p>
+                  <p>France</p>
                 </div>
               </section>
 
               <section>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                  <Phone className="w-6 h-6 text-[#b8941a]" />
+                  <Phone className="w-6 h-6 text-[#ff9900]" />
                   Contact
                 </h2>
                 <div className="space-y-2 pl-9">
                   <p className="flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
-                    <a href="tel:+33757821306" className="text-[#b8941a] hover:underline">
-                      07 57 82 13 06
-                    </a>
-                  </p>
-                  <p className="flex items-center gap-2">
                     <Mail className="w-4 h-4" />
-                    <a href="mailto:contact@poncages.fr" className="text-[#b8941a] hover:underline">
-                      contact@poncages.fr
+                    <a href="mailto:contact@pallmann-store.com" className="text-[#ff9900] hover:underline">
+                      contact@pallmann-store.com
                     </a>
                   </p>
                 </div>
@@ -73,11 +69,11 @@ export default function MentionsLegales() {
               <section>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Hébergement du site</h2>
                 <div className="space-y-2 pl-9">
-                  <p><strong>Hébergeur :</strong> Netlify, Inc.</p>
-                  <p>2325 3rd Street, Suite 296</p>
-                  <p>San Francisco, California 94107</p>
+                  <p><strong>Hébergeur :</strong> Vercel Inc.</p>
+                  <p>440 N Barranca Ave #4133</p>
+                  <p>Covina, CA 91723</p>
                   <p>États-Unis</p>
-                  <p>Site web : <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" className="text-[#b8941a] hover:underline">www.netlify.com</a></p>
+                  <p>Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-[#ff9900] hover:underline">www.vercel.com</a></p>
                 </div>
               </section>
 
@@ -85,14 +81,18 @@ export default function MentionsLegales() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Propriété intellectuelle</h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Le contenu du site ponceur-parquet.fr (textes, images, graphismes, logo, vidéos, etc.)
-                    est la propriété exclusive de Les Ponceurs Réunis, à l'exception des marques, logos ou
-                    contenus appartenant à d'autres sociétés partenaires ou auteurs.
+                    Le contenu du site pallmann-store.com (textes, images, graphismes, logo, vidéos, etc.)
+                    est la propriété exclusive de Groupe Renoline SARL, à l'exception des marques, logos ou
+                    contenus appartenant à Pallmann ou à d'autres sociétés partenaires.
+                  </p>
+                  <p>
+                    La marque Pallmann® est une marque déposée de Uzin Utz AG. L'utilisation de cette marque
+                    sur ce site est autorisée dans le cadre de la distribution des produits.
                   </p>
                   <p>
                     Toute reproduction, distribution, modification, adaptation, retransmission ou publication,
                     même partielle, de ces différents éléments est strictement interdite sans l'accord exprès
-                    par écrit de Les Ponceurs Réunis.
+                    par écrit de Groupe Renoline SARL.
                   </p>
                 </div>
               </section>
@@ -107,13 +107,13 @@ export default function MentionsLegales() {
                   </p>
                   <p>
                     Pour exercer ces droits, vous pouvez nous contacter à l'adresse :
-                    <a href="mailto:contact@poncages.fr" className="text-[#b8941a] hover:underline ml-1">
-                      contact@poncages.fr
+                    <a href="mailto:contact@pallmann-store.com" className="text-[#ff9900] hover:underline ml-1">
+                      contact@pallmann-store.com
                     </a>
                   </p>
                   <p>
                     Pour plus d'informations, consultez notre{' '}
-                    <a href="/politique-confidentialite" className="text-[#b8941a] hover:underline font-medium">
+                    <a href="/politique-confidentialite" className="text-[#ff9900] hover:underline font-medium">
                       Politique de Confidentialité
                     </a>.
                   </p>
@@ -124,8 +124,8 @@ export default function MentionsLegales() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Cookies</h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Le site ponceur-parquet.fr utilise des cookies pour améliorer votre expérience de
-                    navigation et réaliser des statistiques de visites via Google Analytics.
+                    Le site pallmann-store.com utilise des cookies pour améliorer votre expérience de
+                    navigation et réaliser des statistiques de visites.
                   </p>
                   <p>
                     Vous pouvez à tout moment désactiver ces cookies dans les paramètres de votre navigateur.
@@ -137,8 +137,8 @@ export default function MentionsLegales() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Liens hypertextes</h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Le site ponceur-parquet.fr peut contenir des liens hypertextes vers d'autres sites.
-                    Les Ponceurs Réunis n'exerce aucun contrôle sur ces sites et décline toute responsabilité
+                    Le site pallmann-store.com peut contenir des liens hypertextes vers d'autres sites.
+                    Groupe Renoline SARL n'exerce aucun contrôle sur ces sites et décline toute responsabilité
                     quant à leur contenu.
                   </p>
                 </div>
@@ -148,12 +148,12 @@ export default function MentionsLegales() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation de responsabilité</h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Les Ponceurs Réunis s'efforce d'assurer l'exactitude et la mise à jour des informations
+                    Groupe Renoline SARL s'efforce d'assurer l'exactitude et la mise à jour des informations
                     diffusées sur ce site, dont elle se réserve le droit de corriger, à tout moment et sans
                     préavis, le contenu.
                   </p>
                   <p>
-                    Toutefois, Les Ponceurs Réunis ne peut garantir l'exactitude, la précision ou l'exhaustivité
+                    Toutefois, Groupe Renoline SARL ne peut garantir l'exactitude, la précision ou l'exhaustivité
                     des informations mises à disposition sur ce site.
                   </p>
                 </div>

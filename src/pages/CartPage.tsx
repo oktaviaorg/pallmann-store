@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCart } from '../lib/CartContext';
-import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag, CheckCircle } from 'lucide-react';
+import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag } from 'lucide-react';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -105,8 +105,8 @@ const CartPage: React.FC = () => {
               <h1 className="text-3xl font-bold text-gray-900 mb-4">Votre panier est vide</h1>
               <p className="text-gray-600 mb-8">Découvrez nos produits Pallmann professionnels</p>
               <Link
-                to="/boutique"
-                className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#f0c300] text-white px-8 py-4 rounded-lg font-bold transition-all"
+                to="/"
+                className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#e68a00] text-white px-8 py-4 rounded-lg font-bold transition-all"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Retour à la boutique
@@ -174,8 +174,8 @@ const CartPage: React.FC = () => {
                 ))}
 
                 <Link
-                  to="/boutique"
-                  className="inline-flex items-center gap-2 text-[#ff9900] hover:text-[#f0c300] font-semibold"
+                  to="/"
+                  className="inline-flex items-center gap-2 text-[#ff9900] hover:text-[#e68a00] font-semibold"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Continuer mes achats
@@ -243,7 +243,7 @@ const CartPage: React.FC = () => {
                       placeholder="Email *"
                       value={customerInfo.email}
                       onChange={e => setCustomerInfo({...customerInfo, email: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900]"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
                       required
                     />
                     <input
@@ -251,7 +251,7 @@ const CartPage: React.FC = () => {
                       placeholder="Nom / Entreprise *"
                       value={customerInfo.name}
                       onChange={e => setCustomerInfo({...customerInfo, name: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900]"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
                       required
                     />
                     <input
@@ -259,14 +259,14 @@ const CartPage: React.FC = () => {
                       placeholder="Téléphone"
                       value={customerInfo.phone}
                       onChange={e => setCustomerInfo({...customerInfo, phone: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900]"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
                     />
                     <input
                       type="text"
                       placeholder="Adresse de livraison *"
                       value={customerInfo.address}
                       onChange={e => setCustomerInfo({...customerInfo, address: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900]"
+                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
                       required
                     />
                     <div className="grid grid-cols-2 gap-4">
@@ -275,14 +275,14 @@ const CartPage: React.FC = () => {
                         placeholder="Code postal"
                         value={customerInfo.postalCode}
                         onChange={e => setCustomerInfo({...customerInfo, postalCode: e.target.value})}
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900]"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
                       />
                       <input
                         type="text"
                         placeholder="Ville"
                         value={customerInfo.city}
                         onChange={e => setCustomerInfo({...customerInfo, city: e.target.value})}
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900]"
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -294,7 +294,7 @@ const CartPage: React.FC = () => {
                   <button
                     onClick={handleCheckout}
                     disabled={loading}
-                    className="w-full mt-6 bg-[#ff9900] hover:bg-[#f0c300] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full mt-6 bg-[#ff9900] hover:bg-[#e68a00] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all"
                   >
                     {loading ? (
                       'Chargement...'
