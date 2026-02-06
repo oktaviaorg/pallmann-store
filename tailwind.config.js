@@ -5,44 +5,49 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Nouvelle palette Bleu Moderne
+        // BLEU TECH - Palette moderne
         primary: {
-          50: '#EBF4FF',
-          100: '#C3DAFE',
-          200: '#A3BFFA',
-          300: '#7F9CF5',
-          400: '#667EEA',
-          500: '#2C5282',
-          600: '#1E3A5F',
-          700: '#1A365D',
-          800: '#153E75',
-          900: '#1A365D',
+          DEFAULT: '#2563EB',
+          dark: '#0F172A',
+          light: '#3B82F6',
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#2563EB',
+          600: '#1D4ED8',
+          700: '#1E40AF',
+          800: '#1E3A8A',
+          900: '#0F172A',
         },
-        // Accent Pallmann Orange - uniquement boutons et CTA
+        // Accent Violet
         accent: {
-          DEFAULT: '#FBA600',
-          hover: '#E09500',
-          light: '#FBBF24',
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          500: '#FBA600',
-          600: '#E09500',
-          700: '#B45309',
+          DEFAULT: '#7C3AED',
+          light: '#EDE9FE',
+          dark: '#5B21B6',
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          300: '#C4B5FD',
+          400: '#A78BFA',
+          500: '#7C3AED',
+          600: '#6D28D9',
+          700: '#5B21B6',
         },
-        // Couleurs de fond
-        surface: {
-          white: '#FFFFFF',
-          light: '#F7FAFC',
-          blue: '#EBF4FF',
+        // Surfaces
+        background: {
+          DEFAULT: '#FFFFFF',
+          alt: '#F8FAFC',
+          card: '#FFFFFF',
         },
         // Texte
         text: {
-          primary: '#1E3A5F',
-          secondary: '#2D3748',
-          muted: '#64748B',
-          light: '#94A3B8',
+          primary: '#0F172A',
+          secondary: '#64748B',
+          muted: '#94A3B8',
         },
-        // Legacy - garder pour compatibilité
+        // Legacy - compatibilité
         secondary: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -55,18 +60,10 @@ export default {
           800: '#1e293b',
           900: '#0f172a',
         },
-        // Navy pour le footer
-        navy: {
-          50: '#f0f4f8',
-          100: '#d9e2ec',
-          200: '#bcccdc',
-          300: '#9fb3c8',
-          400: '#829ab1',
-          500: '#627d98',
-          600: '#486581',
-          700: '#334e68',
-          800: '#243b53',
-          900: '#1E3A5F',
+        // Succès
+        success: {
+          DEFAULT: '#10B981',
+          light: '#D1FAE5',
         },
       },
       fontFamily: {
@@ -105,6 +102,8 @@ export default {
         'fade-in': 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
         'slide-up': 'slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards',
         'scale-in': 'scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+        'gradient': 'gradient 8s ease infinite',
+        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
       },
       keyframes: {
         'shimmer': {
@@ -123,13 +122,30 @@ export default {
           '0%': { opacity: '0', transform: 'scale(0.9)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        'gradient': {
+          '0%, 100%': { 'background-position': '0% 50%' },
+          '50%': { 'background-position': '100% 50%' },
+        },
+        'pulseSoft': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
       },
       boxShadow: {
-        'soft': '0 4px 20px rgba(30, 58, 95, 0.08)',
-        'medium': '0 8px 30px rgba(30, 58, 95, 0.12)',
-        'strong': '0 20px 40px rgba(30, 58, 95, 0.15)',
-        'glow-orange': '0 0 20px rgba(251, 166, 0, 0.3)',
-        'card': '0 2px 8px rgba(30, 58, 95, 0.08), 0 4px 16px rgba(30, 58, 95, 0.04)',
+        'soft': '0 4px 20px rgba(15, 23, 42, 0.08)',
+        'medium': '0 8px 30px rgba(15, 23, 42, 0.12)',
+        'strong': '0 20px 40px rgba(15, 23, 42, 0.15)',
+        'glow-blue': '0 0 30px rgba(37, 99, 235, 0.3)',
+        'glow-violet': '0 0 30px rgba(124, 58, 237, 0.3)',
+        'glow-gradient': '0 8px 32px rgba(37, 99, 235, 0.25), 0 4px 16px rgba(124, 58, 237, 0.15)',
+        'card': '0 2px 8px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.04)',
+        'card-hover': '0 8px 24px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(37, 99, 235, 0.08)',
+      },
+      backgroundImage: {
+        'gradient-tech': 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+        'gradient-tech-hover': 'linear-gradient(135deg, #1D4ED8 0%, #6D28D9 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
       },
       screens: {
         'xxs': '320px',
@@ -153,6 +169,15 @@ export default {
         },
         '.touch-manipulation': {
           touchAction: 'manipulation',
+        },
+        '.bg-gradient-tech': {
+          background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+        },
+        '.text-gradient-tech': {
+          background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+          '-webkit-background-clip': 'text',
+          '-webkit-text-fill-color': 'transparent',
+          'background-clip': 'text',
         },
       }
       addUtilities(newUtilities)

@@ -18,7 +18,10 @@ import {
   Star,
   FileText,
   Truck,
-  Shield
+  Shield,
+  Zap,
+  Award,
+  ArrowRight
 } from 'lucide-react';
 import { useQuote } from '../lib/QuoteContext';
 
@@ -284,6 +287,209 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* ============================================
+              SECTION MACHINES PROFESSIONNELLES
+              ============================================ */}
+          <div className="bg-gradient-to-br from-[#0F2744] via-[#1E3A5F] to-[#0F2744] py-16 relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FBA600] to-transparent"></div>
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(251, 166, 0, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(251, 166, 0, 0.2) 0%, transparent 50%)'
+            }}></div>
+            
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+              {/* Section Header */}
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-[#FBA600]/20 backdrop-blur-sm px-4 py-2 rounded-full text-[#FBA600] text-sm font-bold mb-4">
+                  <Zap className="w-4 h-4" />
+                  ÉQUIPEMENT PREMIUM
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  Machines <span className="text-[#FBA600]">Professionnelles</span>
+                </h2>
+                <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                  Ponceuses, bordeuses et monobrosses de qualité professionnelle pour des résultats parfaits
+                </p>
+              </div>
+
+              {/* Machines Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                
+                {/* SPIDER - Machine Star */}
+                <div className="lg:col-span-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group relative overflow-hidden">
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-[#FBA600] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                      <Award className="w-3 h-3" />
+                      BEST-SELLER
+                    </span>
+                  </div>
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-shrink-0 bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-6 flex items-center justify-center">
+                      <div className="w-32 h-32 md:w-40 md:h-40 bg-[#1E3A5F] rounded-full flex items-center justify-center">
+                        <span className="text-4xl md:text-5xl font-bold text-[#FBA600]">S</span>
+                      </div>
+                    </div>
+                    <div className="flex-grow">
+                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
+                        SPIDER Ponceuse à parquet
+                      </h3>
+                      <p className="text-gray-300 mb-4">
+                        La référence du ponçage professionnel. Monobrosse haute performance pour grandes surfaces, finitions parfaites garanties.
+                      </p>
+                      <div className="flex items-end gap-2 mb-4">
+                        <span className="text-3xl font-bold text-[#FBA600]">14 688€</span>
+                        <span className="text-gray-400 text-sm pb-1">HT</span>
+                      </div>
+                      <Link 
+                        to="/demande-devis" 
+                        className="inline-flex items-center gap-2 bg-[#FBA600] hover:bg-[#E09500] text-white px-6 py-3 rounded-lg font-bold transition-all"
+                      >
+                        Demander un devis
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* COBRA PALLMANN */}
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
+                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
+                      <span className="text-3xl font-bold text-[#FBA600]">C</span>
+                    </div>
+                  </div>
+                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
+                    PONCEUSE À BANDE
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
+                    COBRA PALLMANN
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Puissance et précision pour le ponçage de parquet
+                  </p>
+                  <div className="flex items-end gap-2 mb-4">
+                    <span className="text-2xl font-bold text-[#FBA600]">13 293€</span>
+                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
+                  </div>
+                  <Link 
+                    to="/demande-devis" 
+                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
+                  >
+                    Demander un devis
+                  </Link>
+                </div>
+
+                {/* TURBO SCRUBBER */}
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
+                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
+                      <span className="text-3xl font-bold text-[#FBA600]">T</span>
+                    </div>
+                  </div>
+                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
+                    NETTOYAGE
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
+                    TURBO SCRUBBER
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Nettoyage et préparation des parquets
+                  </p>
+                  <div className="flex items-end gap-2 mb-4">
+                    <span className="text-2xl font-bold text-[#FBA600]">5 670€</span>
+                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
+                  </div>
+                  <Link 
+                    to="/demande-devis" 
+                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
+                  >
+                    Demander un devis
+                  </Link>
+                </div>
+
+                {/* UNO Monobrosse */}
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
+                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
+                      <span className="text-3xl font-bold text-[#FBA600]">U</span>
+                    </div>
+                  </div>
+                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
+                    MONOBROSSE
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
+                    UNO Monobrosse
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Entretien et finition des parquets
+                  </p>
+                  <div className="flex items-end gap-2 mb-4">
+                    <span className="text-2xl font-bold text-[#FBA600]">4 338€</span>
+                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
+                  </div>
+                  <Link 
+                    to="/demande-devis" 
+                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
+                  >
+                    Demander un devis
+                  </Link>
+                </div>
+
+                {/* GECKO STAR 2.0 */}
+                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
+                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
+                      <span className="text-3xl font-bold text-[#FBA600]">G</span>
+                    </div>
+                  </div>
+                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
+                    BORDEUSE
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
+                    GECKO STAR 2.0
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Finitions parfaites sur les bords
+                  </p>
+                  <div className="flex items-end gap-2 mb-4">
+                    <span className="text-2xl font-bold text-[#FBA600]">3 717€</span>
+                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
+                  </div>
+                  <Link 
+                    to="/demande-devis" 
+                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
+                  >
+                    Demander un devis
+                  </Link>
+                </div>
+              </div>
+
+              {/* CTA Bar */}
+              <div className="text-center">
+                <p className="text-gray-400 mb-4">
+                  Besoin de conseils ? Notre équipe est à votre disposition pour vous accompagner dans votre choix.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <a 
+                    href="mailto:contact@pallmann-store.com" 
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+                  >
+                    Nous contacter
+                  </a>
+                  <Link 
+                    to="/demande-devis" 
+                    className="inline-flex items-center gap-2 bg-[#FBA600] hover:bg-[#E09500] text-white px-6 py-3 rounded-lg font-bold transition-all"
+                  >
+                    <FileText className="w-4 h-4" />
+                    Demander un devis global
+                  </Link>
+                </div>
+              </div>
+            </div>
+            
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FBA600] to-transparent"></div>
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

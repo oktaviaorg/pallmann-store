@@ -3,35 +3,42 @@
 @tailwind utilities;
 
 /* ============================================
-   PALETTE BOUTIQUE BLEUE MODERNE
-   - Base: Bleu #1E3A5F (moderne, sobre)
-   - Accents: Orange Pallmann #FBA600 (boutons, CTA)
+   PALETTE BLEU TECH MODERNE
+   - Base: Bleu nuit #0F172A, Bleu vif #2563EB
+   - Accent: Violet #7C3AED
+   - Dégradé tech bleu → violet
    ============================================ */
 
 :root {
   /* Couleurs principales */
-  --color-primary: #1E3A5F;
-  --color-primary-light: #2C5282;
-  --color-primary-lighter: #EBF4FF;
+  --color-primary: #2563EB;
+  --color-primary-dark: #0F172A;
+  --color-primary-light: #3B82F6;
   
-  /* Accent Pallmann */
-  --color-accent: #FBA600;
-  --color-accent-hover: #E09500;
+  /* Accent Violet */
+  --color-accent: #7C3AED;
+  --color-accent-light: #EDE9FE;
+  --color-accent-dark: #5B21B6;
+  
+  /* Dégradé Tech */
+  --gradient-tech: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  --gradient-tech-hover: linear-gradient(135deg, #1D4ED8 0%, #6D28D9 100%);
+  --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%);
   
   /* Surfaces */
   --color-bg: #FFFFFF;
-  --color-bg-alt: #F7FAFC;
-  --color-bg-blue: #EBF4FF;
+  --color-bg-alt: #F8FAFC;
   
   /* Texte */
-  --color-text: #2D3748;
-  --color-text-heading: #1E3A5F;
-  --color-text-muted: #64748B;
+  --color-text: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
   
   /* Bordures et ombres */
-  --color-border: rgba(30, 58, 95, 0.1);
-  --shadow-card: 0 2px 8px rgba(30, 58, 95, 0.08), 0 4px 16px rgba(30, 58, 95, 0.04);
-  --shadow-hover: 0 8px 30px rgba(30, 58, 95, 0.12);
+  --color-border: rgba(15, 23, 42, 0.1);
+  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(37, 99, 235, 0.08);
+  --shadow-glow: 0 8px 32px rgba(37, 99, 235, 0.25), 0 4px 16px rgba(124, 58, 237, 0.15);
   
   /* Rayons */
   --radius-sm: 8px;
@@ -54,6 +61,16 @@
   to { opacity: 1; }
 }
 
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.4); }
+}
+
 .animate-slide-up {
   animation: slide-up 0.5s ease-out;
 }
@@ -62,25 +79,31 @@
   animation: fade-in 0.3s ease-out;
 }
 
+.animate-gradient {
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
 /* ============================================
-   BOUTONS - Accent Orange Pallmann
+   BOUTONS - Dégradé Bleu-Violet Tech
    ============================================ */
 
 .btn-primary {
-  background-color: var(--color-accent);
+  background: var(--gradient-tech);
   color: #FFFFFF;
   font-weight: 700;
   padding: 12px 24px;
   border-radius: var(--radius-md);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(251, 166, 0, 0.3);
+  background: var(--gradient-tech-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
 }
 
 .btn-primary:active {
@@ -88,16 +111,33 @@
 }
 
 .btn-secondary {
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-dark);
   color: #FFFFFF;
   font-weight: 600;
   padding: 12px 24px;
   border-radius: var(--radius-md);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-primary-light);
+  background-color: #1E293B;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--gradient-tech);
+  color: #FFFFFF;
+  border-color: transparent;
 }
 
 /* ============================================
@@ -121,8 +161,8 @@
 
 .input:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(251, 166, 0, 0.15);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 /* ============================================
@@ -133,62 +173,36 @@
   background: #FFFFFF;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
   box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
 }
 
-/* ============================================
-   LIENS
-   ============================================ */
-
-a {
-  transition: color 0.2s ease;
+.card-premium {
+  background: #FFFFFF;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.link-accent:hover {
-  color: var(--color-accent);
+.card-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-tech);
 }
 
-/* ============================================
-   FOCUS STATES - Accent Orange
-   ============================================ */
-
-*:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(251, 166, 0, 0.3);
-}
-
-/* ============================================
-   SCROLLBAR CUSTOM
-   ============================================ */
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-alt);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-primary-light);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+.card-premium:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-6px);
 }
 
 /* ============================================
@@ -205,13 +219,87 @@ textarea:focus-visible {
 }
 
 .badge-primary {
-  background: var(--color-bg-blue);
+  background: rgba(37, 99, 235, 0.1);
   color: var(--color-primary);
 }
 
 .badge-accent {
-  background: rgba(251, 166, 0, 0.1);
+  background: var(--color-accent-light);
   color: var(--color-accent);
+}
+
+.badge-pro {
+  background: var(--gradient-tech);
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   LIENS
+   ============================================ */
+
+a {
+  transition: color 0.2s ease;
+}
+
+.link-primary:hover {
+  color: var(--color-primary);
+}
+
+.link-accent:hover {
+  color: var(--color-accent);
+}
+
+/* ============================================
+   TEXT GRADIENT
+   ============================================ */
+
+.text-gradient-tech {
+  background: var(--gradient-tech);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+/* ============================================
+   SCROLLBAR CUSTOM
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1D4ED8 0%, #6D28D9 100%);
 }
 
 /* ============================================
@@ -219,14 +307,12 @@ textarea:focus-visible {
    ============================================ */
 
 .text-primary { color: var(--color-primary); }
+.text-primary-dark { color: var(--color-primary-dark); }
 .text-accent { color: var(--color-accent); }
 .bg-primary { background-color: var(--color-primary); }
+.bg-primary-dark { background-color: var(--color-primary-dark); }
 .bg-accent { background-color: var(--color-accent); }
-
-/* Tailles personnalisées */
-.w-144 { width: 36rem; }
-.h-144 { height: 36rem; }
-.border-3 { border-width: 3px; }
+.bg-gradient-tech { background: var(--gradient-tech); }
 
 /* ============================================
    RESPONSIVE MOBILE
@@ -239,7 +325,8 @@ textarea:focus-visible {
   }
   
   .btn-primary,
-  .btn-secondary {
+  .btn-secondary,
+  .btn-outline {
     padding: 14px 20px;
     font-size: 16px;
     width: 100%;
@@ -250,7 +337,6 @@ textarea:focus-visible {
     padding: 14px 16px;
   }
   
-  /* Touch targets */
   button, a {
     min-height: 44px;
   }
