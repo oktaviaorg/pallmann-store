@@ -253,6 +253,13 @@ const HomePage: React.FC = () => {
       if (categoriesRes.error) throw categoriesRes.error;
       if (subcategoriesRes.error) throw subcategoriesRes.error;
 
+      // Best-sellers Pallmann (définis manuellement)
+      const bestsellerSlugs = [
+        'pall-x-320',            // Fond dur 320
+        'pall-x-extreme-mat-ka', // PALL-X EXTREME MAT
+        'pall-x-pure',           // PALL-X PURE
+      ];
+
       const enrichedProducts = (productsRes.data || []).map((product, index) => {
         const subcategory = subcategoriesRes.data?.find(s => s.id === product.subcategory_id);
         const category = categoriesRes.data?.find(c => c.id === subcategory?.category_id);
@@ -260,10 +267,9 @@ const HomePage: React.FC = () => {
           ...product,
           category_name: category?.name,
           subcategory_name: subcategory?.name,
-          // Add some products as bestseller for demo
-          is_bestseller: index < 3,
-          is_new: index >= 3 && index < 5,
-          stock_status: index === 2 ? 'low_stock' : 'in_stock',
+          is_bestseller: bestsellerSlugs.includes(product.slug),
+          is_new: false,
+          stock_status: 'in_stock' as const,
         };
       });
 
