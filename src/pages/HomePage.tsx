@@ -32,7 +32,8 @@ import {
   Clock,
   Package,
   TrendingUp,
-  ThumbsUp
+  ThumbsUp,
+  Calculator
 } from 'lucide-react';
 import { useQuote } from '../lib/QuoteContext';
 
@@ -472,6 +473,36 @@ const HomePage: React.FC = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* CTA Calculateur */}
+          <div className="bg-gradient-to-r from-[#FDF8F0] to-[#F5EFE6] py-6 border-y border-[#E0CDB5]">
+            <div className="max-w-7xl mx-auto px-4">
+              <Link 
+                to="/calculateur"
+                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#C4943D]/20 hover:border-[#C4943D] transition-all hover:shadow-xl group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C4943D] to-[#8B5A2B] flex items-center justify-center text-white">
+                    <Calculator className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-[#2D1A0D] group-hover:text-[#C4943D] transition-colors">
+                      🧮 Calculateur de Surface
+                    </h3>
+                    <p className="text-[#6B4423]">
+                      Estimez vos besoins en produits selon votre surface — <strong>Gratuit</strong>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold"
+                  style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                >
+                  Calculer mes besoins
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
             </div>
           </div>
 

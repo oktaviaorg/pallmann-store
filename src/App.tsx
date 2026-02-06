@@ -23,6 +23,9 @@ import ProPage from './pages/ProPage';
 // Page Demande de devis
 import QuotePage from './pages/QuotePage';
 
+// Calculateur
+import CalculateurPage from './pages/CalculateurPage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -46,6 +49,9 @@ export default function App() {
           
           {/* Demande de devis */}
           <Route path="/demande-devis" element={<QuotePage />} />
+          
+          {/* Calculateur */}
+          <Route path="/calculateur" element={<CalculateurPage />} />
           
           {/* Blog */}
           <Route path="/blog" element={<BlogPage />} />
