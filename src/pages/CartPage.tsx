@@ -102,16 +102,18 @@ const CartPage: React.FC = () => {
         <Helmet>
           <title>Panier vide | Pallmann Store</title>
         </Helmet>
-        <div className="min-h-screen flex flex-col bg-gray-50">
+        <div className="min-h-screen flex flex-col bg-[#F7FAFC]">
           <Header />
           <main className="flex-grow pt-24 pb-16">
             <div className="max-w-4xl mx-auto px-4 text-center py-16">
-              <ShoppingCart className="w-24 h-24 text-gray-300 mx-auto mb-6" />
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">Votre panier est vide</h1>
-              <p className="text-gray-600 mb-8">Découvrez nos produits Pallmann professionnels</p>
+              <div className="bg-[#EBF4FF] w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                <ShoppingCart className="w-12 h-12 text-[#1E3A5F]" />
+              </div>
+              <h1 className="text-3xl font-bold text-[#1E3A5F] mb-4">Votre panier est vide</h1>
+              <p className="text-[#64748B] mb-8">Découvrez nos produits Pallmann professionnels</p>
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 bg-[#FF6600] hover:bg-[#e65c00] text-white px-8 py-4 rounded-lg font-bold transition-all"
+                className="inline-flex items-center gap-2 bg-[#FBA600] hover:bg-[#E09500] text-white px-8 py-4 rounded-lg font-bold transition-all shadow-sm hover:shadow-md"
               >
                 <ArrowLeft className="w-5 h-5" />
                 Retour à la boutique
@@ -129,12 +131,12 @@ const CartPage: React.FC = () => {
       <Helmet>
         <title>Panier ({itemCount}) | Pallmann Store</title>
       </Helmet>
-      <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="min-h-screen flex flex-col bg-[#F7FAFC]">
         <Header />
         <main className="flex-grow pt-24 pb-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
-              <ShoppingCart className="w-8 h-8 text-[#FF6600]" />
+            <h1 className="text-3xl font-bold text-[#1E3A5F] mb-8 flex items-center gap-3">
+              <ShoppingCart className="w-8 h-8 text-[#FBA600]" />
               Votre panier ({itemCount} article{itemCount > 1 ? 's' : ''})
             </h1>
 
@@ -142,45 +144,47 @@ const CartPage: React.FC = () => {
               {/* Liste des produits */}
               <div className="lg:col-span-2 space-y-4">
                 {items.map(item => (
-                  <div key={item.id} className="bg-white rounded-xl shadow-md p-6 flex gap-4">
+                  <div key={item.id} className="bg-white rounded-xl shadow-card p-6 flex gap-4 border border-gray-100">
                     {item.image_url && (
-                      <img src={item.image_url} alt={item.name} className="w-24 h-24 object-contain" />
+                      <div className="bg-[#EBF4FF] rounded-lg p-2">
+                        <img src={item.image_url} alt={item.name} className="w-24 h-24 object-contain" />
+                      </div>
                     )}
                     <div className="flex-grow">
-                      <h3 className="font-bold text-gray-900">{item.name}</h3>
-                      <p className="text-[#FF6600] font-bold">{item.price_ht.toFixed(2)}€ HT/{item.unit || 'L'}</p>
+                      <h3 className="font-bold text-[#1E3A5F]">{item.name}</h3>
+                      <p className="text-[#FBA600] font-bold">{item.price_ht.toFixed(2)}€ HT/{item.unit || 'L'}</p>
                       
                       <div className="flex items-center gap-3 mt-3">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-1 rounded bg-gray-100 hover:bg-gray-200"
+                          className="p-1.5 rounded-lg bg-[#EBF4FF] hover:bg-[#C3DAFE] text-[#1E3A5F] transition-colors"
                         >
                           <Minus className="w-4 h-4" />
                         </button>
-                        <span className="font-bold w-8 text-center">{item.quantity}</span>
+                        <span className="font-bold w-8 text-center text-[#1E3A5F]">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className="p-1 rounded bg-gray-100 hover:bg-gray-200"
+                          className="p-1.5 rounded-lg bg-[#EBF4FF] hover:bg-[#C3DAFE] text-[#1E3A5F] transition-colors"
                         >
                           <Plus className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="ml-auto p-2 text-red-500 hover:bg-red-50 rounded"
+                          className="ml-auto p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                         >
                           <Trash2 className="w-5 h-5" />
                         </button>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-lg">{(item.price_ht * item.quantity).toFixed(2)}€ HT</p>
+                      <p className="font-bold text-lg text-[#1E3A5F]">{(item.price_ht * item.quantity).toFixed(2)}€ HT</p>
                     </div>
                   </div>
                 ))}
 
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 text-[#FF6600] hover:text-[#e65c00] font-semibold"
+                  className="inline-flex items-center gap-2 text-[#2C5282] hover:text-[#FBA600] font-semibold transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Continuer mes achats
@@ -190,9 +194,9 @@ const CartPage: React.FC = () => {
               {/* Résumé et formulaire */}
               <div className="space-y-6">
                 {/* Mode de livraison */}
-                <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
-                    <Package className="w-5 h-5 text-[#FF6600]" />
+                <div className="bg-white rounded-xl shadow-card p-6 border border-gray-100">
+                  <h2 className="font-bold text-lg text-[#1E3A5F] mb-4 flex items-center gap-2">
+                    <Package className="w-5 h-5 text-[#FBA600]" />
                     Mode de livraison
                   </h2>
                   
@@ -200,8 +204,8 @@ const CartPage: React.FC = () => {
                     {/* Option Livraison */}
                     <label className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
                       deliveryMode === 'delivery' 
-                        ? 'border-[#FF6600] bg-orange-50' 
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-[#FBA600] bg-[#FFFBEB]' 
+                        : 'border-gray-200 hover:border-[#C3DAFE]'
                     }`}>
                       <input
                         type="radio"
@@ -209,21 +213,21 @@ const CartPage: React.FC = () => {
                         value="delivery"
                         checked={deliveryMode === 'delivery'}
                         onChange={() => setDeliveryMode('delivery')}
-                        className="mt-1 accent-[#FF6600]"
+                        className="mt-1 accent-[#FBA600]"
                       />
                       <div className="flex-grow">
                         <div className="flex items-center gap-2">
-                          <Truck className="w-4 h-4 text-[#FF6600]" />
-                          <span className="font-semibold">Livraison France</span>
+                          <Truck className="w-4 h-4 text-[#1E3A5F]" />
+                          <span className="font-semibold text-[#1E3A5F]">Livraison France</span>
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-[#64748B] mt-1">
                           9,90€ HT / article
                         </p>
                         <p className="text-xs text-green-600 mt-1">
                           ✓ Franco de port à partir de 630€ HT
                         </p>
                       </div>
-                      <span className="font-bold text-[#FF6600]">
+                      <span className="font-bold text-[#FBA600]">
                         {subtotalHT - discountAmount >= 630 ? 'Offert' : `${(itemCount * 9.90).toFixed(2)}€`}
                       </span>
                     </label>
@@ -231,8 +235,8 @@ const CartPage: React.FC = () => {
                     {/* Option Retrait */}
                     <label className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
                       deliveryMode === 'pickup' 
-                        ? 'border-[#FF6600] bg-orange-50' 
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-[#FBA600] bg-[#FFFBEB]' 
+                        : 'border-gray-200 hover:border-[#C3DAFE]'
                     }`}>
                       <input
                         type="radio"
@@ -240,17 +244,17 @@ const CartPage: React.FC = () => {
                         value="pickup"
                         checked={deliveryMode === 'pickup'}
                         onChange={() => setDeliveryMode('pickup')}
-                        className="mt-1 accent-[#FF6600]"
+                        className="mt-1 accent-[#FBA600]"
                       />
                       <div className="flex-grow">
                         <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-[#FF6600]" />
-                          <span className="font-semibold">Retrait sur place</span>
+                          <MapPin className="w-4 h-4 text-[#1E3A5F]" />
+                          <span className="font-semibold text-[#1E3A5F]">Retrait sur place</span>
                         </div>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-[#64748B] mt-1">
                           {PICKUP_ADDRESS.full}
                         </p>
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-xs text-[#64748B] mt-1">
                           Sur rendez-vous uniquement
                         </p>
                       </div>
@@ -260,11 +264,11 @@ const CartPage: React.FC = () => {
                 </div>
 
                 {/* Résumé */}
-                <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="font-bold text-lg mb-4">Récapitulatif</h2>
+                <div className="bg-white rounded-xl shadow-card p-6 border border-gray-100">
+                  <h2 className="font-bold text-lg text-[#1E3A5F] mb-4">Récapitulatif</h2>
                   
                   <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-[#2D3748]">
                       <span>Sous-total HT</span>
                       <span>{subtotalHT.toFixed(2)}€</span>
                     </div>
@@ -291,12 +295,12 @@ const CartPage: React.FC = () => {
                       </div>
                     )}
                     
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-[#2D3748]">
                       <span className="flex items-center gap-1">
                         {deliveryMode === 'pickup' ? (
-                          <MapPin className="w-4 h-4" />
+                          <MapPin className="w-4 h-4 text-[#1E3A5F]" />
                         ) : (
-                          <Truck className="w-4 h-4" />
+                          <Truck className="w-4 h-4 text-[#1E3A5F]" />
                         )}
                         {deliveryMode === 'pickup' ? 'Retrait' : 'Livraison'}
                       </span>
@@ -304,19 +308,19 @@ const CartPage: React.FC = () => {
                     </div>
                     
                     {deliveryMode === 'delivery' && shippingHT > 0 && (
-                      <p className="text-xs text-gray-500">Franco de port à partir de 630€ HT</p>
+                      <p className="text-xs text-[#64748B]">Franco de port à partir de 630€ HT</p>
                     )}
                     
-                    <div className="border-t pt-2 mt-2">
-                      <div className="flex justify-between font-bold">
+                    <div className="border-t border-gray-100 pt-2 mt-2">
+                      <div className="flex justify-between font-bold text-[#1E3A5F]">
                         <span>Total HT</span>
                         <span>{totalHT.toFixed(2)}€</span>
                       </div>
-                      <div className="flex justify-between text-gray-600">
+                      <div className="flex justify-between text-[#64748B]">
                         <span>TVA (20%)</span>
                         <span>{(totalTTC - totalHT).toFixed(2)}€</span>
                       </div>
-                      <div className="flex justify-between font-bold text-xl text-[#FF6600] mt-2">
+                      <div className="flex justify-between font-bold text-xl text-[#FBA600] mt-2">
                         <span>Total TTC</span>
                         <span>{totalTTC.toFixed(2)}€</span>
                       </div>
@@ -325,8 +329,8 @@ const CartPage: React.FC = () => {
                 </div>
 
                 {/* Formulaire client */}
-                <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="font-bold text-lg mb-4">Vos informations</h2>
+                <div className="bg-white rounded-xl shadow-card p-6 border border-gray-100">
+                  <h2 className="font-bold text-lg text-[#1E3A5F] mb-4">Vos informations</h2>
                   
                   <div className="space-y-4">
                     <input
@@ -334,7 +338,7 @@ const CartPage: React.FC = () => {
                       placeholder="Email *"
                       value={customerInfo.email}
                       onChange={e => setCustomerInfo({...customerInfo, email: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent text-[#2D3748]"
                       required
                     />
                     <input
@@ -342,7 +346,7 @@ const CartPage: React.FC = () => {
                       placeholder="Nom / Entreprise *"
                       value={customerInfo.name}
                       onChange={e => setCustomerInfo({...customerInfo, name: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent text-[#2D3748]"
                       required
                     />
                     <input
@@ -350,14 +354,14 @@ const CartPage: React.FC = () => {
                       placeholder="Téléphone"
                       value={customerInfo.phone}
                       onChange={e => setCustomerInfo({...customerInfo, phone: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent text-[#2D3748]"
                     />
                     <input
                       type="text"
                       placeholder="Adresse de livraison *"
                       value={customerInfo.address}
                       onChange={e => setCustomerInfo({...customerInfo, address: e.target.value})}
-                      className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent text-[#2D3748]"
                       required
                     />
                     <div className="grid grid-cols-2 gap-4">
@@ -366,14 +370,14 @@ const CartPage: React.FC = () => {
                         placeholder="Code postal"
                         value={customerInfo.postalCode}
                         onChange={e => setCustomerInfo({...customerInfo, postalCode: e.target.value})}
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent text-[#2D3748]"
                       />
                       <input
                         type="text"
                         placeholder="Ville"
                         value={customerInfo.city}
                         onChange={e => setCustomerInfo({...customerInfo, city: e.target.value})}
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#FF6600] focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent text-[#2D3748]"
                       />
                     </div>
                   </div>
@@ -385,7 +389,7 @@ const CartPage: React.FC = () => {
                   <button
                     onClick={handleCheckout}
                     disabled={loading}
-                    className="w-full mt-6 bg-[#FF6600] hover:bg-[#e65c00] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all"
+                    className="w-full mt-6 bg-[#FBA600] hover:bg-[#E09500] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all shadow-sm hover:shadow-md"
                   >
                     {loading ? (
                       'Chargement...'
@@ -397,7 +401,7 @@ const CartPage: React.FC = () => {
                     )}
                   </button>
                   
-                  <p className="text-xs text-gray-500 text-center mt-3">
+                  <p className="text-xs text-[#64748B] text-center mt-3">
                     Paiement sécurisé par Stripe
                   </p>
                 </div>

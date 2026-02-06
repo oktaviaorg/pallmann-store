@@ -6,15 +6,15 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white mt-auto">
+    <footer className="bg-[#1E3A5F] text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-bold text-[#FF6600] mb-4">
-              Pallmann Store
+            <h3 className="text-xl font-bold text-white mb-4">
+              PALLMANN STORE
             </h3>
-            <p className="text-gray-300 text-sm mb-4">
+            <p className="text-gray-300 text-sm mb-4 leading-relaxed">
               Votre boutique en ligne de produits professionnels Pallmann pour l'entretien et la finition des parquets. Vitrificateurs, huiles, colles et accessoires de qualité supérieure.
             </p>
             <p className="text-gray-300 text-sm font-semibold">
@@ -24,28 +24,31 @@ const Footer: React.FC = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold text-[#FF6600] mb-4">Contact</h4>
+            <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <span className="w-8 h-0.5 bg-[#FBA600]"></span>
+              Contact
+            </h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="mailto:contact@pallmann-store.com"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#FF6600] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[#FBA600] transition-colors"
                 >
-                  <Mail className="w-4 h-4 flex-shrink-0" />
+                  <Mail className="w-4 h-4 flex-shrink-0 text-[#FBA600]" />
                   <span>contact@pallmann-store.com</span>
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+33389210000"
-                  className="flex items-center gap-2 text-gray-300 hover:text-[#FF6600] transition-colors"
+                  className="flex items-center gap-2 text-gray-300 hover:text-[#FBA600] transition-colors"
                 >
-                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <Phone className="w-4 h-4 flex-shrink-0 text-[#FBA600]" />
                   <span>03 89 21 00 00</span>
                 </a>
               </li>
               <li className="flex items-start gap-2 text-gray-300">
-                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#FBA600]" />
                 <span>
                   6 rue du Commerce<br />
                   68420 Herrlisheim près Colmar<br />
@@ -57,30 +60,33 @@ const Footer: React.FC = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-lg font-semibold text-[#FF6600] mb-4">Navigation</h4>
+            <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <span className="w-8 h-0.5 bg-[#FBA600]"></span>
+              Navigation
+            </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-[#FF6600] transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-[#FBA600] transition-colors">
                   Boutique
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-300 hover:text-[#FF6600] transition-colors">
+                <Link to="/blog" className="text-gray-300 hover:text-[#FBA600] transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/pro" className="text-gray-300 hover:text-[#FF6600] transition-colors">
+                <Link to="/pro" className="text-gray-300 hover:text-[#FBA600] transition-colors">
                   Espace PRO
                 </Link>
               </li>
               <li>
-                <Link to="/demande-devis" className="text-gray-300 hover:text-[#FF6600] transition-colors">
+                <Link to="/demande-devis" className="text-gray-300 hover:text-[#FBA600] transition-colors">
                   Demande de devis
                 </Link>
               </li>
               <li>
-                <Link to="/panier" className="text-gray-300 hover:text-[#FF6600] transition-colors">
+                <Link to="/panier" className="text-gray-300 hover:text-[#FBA600] transition-colors">
                   Panier
                 </Link>
               </li>
@@ -90,22 +96,22 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700">
+      <div className="border-t border-[#2C5282]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400 text-center md:text-left">
               © {currentYear} Pallmann Store - Groupe Epenon SARL. Tous droits réservés.
             </p>
             <div className="flex flex-wrap gap-4 text-sm justify-center">
-              <Link to="/mentions-legales" className="text-gray-400 hover:text-[#FF6600] transition-colors">
+              <Link to="/mentions-legales" className="text-gray-400 hover:text-[#FBA600] transition-colors">
                 Mentions légales
               </Link>
-              <span className="text-gray-600">•</span>
-              <Link to="/cgv" className="text-gray-400 hover:text-[#FF6600] transition-colors">
+              <span className="text-[#2C5282]">•</span>
+              <Link to="/cgv" className="text-gray-400 hover:text-[#FBA600] transition-colors">
                 CGV
               </Link>
-              <span className="text-gray-600">•</span>
-              <Link to="/politique-confidentialite" className="text-gray-400 hover:text-[#FF6600] transition-colors">
+              <span className="text-[#2C5282]">•</span>
+              <Link to="/politique-confidentialite" className="text-gray-400 hover:text-[#FBA600] transition-colors">
                 Confidentialité
               </Link>
             </div>
