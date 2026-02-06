@@ -19,9 +19,10 @@ import {
   FileText,
   Truck,
   Shield,
+  Sparkles,
   Zap,
-  Award,
-  ArrowRight
+  ArrowRight,
+  ChevronRight
 } from 'lucide-react';
 import { useQuote } from '../lib/QuoteContext';
 
@@ -64,6 +65,42 @@ interface Subcategory {
   name: string;
   slug: string;
 }
+
+// Machines Pro data
+const machinesPro = [
+  {
+    id: 'spider',
+    name: 'SPIDER',
+    description: 'Ponceuse trio compacte et polyvalente pour surfaces difficiles',
+    image: '/images/machines/spider.png',
+    badge: 'BESTSELLER',
+    features: ['Compact', 'Polyvalent', 'Trio'],
+  },
+  {
+    id: 'cobra',
+    name: 'COBRA',
+    description: 'Ponceuse de chant professionnelle haute performance',
+    image: '/images/machines/cobra.png',
+    badge: 'PRO',
+    features: ['Puissant', 'Précis', 'Ergonomique'],
+  },
+  {
+    id: 'gecko',
+    name: 'GECKO',
+    description: 'Ponceuse orbitale grande surface pour finitions parfaites',
+    image: '/images/machines/gecko.png',
+    badge: 'PREMIUM',
+    features: ['Grande surface', 'Finition', 'Silencieux'],
+  },
+  {
+    id: 'hummel',
+    name: 'HUMMEL',
+    description: 'Ponceuse parquet référence mondiale pour professionnels',
+    image: '/images/machines/hummel.png',
+    badge: 'RÉFÉRENCE',
+    features: ['Référence', 'Fiable', 'Performant'],
+  },
+];
 
 const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -226,11 +263,11 @@ const HomePage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#F7FAFC]">
+      <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
         <Header />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1E3A5F] mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2563EB] mx-auto"></div>
             <p className="mt-4 text-[#64748B]">Chargement de la boutique...</p>
           </div>
         </main>
@@ -250,254 +287,217 @@ const HomePage: React.FC = () => {
         <link rel="canonical" href="https://pallmann-store.com" />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-[#F7FAFC]">
+      <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
         <Header />
 
         <main className="flex-grow">
-          {/* Hero Section - Bleu moderne */}
-          <div className="bg-gradient-to-br from-[#1E3A5F] via-[#2C5282] to-[#1A365D] py-16 lg:py-20 relative overflow-hidden">
-            {/* Subtle pattern overlay */}
-            <div className="absolute inset-0 opacity-5" style={{
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
+          {/* Hero Section - Dégradé Bleu-Violet Tech */}
+          <div className="relative overflow-hidden">
+            {/* Gradient background */}
+            <div 
+              className="absolute inset-0"
+              style={{ 
+                background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 40%, #2563EB 70%, #7C3AED 100%)'
+              }}
+            ></div>
+            
+            {/* Animated gradient overlay */}
+            <div 
+              className="absolute inset-0 opacity-30 animate-gradient"
+              style={{
+                background: 'linear-gradient(45deg, transparent 0%, #7C3AED 50%, transparent 100%)',
+                backgroundSize: '400% 400%',
+              }}
+            ></div>
+            
+            {/* Grid pattern overlay */}
+            <div className="absolute inset-0 opacity-10" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
             }}></div>
             
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
               <div className="text-center">
-                <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                  Produits <span className="text-[#FBA600]">Pallmann</span>
+                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <Sparkles className="w-4 h-4 text-[#7C3AED]" />
+                  Qualité professionnelle Allemande
+                </div>
+                
+                <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+                  Produits <span className="text-gradient-tech" style={{
+                    background: 'linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}>Pallmann</span>
                 </h1>
-                <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8">
+                
+                <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10">
                   Vitrificateurs, huiles, colles et accessoires professionnels pour sublimer vos parquets
                 </p>
                 
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                  <a 
+                    href="#products"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+                    style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+                  >
+                    <ShoppingCart className="w-5 h-5" />
+                    Découvrir les produits
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
+                  <Link 
+                    to="/demande-devis"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20 transition-all"
+                  >
+                    <FileText className="w-5 h-5" />
+                    Demander un devis
+                  </Link>
+                </div>
+                
                 {/* Trust badges */}
-                <div className="flex flex-wrap justify-center gap-6 text-sm">
-                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full">
-                    <Star className="w-4 h-4 text-[#FBA600]" />
+                <div className="flex flex-wrap justify-center gap-4 text-sm">
+                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full">
+                    <Star className="w-4 h-4 text-yellow-400" />
                     Qualité professionnelle
                   </span>
-                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full">
-                    <Truck className="w-4 h-4 text-[#FBA600]" />
+                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full">
+                    <Truck className="w-4 h-4 text-[#60A5FA]" />
                     Livraison 48-72h
                   </span>
-                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full">
-                    <Shield className="w-4 h-4 text-[#FBA600]" />
+                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full">
+                    <Shield className="w-4 h-4 text-[#A78BFA]" />
                     Franco dès 630€ HT
                   </span>
                 </div>
               </div>
             </div>
+            
+            {/* Bottom wave */}
+            <div className="absolute bottom-0 left-0 right-0">
+              <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+                <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F8FAFC"/>
+              </svg>
+            </div>
           </div>
 
-          {/* ============================================
-              SECTION MACHINES PROFESSIONNELLES
-              ============================================ */}
-          <div className="bg-gradient-to-br from-[#0F2744] via-[#1E3A5F] to-[#0F2744] py-16 relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FBA600] to-transparent"></div>
-            <div className="absolute inset-0 opacity-10" style={{
-              backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(251, 166, 0, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(251, 166, 0, 0.2) 0%, transparent 50%)'
-            }}></div>
-            
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-              {/* Section Header */}
+          {/* Machines Pro Section */}
+          <div className="bg-[#F8FAFC] py-16 lg:py-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 bg-[#FBA600]/20 backdrop-blur-sm px-4 py-2 rounded-full text-[#FBA600] text-sm font-bold mb-4">
+                <div className="inline-flex items-center gap-2 bg-[#EDE9FE] text-[#7C3AED] px-4 py-2 rounded-full text-sm font-bold mb-4">
                   <Zap className="w-4 h-4" />
-                  ÉQUIPEMENT PREMIUM
+                  ÉQUIPEMENT PRO
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Machines <span className="text-[#FBA600]">Professionnelles</span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4">
+                  Machines <span className="text-gradient-tech" style={{
+                    background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}>Professionnelles</span>
                 </h2>
-                <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                  Ponceuses, bordeuses et monobrosses de qualité professionnelle pour des résultats parfaits
+                <p className="text-[#64748B] text-lg max-w-2xl mx-auto">
+                  Ponceuses et équipements de référence pour les professionnels du parquet
                 </p>
               </div>
 
-              {/* Machines Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                
-                {/* SPIDER - Machine Star */}
-                <div className="lg:col-span-2 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group relative overflow-hidden">
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-[#FBA600] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                      <Award className="w-3 h-3" />
-                      BEST-SELLER
-                    </span>
-                  </div>
-                  <div className="flex flex-col md:flex-row gap-6">
-                    <div className="flex-shrink-0 bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-6 flex items-center justify-center">
-                      <div className="w-32 h-32 md:w-40 md:h-40 bg-[#1E3A5F] rounded-full flex items-center justify-center">
-                        <span className="text-4xl md:text-5xl font-bold text-[#FBA600]">S</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {machinesPro.map((machine, index) => (
+                  <div 
+                    key={machine.id}
+                    className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-glow-gradient transition-all duration-500 hover:-translate-y-2"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Top gradient bar */}
+                    <div 
+                      className="absolute top-0 left-0 right-0 h-1"
+                      style={{ background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)' }}
+                    ></div>
+                    
+                    {/* Badge */}
+                    <div className="absolute top-4 right-4 z-10">
+                      <span 
+                        className="px-3 py-1 rounded-full text-xs font-bold text-white"
+                        style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+                      >
+                        {machine.badge}
+                      </span>
+                    </div>
+
+                    {/* Image */}
+                    <div className="relative bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] p-8 h-48 flex items-center justify-center">
+                      <div className="w-32 h-32 bg-gradient-to-br from-[#2563EB]/10 to-[#7C3AED]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <Zap className="w-16 h-16 text-[#2563EB] group-hover:text-[#7C3AED] transition-colors" />
                       </div>
                     </div>
-                    <div className="flex-grow">
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
-                        SPIDER Ponceuse à parquet
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-extrabold text-[#0F172A] mb-2 group-hover:text-[#2563EB] transition-colors">
+                        {machine.name}
                       </h3>
-                      <p className="text-gray-300 mb-4">
-                        La référence du ponçage professionnel. Monobrosse haute performance pour grandes surfaces, finitions parfaites garanties.
+                      <p className="text-[#64748B] text-sm mb-4 line-clamp-2">
+                        {machine.description}
                       </p>
-                      <div className="flex items-end gap-2 mb-4">
-                        <span className="text-3xl font-bold text-[#FBA600]">14 688€</span>
-                        <span className="text-gray-400 text-sm pb-1">HT</span>
+                      
+                      {/* Features */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {machine.features.map((feature, i) => (
+                          <span 
+                            key={i}
+                            className="text-xs font-medium px-2 py-1 bg-[#EFF6FF] text-[#2563EB] rounded-md"
+                          >
+                            {feature}
+                          </span>
+                        ))}
                       </div>
-                      <Link 
-                        to="/demande-devis" 
-                        className="inline-flex items-center gap-2 bg-[#FBA600] hover:bg-[#E09500] text-white px-6 py-3 rounded-lg font-bold transition-all"
+
+                      {/* CTA */}
+                      <Link
+                        to="/demande-devis"
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white transition-all hover:shadow-lg"
+                        style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                       >
                         Demander un devis
-                        <ArrowRight className="w-4 h-4" />
+                        <ChevronRight className="w-4 h-4" />
                       </Link>
                     </div>
                   </div>
-                </div>
-
-                {/* COBRA PALLMANN */}
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
-                      <span className="text-3xl font-bold text-[#FBA600]">C</span>
-                    </div>
-                  </div>
-                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
-                    PONCEUSE À BANDE
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
-                    COBRA PALLMANN
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Puissance et précision pour le ponçage de parquet
-                  </p>
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className="text-2xl font-bold text-[#FBA600]">13 293€</span>
-                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
-                  </div>
-                  <Link 
-                    to="/demande-devis" 
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
-                  >
-                    Demander un devis
-                  </Link>
-                </div>
-
-                {/* TURBO SCRUBBER */}
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
-                      <span className="text-3xl font-bold text-[#FBA600]">T</span>
-                    </div>
-                  </div>
-                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
-                    NETTOYAGE
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
-                    TURBO SCRUBBER
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Nettoyage et préparation des parquets
-                  </p>
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className="text-2xl font-bold text-[#FBA600]">5 670€</span>
-                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
-                  </div>
-                  <Link 
-                    to="/demande-devis" 
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
-                  >
-                    Demander un devis
-                  </Link>
-                </div>
-
-                {/* UNO Monobrosse */}
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
-                      <span className="text-3xl font-bold text-[#FBA600]">U</span>
-                    </div>
-                  </div>
-                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
-                    MONOBROSSE
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
-                    UNO Monobrosse
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Entretien et finition des parquets
-                  </p>
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className="text-2xl font-bold text-[#FBA600]">4 338€</span>
-                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
-                  </div>
-                  <Link 
-                    to="/demande-devis" 
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
-                  >
-                    Demander un devis
-                  </Link>
-                </div>
-
-                {/* GECKO STAR 2.0 */}
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-[#FBA600]/50 transition-all group">
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-4 mb-4 flex items-center justify-center">
-                    <div className="w-24 h-24 bg-[#1E3A5F] rounded-full flex items-center justify-center">
-                      <span className="text-3xl font-bold text-[#FBA600]">G</span>
-                    </div>
-                  </div>
-                  <span className="inline-block bg-white/10 text-gray-300 px-2 py-1 rounded text-xs font-semibold mb-2">
-                    BORDEUSE
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#FBA600] transition-colors">
-                    GECKO STAR 2.0
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Finitions parfaites sur les bords
-                  </p>
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className="text-2xl font-bold text-[#FBA600]">3 717€</span>
-                    <span className="text-gray-400 text-sm pb-0.5">HT</span>
-                  </div>
-                  <Link 
-                    to="/demande-devis" 
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-[#FBA600] text-white px-4 py-2.5 rounded-lg font-semibold transition-all text-sm"
-                  >
-                    Demander un devis
-                  </Link>
-                </div>
+                ))}
               </div>
 
-              {/* CTA Bar */}
-              <div className="text-center">
-                <p className="text-gray-400 mb-4">
-                  Besoin de conseils ? Notre équipe est à votre disposition pour vous accompagner dans votre choix.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <a 
-                    href="mailto:contact@pallmann-store.com" 
-                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-                  >
-                    Nous contacter
-                  </a>
-                  <Link 
-                    to="/demande-devis" 
-                    className="inline-flex items-center gap-2 bg-[#FBA600] hover:bg-[#E09500] text-white px-6 py-3 rounded-lg font-bold transition-all"
-                  >
-                    <FileText className="w-4 h-4" />
-                    Demander un devis global
-                  </Link>
-                </div>
+              {/* CTA Section */}
+              <div className="mt-12 text-center">
+                <Link
+                  to="/pro"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#0F172A] bg-white border-2 border-[#0F172A] hover:bg-[#0F172A] hover:text-white transition-all"
+                >
+                  <Sparkles className="w-5 h-5" />
+                  Voir tout l'équipement PRO
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
               </div>
             </div>
-            
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FBA600] to-transparent"></div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Products Section */}
+          <div id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            {/* Section Header */}
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4">
+                Nos Produits
+              </h2>
+              <p className="text-[#64748B] text-lg max-w-2xl mx-auto">
+                Découvrez notre gamme complète de produits Pallmann
+              </p>
+            </div>
+
             {/* Filters Section */}
-            <div className="bg-white rounded-xl shadow-card p-6 mb-8 border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-card p-6 mb-8 border border-gray-100">
               <div className="flex items-center gap-2 mb-4">
-                <Filter className="w-5 h-5 text-[#1E3A5F]" />
-                <h2 className="text-lg font-bold text-[#1E3A5F]">Filtrer les produits</h2>
+                <Filter className="w-5 h-5 text-[#2563EB]" />
+                <h3 className="text-lg font-bold text-[#0F172A]">Filtrer les produits</h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -509,7 +509,7 @@ const HomePage: React.FC = () => {
                     placeholder="Rechercher un produit..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                    className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
                   />
                 </div>
 
@@ -520,7 +520,7 @@ const HomePage: React.FC = () => {
                     setSelectedCategory(e.target.value);
                     setSelectedSubcategory('all');
                   }}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
                 >
                   <option value="all">Toutes les catégories</option>
                   {categories.map(cat => (
@@ -532,7 +532,7 @@ const HomePage: React.FC = () => {
                 <select
                   value={selectedSubcategory}
                   onChange={(e) => setSelectedSubcategory(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all disabled:bg-gray-50 disabled:text-gray-400 text-[#2D3748]"
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all disabled:bg-gray-50 disabled:text-gray-400 text-[#0F172A]"
                   disabled={selectedCategory === 'all'}
                 >
                   <option value="all">Toutes les sous-catégories</option>
@@ -545,8 +545,8 @@ const HomePage: React.FC = () => {
               {/* Code promo PRO */}
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-2 mb-2">
-                  <Tag className="w-4 h-4 text-[#1E3A5F]" />
-                  <span className="text-sm font-semibold text-[#1E3A5F]">Code professionnel</span>
+                  <Tag className="w-4 h-4 text-[#7C3AED]" />
+                  <span className="text-sm font-semibold text-[#0F172A]">Code professionnel</span>
                 </div>
                 <div className="flex gap-2">
                   <input
@@ -554,18 +554,19 @@ const HomePage: React.FC = () => {
                     placeholder="Entrez votre code pro..."
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                    className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all uppercase text-[#2D3748]"
+                    className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all uppercase text-[#0F172A]"
                   />
                   <button
                     onClick={validatePromoCode}
                     disabled={checkingCode || !promoCode.trim()}
-                    className="px-5 py-2 bg-[#FBA600] hover:bg-[#E09500] text-white font-semibold rounded-lg transition-all disabled:opacity-50"
+                    className="px-5 py-2 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
+                    style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                   >
                     {checkingCode ? '...' : 'Valider'}
                   </button>
                 </div>
                 {validatedCode && (
-                  <div className="mt-2 flex items-center justify-between bg-green-50 p-3 rounded-lg border border-green-200">
+                  <div className="mt-2 flex items-center justify-between bg-green-50 p-3 rounded-xl border border-green-200">
                     <div className="flex items-center gap-2 text-green-600 text-sm">
                       <CheckCircle className="w-4 h-4" />
                       <span><strong>{validatedCode.company_name}</strong> - Remise {validatedCode.discount_percent}% appliquée !</span>
@@ -581,7 +582,7 @@ const HomePage: React.FC = () => {
                   </div>
                 )}
                 {codeRemoved && (
-                  <div className="mt-2 flex items-center gap-2 text-[#1E3A5F] bg-[#EBF4FF] p-2 rounded-lg text-sm">
+                  <div className="mt-2 flex items-center gap-2 text-[#2563EB] bg-[#EFF6FF] p-2 rounded-xl text-sm">
                     <CheckCircle className="w-4 h-4" />
                     <span>Code promo supprimé - Prix publics rétablis</span>
                   </div>
@@ -597,7 +598,7 @@ const HomePage: React.FC = () => {
               {/* Active filters display */}
               {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm) && (
                 <div className="mt-4 flex items-center gap-2 text-sm text-[#64748B]">
-                  <span className="font-semibold text-[#1E3A5F]">{filteredProducts.length}</span>
+                  <span className="font-semibold text-[#0F172A]">{filteredProducts.length}</span>
                   <span>produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}</span>
                   <button
                     onClick={() => {
@@ -605,7 +606,7 @@ const HomePage: React.FC = () => {
                       setSelectedSubcategory('all');
                       setSearchTerm('');
                     }}
-                    className="ml-auto text-[#FBA600] hover:text-[#E09500] font-semibold transition-colors"
+                    className="ml-auto text-[#7C3AED] hover:text-[#6D28D9] font-semibold transition-colors"
                   >
                     Réinitialiser les filtres
                   </button>
@@ -619,12 +620,12 @@ const HomePage: React.FC = () => {
                 {filteredProducts.map(product => (
                   <div
                     key={product.id}
-                    className="bg-white rounded-xl shadow-card overflow-hidden hover:shadow-medium transition-all duration-300 group flex flex-col h-full relative border border-gray-100"
+                    className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-all duration-300 group flex flex-col h-full relative border border-gray-100"
                   >
                     {/* Category Badge */}
                     {product.category_name && (
                       <div className="absolute top-3 left-3 z-10">
-                        <span className="bg-[#1E3A5F] text-white px-3 py-1 rounded-md text-xs font-bold">
+                        <span className="bg-[#0F172A] text-white px-3 py-1 rounded-lg text-xs font-bold">
                           {product.category_name}
                         </span>
                       </div>
@@ -632,7 +633,7 @@ const HomePage: React.FC = () => {
 
                     {/* Product Image */}
                     {product.image_url && (
-                      <div className="relative bg-gradient-to-br from-[#F7FAFC] via-white to-[#EBF4FF] p-6 pt-12">
+                      <div className="relative bg-gradient-to-br from-[#F8FAFC] via-white to-[#EFF6FF] p-6 pt-12">
                         <img
                           src={product.image_url}
                           alt={product.name}
@@ -643,7 +644,7 @@ const HomePage: React.FC = () => {
 
                     {/* Card Body */}
                     <div className="p-5 flex-grow flex flex-col">
-                      <h3 className="text-base font-bold text-[#1E3A5F] mb-1 group-hover:text-[#2C5282] transition-colors line-clamp-2">
+                      <h3 className="text-base font-bold text-[#0F172A] mb-1 group-hover:text-[#2563EB] transition-colors line-clamp-2">
                         {product.name}
                       </h3>
                       {product.subcategory_name && (
@@ -653,28 +654,28 @@ const HomePage: React.FC = () => {
                       )}
 
                       {product.description && (
-                        <p className="text-[#2D3748] text-sm mb-3 line-clamp-2 flex-grow">
+                        <p className="text-[#64748B] text-sm mb-3 line-clamp-2 flex-grow">
                           {product.description}
                         </p>
                       )}
 
                       {/* Prix */}
                       {product.price_public_ht && (
-                        <div className="mb-3 p-3 bg-[#EBF4FF] rounded-lg">
+                        <div className="mb-3 p-3 bg-gradient-to-r from-[#EFF6FF] to-[#F5F3FF] rounded-xl">
                           {validatedCode ? (
                             <div>
                               <span className="text-[#64748B] line-through text-sm">{product.price_public_ht.toFixed(2)}€</span>
-                              <span className="ml-2 text-xl font-bold text-green-600">
+                              <span className="ml-2 text-xl font-bold text-[#10B981]">
                                 {getDiscountedPrice(product.price_public_ht).toFixed(2)}€
                               </span>
                               <span className="text-xs text-[#64748B]"> HT/{product.unit || 'L'}</span>
-                              <span className="ml-2 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">
+                              <span className="ml-2 bg-[#10B981] text-white text-xs font-bold px-2 py-0.5 rounded">
                                 -{validatedCode.discount_percent}%
                               </span>
                             </div>
                           ) : (
                             <div>
-                              <span className="text-xl font-bold text-[#1E3A5F]">{product.price_public_ht.toFixed(2)}€</span>
+                              <span className="text-xl font-extrabold text-[#0F172A]">{product.price_public_ht.toFixed(2)}€</span>
                               <span className="text-xs text-[#64748B]"> HT/{product.unit || 'L'}</span>
                             </div>
                           )}
@@ -687,7 +688,7 @@ const HomePage: React.FC = () => {
                           href={product.pdf_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs text-[#64748B] hover:text-[#FBA600] transition-colors mb-3"
+                          className="inline-flex items-center gap-1 text-xs text-[#64748B] hover:text-[#7C3AED] transition-colors mb-3"
                         >
                           <Download className="w-3 h-3" />
                           <span>Fiche technique</span>
@@ -701,11 +702,12 @@ const HomePage: React.FC = () => {
                         <>
                           <button
                             onClick={() => handleAddToCart(product)}
-                            className={`w-full py-3 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                            className={`w-full py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
                               addedToCart === product.id 
-                                ? 'bg-green-500 text-white' 
-                                : 'bg-[#FBA600] hover:bg-[#E09500] text-white shadow-sm hover:shadow-md'
+                                ? 'bg-[#10B981] text-white' 
+                                : 'text-white shadow-md hover:shadow-lg'
                             }`}
+                            style={addedToCart !== product.id ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
                           >
                             {addedToCart === product.id ? (
                               <>
@@ -721,12 +723,12 @@ const HomePage: React.FC = () => {
                           </button>
                           <button
                             onClick={() => handleAddToQuote(product)}
-                            className={`w-full py-2 rounded-lg font-semibold text-xs transition-all flex items-center justify-center gap-2 ${
+                            className={`w-full py-2 rounded-xl font-semibold text-xs transition-all flex items-center justify-center gap-2 ${
                               addedToQuote === product.id 
-                                ? 'bg-[#1E3A5F] text-white' 
+                                ? 'bg-[#0F172A] text-white' 
                                 : isInQuote(product.id)
-                                  ? 'bg-[#EBF4FF] text-[#1E3A5F]'
-                                  : 'bg-[#F7FAFC] hover:bg-[#EBF4FF] text-[#2C5282]'
+                                  ? 'bg-[#EDE9FE] text-[#7C3AED]'
+                                  : 'bg-[#F8FAFC] hover:bg-[#EFF6FF] text-[#64748B]'
                             }`}
                           >
                             {addedToQuote === product.id ? (
@@ -750,7 +752,8 @@ const HomePage: React.FC = () => {
                       ) : (
                         <Link
                           to="/demande-devis"
-                          className="w-full py-3 rounded-lg font-bold text-sm bg-[#1E3A5F] hover:bg-[#2C5282] text-white flex items-center justify-center gap-2 transition-all"
+                          className="w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 transition-all"
+                          style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                         >
                           <FileText className="w-4 h-4" />
                           Demander un devis
@@ -761,9 +764,9 @@ const HomePage: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-xl shadow-card p-12 text-center border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-card p-12 text-center border border-gray-100">
                 <Search className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-                <h3 className="text-xl font-bold text-[#1E3A5F] mb-2">
+                <h3 className="text-xl font-bold text-[#0F172A] mb-2">
                   Aucun produit trouvé
                 </h3>
                 <p className="text-[#64748B] mb-6">
@@ -775,24 +778,31 @@ const HomePage: React.FC = () => {
                     setSelectedSubcategory('all');
                     setSearchTerm('');
                   }}
-                  className="inline-flex items-center gap-2 bg-[#FBA600] hover:bg-[#E09500] text-white px-6 py-3 rounded-lg font-bold transition-colors"
+                  className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold transition-all"
+                  style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                 >
                   Réinitialiser les filtres
                 </button>
               </div>
             )}
 
-            {/* Shipping Info Banner - Bleu avec accent orange */}
-            <div className="mt-12 bg-gradient-to-r from-[#1E3A5F] to-[#2C5282] rounded-xl p-8 text-center text-white relative overflow-hidden">
-              {/* Accent bar */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-[#FBA600]"></div>
+            {/* Shipping Info Banner */}
+            <div 
+              className="mt-12 rounded-2xl p-8 text-center text-white relative overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%)' }}
+            >
+              {/* Accent gradient bar */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1"
+                style={{ background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)' }}
+              ></div>
               
-              <h2 className="text-2xl font-bold mb-4">Livraison professionnelle</h2>
+              <h2 className="text-2xl font-extrabold mb-4">Livraison professionnelle</h2>
               <p className="text-white/90 mb-4">
                 Franco de port à partir de 630€ HT • Livraison en 48-72h ouvrées
               </p>
-              <p className="text-sm text-white/80">
-                Pour toute question, contactez-nous : <a href="mailto:contact@pallmann-store.com" className="text-[#FBA600] font-semibold hover:underline">contact@pallmann-store.com</a>
+              <p className="text-sm text-white/70">
+                Pour toute question, contactez-nous : <a href="mailto:contact@pallmann-store.com" className="text-[#A78BFA] font-semibold hover:underline">contact@pallmann-store.com</a>
               </p>
             </div>
           </div>
