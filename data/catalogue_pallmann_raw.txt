@@ -1,0 +1,251 @@
+# Catalogue Pallmann - Prix d'achat PARQ'LINE
+# Source: Tarif client 71213, valable au 01.03.2026
+# Format: ref | designation | prix_achat | unite
+
+068063|ATD 100 / buse 190 mm|23.30|UN
+079868|ATD 100 / buse 400 mm|25.49|UN
+069199|ATD 100 / pistolet à colle|2600.75|UN
+038465|UZIN Clean-Box|31.75|UN
+009394|UZIN Manchon en poils nylon 25 cm/14 mm|10.89|UN
+012621|750 X 200 corindon gr 16/10p|6.104|UN
+012622|750 X 200 corindon gr 24/10p|5.194|UN
+012624|750 X 200 corindon gr 36/10p|4.739|UN
+012625|750 X 200 corindon gr 40/10p|4.557|UN
+012627|750 X 200 corindon gr 60/10p|4.368|UN
+012628|750 X 200 corindon gr 80/10p|3.90|UN
+012629|750 X 200 corindon gr100/10p|3.825|UN
+012630|750 X 200 corindon gr120/10p|3.825|UN
+011478|750 X 200 zirconium gr 24/10p|7.485|UN
+011479|750 X 200 zirconium gr 36/10p|6.685|UN
+011480|750 X 200 zirconium gr 40/10p|5.98|UN
+011481|750 X 200 zirconium gr 60/10p|5.736|UN
+011482|750 X 200 zirconium gr 80/10p|5.47|UN
+011483|750 X 200 zirconium gr 100/10p|5.47|UN
+014184|Adhésif de traçage 25mm x 50 m|9.04|UN
+088622|ALL BASE EXTRA 5L|10.88|L
+039948|ALLKITT 5L|9.00|L
+059960|B11 couteau à colle|4.88|UN
+061482|B3 couteau à colle|4.88|UN
+012510|BALAI APPLICATEUR + PEAU DE MOUTON|35.07|UN
+053295|CLEAN 0,75L|7.74|UN
+182486|CLEAN 5L|6.34|L
+010366|CLEAN STRONG 0,75L|12.22|UN
+182484|CLEAN STRONG 5L|12.04|L
+084260|COLOR COLLECTION coffret 2.0|609.90|UN
+081783|DEGRISEUR 2L|7.58|L
+086314|ECO OIL CARE 0,75L|17.64|UN
+086117|ECO OIL CARE 5L|16.38|L
+013814|ETUI pour rouleau 250mm|12.06|UN
+053297|FINISH CARE 0,75L|13.27|UN
+012452|FINISH CARE 5L|12.95|L
+053300|FINISH CARE mat 0,75L|14.98|UN
+076843|FINISH CARE MAT 5L|14.70|L
+012461|FINISH CARE STOP 0,75L|13.55|UN
+182485|FINISH CARE STOP 5L|13.27|L
+080735|HARDWAXOIL 3L|20.83|L
+082958|IS 90 satiné P.U. solvant 1K 5L|12.98|L
+011666|JOINT A PARQUET chêne clair/12p|6.25|UN
+041126|JOINT A PARQUET chêne foncé/12p|6.25|UN
+011669|JOINT A PARQUET frêne/bouleau/épicéa/12p|6.25|UN
+011665|JOINT A PARQUET hêtre nat/érable can/12p|6.25|UN
+011667|JOINT A PARQUET hêtre traité/ceris./12p|6.25|UN
+011668|JOINT A PARQUET wengé/12p|6.25|UN
+055890|LANGUETTE caoutchouc pour magic oil|21.26|UN
+068018|MAGIC OIL 2K ERGO monocouche 1L|66.78|L
+055895|MAGIC OIL 2K ERGO monocouche 2,75L|64.03|L
+021283|MAGIC OIL 2K Original 1L|61.43|L
+021284|MAGIC OIL 2K Original 2,75L|58.73|L
+175506|MAGIC OIL 2K PURE 1 L|74.25|L
+055898|MAGIC OIL 2K SPA 1L|79.63|L
+159671|MAGIC OIL 2K WHITE monocouche 1L|74.25|L
+055905|MAGIC OIL CARE 0,75L|25.55|UN
+034053|MAGIC OIL CARE 5L|24.82|L
+162390|MAGIC OIL CARE WHITE 0,75L|26.99|UN
+125420|MAGIC OIL CHANGE 1K 1l|35.75|L
+158420|MAGIC OIL CHANGE 2K 1l|73.45|L
+084923|MAGIC OIL EASY Huile-cire mono 1L|30.10|L
+079521|MAGIC OIL EASY Huile-cire mono 3L|24.55|L
+184886|MONTURE pour manchon softTouch 250mm|5.14|UN
+021193|MONTURE pour rouleau sport color|2.37|UN
+081079|OUTDOOR OIL 1K bankirai 3L|15.18|L
+185862|OUTDOOR OIL 1K miel 10L|11.35|L
+179338|OUTDOOR OIL 1K miel 3L|15.18|L
+159652|OUTDOOR OIL 1K naturel 10L|11.35|L
+081077|OUTDOOR OIL 1K naturel 3L|15.18|L
+081081|OUTDOOR OIL 1K teck 3L|15.18|L
+014289|PALL-X 320 fond dur neutre 5L|11.50|L
+013952|PALL-X 325 1L|18.58|L
+013267|PALL-X 325 fond dur neutre garnissant 5L|15.48|L
+159665|PALL-X 330 PURE fond dur brut 5L|13.05|L
+068044|PALL-X 333 original 1L|53.38|L
+073208|PALL-X 333 COLOR A/B blanc 1L|73.68|L
+060022|PALL-X 350 2K 1L|71.58|L
+040983|PALL-X 94 mat 5L|13.80|L
+013269|PALL-X 94 satiné 5L|13.80|L
+013697|PALL-X 96 mat 5L|20.05|L
+013271|PALL-X 96 ORIGINAL satiné 5L|20.05|L
+181845|PALL-X 96 POWER mat 5 L|22.05|L
+181844|PALL-X 96 POWER SATINÉ 5 L|22.05|L
+013953|PALL-X 96 satiné 1L|21.05|L
+169408|PALL-X 96 ZERO mat 5L|22.58|L
+171590|PALL-X 96 ZERO satiné 5L|22.58|L
+010100|PALL-X 98 2K brillant 4,95L|27.25|L
+010094|PALL-X 98 2K mat 4,95L|27.25|L
+010093|PALL-X 98 2K satiné 4,95L|27.25|L
+172175|PALL-X BASE 5 L|10.10|L
+188731|PALL-X DUET 2K mat 10 l|16.50|L
+186521|PALL-X DUET 2K satiné 10 l|16.50|L
+087764|PALL-X EXTREME HAUT SATIN K1/5L|15.23|L
+069378|PALL-X EXTREME K.B. Durcisseur 0,5 L|14.00|UN
+069379|PALL-X EXTREME mat K.A./5L|15.23|L
+087368|PALL-X EXTREME satiné K1/1L|16.30|L
+069377|PALL-X EXTREME satiné K1/5L|15.23|L
+162032|PALL-X FILLER liant pour joint large 5L|12.23|L
+086268|PALL-X FUTUR mat 5L|13.83|L
+086375|PALL-X FUTUR satiné 5L|13.83|L
+012570|PALL-X GEL/1L spatulable après egrennage|23.38|L
+082319|PALL-X GRIP 75gr|9.36|UN
+013085|PALL-X KITT 1 L|12.10|L
+012732|PALL-X KITT 5L|10.10|L
+010108|PALL-X PURE 4,95L|23.08|L
+184797|PALL-X RETARDER 250 ml|9.45|UN
+010103|PALL-X SPORT 2K satiné 4,95L|23.45|L
+089453|PALL-X TREND 2K mat 4,95 L|18.70|L
+083529|PALL-X TREND 2K satiné 4,95L|18.70|L
+073699|PALL-X ZERO 2K mat intense 10L|28.95|L
+073172|PALL-X ZERO BASE fond dur 5L|16.93|L
+073173|PALL-X ZERO FILLER liant 5L|14.05|L
+179263|PALLMANN COVER PRO|84.60|UN
+182320|PALLMANN SPALTER 100 MM|8.24|UN
+182321|PALLMANN SPALTER 140 MM|14.80|UN
+183780|PALLMANN SPRAYMOP SET|27.93|UN
+012598|PEAU DE MOUTON|16.09|UN
+055889|RACLETTE magic-oil|31.40|UN
+067669|ROULEAU aqua brillant 14mm/250mm|14.59|UN
+083923|ROULEAU aqua SP 8 mm/25 cm|14.59|UN
+012495|ROULEAU mohair aqua 11mm/250mm|14.59|UN
+012496|ROULEAU nylon|9.36|UN
+081466|ROULEAU solvant|14.59|UN
+021192|ROULEAU SPORT-COLOR 4 mm/50mm|2.31|UN
+062194|Rouleau à rechampir 8 mm / 10 cm|3.02|UN
+040181|SACHETS PVC/50p|0.65|UN
+017393|SEAU de vitrification noir (19 L)|8.16|UN
+067259|SPATULE dentelée lame large 180mm|10.08|UN
+012506|SPATULE double lame 270mm|21.65|UN
+079311|Sport-Color 2K 1018 Jaune A/B 1,1L|52.59|L
+079312|Sport-Color 2K 2004 Orange A/B 1,1L|52.59|L
+079313|Sport-Color 2K 3000 Rouge A/B 1,1L|52.59|L
+079314|Sport-Color 2K 5010 Bleu A/B 1,1L|52.59|L
+079315|Sport-Color 2K 5012 Bleu clair A/B 1,1L|52.59|L
+079316|Sport-Color 2K 6025 Vert A/B 1,1L|52.59|L
+079317|Sport-Color 2K 9016 Blanc A/B 1,1L|52.59|L
+079318|Sport-color 2K 9017 Noir A/B 1,1L|52.59|L
+183781|SPRAYMOP pad lavage|6.09|UN
+184424|SPRAYMOP pdt de lavage 0,75l|9.21|UN
+040289|TISSUS d'essuyage et lustrage/10p|2.25|UN
+089547|Tube de rangement boudin de colle 3,75kg|8.13|UN
+084070|TURBO SCRUBBER brosse blanche|98.55|UN
+084069|TURBO SCRUBBER brosse orange|107.87|UN
+084071|TURBO SCRUBBER brosse rouge|73.85|UN
+084072|TURBO SCRUBBER brosse verte|182.25|UN
+041054|Ø150 carb.silic. velcro étoilé gr 16/25p|1.37|UN
+041055|Ø150 carb.silic. velcro étoilé gr 24/25p|0.81|UN
+041056|Ø150 carb.silic. velcro étoilé gr 36/25p|0.70|UN
+041057|Ø150 carb.silic. velcro étoilé gr 40/50p|0.66|UN
+041059|Ø150 carb.silic. velcro étoilé gr 60/50p|0.58|UN
+041060|Ø150 carb.silic. velcro étoilé gr 80/50p|0.53|UN
+041111|Ø150 carb.silic. velcro étoilé gr100/50p|0.50|UN
+064657|Ø150 ROTEX zirco. velcro gr 40/50p|1.51|UN
+064658|Ø150 ROTEX zirco. velcro gr 60/50p|1.17|UN
+064660|Ø150 ROTEX zirco. velcro gr 80/50p|1.11|UN
+064681|Ø150 ROTEX zirco. velcro gr100/50p|1.11|UN
+063016|Ø150 zirco. velcro gr 40/50p|1.43|UN
+042171|Ø150 zirco. velcro gr 60/50p|1.11|UN
+041124|Ø150 zirco. velcro gr 80/50p|1.06|UN
+063017|Ø150 zirco. velcro gr100/50p|1.03|UN
+041113|Ø178 carb.silic. velcro étoilé gr 16/25p|1.52|UN
+041114|Ø178 carb.silic. velcro étoilé gr 24/25p|1.06|UN
+041115|Ø178 carb.silic. velcro étoilé gr 36/25p|0.87|UN
+041117|Ø178 carb.silic. velcro étoilé gr 40/50p|0.75|UN
+041119|Ø178 carb.silic. velcro étoilé gr 60/50p|0.70|UN
+041120|Ø178 carb.silic. velcro étoilé gr 80/50p|0.64|UN
+041121|Ø178 carb.silic. velcro étoilé gr100/50p|0.62|UN
+083905|Ø178 carb.silic.10trous velcro gr 80/50p|0.95|UN
+083906|Ø178 carb.silic.10trous velcro gr100/50p|0.91|UN
+083655|Ø178 céram 10trous velcro gr 36/25p|4.30|UN
+083903|Ø178 céram 10trous velcro gr 50/25p|3.88|UN
+010072|Ø178 céram 10trous velcro gr 60/25p|3.41|UN
+088472|Ø178 Powerpad gr 80/25p|1.98|UN
+088473|Ø178 Powerpad gr100/25p|1.88|UN
+062002|Ø178 zirco. 10trous velcro gr 40/50p|2.17|UN
+062003|Ø178 zirco. 10trous velcro gr 60/50p|1.78|UN
+062005|Ø178 zirco. 10trous velcro gr 80/50p|1.67|UN
+062006|Ø178 zirco. 10trous velcro gr100/50p|1.54|UN
+064374|Ø178 zirco. velcro gr40/50p|2.00|UN
+064375|Ø178 zirco. velcro gr60/50p|1.58|UN
+064376|Ø178 zirco. velcro gr80/50p|1.44|UN
+081062|Ø178 zirco.10trous velcro gr24/25p|2.64|UN
+081061|Ø178 zirco.10trous velcro gr36/25p|2.20|UN
+012676|Ø406 PAD 10mm beige/10p|4.27|UN
+012679|Ø406 PAD 10mm blanc/10p|4.27|UN
+012677|Ø406 PAD 10mm vert/10p|4.27|UN
+012680|Ø406 PAD 20mm beige/5p|6.75|UN
+012693|Ø406 PAD 20mm blanc/5p|6.75|UN
+012665|Ø406 treillis gr 60/10p|5.12|UN
+012666|Ø406 treillis gr 80/10p|5.12|UN
+012667|Ø406 treillis gr 100/10p|5.12|UN
+012668|Ø406 treillis gr 120/10p|5.12|UN
+042727|Ø410 pad pour vernis brillant gr320/15p|15.38|UN
+088424|Ø410 Powerpad gr 80/10p|8.62|UN
+088425|Ø410 Powerpad gr100/10p|8.62|UN
+088426|Ø410 Powerpad gr120/10p|8.62|UN
+# COLLES
+059654|P104 primaire fixateur EC1+/12 kg|18.25|KG
+077315|P104 primaire fixateur EC1+/6kg|18.73|KG
+066227|P25 ragréage autolissant 25kg|1.36|KG
+087310|P4 colle poche prépolymère EC1+/3,75kg|3.49|KG
+073479|P4 colle seau prépolymère EC1+/16kg|5.25|KG
+169107|P5 colle poche prépolymère EC1+/3,75 kg|6.24|KG
+059679|P5 colle seau prépolymère EC1 +/16kg|5.58|KG
+067689|P6 colle seau prépolymère EC1 +/16kg|6.49|KG
+069953|P9 colle seau bi-composante PU - EC1 +|5.06|KG
+# MACHINES
+074540|COBRA CLASSIC ponceuse à bande|6094.80|UN
+059906|COBRA PALLMANN ponceuse à bande|6646.50|UN
+071729|COBRA PALLMANN sac standard|56.34|UN
+013839|COBRA sac à poussière|65.21|UN
+052441|COBRA sac à poussière zip|56.34|UN
+052442|COBRA sous sac jetable/10p|9.72|UN
+082727|GECKO STAR 2.0 bordeuse nez court ø150mm|1858.50|UN
+082729|GECKO STAR 2.0 bordeuse nez court ø178mm|1858.50|UN
+066603|GECKO STAR sac à poussières|37.08|UN
+016222|GECKO STAR Ø150 autocollant scratch|13.73|UN
+065828|GECKO STAR Ø150 bras long|429.75|UN
+073274|GECKO STAR Ø150 disque auto-agrippant|7.38|UN
+048195|GECKO STAR Ø178 autocollant scratch|19.62|UN
+065826|GECKO STAR Ø178 bras long|429.75|UN
+073275|GECKO STAR Ø178 disque auto-agrippant|9.54|UN
+184124|GECKOFLEX 2.0 bordeuse|1739.70|UN
+061128|GECKOFLEX brosse|26.46|UN
+061162|GECKOFLEX plateau de ponçage velcro|67.73|UN
+083566|SPIDER Brosse nylon Ø178mm gr46|124.25|UN
+083567|SPIDER Brosse nylon Ø178mm gr60|124.43|UN
+072158|SPIDER brosse pour jupe d'aspiration|16.83|UN
+175820|SPIDER disque d'écartement métal 3 unité|99.05|PAK
+086015|SPIDER extension de jupe|161.60|UN
+175570|SPIDER jupe d'aspi + extention|374.63|UN
+083338|SPIDER kit complet parquet brossé|1449.00|UN
+088477|SPIDER Kit segments diamant gr30|1085.31|UN
+088478|SPIDER Kit segments diamant gr50|1085.31|UN
+175829|SPIDER pad d'éjection 3 unités|52.11|PAK
+175826|SPIDER pad perforé 3 unités|48.38|PAK
+175828|SPIDER pad souple spider 3 unités|42.30|PAK
+081696|SPIDER Plateau 3 têtes|2115.00|UN
+084572|SPIDER platine pour segment diamant|63.63|UN
+078319|SPIDER ponceuse à parquet|7344.00|UN
+088321|SPIDER Set de seg. diamant gr30/9p|896.85|UN
+088322|SPIDER Set de seg. diamant gr50/9p|896.85|UN
+089462|SPIDER valise transp. seg. Diamant|157.23|UN
+083588|TURBO SCRUBBER|2835.00|UN
+088662|TURBO SCRUBBER lèvres d'aspiration/2p|42.66|UN
+059629|UNO monobrosse|2169.00|UN
