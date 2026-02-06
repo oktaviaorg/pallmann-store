@@ -29,7 +29,7 @@ export default function MentionsLegales() {
                   Informations sur l'entreprise
                 </h2>
                 <div className="space-y-2 pl-9">
-                  <p><strong>Raison sociale :</strong> Pallmann Store - Groupe Renoline SARL</p>
+                  <p><strong>Raison sociale :</strong> Pallmann Store - Groupe Epenon SARL</p>
                   <p><strong>Forme juridique :</strong> SARL (Société à Responsabilité Limitée)</p>
                   <p><strong>Numéro SIRET :</strong> 832 059 513 00016</p>
                   <p><strong>Numéro TVA intracommunautaire :</strong> FR48832059513</p>
@@ -44,7 +44,7 @@ export default function MentionsLegales() {
                   Siège social
                 </h2>
                 <div className="space-y-2 pl-9">
-                  <p>Groupe Renoline SARL</p>
+                  <p>Groupe Epenon SARL</p>
                   <p>6 rue du Commerce</p>
                   <p>68420 Herrlisheim près Colmar</p>
                   <p>France</p>
@@ -82,7 +82,7 @@ export default function MentionsLegales() {
                 <div className="space-y-3 pl-9">
                   <p>
                     Le contenu du site pallmann-store.com (textes, images, graphismes, logo, vidéos, etc.)
-                    est la propriété exclusive de Groupe Renoline SARL, à l'exception des marques, logos ou
+                    est la propriété exclusive de Groupe Epenon SARL, à l'exception des marques, logos ou
                     contenus appartenant à Pallmann ou à d'autres sociétés partenaires.
                   </p>
                   <p>
@@ -92,7 +92,7 @@ export default function MentionsLegales() {
                   <p>
                     Toute reproduction, distribution, modification, adaptation, retransmission ou publication,
                     même partielle, de ces différents éléments est strictement interdite sans l'accord exprès
-                    par écrit de Groupe Renoline SARL.
+                    par écrit de Groupe Epenon SARL.
                   </p>
                 </div>
               </section>
@@ -138,7 +138,7 @@ export default function MentionsLegales() {
                 <div className="space-y-3 pl-9">
                   <p>
                     Le site pallmann-store.com peut contenir des liens hypertextes vers d'autres sites.
-                    Groupe Renoline SARL n'exerce aucun contrôle sur ces sites et décline toute responsabilité
+                    Groupe Epenon SARL n'exerce aucun contrôle sur ces sites et décline toute responsabilité
                     quant à leur contenu.
                   </p>
                 </div>
@@ -148,12 +148,12 @@ export default function MentionsLegales() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation de responsabilité</h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Groupe Renoline SARL s'efforce d'assurer l'exactitude et la mise à jour des informations
+                    Groupe Epenon SARL s'efforce d'assurer l'exactitude et la mise à jour des informations
                     diffusées sur ce site, dont elle se réserve le droit de corriger, à tout moment et sans
                     préavis, le contenu.
                   </p>
                   <p>
-                    Toutefois, Groupe Renoline SARL ne peut garantir l'exactitude, la précision ou l'exhaustivité
+                    Toutefois, Groupe Epenon SARL ne peut garantir l'exactitude, la précision ou l'exhaustivité
                     des informations mises à disposition sur ce site.
                   </p>
                 </div>

@@ -130,7 +130,7 @@ export default async function handler(req: any, res: any) {
               <p>À très bientôt,<br><strong>L'équipe Pallmann Store</strong></p>
             </div>
             <div class="footer">
-              <p>Pallmann Store - Groupe Renoline SARL</p>
+              <p>Pallmann Store - Groupe Epenon SARL</p>
               <p>6 rue du Commerce, 68420 Herrlisheim près Colmar</p>
               <p><a href="mailto:pro@pallmann-store.com" style="color: #FF6600;">pro@pallmann-store.com</a> | 03 89 21 00 00</p>
             </div>

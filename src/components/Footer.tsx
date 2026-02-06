@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
               Votre boutique en ligne de produits professionnels Pallmann pour l'entretien et la finition des parquets. Vitrificateurs, huiles, colles et accessoires de qualité supérieure.
             </p>
             <p className="text-gray-300 text-sm font-semibold">
-              Groupe Renoline SARL
+              Groupe Epenon SARL
             </p>
           </div>
 
@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400 text-center md:text-left">
-              © {currentYear} Pallmann Store - Groupe Renoline SARL. Tous droits réservés.
+              © {currentYear} Pallmann Store - Groupe Epenon SARL. Tous droits réservés.
             </p>
             <div className="flex flex-wrap gap-4 text-sm justify-center">
               <Link to="/mentions-legales" className="text-gray-400 hover:text-[#FF6600] transition-colors">

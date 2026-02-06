@@ -246,7 +246,7 @@ export default async function handler(req: any, res: any) {
                   <p>Merci pour votre confiance,<br><strong>L'équipe Pallmann Store</strong></p>
                 </div>
                 <div class="footer">
-                  <p>Pallmann Store - Groupe Renoline SARL</p>
+                  <p>Pallmann Store - Groupe Epenon SARL</p>
                   <p>6 rue du Commerce, 68420 Herrlisheim près Colmar</p>
                 </div>
               </div>

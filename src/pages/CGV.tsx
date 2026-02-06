@@ -27,7 +27,7 @@ export default function CGV() {
                 <div className="bg-[#ff9900]/10 border-l-4 border-[#ff9900] p-4 mb-6">
                   <p className="text-gray-800 font-medium">
                     Les présentes Conditions Générales de Vente (CGV) s'appliquent à toutes les ventes de
-                    produits effectuées sur le site pallmann-store.com exploité par Groupe Renoline SARL.
+                    produits effectuées sur le site pallmann-store.com exploité par Groupe Epenon SARL.
                   </p>
                 </div>
               </section>
@@ -40,7 +40,7 @@ export default function CGV() {
                 <div className="space-y-3 pl-9">
                   <p>
                     Les présentes CGV régissent les ventes de produits Pallmann (vitrificateurs, huiles,
-                    colles et accessoires pour parquet) effectuées par Groupe Renoline SARL auprès de
+                    colles et accessoires pour parquet) effectuées par Groupe Epenon SARL auprès de
                     clients professionnels et particuliers.
                   </p>
                   <p>
@@ -67,7 +67,7 @@ export default function CGV() {
                   </p>
                   <p>
                     <strong>2.3 Modification des prix</strong><br />
-                    Groupe Renoline SARL se réserve le droit de modifier ses prix à tout moment.
+                    Groupe Epenon SARL se réserve le droit de modifier ses prix à tout moment.
                     Les produits sont facturés au prix en vigueur lors de la validation de la commande.
                   </p>
                 </div>
@@ -90,7 +90,7 @@ export default function CGV() {
                   </p>
                   <p>
                     <strong>3.3 Sécurité des paiements</strong><br />
-                    Les transactions sont sécurisées par le protocole SSL. Groupe Renoline SARL n'a
+                    Les transactions sont sécurisées par le protocole SSL. Groupe Epenon SARL n'a
                     pas accès à vos données bancaires.
                   </p>
                   <p>
@@ -188,7 +188,7 @@ export default function CGV() {
                 </h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Groupe Renoline SARL ne saurait être tenu responsable des dommages résultant d'une
+                    Groupe Epenon SARL ne saurait être tenu responsable des dommages résultant d'une
                     mauvaise utilisation des produits. Il est recommandé de consulter les fiches
                     techniques et de respecter les préconisations du fabricant.
                   </p>
@@ -199,7 +199,7 @@ export default function CGV() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Article 8 - Propriété des produits</h2>
                 <div className="space-y-3 pl-9">
                   <p>
-                    Groupe Renoline SARL conserve la propriété des produits vendus jusqu'au paiement
+                    Groupe Epenon SARL conserve la propriété des produits vendus jusqu'au paiement
                     complet du prix. Le transfert des risques au client intervient dès la livraison.
                   </p>
                 </div>
@@ -243,7 +243,7 @@ export default function CGV() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Article 11 - Coordonnées du vendeur</h2>
                 <div className="space-y-3 pl-9">
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <p><strong>Groupe Renoline SARL</strong></p>
+                    <p><strong>Groupe Epenon SARL</strong></p>
                     <p>6 rue du Commerce</p>
                     <p>68420 Herrlisheim près Colmar</p>
                     <p>France</p>

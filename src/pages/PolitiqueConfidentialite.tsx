@@ -27,7 +27,7 @@ export default function PolitiqueConfidentialite() {
               <section>
                 <div className="bg-[#ff9900]/10 border-l-4 border-[#ff9900] p-4 mb-6">
                   <p className="text-gray-800 font-medium">
-                    Pallmann Store (Groupe Renoline SARL) s'engage à protéger la confidentialité de vos
+                    Pallmann Store (Groupe Epenon SARL) s'engage à protéger la confidentialité de vos
                     données personnelles conformément au Règlement Général sur la Protection des Données
                     (RGPD) et à la loi Informatique et Libertés.
                   </p>
@@ -45,7 +45,7 @@ export default function PolitiqueConfidentialite() {
                     pallmann-store.com est :
                   </p>
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <p><strong>Groupe Renoline SARL</strong></p>
+                    <p><strong>Groupe Epenon SARL</strong></p>
                     <p>6 rue du Commerce</p>
                     <p>68420 Herrlisheim près Colmar, France</p>
                     <p>Email : contact@pallmann-store.com</p>
@@ -132,7 +132,7 @@ export default function PolitiqueConfidentialite() {
                 <div className="space-y-3 pl-9">
                   <p>Vos données personnelles sont destinées à :</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Groupe Renoline SARL (personnel habilité)</li>
+                    <li>Groupe Epenon SARL (personnel habilité)</li>
                     <li>Prestataires techniques (Vercel, Supabase)</li>
                     <li>Prestataire de paiement (Stripe)</li>
                     <li>Transporteurs pour la livraison</li>
@@ -236,7 +236,7 @@ export default function PolitiqueConfidentialite() {
                     Pour toute question relative à cette politique, contactez-nous :
                   </p>
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <p><strong>Groupe Renoline SARL</strong></p>
+                    <p><strong>Groupe Epenon SARL</strong></p>
                     <p>Email : <a href="mailto:contact@pallmann-store.com" className="text-[#ff9900] hover:underline">contact@pallmann-store.com</a></p>
                   </div>
                 </div>
