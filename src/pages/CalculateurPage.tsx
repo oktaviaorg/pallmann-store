@@ -34,6 +34,7 @@ const CalculateurPage: React.FC = () => {
   const [projectType, setProjectType] = useState<'renovation' | 'neuf'>('renovation');
   const [finishType, setFinishType] = useState<'vitrification' | 'huile'>('vitrification');
   const [addedProducts, setAddedProducts] = useState<string[]>([]);
+  const [includeLiant, setIncludeLiant] = useState<boolean>(true);
 
   // Calculs des quantités
   const calculateProducts = (): ProductRecommendation[] => {
@@ -80,13 +81,13 @@ const CalculateurPage: React.FC = () => {
       });
     }
 
-    // Liant (pour joints) si rénovation
-    if (projectType === 'renovation') {
+    // Liant (pour joints) si rénovation ET si inclus
+    if (projectType === 'renovation' && includeLiant) {
       const liantLitres = Math.ceil(surface / 50);
       products.push({
         id: 'liant',
         name: 'PALL-X KITT - Liant',
-        description: 'Pour rebouchage des joints et fissures',
+        description: 'Pour rebouchage des joints et fissures (optionnel)',
         quantity: liantLitres,
         unit: 'L',
         pricePerUnit: 24.20,
@@ -271,6 +272,24 @@ const CalculateurPage: React.FC = () => {
                     </button>
                   </div>
                 </div>
+
+                {/* Option Liant (si rénovation) */}
+                {projectType === 'renovation' && (
+                  <div className="mb-6">
+                    <label className="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all">
+                      <input
+                        type="checkbox"
+                        checked={includeLiant}
+                        onChange={(e) => setIncludeLiant(e.target.checked)}
+                        className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
+                      />
+                      <div>
+                        <div className="font-bold text-[#1A2634]">Inclure le liant (PALL-X KITT)</div>
+                        <div className="text-xs text-[#627D98]">Pour reboucher joints et fissures — Décochez si pas nécessaire</div>
+                      </div>
+                    </label>
+                  </div>
+                )}
 
                 {/* Info */}
                 <div className="bg-[#F8FAFC] p-4 rounded-xl flex items-start gap-3">
