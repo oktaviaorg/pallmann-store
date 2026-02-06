@@ -35,7 +35,7 @@ const LanguageSelector: React.FC = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors text-[#64748B] hover:text-[#C4943D]"
+        className="flex items-center gap-1.5 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors text-[#64748B] hover:text-[#E67E22]"
         aria-label="Sélectionner la langue"
       >
         <Globe className="w-4 h-4" />
@@ -51,13 +51,13 @@ const LanguageSelector: React.FC = () => {
               key={lang.code}
               onClick={() => changeLanguage(lang.code)}
               className={`w-full px-4 py-2.5 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${
-                currentLanguage.code === lang.code ? 'bg-blue-50 text-[#C4943D]' : 'text-[#2D1A0D]'
+                currentLanguage.code === lang.code ? 'bg-blue-50 text-[#E67E22]' : 'text-[#1A2634]'
               }`}
             >
               <span className="text-xl">{lang.flag}</span>
               <span className="font-medium">{lang.label}</span>
               {currentLanguage.code === lang.code && (
-                <span className="ml-auto text-[#C4943D]">✓</span>
+                <span className="ml-auto text-[#E67E22]">✓</span>
               )}
             </button>
           ))}

@@ -70,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {/* Badges */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
         {product.category_name && (
-          <span className="bg-[#2D1A0D] text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide">
+          <span className="bg-[#1A2634] text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide">
             {product.category_name}
           </span>
         )}
@@ -86,7 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {product.is_new && (
           <span 
             className="px-2 py-0.5 rounded-md text-[10px] font-bold text-white flex items-center gap-1"
-            style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
           >
             <Zap className="w-3 h-3" />
             NOUVEAU
@@ -104,7 +104,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       )}
 
       {/* Product Image */}
-      <div className="relative bg-gradient-to-br from-[#FFFCF8] via-white to-[#FDF8F0] p-4 pt-10">
+      <div className="relative bg-gradient-to-br from-[#FFFFFF] via-white to-[#F8FAFC] p-4 pt-10">
         {product.image_url ? (
           <img
             src={product.image_url}
@@ -129,7 +129,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <button
               onClick={() => onAddToCart(product)}
               className="px-4 py-2 rounded-xl text-white text-sm font-bold flex items-center gap-2 transition-transform hover:scale-105"
-              style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
             >
               <Plus className="w-4 h-4" />
               {t('common.addToCart')}
@@ -140,7 +140,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Card Body */}
       <div className="p-4 flex-grow flex flex-col">
-        <h3 className="text-sm font-bold text-[#2D1A0D] mb-1 group-hover:text-[#C4943D] transition-colors line-clamp-2 leading-tight">
+        <h3 className="text-sm font-bold text-[#1A2634] mb-1 group-hover:text-[#E67E22] transition-colors line-clamp-2 leading-tight">
           {product.name}
         </h3>
         
@@ -169,7 +169,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Prix - SUPER VISIBLE */}
         {product.price_public_ht && (
-          <div className="mb-2 p-2.5 bg-gradient-to-r from-[#FDF8F0] to-[#FAF6F1] rounded-xl border border-blue-100">
+          <div className="mb-2 p-2.5 bg-gradient-to-r from-[#F8FAFC] to-[#F0F4F8] rounded-xl border border-blue-100">
             {validatedCode ? (
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -179,7 +179,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   <span 
                     className="text-lg font-extrabold"
                     style={{ 
-                      background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)',
+                      background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                     }}
@@ -199,7 +199,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             ) : (
               <div className="flex items-baseline gap-1">
-                <span className="text-xl font-extrabold text-[#2D1A0D]">
+                <span className="text-xl font-extrabold text-[#1A2634]">
                   {product.price_public_ht.toFixed(2)}€
                 </span>
                 <span className="text-[10px] text-[#64748B]">HT/{product.unit || 'L'}</span>
@@ -214,7 +214,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             href={product.pdf_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[10px] text-[#64748B] hover:text-[#8B5A2B] transition-colors mb-2"
+            className="inline-flex items-center gap-1 text-[10px] text-[#64748B] hover:text-[#D35400] transition-colors mb-2"
           >
             <Download className="w-3 h-3" />
             Fiche technique PDF
@@ -233,7 +233,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 ? 'bg-green-500 text-white' 
                 : 'text-white shadow-md hover:shadow-xl hover:-translate-y-0.5'
             }`}
-            style={!addedToCart ? { background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' } : {}}
+            style={!addedToCart ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
           >
             {addedToCart ? (
               <>
@@ -254,14 +254,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onClick={() => onAddToQuote(product)}
           className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
             addedToQuote 
-              ? 'bg-[#2D1A0D] text-white' 
+              ? 'bg-[#1A2634] text-white' 
               : isInQuote
-                ? 'bg-[#F0E6D8] text-[#8B5A2B] border border-[#8B5A2B]/20'
+                ? 'bg-[#D9E2EC] text-[#D35400] border border-[#D35400]/20'
                 : product.price_public_ht
-                  ? 'bg-[#FFFCF8] hover:bg-[#FDF8F0] text-[#64748B] border border-gray-200'
+                  ? 'bg-[#FFFFFF] hover:bg-[#F8FAFC] text-[#64748B] border border-gray-200'
                   : 'text-white shadow-md hover:shadow-xl'
           }`}
-          style={!product.price_public_ht && !addedToQuote && !isInQuote ? { background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' } : {}}
+          style={!product.price_public_ht && !addedToQuote && !isInQuote ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
         >
           {addedToQuote ? (
             <>

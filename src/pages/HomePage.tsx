@@ -306,13 +306,13 @@ const HomePage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#FFFCF8]">
+      <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
         <Header />
         <ProBanner />
         <MarqueeBanner />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#C4943D] mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#E67E22] mx-auto"></div>
             <p className="mt-4 text-[#64748B]">Chargement de la boutique...</p>
           </div>
         </main>
@@ -332,7 +332,7 @@ const HomePage: React.FC = () => {
         <link rel="canonical" href="https://pallmann-store.com" />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-[#FFFCF8]">
+      <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
         <Header />
         <ProBanner />
         <MarqueeBanner />
@@ -345,14 +345,14 @@ const HomePage: React.FC = () => {
             <div 
               className="absolute inset-0"
               style={{ 
-                background: 'linear-gradient(135deg, #2D1A0D 0%, #4A2C17 40%, #C4943D 70%, #8B5A2B 100%)'
+                background: 'linear-gradient(135deg, #1A2634 0%, #243B53 40%, #E67E22 70%, #D35400 100%)'
               }}
             ></div>
             
             <div 
               className="absolute inset-0 opacity-20 animate-gradient"
               style={{
-                background: 'linear-gradient(45deg, transparent 0%, #8B5A2B 50%, transparent 100%)',
+                background: 'linear-gradient(45deg, transparent 0%, #D35400 50%, transparent 100%)',
                 backgroundSize: '400% 400%',
               }}
             ></div>
@@ -371,7 +371,7 @@ const HomePage: React.FC = () => {
                 
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">
                   Produits <span style={{
-                    background: 'linear-gradient(135deg, #E5C28A 0%, #D4A853 100%)',
+                    background: 'linear-gradient(135deg, #F5B876 0%, #F39C12 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -388,7 +388,7 @@ const HomePage: React.FC = () => {
                   <a 
                     href="#products"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                    style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                   >
                     <ShoppingCart className="w-6 h-6" />
                     Commander maintenant
@@ -426,7 +426,7 @@ const HomePage: React.FC = () => {
                           width: `${francoProgress}%`,
                           background: francoProgress >= 100 
                             ? 'linear-gradient(90deg, #10B981 0%, #34D399 100%)'
-                            : 'linear-gradient(90deg, #C4943D 0%, #8B5A2B 100%)'
+                            : 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)'
                         }}
                       />
                     </div>
@@ -440,11 +440,11 @@ const HomePage: React.FC = () => {
                     Produits authentiques
                   </span>
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
-                    <Truck className="w-4 h-4 text-[#E5C28A]" />
+                    <Truck className="w-4 h-4 text-[#F5B876]" />
                     48-72h chrono
                   </span>
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
-                    <Shield className="w-4 h-4 text-[#D4A853]" />
+                    <Shield className="w-4 h-4 text-[#F39C12]" />
                     Paiement sécurisé
                   </span>
                 </div>
@@ -453,13 +453,13 @@ const HomePage: React.FC = () => {
             
             <div className="absolute bottom-0 left-0 right-0">
               <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-                <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#FFFCF8"/>
+                <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#FFFFFF"/>
               </svg>
             </div>
           </div>
 
           {/* Social Proof Stats */}
-          <div className="bg-[#FFFCF8] py-8">
+          <div className="bg-[#FFFFFF] py-8">
             <div className="max-w-7xl mx-auto px-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {stats.map((stat, index) => (
@@ -467,8 +467,8 @@ const HomePage: React.FC = () => {
                     key={index}
                     className="bg-white rounded-xl p-4 text-center shadow-card border border-gray-100"
                   >
-                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#C4943D]" />
-                    <div className="text-2xl font-extrabold text-[#2D1A0D]">{stat.value}</div>
+                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#E67E22]" />
+                    <div className="text-2xl font-extrabold text-[#1A2634]">{stat.value}</div>
                     <div className="text-xs text-[#64748B]">{stat.label}</div>
                   </div>
                 ))}
@@ -477,27 +477,27 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* CTA Calculateur */}
-          <div className="bg-gradient-to-r from-[#FDF8F0] to-[#F5EFE6] py-6 border-y border-[#E0CDB5]">
+          <div className="bg-gradient-to-r from-[#F8FAFC] to-[#F8FAFC] py-6 border-y border-[#BCCCDC]">
             <div className="max-w-7xl mx-auto px-4">
               <Link 
                 to="/calculateur"
-                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#C4943D]/20 hover:border-[#C4943D] transition-all hover:shadow-xl group"
+                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#E67E22]/20 hover:border-[#E67E22] transition-all hover:shadow-xl group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C4943D] to-[#8B5A2B] flex items-center justify-center text-white">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E67E22] to-[#D35400] flex items-center justify-center text-white">
                     <Calculator className="w-7 h-7" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#2D1A0D] group-hover:text-[#C4943D] transition-colors">
+                    <h3 className="text-xl font-bold text-[#1A2634] group-hover:text-[#E67E22] transition-colors">
                       🧮 Calculateur de Surface
                     </h3>
-                    <p className="text-[#6B4423]">
+                    <p className="text-[#627D98]">
                       Estimez vos besoins en produits selon votre surface — <strong>Gratuit</strong>
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold"
-                  style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                 >
                   Calculer mes besoins
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -521,7 +521,7 @@ const HomePage: React.FC = () => {
                       ? 'text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
-                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' } : {}}
+                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
                 >
                   Tous ({products.length})
                 </a>
@@ -543,7 +543,7 @@ const HomePage: React.FC = () => {
                           ? 'text-white shadow-md'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
-                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' } : {}}
+                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
                     >
                       {cat.name} ({count})
                     </a>
@@ -555,7 +555,7 @@ const HomePage: React.FC = () => {
 
           {/* Bestsellers Section - QUICK CONVERSION */}
           {bestsellers.length > 0 && (
-            <div className="bg-gradient-to-b from-[#FFFCF8] to-white py-12">
+            <div className="bg-gradient-to-b from-[#FFFFFF] to-white py-12">
               <div className="max-w-7xl mx-auto px-4">
                 <div className="flex items-center justify-between mb-8">
                   <div>
@@ -563,13 +563,13 @@ const HomePage: React.FC = () => {
                       <TrendingUp className="w-5 h-5 text-amber-500" />
                       <span className="text-amber-600 font-bold text-sm uppercase tracking-wide">Les plus vendus</span>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-extrabold text-[#2D1A0D]">
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A2634]">
                       Best-sellers Pallmann
                     </h2>
                   </div>
                   <a 
                     href="#products"
-                    className="hidden md:flex items-center gap-1 text-[#C4943D] font-semibold hover:underline"
+                    className="hidden md:flex items-center gap-1 text-[#E67E22] font-semibold hover:underline"
                   >
                     Voir tout
                     <ChevronRight className="w-4 h-4" />
@@ -598,15 +598,15 @@ const HomePage: React.FC = () => {
           <div className="bg-white py-12 lg:py-16">
             <div className="max-w-7xl mx-auto px-4">
               <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 bg-[#F0E6D8] text-[#8B5A2B] px-4 py-2 rounded-full text-sm font-bold mb-4">
+                <div className="inline-flex items-center gap-2 bg-[#D9E2EC] text-[#D35400] px-4 py-2 rounded-full text-sm font-bold mb-4">
                   <Sparkles className="w-4 h-4" />
                   ÉQUIPEMENT PRO
                 </div>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-[#2D1A0D] mb-3">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A2634] mb-3">
                   Machines Professionnelles
                 </h2>
                 <p className="text-[#64748B] max-w-xl mx-auto">
-                  Ponceuses de référence mondiale. <span className="font-semibold text-[#2D1A0D]">Devis gratuit en 24h.</span>
+                  Ponceuses de référence mondiale. <span className="font-semibold text-[#1A2634]">Devis gratuit en 24h.</span>
                 </p>
               </div>
 
@@ -618,19 +618,19 @@ const HomePage: React.FC = () => {
                   >
                     <div 
                       className="absolute top-0 left-0 right-0 h-1"
-                      style={{ background: 'linear-gradient(90deg, #C4943D 0%, #8B5A2B 100%)' }}
+                      style={{ background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)' }}
                     ></div>
                     
                     <div className="absolute top-4 right-4 z-10">
                       <span 
                         className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                        style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                        style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                       >
                         {machine.badge}
                       </span>
                     </div>
 
-                    <div className="relative bg-gradient-to-br from-[#FFFCF8] to-[#FDF8F0] p-6 h-48 flex items-center justify-center overflow-hidden">
+                    <div className="relative bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] p-6 h-48 flex items-center justify-center overflow-hidden">
                       {machine.image ? (
                         <img 
                           src={machine.image} 
@@ -638,14 +638,14 @@ const HomePage: React.FC = () => {
                           className="max-h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-24 h-24 bg-gradient-to-br from-[#C4943D]/10 to-[#8B5A2B]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Zap className="w-12 h-12 text-[#C4943D] group-hover:text-[#8B5A2B] transition-colors" />
+                        <div className="w-24 h-24 bg-gradient-to-br from-[#E67E22]/10 to-[#D35400]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Zap className="w-12 h-12 text-[#E67E22] group-hover:text-[#D35400] transition-colors" />
                         </div>
                       )}
                     </div>
 
                     <div className="p-5">
-                      <h3 className="text-lg font-extrabold text-[#2D1A0D] mb-1 group-hover:text-[#C4943D] transition-colors">
+                      <h3 className="text-lg font-extrabold text-[#1A2634] mb-1 group-hover:text-[#E67E22] transition-colors">
                         {machine.name}
                       </h3>
                       <p className="text-[#64748B] text-sm mb-3 line-clamp-2">
@@ -656,7 +656,7 @@ const HomePage: React.FC = () => {
                         {machine.features.map((feature, i) => (
                           <span 
                             key={i}
-                            className="text-[10px] font-medium px-2 py-0.5 bg-[#FDF8F0] text-[#C4943D] rounded"
+                            className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#E67E22] rounded"
                           >
                             {feature}
                           </span>
@@ -666,7 +666,7 @@ const HomePage: React.FC = () => {
                       <Link
                         to="/demande-devis"
                         className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-white text-sm transition-all hover:shadow-lg"
-                        style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                        style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                       >
                         Devis gratuit
                         <ArrowRight className="w-4 h-4" />
@@ -679,7 +679,7 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* Calculator Section */}
-          <div className="max-w-7xl mx-auto px-4 py-12 bg-gradient-to-br from-[#FFFCF8] to-[#FDF8F0]">
+          <div className="max-w-7xl mx-auto px-4 py-12 bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC]">
             <div className="max-w-xl mx-auto">
               <SurfaceCalculator />
             </div>
@@ -688,7 +688,7 @@ const HomePage: React.FC = () => {
           {/* Products Section */}
           <div id="products" className="max-w-7xl mx-auto px-4 py-12">
             <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold text-[#2D1A0D] mb-2">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A2634] mb-2">
                 Tous nos produits
               </h2>
               <p className="text-[#64748B]">
@@ -706,7 +706,7 @@ const HomePage: React.FC = () => {
                   placeholder="Rechercher un produit..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#C4943D] focus:border-transparent transition-all text-[#2D1A0D]"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E67E22] focus:border-transparent transition-all text-[#1A2634]"
                 />
               </div>
 
@@ -727,7 +727,7 @@ const HomePage: React.FC = () => {
                         ? 'text-white shadow-md'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
-                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' } : {}}
+                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
                   >
                     Tout voir ({products.length})
                   </button>
@@ -748,7 +748,7 @@ const HomePage: React.FC = () => {
                             ? 'text-white shadow-md'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
-                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' } : {}}
+                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
                       >
                         {cat.name} ({count})
                       </button>
@@ -769,8 +769,8 @@ const HomePage: React.FC = () => {
                       onClick={() => setSelectedSubcategory('all')}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                         selectedSubcategory === 'all'
-                          ? 'bg-[#C4943D] text-white'
-                          : 'bg-blue-50 text-[#C4943D] hover:bg-blue-100'
+                          ? 'bg-[#E67E22] text-white'
+                          : 'bg-blue-50 text-[#E67E22] hover:bg-blue-100'
                       }`}
                     >
                       Toutes
@@ -783,8 +783,8 @@ const HomePage: React.FC = () => {
                           onClick={() => setSelectedSubcategory(sub.id)}
                           className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                             selectedSubcategory === sub.id
-                              ? 'bg-[#C4943D] text-white'
-                              : 'bg-blue-50 text-[#C4943D] hover:bg-blue-100'
+                              ? 'bg-[#E67E22] text-white'
+                              : 'bg-blue-50 text-[#E67E22] hover:bg-blue-100'
                           }`}
                         >
                           {sub.name} ({count})
@@ -799,7 +799,7 @@ const HomePage: React.FC = () => {
               {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm) && (
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-[#64748B]">
-                    <span className="font-bold text-[#2D1A0D]">{filteredProducts.length}</span> produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
+                    <span className="font-bold text-[#1A2634]">{filteredProducts.length}</span> produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
                   </span>
                   <button
                     onClick={() => {
@@ -807,7 +807,7 @@ const HomePage: React.FC = () => {
                       setSelectedSubcategory('all');
                       setSearchTerm('');
                     }}
-                    className="text-[#8B5A2B] font-semibold hover:underline"
+                    className="text-[#D35400] font-semibold hover:underline"
                   >
                     Réinitialiser
                   </button>
@@ -834,7 +834,7 @@ const HomePage: React.FC = () => {
             ) : (
               <div className="bg-white rounded-2xl shadow-card p-12 text-center border border-gray-100">
                 <Search className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-                <h3 className="text-xl font-bold text-[#2D1A0D] mb-2">
+                <h3 className="text-xl font-bold text-[#1A2634] mb-2">
                   Aucun produit trouvé
                 </h3>
                 <p className="text-[#64748B] mb-6">
@@ -847,7 +847,7 @@ const HomePage: React.FC = () => {
                     setSearchTerm('');
                   }}
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
-                  style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                 >
                   Voir tous les produits
                 </button>
@@ -857,15 +857,15 @@ const HomePage: React.FC = () => {
             {/* Shipping CTA */}
             <div 
               className="mt-12 rounded-2xl p-8 text-center text-white relative overflow-hidden"
-              style={{ background: 'linear-gradient(135deg, #2D1A0D 0%, #4A2C17 50%, #C4943D 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 50%, #E67E22 100%)' }}
             >
               <div 
                 className="absolute top-0 left-0 right-0 h-1"
-                style={{ background: 'linear-gradient(90deg, #C4943D 0%, #8B5A2B 100%)' }}
+                style={{ background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)' }}
               ></div>
               
               <div className="flex items-center justify-center gap-3 mb-4">
-                <Package className="w-8 h-8 text-[#D4A853]" />
+                <Package className="w-8 h-8 text-[#F39C12]" />
                 <h2 className="text-2xl font-extrabold">Franco de port dès 630€ HT</h2>
               </div>
               <p className="text-white/80 mb-6 max-w-xl mx-auto">
@@ -873,7 +873,7 @@ const HomePage: React.FC = () => {
               </p>
               <Link
                 to="/panier"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#2D1A0D] bg-white hover:bg-gray-100 transition-all shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#1A2634] bg-white hover:bg-gray-100 transition-all shadow-lg"
               >
                 <ShoppingCart className="w-5 h-5" />
                 Voir mon panier

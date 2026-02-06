@@ -40,16 +40,16 @@ const CartReminder: React.FC = () => {
         <div className="flex items-start gap-3">
           <div 
             className="p-2 rounded-xl"
-            style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
           >
             <ShoppingCart className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1">
-            <p className="font-bold text-[#2D1A0D] text-sm">
+            <p className="font-bold text-[#1A2634] text-sm">
               {itemCount} article{itemCount > 1 ? 's' : ''} dans votre panier
             </p>
             <p className="text-[#64748B] text-xs mt-0.5">
-              Total : <span className="font-bold text-[#2D1A0D]">{totalHT.toFixed(2)}€ HT</span>
+              Total : <span className="font-bold text-[#1A2634]">{totalHT.toFixed(2)}€ HT</span>
             </p>
 
             {/* Franco progress */}
@@ -57,7 +57,7 @@ const CartReminder: React.FC = () => {
               <div className="mt-2">
                 <div className="flex items-center justify-between text-xs mb-1">
                   <span className="text-[#64748B]">Franco de port</span>
-                  <span className="font-medium text-[#8B5A2B]">
+                  <span className="font-medium text-[#D35400]">
                     Plus que {francoRemaining.toFixed(0)}€ !
                   </span>
                 </div>
@@ -66,7 +66,7 @@ const CartReminder: React.FC = () => {
                     className="h-full rounded-full transition-all duration-500"
                     style={{ 
                       width: `${francoProgress}%`,
-                      background: 'linear-gradient(90deg, #C4943D 0%, #8B5A2B 100%)'
+                      background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)'
                     }}
                   />
                 </div>
@@ -82,7 +82,7 @@ const CartReminder: React.FC = () => {
             <Link
               to="/panier"
               className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-white text-sm font-bold transition-all hover:shadow-lg"
-              style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
             >
               Finaliser ma commande
               <ArrowRight className="w-4 h-4" />

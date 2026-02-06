@@ -139,7 +139,7 @@ const CalculateurPage: React.FC = () => {
         <link rel="canonical" href="https://pallmann-store.com/calculateur" />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-[#FFFCF8]">
+      <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
         <Header />
         <ProBanner />
 
@@ -147,7 +147,7 @@ const CalculateurPage: React.FC = () => {
           {/* Hero */}
           <div 
             className="py-16 text-white relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #2D1A0D 0%, #4A2C17 30%, #8B5A2B 70%, #C4943D 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 30%, #D35400 70%, #E67E22 100%)' }}
           >
             <div className="absolute inset-0 opacity-10" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -172,14 +172,14 @@ const CalculateurPage: React.FC = () => {
               
               {/* Formulaire */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <h2 className="text-2xl font-bold text-[#2D1A0D] mb-6 flex items-center gap-2">
-                  <Ruler className="w-6 h-6 text-[#C4943D]" />
+                <h2 className="text-2xl font-bold text-[#1A2634] mb-6 flex items-center gap-2">
+                  <Ruler className="w-6 h-6 text-[#E67E22]" />
                   Votre projet
                 </h2>
 
                 {/* Surface */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#2D1A0D] mb-2">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                     Surface à traiter (m²)
                   </label>
                   <div className="flex items-center gap-4">
@@ -191,26 +191,26 @@ const CalculateurPage: React.FC = () => {
                       onChange={(e) => setSurface(Number(e.target.value))}
                       className="flex-1 h-3 rounded-full appearance-none cursor-pointer"
                       style={{ 
-                        background: `linear-gradient(to right, #C4943D 0%, #C4943D ${(surface-5)/195*100}%, #E0CDB5 ${(surface-5)/195*100}%, #E0CDB5 100%)` 
+                        background: `linear-gradient(to right, #E67E22 0%, #E67E22 ${(surface-5)/195*100}%, #BCCCDC ${(surface-5)/195*100}%, #BCCCDC 100%)` 
                       }}
                     />
-                    <div className="flex items-center gap-1 bg-[#FDF8F0] px-4 py-2 rounded-xl">
+                    <div className="flex items-center gap-1 bg-[#F8FAFC] px-4 py-2 rounded-xl">
                       <input
                         type="number"
                         min="5"
                         max="500"
                         value={surface}
                         onChange={(e) => setSurface(Number(e.target.value) || 5)}
-                        className="w-16 text-center font-bold text-[#2D1A0D] bg-transparent focus:outline-none"
+                        className="w-16 text-center font-bold text-[#1A2634] bg-transparent focus:outline-none"
                       />
-                      <span className="text-[#6B4423]">m²</span>
+                      <span className="text-[#627D98]">m²</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Type de projet */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#2D1A0D] mb-2">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                     Type de projet
                   </label>
                   <div className="grid grid-cols-2 gap-3">
@@ -218,30 +218,30 @@ const CalculateurPage: React.FC = () => {
                       onClick={() => setProjectType('renovation')}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${
                         projectType === 'renovation'
-                          ? 'border-[#C4943D] bg-[#FDF8F0]'
-                          : 'border-gray-200 hover:border-[#C4943D]/50'
+                          ? 'border-[#E67E22] bg-[#F8FAFC]'
+                          : 'border-gray-200 hover:border-[#E67E22]/50'
                       }`}
                     >
-                      <div className="font-bold text-[#2D1A0D]">Rénovation</div>
-                      <div className="text-xs text-[#6B4423]">Parquet existant à rénover</div>
+                      <div className="font-bold text-[#1A2634]">Rénovation</div>
+                      <div className="text-xs text-[#627D98]">Parquet existant à rénover</div>
                     </button>
                     <button
                       onClick={() => setProjectType('neuf')}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${
                         projectType === 'neuf'
-                          ? 'border-[#C4943D] bg-[#FDF8F0]'
-                          : 'border-gray-200 hover:border-[#C4943D]/50'
+                          ? 'border-[#E67E22] bg-[#F8FAFC]'
+                          : 'border-gray-200 hover:border-[#E67E22]/50'
                       }`}
                     >
-                      <div className="font-bold text-[#2D1A0D]">Parquet neuf</div>
-                      <div className="text-xs text-[#6B4423]">Première mise en finition</div>
+                      <div className="font-bold text-[#1A2634]">Parquet neuf</div>
+                      <div className="text-xs text-[#627D98]">Première mise en finition</div>
                     </button>
                   </div>
                 </div>
 
                 {/* Type de finition */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#2D1A0D] mb-2">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                     Type de finition
                   </label>
                   <div className="grid grid-cols-2 gap-3">
@@ -249,33 +249,33 @@ const CalculateurPage: React.FC = () => {
                       onClick={() => setFinishType('vitrification')}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${
                         finishType === 'vitrification'
-                          ? 'border-[#C4943D] bg-[#FDF8F0]'
-                          : 'border-gray-200 hover:border-[#C4943D]/50'
+                          ? 'border-[#E67E22] bg-[#F8FAFC]'
+                          : 'border-gray-200 hover:border-[#E67E22]/50'
                       }`}
                     >
-                      <Droplets className={`w-5 h-5 mb-2 ${finishType === 'vitrification' ? 'text-[#C4943D]' : 'text-gray-400'}`} />
-                      <div className="font-bold text-[#2D1A0D]">Vitrification</div>
-                      <div className="text-xs text-[#6B4423]">Protection maximale, brillant à mat</div>
+                      <Droplets className={`w-5 h-5 mb-2 ${finishType === 'vitrification' ? 'text-[#E67E22]' : 'text-gray-400'}`} />
+                      <div className="font-bold text-[#1A2634]">Vitrification</div>
+                      <div className="text-xs text-[#627D98]">Protection maximale, brillant à mat</div>
                     </button>
                     <button
                       onClick={() => setFinishType('huile')}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${
                         finishType === 'huile'
-                          ? 'border-[#C4943D] bg-[#FDF8F0]'
-                          : 'border-gray-200 hover:border-[#C4943D]/50'
+                          ? 'border-[#E67E22] bg-[#F8FAFC]'
+                          : 'border-gray-200 hover:border-[#E67E22]/50'
                       }`}
                     >
-                      <Droplets className={`w-5 h-5 mb-2 ${finishType === 'huile' ? 'text-[#C4943D]' : 'text-gray-400'}`} />
-                      <div className="font-bold text-[#2D1A0D]">Huilage</div>
-                      <div className="text-xs text-[#6B4423]">Aspect naturel, toucher bois</div>
+                      <Droplets className={`w-5 h-5 mb-2 ${finishType === 'huile' ? 'text-[#E67E22]' : 'text-gray-400'}`} />
+                      <div className="font-bold text-[#1A2634]">Huilage</div>
+                      <div className="text-xs text-[#627D98]">Aspect naturel, toucher bois</div>
                     </button>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="bg-[#FDF8F0] p-4 rounded-xl flex items-start gap-3">
-                  <Info className="w-5 h-5 text-[#C4943D] flex-shrink-0 mt-0.5" />
-                  <div className="text-sm text-[#6B4423]">
+                <div className="bg-[#F8FAFC] p-4 rounded-xl flex items-start gap-3">
+                  <Info className="w-5 h-5 text-[#E67E22] flex-shrink-0 mt-0.5" />
+                  <div className="text-sm text-[#627D98]">
                     <strong>Conseil pro :</strong> Prévoyez toujours 10-15% de marge pour les pertes et retouches éventuelles.
                   </div>
                 </div>
@@ -283,8 +283,8 @@ const CalculateurPage: React.FC = () => {
 
               {/* Résultats */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <h2 className="text-2xl font-bold text-[#2D1A0D] mb-6 flex items-center gap-2">
-                  <Package className="w-6 h-6 text-[#C4943D]" />
+                <h2 className="text-2xl font-bold text-[#1A2634] mb-6 flex items-center gap-2">
+                  <Package className="w-6 h-6 text-[#E67E22]" />
                   Produits recommandés
                 </h2>
 
@@ -292,16 +292,16 @@ const CalculateurPage: React.FC = () => {
                   {products.map((product) => (
                     <div 
                       key={product.id}
-                      className="p-4 bg-[#FFFCF8] rounded-xl border border-[#E0CDB5]"
+                      className="p-4 bg-[#FFFFFF] rounded-xl border border-[#BCCCDC]"
                     >
                       <div className="flex items-start justify-between mb-2">
                         <div>
-                          <h3 className="font-bold text-[#2D1A0D]">{product.name}</h3>
-                          <p className="text-xs text-[#6B4423]">{product.description}</p>
+                          <h3 className="font-bold text-[#1A2634]">{product.name}</h3>
+                          <p className="text-xs text-[#627D98]">{product.description}</p>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-[#C4943D]">{product.totalPrice.toFixed(2)}€ HT</div>
-                          <div className="text-xs text-[#6B4423]">{product.quantity} {product.unit} × {product.pricePerUnit}€</div>
+                          <div className="font-bold text-[#E67E22]">{product.totalPrice.toFixed(2)}€ HT</div>
+                          <div className="text-xs text-[#627D98]">{product.quantity} {product.unit} × {product.pricePerUnit}€</div>
                         </div>
                       </div>
                       <button
@@ -309,7 +309,7 @@ const CalculateurPage: React.FC = () => {
                         className={`w-full py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                           addedProducts.includes(product.id)
                             ? 'bg-green-500 text-white'
-                            : 'bg-[#FDF8F0] text-[#8B5A2B] hover:bg-[#F0E6D8]'
+                            : 'bg-[#F8FAFC] text-[#D35400] hover:bg-[#D9E2EC]'
                         }`}
                       >
                         {addedProducts.includes(product.id) ? (
@@ -329,14 +329,14 @@ const CalculateurPage: React.FC = () => {
                 </div>
 
                 {/* Total */}
-                <div className="border-t border-[#E0CDB5] pt-4 mb-6">
+                <div className="border-t border-[#BCCCDC] pt-4 mb-6">
                   <div className="flex justify-between text-lg mb-1">
-                    <span className="text-[#6B4423]">Total HT</span>
-                    <span className="font-bold text-[#2D1A0D]">{totalHT.toFixed(2)}€</span>
+                    <span className="text-[#627D98]">Total HT</span>
+                    <span className="font-bold text-[#1A2634]">{totalHT.toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between text-xl">
-                    <span className="text-[#6B4423]">Total TTC (20%)</span>
-                    <span className="font-extrabold text-[#C4943D]">{totalTTC.toFixed(2)}€</span>
+                    <span className="text-[#627D98]">Total TTC (20%)</span>
+                    <span className="font-extrabold text-[#E67E22]">{totalTTC.toFixed(2)}€</span>
                   </div>
                 </div>
 
@@ -344,14 +344,14 @@ const CalculateurPage: React.FC = () => {
                 <button
                   onClick={handleAddAllToCart}
                   className="w-full py-4 rounded-xl font-bold text-white text-lg flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-                  style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Ajouter tout au panier
                   <ArrowRight className="w-5 h-5" />
                 </button>
 
-                <p className="text-center text-xs text-[#6B4423] mt-3">
+                <p className="text-center text-xs text-[#627D98] mt-3">
                   Franco de port dès 630€ HT • Livraison 48-72h
                 </p>
               </div>
@@ -359,19 +359,19 @@ const CalculateurPage: React.FC = () => {
 
             {/* FAQ SEO */}
             <div className="mt-12 bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-              <h2 className="text-2xl font-bold text-[#2D1A0D] mb-6">Questions fréquentes</h2>
+              <h2 className="text-2xl font-bold text-[#1A2634] mb-6">Questions fréquentes</h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-[#2D1A0D] mb-1">Combien de vitrificateur pour 20m² ?</h3>
-                  <p className="text-[#6B4423] text-sm">Pour 20m², comptez environ 2L de fond dur et 4L de vitrificateur (2 couches). Le rendement moyen est de 10-12m² par litre.</p>
+                  <h3 className="font-semibold text-[#1A2634] mb-1">Combien de vitrificateur pour 20m² ?</h3>
+                  <p className="text-[#627D98] text-sm">Pour 20m², comptez environ 2L de fond dur et 4L de vitrificateur (2 couches). Le rendement moyen est de 10-12m² par litre.</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#2D1A0D] mb-1">Quelle différence entre vitrification et huilage ?</h3>
-                  <p className="text-[#6B4423] text-sm">La vitrification forme un film protecteur en surface (aspect brillant à mat). L'huilage pénètre le bois pour un aspect naturel. La vitrification est plus résistante, l'huile plus facile à réparer localement.</p>
+                  <h3 className="font-semibold text-[#1A2634] mb-1">Quelle différence entre vitrification et huilage ?</h3>
+                  <p className="text-[#627D98] text-sm">La vitrification forme un film protecteur en surface (aspect brillant à mat). L'huilage pénètre le bois pour un aspect naturel. La vitrification est plus résistante, l'huile plus facile à réparer localement.</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#2D1A0D] mb-1">Puis-je commander pour un professionnel ?</h3>
-                  <p className="text-[#6B4423] text-sm">Oui ! Inscrivez-vous sur notre <Link to="/pro" className="text-[#C4943D] underline">espace PRO</Link> pour bénéficier de remises exclusives et de tarifs dégressifs.</p>
+                  <h3 className="font-semibold text-[#1A2634] mb-1">Puis-je commander pour un professionnel ?</h3>
+                  <p className="text-[#627D98] text-sm">Oui ! Inscrivez-vous sur notre <Link to="/pro" className="text-[#E67E22] underline">espace PRO</Link> pour bénéficier de remises exclusives et de tarifs dégressifs.</p>
                 </div>
               </div>
             </div>
