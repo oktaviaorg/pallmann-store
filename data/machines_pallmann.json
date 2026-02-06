@@ -1,0 +1,246 @@
+[
+  {
+    "id": "cobra",
+    "name": "PALLMANN COBRA",
+    "type": "Ponceuse à parquet",
+    "article_number": "59906",
+    "description": "La Ponceuse PALLMANN COBRA pose de nouvelles références en matière d'efficacité, d'ergonomie et de qualité",
+    "image_url": "/images/machines/cobra.png",
+    "specs": {
+      "tension": "230 V",
+      "puissance": "2500 W",
+      "vitesse_rotation": "2100 tours/minute",
+      "poids": "89.7 kg",
+      "largeur_travail": "200 mm",
+      "diametre_abrasif": "200 x 750 mm"
+    },
+    "features": [
+      "Haute performance grâce à une exploitation maximale de la largeur de la bande abrasive",
+      "5 hauteurs possibles de timon, pour un travail confortable",
+      "Commande ergonomique de tous les commutateurs",
+      "Système du sac dans le sac : garniture jetable à l'intérieur du sac à poussière"
+    ],
+    "included": "PALLMANN COBRA, jeu d'outils, 2 sacs à poussière et 10 garnitures synthétiques, bandes abrasives zirconium : 2 x grain 36, 2 x grain 60, 1 x grain 100, câble polyuréthane 12 m, protection acoustique, masque antipoussière, courroie trapézoïdale spéciale de rechange",
+    "application": "Pour un ponçage professionnel des parquets",
+    "price_achat": 6646.50,
+    "price_ht": 13293.00,
+    "price_ttc": 15951.60,
+    "tva": 20
+  },
+  {
+    "id": "cobra-classic",
+    "name": "PALLMANN COBRA CLASSIC",
+    "type": "Ponceuse à parquet",
+    "article_number": "74540",
+    "description": "Version classique de la ponceuse à bande COBRA",
+    "image_url": "/images/machines/cobra.png",
+    "specs": {
+      "tension": "230 V",
+      "puissance": "2500 W",
+      "vitesse_rotation": "2100 tours/minute",
+      "poids": "89.7 kg",
+      "largeur_travail": "200 mm"
+    },
+    "features": [
+      "Haute performance",
+      "Construction robuste",
+      "Version économique de la COBRA"
+    ],
+    "application": "Pour un ponçage professionnel des parquets",
+    "price_achat": 6094.80,
+    "price_ht": 12189.60,
+    "price_ttc": 14627.52,
+    "tva": 20
+  },
+  {
+    "id": "gecko-flex-20",
+    "name": "PALLMANN GECKO FLEX 2.0",
+    "type": "Bordeuse",
+    "article_number": "184124",
+    "description": "La bordeuse de tous les défis! Aucun coin ni recoin ne peut échapper à la performance et à la puissance de la Bordeuse GECKO FLEX 2.0. L'essayer, c'est l'adopter !",
+    "image_url": "/images/machines/gecko-flex-20.png",
+    "specs": {
+      "tension": "230V, 50 Hz",
+      "puissance": "1530 W",
+      "vitesse_rotation": "1800 - 4000 tours/minute (progressif)",
+      "poids": "3 kg",
+      "largeur_travail": "178 mm"
+    },
+    "features": [
+      "Petite, pratique",
+      "Prise en main optimale",
+      "Ponçage pratiquement sans poussière",
+      "Appui sur toute la surface du plateau",
+      "Brosse ajustable",
+      "Ponçage haute performance"
+    ],
+    "included": "PALLMANN GECKO FLEX 2.0, brosse de rechange, poignée latérale, casque antibruit, protection respiratoire, 3 x disques auto-agrippants zirconium grain 40 et grain 80, 3 x serre-câbles, outils, raccord pour aspirateur",
+    "application": "Pour le ponçage des bordures et dans les coins",
+    "price_achat": 1739.70,
+    "price_ht": 3479.40,
+    "price_ttc": 4175.28,
+    "tva": 20
+  },
+  {
+    "id": "gecko-star-20-150",
+    "name": "PALLMANN GECKO STAR 2.0 Ø150mm",
+    "type": "Bordeuse",
+    "article_number": "82728",
+    "description": "Haute performance, ponçage de grande qualité – fonctionnement exceptionnellement peu bruyant – fait de la GECKO STAR 2.0 PALLMANN une machine indispensable à un travail confortable dans les zones de périphérie.",
+    "image_url": "/images/machines/gecko-star-20.png",
+    "specs": {
+      "tension": "230 V",
+      "puissance": "1500 W",
+      "frequence": "50 Hz",
+      "vitesse_rotation": "3800 tours/minute",
+      "poids": "9.6 kg",
+      "diametre": "150 mm",
+      "longueur_bras": "long 370mm / court 130mm",
+      "raccord_aspirateur": "38/35 mm"
+    },
+    "features": [
+      "Construction solide",
+      "Poids étudié pour une pression maximale de ponçage",
+      "Haute performance (1500 Watt)",
+      "Poignées compactes, ergonomiques",
+      "Aspiration haute performance",
+      "Fonctionnement peu bruyant",
+      "Éclairage LED",
+      "Réglage flexible des roues"
+    ],
+    "included": "PALLMANN GECKO STAR 2.0 Ø150mm, bras long, adaptateur aspirateur, tubes d'aspiration, sac à poussières, casque antibruit, masque respiratoire, poignée supplémentaire, outils, disques auto-agrippants",
+    "application": "Pour le ponçage confortable des bordures",
+    "price_achat": 1858.50,
+    "price_ht": 3717.00,
+    "price_ttc": 4460.40,
+    "tva": 20
+  },
+  {
+    "id": "gecko-star-20-178",
+    "name": "PALLMANN GECKO STAR 2.0 Ø178mm",
+    "type": "Bordeuse",
+    "article_number": "82730",
+    "description": "Haute performance, ponçage de grande qualité – fonctionnement exceptionnellement peu bruyant – fait de la GECKO STAR 2.0 PALLMANN une machine indispensable à un travail confortable dans les zones de périphérie.",
+    "image_url": "/images/machines/gecko-star-20.png",
+    "specs": {
+      "tension": "230 V",
+      "puissance": "1500 W",
+      "frequence": "50 Hz",
+      "vitesse_rotation": "3300 tours/minute",
+      "poids": "9.6 kg",
+      "diametre": "178 mm",
+      "longueur_bras": "long 385mm / court 175mm",
+      "raccord_aspirateur": "38/35 mm"
+    },
+    "features": [
+      "Construction solide",
+      "Poids étudié pour une pression maximale de ponçage",
+      "Haute performance (1500 Watt)",
+      "Poignées compactes, ergonomiques",
+      "Aspiration haute performance",
+      "Fonctionnement peu bruyant",
+      "Éclairage LED",
+      "Réglage flexible des roues"
+    ],
+    "included": "PALLMANN GECKO STAR 2.0 Ø178mm, bras long, adaptateur aspirateur, tubes d'aspiration, sac à poussières, casque antibruit, masque respiratoire, poignée supplémentaire, outils, disques auto-agrippants",
+    "application": "Pour le ponçage confortable des bordures",
+    "price_achat": 1858.50,
+    "price_ht": 3717.00,
+    "price_ttc": 4460.40,
+    "tva": 20
+  },
+  {
+    "id": "spider",
+    "name": "PALLMANN SPIDER",
+    "type": "Ponceuse à parquet",
+    "article_number": "78319",
+    "description": "Ponceuse à parquet facile à utiliser, silencieuse, avec des possibilités d'utilisation multiples pour un ponçage efficace",
+    "image_url": "/images/machines/spider.png",
+    "specs": {
+      "tension": "230 V",
+      "puissance": "2000 W",
+      "vitesse_rotation": "50 - 400 tours/minute",
+      "poids": "42 kg",
+      "diametre_abrasif": "400 mm",
+      "poids_additionnel": "15 kg"
+    },
+    "features": [
+      "Éclairage de la surface du parquet",
+      "Réserve de puissance disponible",
+      "Ajout de poids possible pour une plus grande pression",
+      "Aspect du ponçage impeccable grâce à la technique du triple disque",
+      "Transmission par chaîne en contre-rotation",
+      "Facile à nettoyer",
+      "Réglage progressif du régime (50 à 400 trs/mn)",
+      "Démarrage progressif",
+      "Réglage pneumatique du timon",
+      "Construction robuste"
+    ],
+    "included": "PALLMANN SPIDER, poids supplémentaire 15 kg, Anneau lumineux LED, jupe d'aspiration rigide, câble 12,5 m, plateau 3 têtes, 3x PALLMANN FLEX DISK, plateau picots Clarke 40 cm, disques abrasifs multi-grains, kit de sécurité",
+    "application": "Pour l'égrenage et le ponçage fin ou grossier, multidirectionnel, décapage, lustrage et brossage",
+    "price_achat": 7344.00,
+    "price_ht": 14688.00,
+    "price_ttc": 17625.60,
+    "tva": 20
+  },
+  {
+    "id": "turbo-scrubber",
+    "name": "PALLMANN TURBO SCRUBBER",
+    "type": "Autolaveuse",
+    "article_number": "83588",
+    "description": "Autolaveuse puissante, pour le nettoyage intensif des lames de terrasses et planchers en bois structuré, huilé ou vitrifié.",
+    "image_url": "/images/machines/turbo-scrubber.png",
+    "specs": {
+      "tension": "220/240 V",
+      "puissance": "2300 W",
+      "vitesse_rotation": "1100 tours/minute",
+      "poids": "30 kg",
+      "largeur_travail": "400 mm",
+      "contenu_reservoir": "10 l (eau propre/eau sale)",
+      "pression_travail": "100/200 g/cm³",
+      "rendement": "400 m²/h",
+      "dimensions": "520 x 470 x 380 mm"
+    },
+    "features": [
+      "Deux brosses à rotation rapide et forte pression d'appui",
+      "Deux raclettes pour recueillir l'eau",
+      "Sol immédiatement circulable",
+      "Poignée rabattable",
+      "Remplacement simple des brosses sans outil",
+      "Commande intégrée brosses et flux d'eau",
+      "Utilisable terrasses et intérieur"
+    ],
+    "included": "Autolaveuse TURBO SCRUBBER PALLMANN, 2x brosses rouleaux blancs, câble d'alimentation 20 m",
+    "application": "Pour le nettoyage intensif des lames de terrasses et sols en bois structurés, huilés ou vitrifiés",
+    "price_achat": 2835.00,
+    "price_ht": 5670.00,
+    "price_ttc": 6804.00,
+    "tva": 20
+  },
+  {
+    "id": "uno",
+    "name": "PALLMANN UNO",
+    "type": "Ponceuse monodisque",
+    "article_number": "59629",
+    "description": "Monobrosse pratique, très puissante, destinée à l'égrenage et au lustrage des parquets, au meulage des chapes et des ragréages.",
+    "image_url": "/images/machines/uno.png",
+    "specs": {
+      "tension": "230 V",
+      "puissance": "1600 W",
+      "vitesse_rotation": "160 tours/minute",
+      "poids": "44 kg",
+      "largeur_travail": "375/400 mm"
+    },
+    "features": [
+      "Machine puissante",
+      "Poids réduit",
+      "Nombreux accessoires"
+    ],
+    "included": "PALLMANN UNO + plateau pour picots, sans aspiration",
+    "application": "Pour l'égrenage et au lustrage des parquets, meulage des chapes et ragréages",
+    "price_achat": 2169.00,
+    "price_ht": 4338.00,
+    "price_ttc": 5205.60,
+    "tva": 20
+  }
+]

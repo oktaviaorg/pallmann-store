@@ -86,31 +86,35 @@ const machinesPro = [
     description: 'Ponceuse trio compacte et polyvalente pour surfaces difficiles',
     badge: 'BESTSELLER',
     features: ['Compact', 'Polyvalent', 'Trio'],
-    price: 'Sur devis',
+    price: '14 688 € HT',
+    image: 'https://fr.pallmann.net/fileadmin/MAM/88731/PALLMANN_dummy_PALLMANN_SPIDER_quadratisch_fr_web_2019-11.png',
   },
   {
     id: 'cobra',
     name: 'COBRA',
-    description: 'Ponceuse de chant professionnelle haute performance',
+    description: 'Ponceuse à bande professionnelle haute performance',
     badge: 'PRO',
     features: ['Puissant', 'Précis', 'Ergonomique'],
-    price: 'Sur devis',
+    price: '13 293 € HT',
+    image: 'https://fr.pallmann.net/fileadmin/MAM/37224/PALLMANN_dummy_PALLMANN_COBRA_msl_2017-02.png',
   },
   {
     id: 'gecko',
-    name: 'GECKO',
-    description: 'Ponceuse orbitale grande surface pour finitions parfaites',
+    name: 'GECKO STAR 2.0',
+    description: 'Bordeuse haute performance pour finitions parfaites',
     badge: 'PREMIUM',
-    features: ['Grande surface', 'Finition', 'Silencieux'],
-    price: 'Sur devis',
+    features: ['Silencieux', 'LED', 'Précision'],
+    price: '3 717 € HT',
+    image: 'https://fr.pallmann.net/fileadmin/MAM/37229/PALLMANN_dummy_PALLMANN_GECKO_STAR_2_0_msl_2017-02.png',
   },
   {
-    id: 'hummel',
-    name: 'HUMMEL',
-    description: 'Ponceuse parquet référence mondiale pour professionnels',
-    badge: 'RÉFÉRENCE',
-    features: ['Référence', 'Fiable', 'Performant'],
-    price: 'Sur devis',
+    id: 'uno',
+    name: 'UNO',
+    description: 'Monobrosse puissante pour égrenage et lustrage',
+    badge: 'POLYVALENT',
+    features: ['Puissant', 'Polyvalent', 'Robuste'],
+    price: '4 338 € HT',
+    image: 'https://fr.pallmann.net/fileadmin/MAM/37260/PALLMANN_dummy_PALLMANN_UNO_msl_2017-02.png',
   },
 ];
 
@@ -540,10 +544,18 @@ const HomePage: React.FC = () => {
                       </span>
                     </div>
 
-                    <div className="relative bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] p-6 h-40 flex items-center justify-center">
-                      <div className="w-24 h-24 bg-gradient-to-br from-[#2563EB]/10 to-[#7C3AED]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Zap className="w-12 h-12 text-[#2563EB] group-hover:text-[#7C3AED] transition-colors" />
-                      </div>
+                    <div className="relative bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] p-6 h-48 flex items-center justify-center overflow-hidden">
+                      {machine.image ? (
+                        <img 
+                          src={machine.image} 
+                          alt={machine.name}
+                          className="max-h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="w-24 h-24 bg-gradient-to-br from-[#2563EB]/10 to-[#7C3AED]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Zap className="w-12 h-12 text-[#2563EB] group-hover:text-[#7C3AED] transition-colors" />
+                        </div>
+                      )}
                     </div>
 
                     <div className="p-5">
