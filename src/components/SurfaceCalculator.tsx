@@ -14,6 +14,33 @@ interface ProductYield {
 }
 
 const PRODUCTS_YIELDS: ProductYield[] = [
+  // Abrasifs Ø150 (bordeuse)
+  { id: 'abrasif-150-36', name: 'Disque Ø150 grain 36', category: 'Abrasifs Ø150 (bordeuse)', yieldPerLiter: 15, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-150-40', name: 'Disque Ø150 grain 40', category: 'Abrasifs Ø150 (bordeuse)', yieldPerLiter: 18, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-150-60', name: 'Disque Ø150 grain 60', category: 'Abrasifs Ø150 (bordeuse)', yieldPerLiter: 25, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-150-80', name: 'Disque Ø150 grain 80', category: 'Abrasifs Ø150 (bordeuse)', yieldPerLiter: 30, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-150-100', name: 'Disque Ø150 grain 100', category: 'Abrasifs Ø150 (bordeuse)', yieldPerLiter: 35, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  
+  // Abrasifs Ø178 (bordeuse)
+  { id: 'abrasif-178-36', name: 'Disque Ø178 grain 36', category: 'Abrasifs Ø178 (bordeuse)', yieldPerLiter: 12, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-178-40', name: 'Disque Ø178 grain 40', category: 'Abrasifs Ø178 (bordeuse)', yieldPerLiter: 15, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-178-60', name: 'Disque Ø178 grain 60', category: 'Abrasifs Ø178 (bordeuse)', yieldPerLiter: 20, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-178-80', name: 'Disque Ø178 grain 80', category: 'Abrasifs Ø178 (bordeuse)', yieldPerLiter: 25, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  { id: 'abrasif-178-100', name: 'Disque Ø178 grain 100', category: 'Abrasifs Ø178 (bordeuse)', yieldPerLiter: 30, unit: 'disques', coats: 1, containerSizes: [25, 50] },
+  
+  // Abrasifs Ø406 (monobrosse/Spider)
+  { id: 'abrasif-406-60', name: 'Disque Ø406 grain 60', category: 'Abrasifs Ø406 (Spider)', yieldPerLiter: 40, unit: 'disques', coats: 1, containerSizes: [10] },
+  { id: 'abrasif-406-80', name: 'Disque Ø406 grain 80', category: 'Abrasifs Ø406 (Spider)', yieldPerLiter: 50, unit: 'disques', coats: 1, containerSizes: [10] },
+  { id: 'abrasif-406-100', name: 'Disque Ø406 grain 100', category: 'Abrasifs Ø406 (Spider)', yieldPerLiter: 60, unit: 'disques', coats: 1, containerSizes: [10] },
+  { id: 'abrasif-406-120', name: 'Disque Ø406 grain 120', category: 'Abrasifs Ø406 (Spider)', yieldPerLiter: 70, unit: 'disques', coats: 1, containerSizes: [10] },
+  
+  // Bandes COBRA (200x750mm)
+  { id: 'bande-cobra-36', name: 'Bande COBRA grain 36', category: 'Bandes COBRA', yieldPerLiter: 20, unit: 'bandes', coats: 1, containerSizes: [10] },
+  { id: 'bande-cobra-40', name: 'Bande COBRA grain 40', category: 'Bandes COBRA', yieldPerLiter: 25, unit: 'bandes', coats: 1, containerSizes: [10] },
+  { id: 'bande-cobra-60', name: 'Bande COBRA grain 60', category: 'Bandes COBRA', yieldPerLiter: 35, unit: 'bandes', coats: 1, containerSizes: [10] },
+  { id: 'bande-cobra-80', name: 'Bande COBRA grain 80', category: 'Bandes COBRA', yieldPerLiter: 45, unit: 'bandes', coats: 1, containerSizes: [10] },
+  { id: 'bande-cobra-100', name: 'Bande COBRA grain 100', category: 'Bandes COBRA', yieldPerLiter: 55, unit: 'bandes', coats: 1, containerSizes: [10] },
+  
   // Vitrificateurs
   { id: 'pall-x-96', name: 'PALL-X 96', category: 'Vitrificateur', yieldPerLiter: 10, unit: 'L', coats: 2, containerSizes: [1, 5, 10] },
   { id: 'pall-x-98', name: 'PALL-X 98', category: 'Vitrificateur 2K', yieldPerLiter: 10, unit: 'L', coats: 2, containerSizes: [4.95] },
