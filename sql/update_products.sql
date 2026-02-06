@@ -653,6 +653,46 @@ ON CONFLICT (ref) DO UPDATE SET
   description = EXCLUDED.description;
 
 -- ============================================
+-- 8.5 GECKOFLEX
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('184124', 'GECKOFLEX 2.0 bordeuse', 'geckoflex-2-bordeuse', 1739.70, 3479.40, 'unité', 'Bordeuse professionnelle GECKOFLEX 2.0. Machine polyvalente pour finitions de parquet.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('061128', 'GECKOFLEX brosse', 'geckoflex-brosse', 26.46, 52.92, 'unité', 'Brosse pour bordeuse GECKOFLEX. Nettoyage et préparation des surfaces.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('061162', 'GECKOFLEX plateau ponçage velcro', 'geckoflex-plateau-poncage-velcro', 67.73, 135.46, 'unité', 'Plateau de ponçage velcro pour bordeuse GECKOFLEX. Fixation rapide des abrasifs.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
+-- 8.6 SPIDER - Accessoires
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('083566', 'SPIDER Brosse nylon Ø178mm gr46', 'spider-brosse-nylon-178mm-gr46', 124.25, 248.50, 'unité', 'Brosse nylon Ø178mm grain 46 pour monobrosse SPIDER. Brossage agressif pour parquet structuré.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('083567', 'SPIDER Brosse nylon Ø178mm gr60', 'spider-brosse-nylon-178mm-gr60', 124.43, 248.86, 'unité', 'Brosse nylon Ø178mm grain 60 pour monobrosse SPIDER. Brossage fin pour parquet structuré.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('072158', 'SPIDER brosse jupe aspiration', 'spider-brosse-jupe-aspiration', 16.83, 33.66, 'unité', 'Brosse jupe d''aspiration pour monobrosse SPIDER. Améliore la captation des poussières.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('175820', 'SPIDER disque écartement métal (3p)', 'spider-disque-ecartement-metal-3p', 99.05, 198.10, 'paquet 3p', 'Disques d''écartement métal pour monobrosse SPIDER. Lot de 3 pièces.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('086015', 'SPIDER extension de jupe', 'spider-extension-jupe', 161.60, 323.20, 'unité', 'Extension de jupe pour monobrosse SPIDER. Augmente la zone de travail.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('175570', 'SPIDER jupe aspi + extension', 'spider-jupe-aspi-extension', 374.63, 749.26, 'unité', 'Kit jupe aspiration avec extension pour monobrosse SPIDER. Solution complète d''aspiration.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('083338', 'SPIDER kit complet parquet brossé', 'spider-kit-complet-parquet-brosse', 1449.00, 2898.00, 'unité', 'Kit complet pour parquet brossé avec monobrosse SPIDER. Inclut tous les accessoires nécessaires.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('088477', 'SPIDER Kit segments diamant gr30', 'spider-kit-segments-diamant-gr30', 1085.31, 2170.62, 'unité', 'Kit segments diamant grain 30 pour monobrosse SPIDER. Ponçage agressif béton/chape.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('088478', 'SPIDER Kit segments diamant gr50', 'spider-kit-segments-diamant-gr50', 1085.31, 2170.62, 'unité', 'Kit segments diamant grain 50 pour monobrosse SPIDER. Ponçage fin béton/chape.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('175829', 'SPIDER pad éjection (3p)', 'spider-pad-ejection-3p', 52.11, 104.22, 'paquet 3p', 'Pads d''éjection pour monobrosse SPIDER. Lot de 3 pièces.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('175826', 'SPIDER pad perforé (3p)', 'spider-pad-perfore-3p', 48.38, 96.76, 'paquet 3p', 'Pads perforés pour monobrosse SPIDER. Lot de 3 pièces. Meilleure aspiration.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('175828', 'SPIDER pad souple (3p)', 'spider-pad-souple-3p', 42.30, 84.60, 'paquet 3p', 'Pads souples pour monobrosse SPIDER. Lot de 3 pièces. Finitions délicates.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('081696', 'SPIDER Plateau 3 têtes', 'spider-plateau-3-tetes', 2115.00, 4230.00, 'unité', 'Plateau 3 têtes pour monobrosse SPIDER. Ponçage professionnel grandes surfaces.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
 -- Vérification finale
 -- ============================================
 -- SELECT ref, name, price_achat, price_public_ht, unit FROM pallmann_products WHERE ref IS NOT NULL ORDER BY ref;
