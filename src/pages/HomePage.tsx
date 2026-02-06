@@ -3,18 +3,19 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import TrustBar from '../components/TrustBar';
+import CartReminder from '../components/CartReminder';
+import ProductCard from '../components/ProductCard';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../lib/CartContext';
 import { 
   ShoppingCart, 
   Filter, 
   Search, 
-  Download, 
   Tag, 
   CheckCircle, 
   XCircle,
   X,
-  Plus,
   Star,
   FileText,
   Truck,
@@ -22,7 +23,13 @@ import {
   Sparkles,
   Zap,
   ArrowRight,
-  ChevronRight
+  ChevronRight,
+  Users,
+  Award,
+  Clock,
+  Package,
+  TrendingUp,
+  ThumbsUp
 } from 'lucide-react';
 import { useQuote } from '../lib/QuoteContext';
 
@@ -43,6 +50,9 @@ interface Product {
   price_public_ht?: number;
   ref?: string;
   unit?: string;
+  is_bestseller?: boolean;
+  is_new?: boolean;
+  stock_status?: 'in_stock' | 'low_stock' | 'out_of_stock';
 }
 
 interface CompanyCode {
@@ -57,6 +67,7 @@ interface Category {
   id: string;
   name: string;
   slug: string;
+  icon?: string;
 }
 
 interface Subcategory {
@@ -72,34 +83,42 @@ const machinesPro = [
     id: 'spider',
     name: 'SPIDER',
     description: 'Ponceuse trio compacte et polyvalente pour surfaces difficiles',
-    image: '/images/machines/spider.png',
     badge: 'BESTSELLER',
     features: ['Compact', 'Polyvalent', 'Trio'],
+    price: 'Sur devis',
   },
   {
     id: 'cobra',
     name: 'COBRA',
     description: 'Ponceuse de chant professionnelle haute performance',
-    image: '/images/machines/cobra.png',
     badge: 'PRO',
     features: ['Puissant', 'Précis', 'Ergonomique'],
+    price: 'Sur devis',
   },
   {
     id: 'gecko',
     name: 'GECKO',
     description: 'Ponceuse orbitale grande surface pour finitions parfaites',
-    image: '/images/machines/gecko.png',
     badge: 'PREMIUM',
     features: ['Grande surface', 'Finition', 'Silencieux'],
+    price: 'Sur devis',
   },
   {
     id: 'hummel',
     name: 'HUMMEL',
     description: 'Ponceuse parquet référence mondiale pour professionnels',
-    image: '/images/machines/hummel.png',
     badge: 'RÉFÉRENCE',
     features: ['Référence', 'Fiable', 'Performant'],
+    price: 'Sur devis',
   },
+];
+
+// Stats for social proof
+const stats = [
+  { value: '500+', label: 'Professionnels équipés', icon: Users },
+  { value: '98%', label: 'Clients satisfaits', icon: ThumbsUp },
+  { value: '24h', label: 'Réponse garantie', icon: Clock },
+  { value: '15+', label: 'Années d\'expertise', icon: Award },
 ];
 
 const HomePage: React.FC = () => {
@@ -111,7 +130,7 @@ const HomePage: React.FC = () => {
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   
-  const { addItem, companyCode, setCompanyCode } = useCart();
+  const { addItem, companyCode, setCompanyCode, totalHT } = useCart();
   const { addItem: addToQuote, isInQuote } = useQuote();
   
   // Code promo pro
@@ -122,6 +141,11 @@ const HomePage: React.FC = () => {
   const [checkingCode, setCheckingCode] = useState(false);
   const [addedToCart, setAddedToCart] = useState<string | null>(null);
   const [addedToQuote, setAddedToQuote] = useState<string | null>(null);
+
+  // Franco progress
+  const francoThreshold = 630;
+  const francoRemaining = Math.max(0, francoThreshold - totalHT);
+  const francoProgress = Math.min((totalHT / francoThreshold) * 100, 100);
 
   const validatePromoCode = async () => {
     if (!promoCode.trim()) return;
@@ -223,13 +247,17 @@ const HomePage: React.FC = () => {
       if (categoriesRes.error) throw categoriesRes.error;
       if (subcategoriesRes.error) throw subcategoriesRes.error;
 
-      const enrichedProducts = (productsRes.data || []).map(product => {
+      const enrichedProducts = (productsRes.data || []).map((product, index) => {
         const subcategory = subcategoriesRes.data?.find(s => s.id === product.subcategory_id);
         const category = categoriesRes.data?.find(c => c.id === subcategory?.category_id);
         return {
           ...product,
           category_name: category?.name,
-          subcategory_name: subcategory?.name
+          subcategory_name: subcategory?.name,
+          // Add some products as bestseller for demo
+          is_bestseller: index < 3,
+          is_new: index >= 3 && index < 5,
+          stock_status: index === 2 ? 'low_stock' : 'in_stock',
         };
       });
 
@@ -261,6 +289,9 @@ const HomePage: React.FC = () => {
     ? subcategories
     : subcategories.filter(s => s.category_id === selectedCategory);
 
+  // Get bestsellers
+  const bestsellers = products.filter(p => p.is_bestseller).slice(0, 4);
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
@@ -279,21 +310,22 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Pallmann Store - Produits professionnels pour parquet</title>
-        <meta name="description" content="Boutique en ligne de produits Pallmann : vitrificateurs, huiles, colles et accessoires professionnels pour parquet. Livraison rapide en France." />
-        <meta name="keywords" content="Pallmann, vitrificateur parquet, huile parquet, produits professionnels parquet, Pall-X, Magic Oil" />
-        <meta property="og:title" content="Pallmann Store - Produits professionnels pour parquet" />
-        <meta property="og:description" content="Achetez vos produits Pallmann professionnels en ligne" />
+        <title>Pallmann Store - Produits professionnels pour parquet | Achat en ligne</title>
+        <meta name="description" content="Boutique en ligne officielle Pallmann : vitrificateurs, huiles, colles et accessoires professionnels pour parquet. Livraison 48-72h. Franco 630€." />
+        <meta name="keywords" content="Pallmann, acheter vitrificateur parquet, huile parquet professionnel, Pall-X, Magic Oil, boutique parquet" />
+        <meta property="og:title" content="Pallmann Store - Achetez vos produits parquet pro" />
+        <meta property="og:description" content="Produits Pallmann authentiques, livraison rapide, conseils experts" />
         <link rel="canonical" href="https://pallmann-store.com" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
         <Header />
+        <TrustBar />
+        <CartReminder />
 
         <main className="flex-grow">
-          {/* Hero Section - Dégradé Bleu-Violet Tech */}
+          {/* Hero Section - CONVERSION FOCUSED */}
           <div className="relative overflow-hidden">
-            {/* Gradient background */}
             <div 
               className="absolute inset-0"
               style={{ 
@@ -301,79 +333,108 @@ const HomePage: React.FC = () => {
               }}
             ></div>
             
-            {/* Animated gradient overlay */}
             <div 
-              className="absolute inset-0 opacity-30 animate-gradient"
+              className="absolute inset-0 opacity-20 animate-gradient"
               style={{
                 background: 'linear-gradient(45deg, transparent 0%, #7C3AED 50%, transparent 100%)',
                 backgroundSize: '400% 400%',
               }}
             ></div>
             
-            {/* Grid pattern overlay */}
             <div className="absolute inset-0 opacity-10" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
             }}></div>
             
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
               <div className="text-center">
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <Sparkles className="w-4 h-4 text-[#7C3AED]" />
-                  Qualité professionnelle Allemande
+                {/* Urgency badge */}
+                <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
+                  <Zap className="w-4 h-4" />
+                  Livraison OFFERTE dès 630€ HT
                 </div>
                 
-                <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-                  Produits <span className="text-gradient-tech" style={{
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">
+                  Produits <span style={{
                     background: 'linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                  }}>Pallmann</span>
+                  }}>Pallmann</span> Pro
                 </h1>
                 
-                <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10">
-                  Vitrificateurs, huiles, colles et accessoires professionnels pour sublimer vos parquets
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
+                  La référence allemande pour sublimer vos parquets. 
+                  <span className="text-white font-semibold"> Commandez maintenant !</span>
                 </p>
                 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                {/* Main CTA */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                   <a 
                     href="#products"
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
                     style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                   >
-                    <ShoppingCart className="w-5 h-5" />
-                    Découvrir les produits
+                    <ShoppingCart className="w-6 h-6" />
+                    Commander maintenant
                     <ArrowRight className="w-5 h-5" />
                   </a>
                   <Link 
                     to="/demande-devis"
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20 transition-all"
                   >
                     <FileText className="w-5 h-5" />
-                    Demander un devis
+                    Devis gratuit
                   </Link>
                 </div>
+
+                {/* Franco progress bar */}
+                {totalHT > 0 && (
+                  <div className="max-w-md mx-auto mb-8 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                    <div className="flex items-center justify-between text-sm mb-2">
+                      <span className="text-white/80">Votre panier : {totalHT.toFixed(0)}€ HT</span>
+                      {francoRemaining > 0 ? (
+                        <span className="text-amber-300 font-bold">
+                          Plus que {francoRemaining.toFixed(0)}€ pour le franco !
+                        </span>
+                      ) : (
+                        <span className="text-green-400 font-bold flex items-center gap-1">
+                          <CheckCircle className="w-4 h-4" />
+                          Franco atteint !
+                        </span>
+                      )}
+                    </div>
+                    <div className="h-2 bg-white/20 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full rounded-full transition-all duration-500"
+                        style={{ 
+                          width: `${francoProgress}%`,
+                          background: francoProgress >= 100 
+                            ? 'linear-gradient(90deg, #10B981 0%, #34D399 100%)'
+                            : 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)'
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
                 
                 {/* Trust badges */}
-                <div className="flex flex-wrap justify-center gap-4 text-sm">
-                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full">
-                    <Star className="w-4 h-4 text-yellow-400" />
-                    Qualité professionnelle
+                <div className="flex flex-wrap justify-center gap-3 text-sm">
+                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
+                    <Award className="w-4 h-4 text-amber-400" />
+                    Produits authentiques
                   </span>
-                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full">
+                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
                     <Truck className="w-4 h-4 text-[#60A5FA]" />
-                    Livraison 48-72h
+                    48-72h chrono
                   </span>
-                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-5 py-2.5 rounded-full">
+                  <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
                     <Shield className="w-4 h-4 text-[#A78BFA]" />
-                    Franco dès 630€ HT
+                    Paiement sécurisé
                   </span>
                 </div>
               </div>
             </div>
             
-            {/* Bottom wave */}
             <div className="absolute bottom-0 left-0 right-0">
               <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
                 <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F8FAFC"/>
@@ -381,24 +442,78 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
+          {/* Social Proof Stats */}
+          <div className="bg-[#F8FAFC] py-8">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {stats.map((stat, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-xl p-4 text-center shadow-card border border-gray-100"
+                  >
+                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#2563EB]" />
+                    <div className="text-2xl font-extrabold text-[#0F172A]">{stat.value}</div>
+                    <div className="text-xs text-[#64748B]">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bestsellers Section - QUICK CONVERSION */}
+          {bestsellers.length > 0 && (
+            <div className="bg-gradient-to-b from-[#F8FAFC] to-white py-12">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-5 h-5 text-amber-500" />
+                      <span className="text-amber-600 font-bold text-sm uppercase tracking-wide">Les plus vendus</span>
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-[#0F172A]">
+                      Best-sellers Pallmann
+                    </h2>
+                  </div>
+                  <a 
+                    href="#products"
+                    className="hidden md:flex items-center gap-1 text-[#2563EB] font-semibold hover:underline"
+                  >
+                    Voir tout
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {bestsellers.map(product => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      validatedCode={validatedCode}
+                      onAddToCart={handleAddToCart}
+                      onAddToQuote={handleAddToQuote}
+                      isInQuote={isInQuote(product.id)}
+                      addedToCart={addedToCart === product.id}
+                      addedToQuote={addedToQuote === product.id}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Machines Pro Section */}
-          <div className="bg-[#F8FAFC] py-16 lg:py-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
+          <div className="bg-white py-12 lg:py-16">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="text-center mb-10">
                 <div className="inline-flex items-center gap-2 bg-[#EDE9FE] text-[#7C3AED] px-4 py-2 rounded-full text-sm font-bold mb-4">
-                  <Zap className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4" />
                   ÉQUIPEMENT PRO
                 </div>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4">
-                  Machines <span className="text-gradient-tech" style={{
-                    background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}>Professionnelles</span>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-[#0F172A] mb-3">
+                  Machines Professionnelles
                 </h2>
-                <p className="text-[#64748B] text-lg max-w-2xl mx-auto">
-                  Ponceuses et équipements de référence pour les professionnels du parquet
+                <p className="text-[#64748B] max-w-xl mx-auto">
+                  Ponceuses de référence mondiale. <span className="font-semibold text-[#0F172A]">Devis gratuit en 24h.</span>
                 </p>
               </div>
 
@@ -406,16 +521,13 @@ const HomePage: React.FC = () => {
                 {machinesPro.map((machine, index) => (
                   <div 
                     key={machine.id}
-                    className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-glow-gradient transition-all duration-500 hover:-translate-y-2"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
                   >
-                    {/* Top gradient bar */}
                     <div 
                       className="absolute top-0 left-0 right-0 h-1"
                       style={{ background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)' }}
                     ></div>
                     
-                    {/* Badge */}
                     <div className="absolute top-4 right-4 z-10">
                       <span 
                         className="px-3 py-1 rounded-full text-xs font-bold text-white"
@@ -425,91 +537,69 @@ const HomePage: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Image */}
-                    <div className="relative bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] p-8 h-48 flex items-center justify-center">
-                      <div className="w-32 h-32 bg-gradient-to-br from-[#2563EB]/10 to-[#7C3AED]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <Zap className="w-16 h-16 text-[#2563EB] group-hover:text-[#7C3AED] transition-colors" />
+                    <div className="relative bg-gradient-to-br from-[#F8FAFC] to-[#EFF6FF] p-6 h-40 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-gradient-to-br from-[#2563EB]/10 to-[#7C3AED]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Zap className="w-12 h-12 text-[#2563EB] group-hover:text-[#7C3AED] transition-colors" />
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-extrabold text-[#0F172A] mb-2 group-hover:text-[#2563EB] transition-colors">
+                    <div className="p-5">
+                      <h3 className="text-lg font-extrabold text-[#0F172A] mb-1 group-hover:text-[#2563EB] transition-colors">
                         {machine.name}
                       </h3>
-                      <p className="text-[#64748B] text-sm mb-4 line-clamp-2">
+                      <p className="text-[#64748B] text-sm mb-3 line-clamp-2">
                         {machine.description}
                       </p>
                       
-                      {/* Features */}
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-1 mb-4">
                         {machine.features.map((feature, i) => (
                           <span 
                             key={i}
-                            className="text-xs font-medium px-2 py-1 bg-[#EFF6FF] text-[#2563EB] rounded-md"
+                            className="text-[10px] font-medium px-2 py-0.5 bg-[#EFF6FF] text-[#2563EB] rounded"
                           >
                             {feature}
                           </span>
                         ))}
                       </div>
 
-                      {/* CTA */}
                       <Link
                         to="/demande-devis"
-                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white transition-all hover:shadow-lg"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-white text-sm transition-all hover:shadow-lg"
                         style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                       >
-                        Demander un devis
-                        <ChevronRight className="w-4 h-4" />
+                        Devis gratuit
+                        <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
                   </div>
                 ))}
               </div>
-
-              {/* CTA Section */}
-              <div className="mt-12 text-center">
-                <Link
-                  to="/pro"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#0F172A] bg-white border-2 border-[#0F172A] hover:bg-[#0F172A] hover:text-white transition-all"
-                >
-                  <Sparkles className="w-5 h-5" />
-                  Voir tout l'équipement PRO
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
             </div>
           </div>
 
           {/* Products Section */}
-          <div id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            {/* Section Header */}
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4">
-                Nos Produits
+          <div id="products" className="max-w-7xl mx-auto px-4 py-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#0F172A] mb-2">
+                Tous nos produits
               </h2>
-              <p className="text-[#64748B] text-lg max-w-2xl mx-auto">
-                Découvrez notre gamme complète de produits Pallmann
+              <p className="text-[#64748B]">
+                {products.length} produits disponibles • Livraison rapide
               </p>
             </div>
 
-            {/* Filters Section */}
-            <div className="bg-white rounded-2xl shadow-card p-6 mb-8 border border-gray-100">
-              <div className="flex items-center gap-2 mb-4">
-                <Filter className="w-5 h-5 text-[#2563EB]" />
-                <h3 className="text-lg font-bold text-[#0F172A]">Filtrer les produits</h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Filters */}
+            <div className="bg-white rounded-2xl shadow-card p-4 md:p-6 mb-8 border border-gray-100">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {/* Search */}
-                <div className="relative">
+                <div className="relative md:col-span-2">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#64748B]" />
                   <input
                     type="text"
                     placeholder="Rechercher un produit..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
                   />
                 </div>
 
@@ -520,9 +610,9 @@ const HomePage: React.FC = () => {
                     setSelectedCategory(e.target.value);
                     setSelectedSubcategory('all');
                   }}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all text-[#0F172A]"
                 >
-                  <option value="all">Toutes les catégories</option>
+                  <option value="all">Toutes catégories</option>
                   {categories.map(cat => (
                     <option key={cat.id} value={cat.id}>{cat.name}</option>
                   ))}
@@ -532,10 +622,10 @@ const HomePage: React.FC = () => {
                 <select
                   value={selectedSubcategory}
                   onChange={(e) => setSelectedSubcategory(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all disabled:bg-gray-50 disabled:text-gray-400 text-[#0F172A]"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all disabled:bg-gray-50 disabled:text-gray-400 text-[#0F172A]"
                   disabled={selectedCategory === 'all'}
                 >
-                  <option value="all">Toutes les sous-catégories</option>
+                  <option value="all">Sous-catégories</option>
                   {filteredSubcategories.map(sub => (
                     <option key={sub.id} value={sub.id}>{sub.name}</option>
                   ))}
@@ -546,45 +636,34 @@ const HomePage: React.FC = () => {
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-2 mb-2">
                   <Tag className="w-4 h-4 text-[#7C3AED]" />
-                  <span className="text-sm font-semibold text-[#0F172A]">Code professionnel</span>
+                  <span className="text-sm font-bold text-[#0F172A]">Vous êtes PRO ? Entrez votre code remise</span>
                 </div>
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    placeholder="Entrez votre code pro..."
+                    placeholder="CODE PRO..."
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                    className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all uppercase text-[#0F172A]"
+                    className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2563EB] focus:border-transparent transition-all uppercase text-[#0F172A] font-mono"
                   />
                   <button
                     onClick={validatePromoCode}
                     disabled={checkingCode || !promoCode.trim()}
-                    className="px-5 py-2 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
+                    className="px-6 py-2 text-white font-bold rounded-xl transition-all disabled:opacity-50"
                     style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                   >
-                    {checkingCode ? '...' : 'Valider'}
+                    {checkingCode ? '...' : 'Appliquer'}
                   </button>
                 </div>
                 {validatedCode && (
                   <div className="mt-2 flex items-center justify-between bg-green-50 p-3 rounded-xl border border-green-200">
-                    <div className="flex items-center gap-2 text-green-600 text-sm">
-                      <CheckCircle className="w-4 h-4" />
-                      <span><strong>{validatedCode.company_name}</strong> - Remise {validatedCode.discount_percent}% appliquée !</span>
+                    <div className="flex items-center gap-2 text-green-700 text-sm">
+                      <CheckCircle className="w-5 h-5" />
+                      <span><strong>{validatedCode.company_name}</strong> • Remise {validatedCode.discount_percent}% sur tout !</span>
                     </div>
-                    <button
-                      onClick={clearPromoCode}
-                      className="flex items-center gap-1 px-2 py-1 bg-red-100 hover:bg-red-200 text-red-600 rounded-md transition-colors text-xs font-semibold"
-                      title="Supprimer le code promo"
-                    >
-                      <X className="w-3 h-3" />
-                      Supprimer
+                    <button onClick={clearPromoCode} className="text-red-500 hover:text-red-700">
+                      <X className="w-4 h-4" />
                     </button>
-                  </div>
-                )}
-                {codeRemoved && (
-                  <div className="mt-2 flex items-center gap-2 text-[#2563EB] bg-[#EFF6FF] p-2 rounded-xl text-sm">
-                    <CheckCircle className="w-4 h-4" />
-                    <span>Code promo supprimé - Prix publics rétablis</span>
                   </div>
                 )}
                 {codeError && (
@@ -595,20 +674,21 @@ const HomePage: React.FC = () => {
                 )}
               </div>
 
-              {/* Active filters display */}
+              {/* Results count */}
               {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm) && (
-                <div className="mt-4 flex items-center gap-2 text-sm text-[#64748B]">
-                  <span className="font-semibold text-[#0F172A]">{filteredProducts.length}</span>
-                  <span>produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}</span>
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <span className="text-[#64748B]">
+                    <span className="font-bold text-[#0F172A]">{filteredProducts.length}</span> produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
+                  </span>
                   <button
                     onClick={() => {
                       setSelectedCategory('all');
                       setSelectedSubcategory('all');
                       setSearchTerm('');
                     }}
-                    className="ml-auto text-[#7C3AED] hover:text-[#6D28D9] font-semibold transition-colors"
+                    className="text-[#7C3AED] font-semibold hover:underline"
                   >
-                    Réinitialiser les filtres
+                    Réinitialiser
                   </button>
                 </div>
               )}
@@ -616,151 +696,18 @@ const HomePage: React.FC = () => {
 
             {/* Products Grid */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredProducts.map(product => (
-                  <div
+                  <ProductCard
                     key={product.id}
-                    className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-all duration-300 group flex flex-col h-full relative border border-gray-100"
-                  >
-                    {/* Category Badge */}
-                    {product.category_name && (
-                      <div className="absolute top-3 left-3 z-10">
-                        <span className="bg-[#0F172A] text-white px-3 py-1 rounded-lg text-xs font-bold">
-                          {product.category_name}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* Product Image */}
-                    {product.image_url && (
-                      <div className="relative bg-gradient-to-br from-[#F8FAFC] via-white to-[#EFF6FF] p-6 pt-12">
-                        <img
-                          src={product.image_url}
-                          alt={product.name}
-                          className="w-full h-40 object-contain group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-
-                    {/* Card Body */}
-                    <div className="p-5 flex-grow flex flex-col">
-                      <h3 className="text-base font-bold text-[#0F172A] mb-1 group-hover:text-[#2563EB] transition-colors line-clamp-2">
-                        {product.name}
-                      </h3>
-                      {product.subcategory_name && (
-                        <p className="text-xs text-[#64748B] mb-2">
-                          {product.subcategory_name}
-                        </p>
-                      )}
-
-                      {product.description && (
-                        <p className="text-[#64748B] text-sm mb-3 line-clamp-2 flex-grow">
-                          {product.description}
-                        </p>
-                      )}
-
-                      {/* Prix */}
-                      {product.price_public_ht && (
-                        <div className="mb-3 p-3 bg-gradient-to-r from-[#EFF6FF] to-[#F5F3FF] rounded-xl">
-                          {validatedCode ? (
-                            <div>
-                              <span className="text-[#64748B] line-through text-sm">{product.price_public_ht.toFixed(2)}€</span>
-                              <span className="ml-2 text-xl font-bold text-[#10B981]">
-                                {getDiscountedPrice(product.price_public_ht).toFixed(2)}€
-                              </span>
-                              <span className="text-xs text-[#64748B]"> HT/{product.unit || 'L'}</span>
-                              <span className="ml-2 bg-[#10B981] text-white text-xs font-bold px-2 py-0.5 rounded">
-                                -{validatedCode.discount_percent}%
-                              </span>
-                            </div>
-                          ) : (
-                            <div>
-                              <span className="text-xl font-extrabold text-[#0F172A]">{product.price_public_ht.toFixed(2)}€</span>
-                              <span className="text-xs text-[#64748B]"> HT/{product.unit || 'L'}</span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {/* PDF Link */}
-                      {product.pdf_url && (
-                        <a
-                          href={product.pdf_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs text-[#64748B] hover:text-[#7C3AED] transition-colors mb-3"
-                        >
-                          <Download className="w-3 h-3" />
-                          <span>Fiche technique</span>
-                        </a>
-                      )}
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="p-5 pt-0 space-y-2">
-                      {product.price_public_ht ? (
-                        <>
-                          <button
-                            onClick={() => handleAddToCart(product)}
-                            className={`w-full py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-                              addedToCart === product.id 
-                                ? 'bg-[#10B981] text-white' 
-                                : 'text-white shadow-md hover:shadow-lg'
-                            }`}
-                            style={addedToCart !== product.id ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
-                          >
-                            {addedToCart === product.id ? (
-                              <>
-                                <CheckCircle className="w-4 h-4" />
-                                Ajouté !
-                              </>
-                            ) : (
-                              <>
-                                <Plus className="w-4 h-4" />
-                                Ajouter au panier
-                              </>
-                            )}
-                          </button>
-                          <button
-                            onClick={() => handleAddToQuote(product)}
-                            className={`w-full py-2 rounded-xl font-semibold text-xs transition-all flex items-center justify-center gap-2 ${
-                              addedToQuote === product.id 
-                                ? 'bg-[#0F172A] text-white' 
-                                : isInQuote(product.id)
-                                  ? 'bg-[#EDE9FE] text-[#7C3AED]'
-                                  : 'bg-[#F8FAFC] hover:bg-[#EFF6FF] text-[#64748B]'
-                            }`}
-                          >
-                            {addedToQuote === product.id ? (
-                              <>
-                                <CheckCircle className="w-3 h-3" />
-                                Ajouté au devis
-                              </>
-                            ) : isInQuote(product.id) ? (
-                              <>
-                                <FileText className="w-3 h-3" />
-                                Dans le devis
-                              </>
-                            ) : (
-                              <>
-                                <FileText className="w-3 h-3" />
-                                Ajouter au devis
-                              </>
-                            )}
-                          </button>
-                        </>
-                      ) : (
-                        <Link
-                          to="/demande-devis"
-                          className="w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 transition-all"
-                          style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
-                        >
-                          <FileText className="w-4 h-4" />
-                          Demander un devis
-                        </Link>
-                      )}
-                    </div>
-                  </div>
+                    product={product}
+                    validatedCode={validatedCode}
+                    onAddToCart={handleAddToCart}
+                    onAddToQuote={handleAddToQuote}
+                    isInQuote={isInQuote(product.id)}
+                    addedToCart={addedToCart === product.id}
+                    addedToQuote={addedToQuote === product.id}
+                  />
                 ))}
               </div>
             ) : (
@@ -770,7 +717,7 @@ const HomePage: React.FC = () => {
                   Aucun produit trouvé
                 </h3>
                 <p className="text-[#64748B] mb-6">
-                  Essayez de modifier vos critères de recherche ou réinitialisez les filtres.
+                  Essayez d'autres critères de recherche
                 </p>
                 <button
                   onClick={() => {
@@ -778,32 +725,39 @@ const HomePage: React.FC = () => {
                     setSelectedSubcategory('all');
                     setSearchTerm('');
                   }}
-                  className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold transition-all"
+                  className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
                   style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
                 >
-                  Réinitialiser les filtres
+                  Voir tous les produits
                 </button>
               </div>
             )}
 
-            {/* Shipping Info Banner */}
+            {/* Shipping CTA */}
             <div 
               className="mt-12 rounded-2xl p-8 text-center text-white relative overflow-hidden"
               style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%)' }}
             >
-              {/* Accent gradient bar */}
               <div 
                 className="absolute top-0 left-0 right-0 h-1"
                 style={{ background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)' }}
               ></div>
               
-              <h2 className="text-2xl font-extrabold mb-4">Livraison professionnelle</h2>
-              <p className="text-white/90 mb-4">
-                Franco de port à partir de 630€ HT • Livraison en 48-72h ouvrées
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Package className="w-8 h-8 text-[#A78BFA]" />
+                <h2 className="text-2xl font-extrabold">Franco de port dès 630€ HT</h2>
+              </div>
+              <p className="text-white/80 mb-6 max-w-xl mx-auto">
+                Livraison rapide en 48-72h • Produits Pallmann 100% authentiques • Support expert
               </p>
-              <p className="text-sm text-white/70">
-                Pour toute question, contactez-nous : <a href="mailto:contact@pallmann-store.com" className="text-[#A78BFA] font-semibold hover:underline">contact@pallmann-store.com</a>
-              </p>
+              <Link
+                to="/panier"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#0F172A] bg-white hover:bg-gray-100 transition-all shadow-lg"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                Voir mon panier
+                <ArrowRight className="w-5 h-5" />
+              </Link>
             </div>
           </div>
         </main>

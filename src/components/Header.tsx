@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ShoppingCart, FileText, Sparkles } from 'lucide-react';
+import { Menu, X, ShoppingCart, FileText, Sparkles, Package } from 'lucide-react';
 import { useCart } from '../lib/CartContext';
 import { useQuote } from '../lib/QuoteContext';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { itemCount } = useCart();
+  const { itemCount, totalHT } = useCart();
   const { itemCount: quoteItemCount } = useQuote();
 
   const isActive = (path: string) => {
@@ -17,8 +17,23 @@ const Header: React.FC = () => {
     return location.pathname.startsWith(path);
   };
 
+  // Franco progress
+  const francoThreshold = 630;
+  const francoRemaining = Math.max(0, francoThreshold - totalHT);
+
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-soft border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-soft border-b border-gray-100">
+      {/* Franco banner when close */}
+      {itemCount > 0 && francoRemaining > 0 && francoRemaining < 200 && (
+        <div 
+          className="text-center py-1.5 text-sm font-medium text-white"
+          style={{ background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)' }}
+        >
+          <Package className="w-4 h-4 inline mr-1" />
+          Plus que <strong>{francoRemaining.toFixed(0)}€</strong> pour la livraison offerte !
+        </div>
+      )}
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -34,7 +49,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
               className={`transition-all font-semibold ${
@@ -87,16 +102,18 @@ const Header: React.FC = () => {
               )}
             </Link>
 
-            {/* Panier - Dégradé tech */}
+            {/* Panier - SUPER VISIBLE */}
             <Link
               to="/panier"
-              className="relative flex items-center gap-2 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg hover:shadow-glow-gradient"
+              className="relative flex items-center gap-2 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
             >
               <ShoppingCart className="w-5 h-5" />
-              <span className="hidden lg:inline">Panier</span>
+              <span className="hidden lg:inline">
+                {itemCount > 0 ? `${totalHT.toFixed(0)}€` : 'Panier'}
+              </span>
               {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#0F172A] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold shadow-md">
                   {itemCount}
                 </span>
               )}
@@ -118,11 +135,12 @@ const Header: React.FC = () => {
             </Link>
             <Link
               to="/panier"
-              className="relative p-2"
+              className="relative p-2.5 rounded-xl"
+              style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
             >
-              <ShoppingCart className="w-6 h-6 text-[#2563EB]" />
+              <ShoppingCart className="w-5 h-5 text-white" />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#7C3AED] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {itemCount}
                 </span>
               )}
@@ -153,7 +171,7 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Boutique
+              🛒 Boutique
             </Link>
             <Link
               to="/blog"
@@ -164,19 +182,18 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Blog
+              📝 Blog
             </Link>
             <Link
               to="/pro"
-              className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors flex items-center gap-2 ${
+              className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/pro') 
                   ? 'bg-[#EFF6FF] text-[#2563EB]' 
                   : 'text-[#64748B] hover:bg-[#F8FAFC]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <Sparkles className="w-4 h-4" />
-              Espace PRO
+              ⭐ Espace PRO
             </Link>
             <Link
               to="/demande-devis"
@@ -187,15 +204,33 @@ const Header: React.FC = () => {
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Demande de devis
+              📋 Demande de devis
             </Link>
             <a
               href="mailto:contact@pallmann-store.com"
               className="block px-4 py-3 rounded-xl text-base font-semibold text-[#64748B] hover:bg-[#F8FAFC] transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Contact
+              ✉️ Contact
             </a>
+            
+            {/* Mobile cart summary */}
+            {itemCount > 0 && (
+              <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#EFF6FF] to-[#F5F3FF] border border-blue-100">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-[#0F172A]">Votre panier</span>
+                  <span className="font-bold text-[#2563EB]">{totalHT.toFixed(2)}€ HT</span>
+                </div>
+                <Link
+                  to="/panier"
+                  className="block w-full text-center py-2.5 rounded-lg font-bold text-white"
+                  style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Commander ({itemCount} article{itemCount > 1 ? 's' : ''})
+                </Link>
+              </div>
+            )}
           </nav>
         )}
       </div>
