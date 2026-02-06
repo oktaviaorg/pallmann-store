@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { CartProvider } from './lib/CartContext';
 import GTMPageView from './components/GTMPageView';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
+import CartPage from './pages/CartPage';
+import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
 import ParquetPosePage from './pages/ParquetPosePage';
 import AnalyseParquetPage from './pages/AnalyseParquetPage';
 import GalleryPage from './pages/GalleryPage';
@@ -48,7 +51,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <>
+    <CartProvider>
       <GTMPageView />
       <Routes>
       <Route path="/" element={<HomePage />} />
@@ -70,6 +73,10 @@ export default function App() {
       <Route path="/boutique/" element={<BoutiquePage />} />
       <Route path="/boutique/contact" element={<ProductContactPage />} />
       <Route path="/boutique/contact/" element={<ProductContactPage />} />
+      <Route path="/panier" element={<CartPage />} />
+      <Route path="/panier/" element={<CartPage />} />
+      <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
+      <Route path="/checkout/success/" element={<CheckoutSuccessPage />} />
       <Route path="/reviews" element={<ReviewsPage />} />
       <Route path="/reviews/" element={<ReviewsPage />} />
       <Route path="/mentions-legales" element={<MentionsLegales />} />
@@ -120,6 +127,6 @@ export default function App() {
       <Route path="/franchise/" element={<FranchisePage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
-    </>
+    </CartProvider>
   );
 }
