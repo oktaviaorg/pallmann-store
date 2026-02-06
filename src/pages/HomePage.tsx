@@ -325,7 +325,7 @@ const HomePage: React.FC = () => {
     <>
       <Helmet>
         <title>Pallmann Store - Produits professionnels pour parquet | Achat en ligne</title>
-        <meta name="description" content="Boutique en ligne officielle Pallmann : vitrificateurs, huiles, colles et accessoires professionnels pour parquet. Livraison 48-72h. Franco 630€." />
+        <meta name="description" content="Boutique en ligne officielle Pallmann : vitrificateurs, huiles, colles et accessoires professionnels pour parquet. Livraison France entière 48-72h. Franco 630€ HT." />
         <meta name="keywords" content="Pallmann, acheter vitrificateur parquet, huile parquet professionnel, Pall-X, Magic Oil, boutique parquet" />
         <meta property="og:title" content="Pallmann Store - Achetez vos produits parquet pro" />
         <meta property="og:description" content="Produits Pallmann authentiques, livraison rapide, conseils experts" />
@@ -692,7 +692,7 @@ const HomePage: React.FC = () => {
                 Tous nos produits
               </h2>
               <p className="text-[#64748B]">
-                {products.length} produits disponibles • Livraison rapide
+                {products.length} produits disponibles • Livraison France entière
               </p>
             </div>
 
@@ -869,7 +869,7 @@ const HomePage: React.FC = () => {
                 <h2 className="text-2xl font-extrabold">Franco de port dès 630€ HT</h2>
               </div>
               <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                Livraison rapide en 48-72h • Produits Pallmann 100% authentiques • Support expert
+                Livraison France entière en 48-72h • Produits Pallmann 100% authentiques • Support expert
               </p>
               <Link
                 to="/panier"

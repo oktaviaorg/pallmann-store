@@ -14,7 +14,7 @@ const TrustBar: React.FC = () => {
     {
       icon: Truck,
       titleKey: 'trust.shipping',
-      subtitle: '48-72h',
+      subtitle: 'France entière 48-72h',
     },
     {
       icon: Shield,
