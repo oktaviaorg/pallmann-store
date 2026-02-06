@@ -307,71 +307,59 @@ const CalculateurPage: React.FC = () => {
                   Produits recommandés
                 </h2>
 
-                <div className="space-y-4 mb-6">
+                {/* Liste des produits (récap simple) */}
+                <div className="space-y-3 mb-6">
                   {products.map((product) => (
                     <div 
                       key={product.id}
-                      className="p-4 bg-[#FFFFFF] rounded-xl border border-[#BCCCDC]"
+                      className="flex items-center justify-between p-3 bg-[#F8FAFC] rounded-xl"
                     >
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h3 className="font-bold text-[#1A2634]">{product.name}</h3>
-                          <p className="text-xs text-[#627D98]">{product.description}</p>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-bold text-[#E67E22]">{product.totalPrice.toFixed(2)}€ HT</div>
-                          <div className="text-xs text-[#627D98]">{product.quantity} {product.unit} × {product.pricePerUnit}€</div>
-                        </div>
+                      <div>
+                        <h3 className="font-semibold text-[#1A2634]">{product.name}</h3>
+                        <p className="text-xs text-[#627D98]">{product.quantity} {product.unit} × {product.pricePerUnit}€</p>
                       </div>
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        className={`w-full py-2 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
-                          addedProducts.includes(product.id)
-                            ? 'bg-green-500 text-white'
-                            : 'bg-[#F8FAFC] text-[#D35400] hover:bg-[#D9E2EC]'
-                        }`}
-                      >
-                        {addedProducts.includes(product.id) ? (
-                          <>
-                            <CheckCircle className="w-4 h-4" />
-                            Ajouté au panier
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingCart className="w-4 h-4" />
-                            Ajouter au panier
-                          </>
-                        )}
-                      </button>
+                      <div className="font-bold text-[#E67E22]">{product.totalPrice.toFixed(2)}€</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Total */}
-                <div className="border-t border-[#BCCCDC] pt-4 mb-6">
-                  <div className="flex justify-between text-lg mb-1">
-                    <span className="text-[#627D98]">Total HT</span>
-                    <span className="font-bold text-[#1A2634]">{totalHT.toFixed(2)}€</span>
+                <div className="bg-[#1A2634] text-white rounded-xl p-4 mb-6">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="opacity-80">Total HT</span>
+                    <span className="font-semibold">{totalHT.toFixed(2)}€</span>
                   </div>
                   <div className="flex justify-between text-xl">
-                    <span className="text-[#627D98]">Total TTC (20%)</span>
-                    <span className="font-extrabold text-[#E67E22]">{totalTTC.toFixed(2)}€</span>
+                    <span>Total TTC</span>
+                    <span className="font-extrabold">{totalTTC.toFixed(2)}€</span>
                   </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA unique */}
                 <button
                   onClick={handleAddAllToCart}
-                  className="w-full py-4 rounded-xl font-bold text-white text-lg flex items-center justify-center gap-2 transition-all hover:shadow-lg"
-                  style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
+                  className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all ${
+                    addedProducts.length > 0 
+                      ? 'bg-green-500 text-white'
+                      : 'text-white hover:shadow-lg'
+                  }`}
+                  style={addedProducts.length === 0 ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
                 >
-                  <ShoppingCart className="w-5 h-5" />
-                  Ajouter tout au panier
-                  <ArrowRight className="w-5 h-5" />
+                  {addedProducts.length > 0 ? (
+                    <>
+                      <CheckCircle className="w-6 h-6" />
+                      Ajouté au panier !
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-6 h-6" />
+                      Valider → Ajouter au panier
+                    </>
+                  )}
                 </button>
 
-                <p className="text-center text-xs text-[#627D98] mt-3">
-                  Franco de port dès 630€ HT • Livraison 48-72h
+                <p className="text-center text-xs text-[#627D98] mt-4">
+                  Franco de port dès 630€ HT • Livraison France entière 48-72h
                 </p>
               </div>
             </div>
