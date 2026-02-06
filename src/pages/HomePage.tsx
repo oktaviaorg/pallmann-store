@@ -474,6 +474,53 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
+          {/* Category Navigation Bar - STICKY */}
+          <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+            <div className="max-w-7xl mx-auto px-4 py-3">
+              <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide pb-1">
+                <a
+                  href="#products"
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSelectedSubcategory('all');
+                  }}
+                  className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                    selectedCategory === 'all'
+                      ? 'text-white shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
+                >
+                  Tous ({products.length})
+                </a>
+                {categories.map(cat => {
+                  const count = products.filter(p => {
+                    const sub = subcategories.find(s => s.id === p.subcategory_id);
+                    return sub?.category_id === cat.id;
+                  }).length;
+                  return (
+                    <a
+                      key={cat.id}
+                      href="#products"
+                      onClick={() => {
+                        setSelectedCategory(cat.id);
+                        setSelectedSubcategory('all');
+                      }}
+                      className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
+                        selectedCategory === cat.id
+                          ? 'text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' } : {}}
+                    >
+                      {cat.name} ({count})
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
           {/* Bestsellers Section - QUICK CONVERSION */}
           {bestsellers.length > 0 && (
             <div className="bg-gradient-to-b from-[#F8FAFC] to-white py-12">
