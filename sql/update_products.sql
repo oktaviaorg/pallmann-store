@@ -561,6 +561,104 @@ ON CONFLICT (ref) DO UPDATE SET
   description = EXCLUDED.description;
 
 -- ============================================
+-- 8. MACHINES & ACCESSOIRES
+-- ============================================
+
+-- Créer la sous-catégorie si elle n'existe pas
+INSERT INTO pallmann_subcategories (name, slug, category_id, display_order)
+SELECT 
+  'Machines & Accessoires',
+  'machines-accessoires',
+  (SELECT id FROM pallmann_categories WHERE name LIKE '%Accessoire%' OR name LIKE '%Materiel%' OR name LIKE '%Matériel%' LIMIT 1),
+  100
+WHERE NOT EXISTS (
+  SELECT 1 FROM pallmann_subcategories WHERE slug = 'machines-accessoires'
+);
+
+-- Si pas de catégorie parente trouvée, créer une catégorie "Équipement"
+INSERT INTO pallmann_categories (name, slug, display_order)
+SELECT 'Équipement', 'equipement', 99
+WHERE NOT EXISTS (
+  SELECT 1 FROM pallmann_categories WHERE slug = 'equipement'
+) AND NOT EXISTS (
+  SELECT 1 FROM pallmann_subcategories WHERE slug = 'machines-accessoires'
+);
+
+-- Associer la sous-catégorie à la catégorie Équipement si créée
+UPDATE pallmann_subcategories 
+SET category_id = (SELECT id FROM pallmann_categories WHERE slug = 'equipement')
+WHERE slug = 'machines-accessoires' AND category_id IS NULL;
+
+-- ============================================
+-- 8.1 PONCEUSES À BANDE
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('074540', 'COBRA CLASSIC ponceuse à bande', 'cobra-classic-ponceuse-bande', 6094.80, 12189.60, 'unité', 'Ponceuse à bande professionnelle COBRA CLASSIC. Robuste et performante pour le ponçage de parquets.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('059906', 'COBRA PALLMANN ponceuse à bande', 'cobra-pallmann-ponceuse-bande', 6646.50, 13293.00, 'unité', 'Ponceuse à bande professionnelle COBRA version PALLMANN. Performance optimale pour le ponçage de parquets.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
+-- 8.2 BORDEUSES
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('082727', 'GECKO STAR 2.0 bordeuse Ø150mm', 'gecko-star-2-bordeuse-150mm', 1858.50, 3717.00, 'unité', 'Bordeuse professionnelle GECKO STAR 2.0 avec disque Ø150mm. Idéale pour les finitions et les bords.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('082729', 'GECKO STAR 2.0 bordeuse Ø178mm', 'gecko-star-2-bordeuse-178mm', 1858.50, 3717.00, 'unité', 'Bordeuse professionnelle GECKO STAR 2.0 avec disque Ø178mm. Idéale pour les finitions et les bords. Format large.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
+-- 8.3 ACCESSOIRES COBRA
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('071729', 'COBRA PALLMANN sac standard', 'cobra-pallmann-sac-standard', 56.34, 112.68, 'unité', 'Sac à poussière standard pour ponceuse COBRA PALLMANN. Filtration efficace.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('013839', 'COBRA sac à poussière', 'cobra-sac-poussiere', 65.21, 130.42, 'unité', 'Sac à poussière pour ponceuse COBRA. Grande capacité et filtration performante.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('052441', 'COBRA sac à poussière zip', 'cobra-sac-poussiere-zip', 56.34, 112.68, 'unité', 'Sac à poussière avec fermeture zip pour ponceuse COBRA. Vidage facile.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('052442', 'COBRA sous sac jetable (10p)', 'cobra-sous-sac-jetable-10p', 97.16, 194.32, 'paquet 10p', 'Sous-sacs jetables pour ponceuse COBRA. Lot de 10 pièces. Hygiène optimale.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
+-- 8.4 ACCESSOIRES GECKO STAR
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('066603', 'GECKO STAR sac à poussières', 'gecko-star-sac-poussieres', 37.08, 74.16, 'unité', 'Sac à poussière pour bordeuse GECKO STAR. Filtration efficace et capacité adaptée.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('016222', 'GECKO STAR Ø150 autocollant scratch', 'gecko-star-150-autocollant-scratch', 13.73, 27.46, 'unité', 'Plateau autocollant scratch Ø150mm pour bordeuse GECKO STAR. Fixation rapide des disques.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('065828', 'GECKO STAR Ø150 bras long', 'gecko-star-150-bras-long', 429.75, 859.50, 'unité', 'Bras long Ø150mm pour bordeuse GECKO STAR. Accès facilité aux zones difficiles.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('073274', 'GECKO STAR Ø150 disque auto-agrippant', 'gecko-star-150-disque-auto-agrippant', 7.38, 14.76, 'unité', 'Disque auto-agrippant Ø150mm pour bordeuse GECKO STAR. Changement rapide des abrasifs.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('048195', 'GECKO STAR Ø178 autocollant scratch', 'gecko-star-178-autocollant-scratch', 19.62, 39.24, 'unité', 'Plateau autocollant scratch Ø178mm pour bordeuse GECKO STAR. Fixation rapide des disques.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('065826', 'GECKO STAR Ø178 bras long', 'gecko-star-178-bras-long', 429.75, 859.50, 'unité', 'Bras long Ø178mm pour bordeuse GECKO STAR. Accès facilité aux zones difficiles.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('073275', 'GECKO STAR Ø178 disque auto-agrippant', 'gecko-star-178-disque-auto-agrippant', 9.54, 19.08, 'unité', 'Disque auto-agrippant Ø178mm pour bordeuse GECKO STAR. Changement rapide des abrasifs.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
 -- Vérification finale
 -- ============================================
 -- SELECT ref, name, price_achat, price_public_ht, unit FROM pallmann_products WHERE ref IS NOT NULL ORDER BY ref;
+
+-- Vérification machines & accessoires
+-- SELECT ref, name, price_achat, price_public_ht, ROUND(price_public_ht * 1.20, 2) as prix_ttc, unit 
+-- FROM pallmann_products 
+-- WHERE subcategory_id = (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires')
+-- ORDER BY price_public_ht DESC;
