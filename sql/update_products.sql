@@ -693,6 +693,50 @@ ON CONFLICT (ref) DO UPDATE SET
   description = EXCLUDED.description;
 
 -- ============================================
+-- 8.7 SPIDER - Ponceuse et accessoires
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('078319', 'SPIDER ponceuse à parquet', 'spider-ponceuse-parquet', 7344.00, 14688.00, 'unité', 'Monobrosse professionnelle SPIDER pour ponçage de parquet. Machine haute performance pour grandes surfaces.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('084572', 'SPIDER platine pour segment diamant', 'spider-platine-segment-diamant', 63.63, 127.26, 'unité', 'Platine de fixation pour segments diamant monobrosse SPIDER.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('088321', 'SPIDER Set segments diamant gr30 (9p)', 'spider-set-segments-diamant-gr30-9p', 896.85, 1793.70, 'paquet 9p', 'Set de 9 segments diamant grain 30 pour monobrosse SPIDER. Ponçage agressif.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('088322', 'SPIDER Set segments diamant gr50 (9p)', 'spider-set-segments-diamant-gr50-9p', 896.85, 1793.70, 'paquet 9p', 'Set de 9 segments diamant grain 50 pour monobrosse SPIDER. Ponçage fin.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('089462', 'SPIDER valise transport segments', 'spider-valise-transport-segments', 157.23, 314.46, 'unité', 'Valise de transport pour segments diamant SPIDER. Protection et organisation optimales.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
+-- 8.8 TURBO SCRUBBER
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('083588', 'TURBO SCRUBBER', 'turbo-scrubber', 2835.00, 5670.00, 'unité', 'Machine TURBO SCRUBBER pour nettoyage et préparation des parquets. Idéale pour le décapage et le nettoyage intensif.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true),
+('088662', 'TURBO SCRUBBER lèvres aspiration (2p)', 'turbo-scrubber-levres-aspiration-2p', 42.66, 85.32, 'paquet 2p', 'Lèvres d''aspiration pour TURBO SCRUBBER. Lot de 2 pièces. Pièce de rechange.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
+-- 8.9 UNO
+-- ============================================
+
+INSERT INTO pallmann_products (ref, name, slug, price_achat, price_public_ht, unit, description, subcategory_id, published) VALUES
+('059629', 'UNO monobrosse', 'uno-monobrosse', 2169.00, 4338.00, 'unité', 'Monobrosse UNO pour entretien et finition de parquets. Machine compacte et maniable.', (SELECT id FROM pallmann_subcategories WHERE slug = 'machines-accessoires' LIMIT 1), true)
+ON CONFLICT (ref) DO UPDATE SET
+  name = EXCLUDED.name,
+  price_achat = EXCLUDED.price_achat,
+  price_public_ht = EXCLUDED.price_public_ht,
+  unit = EXCLUDED.unit,
+  description = EXCLUDED.description;
+
+-- ============================================
 -- Vérification finale
 -- ============================================
 -- SELECT ref, name, price_achat, price_public_ht, unit FROM pallmann_products WHERE ref IS NOT NULL ORDER BY ref;
