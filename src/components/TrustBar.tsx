@@ -37,9 +37,9 @@ const TrustBar: React.FC = () => {
               key={index}
               className="flex items-center gap-2 min-w-max"
             >
-              <item.icon className="w-5 h-5 text-[#2563EB] flex-shrink-0" />
+              <item.icon className="w-5 h-5 text-[#C4943D] flex-shrink-0" />
               <div className="text-left">
-                <p className="text-xs font-bold text-[#0F172A] leading-tight">{t(item.titleKey)}</p>
+                <p className="text-xs font-bold text-[#2D1A0D] leading-tight">{t(item.titleKey)}</p>
                 <p className="text-[10px] text-[#64748B]">{item.subtitle}</p>
               </div>
             </div>

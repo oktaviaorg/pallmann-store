@@ -5,65 +5,80 @@ export default {
   theme: {
     extend: {
       colors: {
-        // BLEU TECH - Palette moderne
+        // BOIS TECH - Palette chaleureuse premium
         primary: {
-          DEFAULT: '#2563EB',
-          dark: '#0F172A',
-          light: '#3B82F6',
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#2563EB',
-          600: '#1D4ED8',
-          700: '#1E40AF',
-          800: '#1E3A8A',
-          900: '#0F172A',
+          DEFAULT: '#C4943D',  // Or chaud / Ambre
+          dark: '#8B5A2B',     // Brun bois
+          light: '#D4A853',    // Or clair
+          50: '#FDF8F0',
+          100: '#F9EDDA',
+          200: '#F0D9B5',
+          300: '#E5C28A',
+          400: '#D4A853',
+          500: '#C4943D',
+          600: '#A67C2E',
+          700: '#8B5A2B',
+          800: '#6B4423',
+          900: '#4A2C17',
         },
-        // Accent Violet
+        // Accent Vert Forêt
         accent: {
-          DEFAULT: '#7C3AED',
-          light: '#EDE9FE',
-          dark: '#5B21B6',
-          50: '#F5F3FF',
-          100: '#EDE9FE',
-          200: '#DDD6FE',
-          300: '#C4B5FD',
-          400: '#A78BFA',
-          500: '#7C3AED',
-          600: '#6D28D9',
-          700: '#5B21B6',
+          DEFAULT: '#2E7D32',  // Vert forêt
+          light: '#E8F5E9',
+          dark: '#1B5E20',
+          50: '#E8F5E9',
+          100: '#C8E6C9',
+          200: '#A5D6A7',
+          300: '#81C784',
+          400: '#66BB6A',
+          500: '#4CAF50',
+          600: '#43A047',
+          700: '#2E7D32',
+          800: '#1B5E20',
         },
-        // Surfaces
+        // Surfaces chaudes
         background: {
-          DEFAULT: '#FFFFFF',
-          alt: '#F8FAFC',
+          DEFAULT: '#FFFCF8',  // Blanc cassé chaud
+          alt: '#FDF8F3',      // Crème
           card: '#FFFFFF',
+          warm: '#F5EFE6',     // Beige doux
+        },
+        // Brun bois secondaire
+        wood: {
+          50: '#FAF6F1',
+          100: '#F0E6D8',
+          200: '#E0CDB5',
+          300: '#C9A87C',
+          400: '#B08B5B',
+          500: '#8B5A2B',
+          600: '#6B4423',
+          700: '#4A2C17',
+          800: '#3D2412',
+          900: '#2D1A0D',
         },
         // Texte
         text: {
-          primary: '#0F172A',
-          secondary: '#64748B',
-          muted: '#94A3B8',
+          primary: '#2D1A0D',   // Brun très foncé
+          secondary: '#6B4423', // Brun moyen
+          muted: '#A08060',     // Brun clair
         },
         // Legacy - compatibilité
         secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50: '#FAF6F1',
+          100: '#F0E6D8',
+          200: '#E0CDB5',
+          300: '#C9A87C',
+          400: '#A08060',
+          500: '#8B5A2B',
+          600: '#6B4423',
+          700: '#4A2C17',
+          800: '#3D2412',
+          900: '#2D1A0D',
         },
         // Succès
         success: {
-          DEFAULT: '#10B981',
-          light: '#D1FAE5',
+          DEFAULT: '#2E7D32',
+          light: '#E8F5E9',
         },
       },
       fontFamily: {
@@ -132,20 +147,21 @@ export default {
         },
       },
       boxShadow: {
-        'soft': '0 4px 20px rgba(15, 23, 42, 0.08)',
-        'medium': '0 8px 30px rgba(15, 23, 42, 0.12)',
-        'strong': '0 20px 40px rgba(15, 23, 42, 0.15)',
-        'glow-blue': '0 0 30px rgba(37, 99, 235, 0.3)',
-        'glow-violet': '0 0 30px rgba(124, 58, 237, 0.3)',
-        'glow-gradient': '0 8px 32px rgba(37, 99, 235, 0.25), 0 4px 16px rgba(124, 58, 237, 0.15)',
-        'card': '0 2px 8px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.04)',
-        'card-hover': '0 8px 24px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(37, 99, 235, 0.08)',
+        'soft': '0 4px 20px rgba(45, 26, 13, 0.08)',
+        'medium': '0 8px 30px rgba(45, 26, 13, 0.12)',
+        'strong': '0 20px 40px rgba(45, 26, 13, 0.15)',
+        'glow-gold': '0 0 30px rgba(196, 148, 61, 0.3)',
+        'glow-green': '0 0 30px rgba(46, 125, 50, 0.3)',
+        'glow-gradient': '0 8px 32px rgba(196, 148, 61, 0.25), 0 4px 16px rgba(139, 90, 43, 0.15)',
+        'card': '0 2px 8px rgba(45, 26, 13, 0.06), 0 4px 16px rgba(45, 26, 13, 0.04)',
+        'card-hover': '0 8px 24px rgba(45, 26, 13, 0.12), 0 4px 12px rgba(196, 148, 61, 0.08)',
       },
       backgroundImage: {
-        'gradient-tech': 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
-        'gradient-tech-hover': 'linear-gradient(135deg, #1D4ED8 0%, #6D28D9 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)',
+        'gradient-wood': 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)',
+        'gradient-wood-hover': 'linear-gradient(135deg, #D4A853 0%, #A67C2E 100%)',
+        'gradient-hero': 'linear-gradient(135deg, #2D1A0D 0%, #4A2C17 30%, #8B5A2B 70%, #C4943D 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #2D1A0D 0%, #3D2412 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #FDF8F3 0%, #F5EFE6 100%)',
       },
       screens: {
         'xxs': '320px',
@@ -170,11 +186,11 @@ export default {
         '.touch-manipulation': {
           touchAction: 'manipulation',
         },
-        '.bg-gradient-tech': {
-          background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+        '.bg-gradient-wood': {
+          background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)',
         },
-        '.text-gradient-tech': {
-          background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
+        '.text-gradient-wood': {
+          background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)',
           '-webkit-background-clip': 'text',
           '-webkit-text-fill-color': 'transparent',
           'background-clip': 'text',

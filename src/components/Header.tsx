@@ -30,7 +30,7 @@ const Header: React.FC = () => {
       {itemCount > 0 && francoRemaining > 0 && francoRemaining < 200 && (
         <div 
           className="text-center py-1.5 text-sm font-medium text-white"
-          style={{ background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 100%)' }}
+          style={{ background: 'linear-gradient(90deg, #C4943D 0%, #8B5A2B 100%)' }}
         >
           <Package className="w-4 h-4 inline mr-1" />
           Plus que <strong>{francoRemaining.toFixed(0)}€</strong> pour la livraison offerte !
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="flex flex-col leading-tight">
-              <span className="text-xl font-extrabold text-[#0F172A] tracking-tight group-hover:text-[#2563EB] transition-colors">
+              <span className="text-xl font-extrabold text-[#2D1A0D] tracking-tight group-hover:text-[#C4943D] transition-colors">
                 PALLMANN STORE
               </span>
               <span className="text-xs text-[#64748B] font-medium">
@@ -57,8 +57,8 @@ const Header: React.FC = () => {
               to="/"
               className={`transition-all font-semibold ${
                 isActive('/') && location.pathname === '/' 
-                  ? 'text-[#2563EB] border-b-2 border-[#7C3AED] pb-1' 
-                  : 'text-[#64748B] hover:text-[#2563EB]'
+                  ? 'text-[#C4943D] border-b-2 border-[#8B5A2B] pb-1' 
+                  : 'text-[#64748B] hover:text-[#C4943D]'
               }`}
             >
               {t('common.shop')}
@@ -67,8 +67,8 @@ const Header: React.FC = () => {
               to="/blog"
               className={`transition-all font-semibold ${
                 isActive('/blog') 
-                  ? 'text-[#2563EB] border-b-2 border-[#7C3AED] pb-1' 
-                  : 'text-[#64748B] hover:text-[#2563EB]'
+                  ? 'text-[#C4943D] border-b-2 border-[#8B5A2B] pb-1' 
+                  : 'text-[#64748B] hover:text-[#C4943D]'
               }`}
             >
               {t('common.blog')}
@@ -77,8 +77,8 @@ const Header: React.FC = () => {
               to="/pro"
               className={`transition-all font-semibold flex items-center gap-1 ${
                 isActive('/pro') 
-                  ? 'text-[#2563EB] border-b-2 border-[#7C3AED] pb-1' 
-                  : 'text-[#64748B] hover:text-[#2563EB]'
+                  ? 'text-[#C4943D] border-b-2 border-[#8B5A2B] pb-1' 
+                  : 'text-[#64748B] hover:text-[#C4943D]'
               }`}
             >
               <Sparkles className="w-4 h-4" />
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
             </Link>
             <a
               href="mailto:contact@pallmann-store.com"
-              className="transition-all font-semibold text-[#64748B] hover:text-[#2563EB]"
+              className="transition-all font-semibold text-[#64748B] hover:text-[#C4943D]"
             >
               {t('common.contact')}
             </a>
@@ -97,12 +97,12 @@ const Header: React.FC = () => {
             {/* Demande de devis */}
             <Link
               to="/demande-devis"
-              className="relative flex items-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
+              className="relative flex items-center gap-2 bg-[#2D1A0D] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
             >
               <FileText className="w-5 h-5" />
               <span className="hidden lg:inline">{t('common.quote')}</span>
               {quoteItemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#7C3AED] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse">
+                <span className="absolute -top-2 -right-2 bg-[#8B5A2B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold animate-pulse">
                   {quoteItemCount}
                 </span>
               )}
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
             <Link
               to="/panier"
               className="relative flex items-center gap-2 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-              style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
             >
               <ShoppingCart className="w-5 h-5" />
               <span className="hidden lg:inline">
@@ -133,9 +133,9 @@ const Header: React.FC = () => {
               to="/demande-devis"
               className="relative p-2"
             >
-              <FileText className="w-6 h-6 text-[#0F172A]" />
+              <FileText className="w-6 h-6 text-[#2D1A0D]" />
               {quoteItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#7C3AED] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-[#8B5A2B] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {quoteItemCount}
                 </span>
               )}
@@ -143,7 +143,7 @@ const Header: React.FC = () => {
             <Link
               to="/panier"
               className="relative p-2.5 rounded-xl"
-              style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
             >
               <ShoppingCart className="w-5 h-5 text-white" />
               {itemCount > 0 && (
@@ -153,14 +153,14 @@ const Header: React.FC = () => {
               )}
             </Link>
             <button
-              className="p-2 rounded-xl hover:bg-[#F8FAFC] transition-colors"
+              className="p-2 rounded-xl hover:bg-[#FFFCF8] transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#0F172A]" />
+                <X className="w-6 h-6 text-[#2D1A0D]" />
               ) : (
-                <Menu className="w-6 h-6 text-[#0F172A]" />
+                <Menu className="w-6 h-6 text-[#2D1A0D]" />
               )}
             </button>
           </div>
@@ -173,8 +173,8 @@ const Header: React.FC = () => {
               to="/"
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/') && location.pathname === '/' 
-                  ? 'bg-[#EFF6FF] text-[#2563EB]' 
-                  : 'text-[#64748B] hover:bg-[#F8FAFC]'
+                  ? 'bg-[#FDF8F0] text-[#C4943D]' 
+                  : 'text-[#64748B] hover:bg-[#FFFCF8]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -184,8 +184,8 @@ const Header: React.FC = () => {
               to="/blog"
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/blog') 
-                  ? 'bg-[#EFF6FF] text-[#2563EB]' 
-                  : 'text-[#64748B] hover:bg-[#F8FAFC]'
+                  ? 'bg-[#FDF8F0] text-[#C4943D]' 
+                  : 'text-[#64748B] hover:bg-[#FFFCF8]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -195,8 +195,8 @@ const Header: React.FC = () => {
               to="/pro"
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/pro') 
-                  ? 'bg-[#EFF6FF] text-[#2563EB]' 
-                  : 'text-[#64748B] hover:bg-[#F8FAFC]'
+                  ? 'bg-[#FDF8F0] text-[#C4943D]' 
+                  : 'text-[#64748B] hover:bg-[#FFFCF8]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -206,8 +206,8 @@ const Header: React.FC = () => {
               to="/demande-devis"
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/demande-devis') 
-                  ? 'bg-[#EFF6FF] text-[#2563EB]' 
-                  : 'text-[#64748B] hover:bg-[#F8FAFC]'
+                  ? 'bg-[#FDF8F0] text-[#C4943D]' 
+                  : 'text-[#64748B] hover:bg-[#FFFCF8]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -215,7 +215,7 @@ const Header: React.FC = () => {
             </Link>
             <a
               href="mailto:contact@pallmann-store.com"
-              className="block px-4 py-3 rounded-xl text-base font-semibold text-[#64748B] hover:bg-[#F8FAFC] transition-colors"
+              className="block px-4 py-3 rounded-xl text-base font-semibold text-[#64748B] hover:bg-[#FFFCF8] transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               ✉️ {t('common.contact')}
@@ -223,15 +223,15 @@ const Header: React.FC = () => {
             
             {/* Mobile cart summary */}
             {itemCount > 0 && (
-              <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#EFF6FF] to-[#F5F3FF] border border-blue-100">
+              <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#FDF8F0] to-[#FAF6F1] border border-blue-100">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold text-[#0F172A]">{t('common.cart')}</span>
-                  <span className="font-bold text-[#2563EB]">{totalHT.toFixed(2)}€ HT</span>
+                  <span className="font-semibold text-[#2D1A0D]">{t('common.cart')}</span>
+                  <span className="font-bold text-[#C4943D]">{totalHT.toFixed(2)}€ HT</span>
                 </div>
                 <Link
                   to="/panier"
                   className="block w-full text-center py-2.5 rounded-lg font-bold text-white"
-                  style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #C4943D 0%, #8B5A2B 100%)' }}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {t('common.checkout')} ({itemCount} article{itemCount > 1 ? 's' : ''})
