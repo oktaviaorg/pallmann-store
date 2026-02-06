@@ -135,10 +135,45 @@ const CartPage: React.FC = () => {
         <Header />
         <main className="flex-grow pt-24 pb-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-[#1E3A5F] mb-8 flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-[#1E3A5F] mb-4 flex items-center gap-3">
               <ShoppingCart className="w-8 h-8 text-[#FBA600]" />
               Votre panier ({itemCount} article{itemCount > 1 ? 's' : ''})
             </h1>
+
+            {/* Indicateur Franco */}
+            {(() => {
+              const FRANCO_THRESHOLD = 630;
+              const progress = Math.min((subtotalHT / FRANCO_THRESHOLD) * 100, 100);
+              const remaining = FRANCO_THRESHOLD - subtotalHT;
+              const isFrancoReached = subtotalHT >= FRANCO_THRESHOLD;
+              
+              return (
+                <div className={`mb-8 p-4 rounded-xl border-2 ${isFrancoReached ? 'bg-green-50 border-green-300' : 'bg-amber-50 border-amber-200'}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <Truck className={`w-5 h-5 ${isFrancoReached ? 'text-green-600' : 'text-amber-600'}`} />
+                      <span className={`font-bold ${isFrancoReached ? 'text-green-700' : 'text-amber-700'}`}>
+                        {isFrancoReached ? '🎉 Franco atteint ! Livraison gratuite' : `Plus que ${remaining.toFixed(2)}€ HT pour le franco`}
+                      </span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-600">
+                      {subtotalHT.toFixed(2)}€ / {FRANCO_THRESHOLD}€ HT
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div 
+                      className={`h-full rounded-full transition-all duration-500 ${isFrancoReached ? 'bg-green-500' : 'bg-amber-500'}`}
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  {!isFrancoReached && (
+                    <p className="text-xs text-gray-500 mt-2">
+                      Ajoutez des produits pour bénéficier de la livraison gratuite !
+                    </p>
+                  )}
+                </div>
+              );
+            })()}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Liste des produits */}
