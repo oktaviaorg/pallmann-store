@@ -1,0 +1,177 @@
+[
+  {
+    "id": "32dffdd9-8bbf-4df2-81d9-9ad65be21ef9",
+    "name": "Conseils",
+    "slug": "conseils",
+    "description": "Conseils et astuces pour l'entretien de votre parquet",
+    "created_at": "2025-03-24T13:01:50.39651+00:00"
+  },
+  {
+    "id": "ede04102-e26d-44e7-988b-3927adf677c5",
+    "name": "Rénovation",
+    "slug": "renovation",
+    "description": "Tout sur la rénovation de parquet",
+    "created_at": "2025-03-24T13:01:50.39651+00:00"
+  },
+  {
+    "id": "1dc337d1-a30c-4bb7-a36d-29d9dc67ccf1",
+    "name": "Actualités",
+    "slug": "actualites",
+    "description": "Les dernières nouvelles du secteur",
+    "created_at": "2025-03-24T13:01:50.39651+00:00"
+  },
+  {
+    "id": "5671a194-9a61-4a0d-a086-edda692a5563",
+    "name": "Patrimoine",
+    "slug": "patrimoine",
+    "description": "Articles sur le patrimoine alsacien et les sites historiques",
+    "created_at": "2025-07-11T09:00:39.188144+00:00"
+  },
+  {
+    "id": "b32b00fb-0d4e-45f3-937f-4c3814a0d0b6",
+    "name": "Techniques",
+    "slug": "techniques",
+    "description": "Techniques et méthodes professionnelles de ponçage et rénovation de parquet",
+    "created_at": "2025-08-02T18:27:16.990203+00:00"
+  },
+  {
+    "id": "3af61592-f197-48eb-ae78-f5e51ef15ecf",
+    "name": "Entretien",
+    "slug": "entretien",
+    "description": "Conseils et techniques d'entretien pour parquets anciens et modernes",
+    "created_at": "2025-08-02T18:48:13.460425+00:00"
+  },
+  {
+    "id": "b72ed2e3-62b2-483e-9a6c-ac8ebe1f8cce",
+    "name": "Hôtel",
+    "slug": "hotel",
+    "description": "Articles dédiés à la rénovation de parquet dans les hôtels d'Alsace",
+    "created_at": "2025-12-03T13:37:09.011727+00:00"
+  },
+  {
+    "id": "a906422a-9f9c-4f5d-816e-b4424fea844c",
+    "name": "Haut-Rhin",
+    "slug": "haut-rhin",
+    "description": "Articles sur les villes et services dans le département du Haut-Rhin (68)",
+    "created_at": "2025-12-18T07:57:38.290217+00:00"
+  },
+  {
+    "id": "ecb78a28-ff0f-42c7-a618-39f6add34211",
+    "name": "Bas-Rhin",
+    "slug": "bas-rhin",
+    "description": "Articles sur les villes et services dans le département du Bas-Rhin (67)",
+    "created_at": "2025-12-18T07:57:38.290217+00:00"
+  },
+  {
+    "id": "bd9fe5ca-fca4-41fd-bdf9-a318d401b681",
+    "name": "Territoire de Belfort",
+    "slug": "territoire-de-belfort",
+    "description": "Articles sur les villes et services dans le Territoire de Belfort (90)",
+    "created_at": "2025-12-18T07:57:38.290217+00:00"
+  },
+  {
+    "id": "d6d61e33-0b9f-4cd7-86bb-e3f472b6be0e",
+    "name": "Côte-d'Or",
+    "slug": "cote-dor",
+    "description": "Articles sur les villes et services dans le département de la Côte-d'Or (21)",
+    "created_at": "2026-01-03T17:49:13.470146+00:00"
+  },
+  {
+    "id": "d15c433e-3f7c-4c9e-9a4e-92b57c72dcfd",
+    "name": "Moselle",
+    "slug": "moselle",
+    "description": "Services de ponçage et rénovation de parquet en Moselle (57)",
+    "created_at": "2026-01-04T15:23:04.804908+00:00"
+  },
+  {
+    "id": "9c9f3a86-91e5-4b89-93c1-7497605d5107",
+    "name": "Rhône",
+    "slug": "rhone",
+    "description": "Articles sur les villes et services dans le département du Rhône (69)",
+    "created_at": "2026-01-04T18:38:20.45687+00:00"
+  },
+  {
+    "id": "3136f9ba-0e42-4a85-8afb-fe760cf62942",
+    "name": "Haute-Savoie",
+    "slug": "haute-savoie",
+    "description": "Articles sur les villes et services dans le département de la Haute-Savoie (74)",
+    "created_at": "2026-01-04T18:38:20.45687+00:00"
+  },
+  {
+    "id": "1a09d495-f67a-4a9d-80ae-199169a24a68",
+    "name": "Seine-et-Marne",
+    "slug": "seine-et-marne",
+    "description": "Articles sur les villes et services dans le département de la Seine-et-Marne (77)",
+    "created_at": "2026-01-04T18:38:20.45687+00:00"
+  },
+  {
+    "id": "d4f92c95-49aa-4ed2-9581-d9db8e5e1719",
+    "name": "Yvelines",
+    "slug": "yvelines",
+    "description": "Articles sur les villes et services dans le département des Yvelines (78)",
+    "created_at": "2026-01-04T18:38:20.45687+00:00"
+  },
+  {
+    "id": "00d6a700-3e3d-4b9c-a961-c8c155371f6a",
+    "name": "Hauts-de-Seine",
+    "slug": "hauts-de-seine",
+    "description": "Articles sur les villes et services dans le département des Hauts-de-Seine (92)",
+    "created_at": "2026-01-04T18:38:20.45687+00:00"
+  },
+  {
+    "id": "5c6cc978-3005-4c45-91c0-7c1be45717da",
+    "name": "Savoie",
+    "slug": "savoie",
+    "description": "Articles sur les villes et services dans le département de la Savoie (73)",
+    "created_at": "2026-01-04T18:39:38.167317+00:00"
+  },
+  {
+    "id": "de4f622c-4711-418a-ae29-7fdd4b260d76",
+    "name": "Doubs",
+    "slug": "doubs",
+    "description": "Articles sur les villes et services dans le département du Doubs (25)",
+    "created_at": "2026-01-04T18:39:38.167317+00:00"
+  },
+  {
+    "id": "51aeda75-e4ec-4d0a-9ad0-1e38b98b5785",
+    "name": "Jura",
+    "slug": "jura",
+    "description": "Articles sur les villes et services dans le département du Jura (39)",
+    "created_at": "2026-01-04T18:39:38.167317+00:00"
+  },
+  {
+    "id": "8e03c419-e343-4f17-8dad-830df2cdf75a",
+    "name": "Vosges",
+    "slug": "vosges",
+    "description": "Articles sur les villes et services dans le département des Vosges (88)",
+    "created_at": "2026-01-04T18:40:16.59015+00:00"
+  },
+  {
+    "id": "4eb6a8a8-c3c0-4c86-9346-3c425013dc10",
+    "name": "Ain",
+    "slug": "ain",
+    "description": "Articles sur les villes et services dans le département de l'Ain (01)",
+    "created_at": "2026-01-04T18:40:16.59015+00:00"
+  },
+  {
+    "id": "a8f466c3-4a15-464c-ba17-ac0815c1032c",
+    "name": "Saône-et-Loire",
+    "slug": "saone-et-loire",
+    "description": "Articles sur les villes et services dans le département de Saône-et-Loire (71)",
+    "created_at": "2026-01-04T18:40:16.59015+00:00"
+  },
+  {
+    "id": "4f2e246f-d14d-4925-b3d5-d2f313c9e618",
+    "name": "Haute-Saône",
+    "slug": "haute-saone",
+    "description": "Articles sur les villes et services dans le département de la Haute-Saône (70)",
+    "created_at": "2026-01-04T18:40:16.59015+00:00"
+  },
+  {
+    "id": "de88fb4d-5c98-4565-ba2a-8295a6f1af6e",
+    "name": "Professionnels",
+    "slug": "professionnels",
+    "description": "Articles dédiés aux services pour les professionnels et établissements commerciaux",
+    "created_at": "2026-01-04T18:40:16.59015+00:00"
+  }
+]

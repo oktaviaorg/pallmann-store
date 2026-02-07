@@ -235,16 +235,16 @@ const HomePage: React.FC = () => {
     try {
       const [productsRes, categoriesRes, subcategoriesRes] = await Promise.all([
         supabase
-          .from('pallmann_products')
+          .from('products')
           .select('*')
           .eq('published', true)
           .order('display_order'),
         supabase
-          .from('pallmann_categories')
+          .from('categories')
           .select('*')
           .order('display_order'),
         supabase
-          .from('pallmann_subcategories')
+          .from('subcategories')
           .select('*')
           .order('display_order')
       ]);
@@ -312,7 +312,7 @@ const HomePage: React.FC = () => {
         <MarqueeBanner />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#E67E22] mx-auto"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FBA600] mx-auto"></div>
             <p className="mt-4 text-[#64748B]">Chargement de la boutique...</p>
           </div>
         </main>
@@ -340,26 +340,21 @@ const HomePage: React.FC = () => {
         <CartReminder />
 
         <main className="flex-grow">
-          {/* Hero Section - CONVERSION FOCUSED */}
+          {/* Hero Section - Style PRO */}
           <div className="relative overflow-hidden">
             <div 
               className="absolute inset-0"
               style={{ 
-                background: 'linear-gradient(135deg, #1A2634 0%, #243B53 40%, #E67E22 70%, #D35400 100%)'
+                background: 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 50%, #1E3A5F 100%)'
               }}
             ></div>
             
             <div 
-              className="absolute inset-0 opacity-20 animate-gradient"
+              className="absolute inset-0 opacity-10"
               style={{
-                background: 'linear-gradient(45deg, transparent 0%, #D35400 50%, transparent 100%)',
-                backgroundSize: '400% 400%',
+                background: 'radial-gradient(circle at 20% 80%, #FBA600 0%, transparent 50%)',
               }}
             ></div>
-            
-            <div className="absolute inset-0 opacity-10" style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}></div>
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
               <div className="text-center">
@@ -371,7 +366,7 @@ const HomePage: React.FC = () => {
                 
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">
                   Produits <span style={{
-                    background: 'linear-gradient(135deg, #F5B876 0%, #F39C12 100%)',
+                    background: 'linear-gradient(135deg, #FFD700 0%, #FBA600 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -388,7 +383,7 @@ const HomePage: React.FC = () => {
                   <a 
                     href="#products"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                    style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
                   >
                     <ShoppingCart className="w-6 h-6" />
                     Commander maintenant
@@ -426,7 +421,7 @@ const HomePage: React.FC = () => {
                           width: `${francoProgress}%`,
                           background: francoProgress >= 100 
                             ? 'linear-gradient(90deg, #10B981 0%, #34D399 100%)'
-                            : 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)'
+                            : 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)'
                         }}
                       />
                     </div>
@@ -440,11 +435,11 @@ const HomePage: React.FC = () => {
                     Produits authentiques
                   </span>
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
-                    <Truck className="w-4 h-4 text-[#F5B876]" />
+                    <Truck className="w-4 h-4 text-[#FFD700]" />
                     48-72h chrono
                   </span>
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
-                    <Shield className="w-4 h-4 text-[#F39C12]" />
+                    <Shield className="w-4 h-4 text-[#FBA600]" />
                     Paiement sécurisé
                   </span>
                 </div>
@@ -467,7 +462,7 @@ const HomePage: React.FC = () => {
                     key={index}
                     className="bg-white rounded-xl p-4 text-center shadow-card border border-gray-100"
                   >
-                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#E67E22]" />
+                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#FBA600]" />
                     <div className="text-2xl font-extrabold text-[#1A2634]">{stat.value}</div>
                     <div className="text-xs text-[#64748B]">{stat.label}</div>
                   </div>
@@ -481,14 +476,14 @@ const HomePage: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4">
               <Link 
                 to="/calculateur-pro"
-                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#E67E22]/20 hover:border-[#E67E22] transition-all hover:shadow-xl group"
+                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#FBA600]/20 hover:border-[#FBA600] transition-all hover:shadow-xl group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E67E22] to-[#D35400] flex items-center justify-center text-white">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FBA600] to-[#E09500] flex items-center justify-center text-white">
                     <Calculator className="w-7 h-7" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#1A2634] group-hover:text-[#E67E22] transition-colors">
+                    <h3 className="text-xl font-bold text-[#1A2634] group-hover:text-[#FBA600] transition-colors">
                       🧮 Calculateur PRO
                     </h3>
                     <p className="text-[#627D98]">
@@ -497,7 +492,7 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold"
-                  style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
                 >
                   Accéder au Calculateur PRO
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -521,7 +516,7 @@ const HomePage: React.FC = () => {
                       ? 'text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
-                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
+                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
                 >
                   Tous ({products.length})
                 </a>
@@ -543,7 +538,7 @@ const HomePage: React.FC = () => {
                           ? 'text-white shadow-md'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
-                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
+                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
                     >
                       {cat.name} ({count})
                     </a>
@@ -569,7 +564,7 @@ const HomePage: React.FC = () => {
                   </div>
                   <a 
                     href="#products"
-                    className="hidden md:flex items-center gap-1 text-[#E67E22] font-semibold hover:underline"
+                    className="hidden md:flex items-center gap-1 text-[#FBA600] font-semibold hover:underline"
                   >
                     Voir tout
                     <ChevronRight className="w-4 h-4" />
@@ -598,7 +593,7 @@ const HomePage: React.FC = () => {
           <div className="bg-white py-12 lg:py-16">
             <div className="max-w-7xl mx-auto px-4">
               <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 bg-[#D9E2EC] text-[#D35400] px-4 py-2 rounded-full text-sm font-bold mb-4">
+                <div className="inline-flex items-center gap-2 bg-[#D9E2EC] text-[#E09500] px-4 py-2 rounded-full text-sm font-bold mb-4">
                   <Sparkles className="w-4 h-4" />
                   ÉQUIPEMENT PRO
                 </div>
@@ -618,13 +613,13 @@ const HomePage: React.FC = () => {
                   >
                     <div 
                       className="absolute top-0 left-0 right-0 h-1"
-                      style={{ background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)' }}
+                      style={{ background: 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)' }}
                     ></div>
                     
                     <div className="absolute top-4 right-4 z-10">
                       <span 
                         className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                        style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
+                        style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
                       >
                         {machine.badge}
                       </span>
@@ -638,14 +633,14 @@ const HomePage: React.FC = () => {
                           className="max-h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                         />
                       ) : (
-                        <div className="w-24 h-24 bg-gradient-to-br from-[#E67E22]/10 to-[#D35400]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Zap className="w-12 h-12 text-[#E67E22] group-hover:text-[#D35400] transition-colors" />
+                        <div className="w-24 h-24 bg-gradient-to-br from-[#FBA600]/10 to-[#E09500]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <Zap className="w-12 h-12 text-[#FBA600] group-hover:text-[#E09500] transition-colors" />
                         </div>
                       )}
                     </div>
 
                     <div className="p-5">
-                      <h3 className="text-lg font-extrabold text-[#1A2634] mb-1 group-hover:text-[#E67E22] transition-colors">
+                      <h3 className="text-lg font-extrabold text-[#1A2634] mb-1 group-hover:text-[#FBA600] transition-colors">
                         {machine.name}
                       </h3>
                       <p className="text-[#64748B] text-sm mb-3 line-clamp-2">
@@ -656,7 +651,7 @@ const HomePage: React.FC = () => {
                         {machine.features.map((feature, i) => (
                           <span 
                             key={i}
-                            className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#E67E22] rounded"
+                            className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#FBA600] rounded"
                           >
                             {feature}
                           </span>
@@ -666,7 +661,7 @@ const HomePage: React.FC = () => {
                       <Link
                         to="/demande-devis"
                         className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-white text-sm transition-all hover:shadow-lg"
-                        style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
+                        style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
                       >
                         Devis gratuit
                         <ArrowRight className="w-4 h-4" />
@@ -706,7 +701,7 @@ const HomePage: React.FC = () => {
                   placeholder="Rechercher un produit..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E67E22] focus:border-transparent transition-all text-[#1A2634]"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#1A2634]"
                 />
               </div>
 
@@ -727,7 +722,7 @@ const HomePage: React.FC = () => {
                         ? 'text-white shadow-md'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
-                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
+                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
                   >
                     Tout voir ({products.length})
                   </button>
@@ -748,7 +743,7 @@ const HomePage: React.FC = () => {
                             ? 'text-white shadow-md'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
-                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
+                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
                       >
                         {cat.name} ({count})
                       </button>
@@ -769,8 +764,8 @@ const HomePage: React.FC = () => {
                       onClick={() => setSelectedSubcategory('all')}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                         selectedSubcategory === 'all'
-                          ? 'bg-[#E67E22] text-white'
-                          : 'bg-blue-50 text-[#E67E22] hover:bg-blue-100'
+                          ? 'bg-[#FBA600] text-white'
+                          : 'bg-blue-50 text-[#FBA600] hover:bg-blue-100'
                       }`}
                     >
                       Toutes
@@ -783,8 +778,8 @@ const HomePage: React.FC = () => {
                           onClick={() => setSelectedSubcategory(sub.id)}
                           className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                             selectedSubcategory === sub.id
-                              ? 'bg-[#E67E22] text-white'
-                              : 'bg-blue-50 text-[#E67E22] hover:bg-blue-100'
+                              ? 'bg-[#FBA600] text-white'
+                              : 'bg-blue-50 text-[#FBA600] hover:bg-blue-100'
                           }`}
                         >
                           {sub.name} ({count})
@@ -807,7 +802,7 @@ const HomePage: React.FC = () => {
                       setSelectedSubcategory('all');
                       setSearchTerm('');
                     }}
-                    className="text-[#D35400] font-semibold hover:underline"
+                    className="text-[#E09500] font-semibold hover:underline"
                   >
                     Réinitialiser
                   </button>
@@ -847,7 +842,7 @@ const HomePage: React.FC = () => {
                     setSearchTerm('');
                   }}
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
-                  style={{ background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
                 >
                   Voir tous les produits
                 </button>
@@ -857,15 +852,15 @@ const HomePage: React.FC = () => {
             {/* Shipping CTA */}
             <div 
               className="mt-12 rounded-2xl p-8 text-center text-white relative overflow-hidden"
-              style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 50%, #E67E22 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 50%, #FBA600 100%)' }}
             >
               <div 
                 className="absolute top-0 left-0 right-0 h-1"
-                style={{ background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)' }}
+                style={{ background: 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)' }}
               ></div>
               
               <div className="flex items-center justify-center gap-3 mb-4">
-                <Package className="w-8 h-8 text-[#F39C12]" />
+                <Package className="w-8 h-8 text-[#FBA600]" />
                 <h2 className="text-2xl font-extrabold">Franco de port dès 630€ HT</h2>
               </div>
               <p className="text-white/80 mb-6 max-w-xl mx-auto">

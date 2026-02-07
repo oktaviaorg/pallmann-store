@@ -41,7 +41,7 @@ const ArticlePage: React.FC = () => {
   const fetchArticle = async (articleSlug: string) => {
     try {
       const { data, error } = await supabase
-        .from('pallmann_articles')
+        .from('articles')
         .select('*, categories(name, slug)')
         .eq('slug', articleSlug)
         .eq('published', true)

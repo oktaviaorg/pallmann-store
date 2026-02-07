@@ -1,21 +1,29 @@
 import React from 'react';
+import { Tag, Truck, Phone, Percent, Gift, Sparkles } from 'lucide-react';
 
 const MarqueeBanner: React.FC = () => {
+  const promos = [
+    { icon: Percent, text: '-10% sur les vitrificateurs PALL-X' },
+    { icon: Truck, text: 'Livraison OFFERTE dès 630€ HT' },
+    { icon: Gift, text: 'Kit d\'application OFFERT pour tout achat machine' },
+    { icon: Tag, text: 'PROMO : Magic Oil 2K à 89€ HT le litre' },
+    { icon: Sparkles, text: 'NOUVEAU : Gamme OUTDOOR disponible' },
+    { icon: Phone, text: 'Conseil technicien : 07 57 82 13 06' },
+  ];
+
   return (
-    <div className="bg-gradient-to-r from-primary-dark via-primary to-accent text-white py-2 overflow-hidden">
+    <div className="bg-gradient-to-r from-[#1E3A5F] via-[#2C5282] to-[#1E3A5F] text-white py-2.5 overflow-hidden border-b border-[#FBA600]/20">
       <div className="animate-marquee whitespace-nowrap flex">
-        {[...Array(4)].map((_, i) => (
-          <span key={i} className="mx-8 flex items-center gap-2">
-            <span className="text-xl">📞</span>
-            <span className="font-medium">Contacter un Technicien : 07 57 82 13 06</span>
-            <span className="mx-4">•</span>
-            <span className="text-xl">🛠️</span>
-            <span className="font-medium">Conseils d'experts gratuits</span>
-            <span className="mx-4">•</span>
-            <span className="text-xl">🚚</span>
-            <span className="font-medium">Livraison France entière</span>
-            <span className="mx-4">•</span>
-          </span>
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex items-center">
+            {promos.map((promo, j) => (
+              <span key={j} className="mx-6 flex items-center gap-2">
+                <promo.icon className="w-4 h-4 text-[#FBA600]" />
+                <span className="font-medium text-sm">{promo.text}</span>
+                <span className="mx-4 text-[#FBA600]">•</span>
+              </span>
+            ))}
+          </div>
         ))}
       </div>
     </div>
