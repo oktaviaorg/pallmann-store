@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Calculator, ArrowRight, ArrowLeftRight, Package, Ruler } from 'lucide-react';
+import { Calculator, ArrowRight, ArrowLeftRight, Package, Ruler, ShoppingCart, CheckCircle } from 'lucide-react';
 
 interface ProductYield {
   id: string;
@@ -70,8 +70,13 @@ const PRODUCTS_YIELDS: ProductYield[] = [
 
 type CalculatorMode = 'surface-to-quantity' | 'quantity-to-surface';
 
-const SurfaceCalculator: React.FC = () => {
+interface SurfaceCalculatorProps {
+  onAddToCart?: (item: { productId: string; name: string; quantity: number; unit: string }) => void;
+}
+
+const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) => {
   const [mode, setMode] = useState<CalculatorMode>('surface-to-quantity');
+  const [addedToCart, setAddedToCart] = useState(false);
   const [surface, setSurface] = useState<string>('50');
   const [quantity, setQuantity] = useState<string>('5');
   const [selectedProduct, setSelectedProduct] = useState<string>('pall-x-96');
@@ -257,6 +262,40 @@ const SurfaceCalculator: React.FC = () => {
                       </div>
                     ))}
                   </div>
+                  
+                  {/* Bouton Ajouter au panier */}
+                  {onAddToCart && (
+                    <button
+                      onClick={() => {
+                        const totalQty = result.containers.reduce((sum, c) => sum + c.count * c.size, 0);
+                        onAddToCart({
+                          productId: product.id,
+                          name: product.name,
+                          quantity: totalQty,
+                          unit: product.unit
+                        });
+                        setAddedToCart(true);
+                        setTimeout(() => setAddedToCart(false), 2000);
+                      }}
+                      className={`w-full mt-4 py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
+                        addedToCart
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gradient-to-r from-[#E67E22] to-[#D35400] text-white hover:shadow-lg'
+                      }`}
+                    >
+                      {addedToCart ? (
+                        <>
+                          <CheckCircle className="w-4 h-4" />
+                          Ajouté au panier !
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="w-4 h-4" />
+                          Ajouter au panier
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
               )}
             </>

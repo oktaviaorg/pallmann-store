@@ -139,7 +139,7 @@ const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
   const { addItem, companyCode, setCompanyCode, totalHT } = useCart();
-  const { addItem: addToQuote, isInQuote } = useQuote();
+  const { addItem: addToQuote, removeItem: removeFromQuote, isInQuote } = useQuote();
   
   // Code promo pro
   const [promoCode, setPromoCode] = useState('');
@@ -429,7 +429,7 @@ const HomePage: React.FC = () => {
                 )}
                 
                 {/* Trust badges */}
-                <div className="flex flex-wrap justify-center gap-3 text-sm">
+                <div className="flex flex-wrap justify-center gap-3 text-sm pb-16">
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
                     <Award className="w-4 h-4 text-amber-400" />
                     Produits authentiques
@@ -601,82 +601,181 @@ const HomePage: React.FC = () => {
                   Machines Professionnelles
                 </h2>
                 <p className="text-[#64748B] max-w-xl mx-auto">
-                  Ponceuses de référence mondiale. <span className="font-semibold text-[#1A2634]">Devis gratuit en 24h.</span>
+                  Ponceuses de référence mondiale. <span className="font-semibold text-[#1A2634]">Sélectionnez vos machines et demandez un devis.</span>
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {machinesPro.map((machine, index) => (
-                  <div 
-                    key={machine.id}
-                    className="group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
-                  >
+                {machinesPro.map((machine, index) => {
+                  const inQuote = isInQuote(`machine-${machine.id}`);
+                  return (
                     <div 
-                      className="absolute top-0 left-0 right-0 h-1"
-                      style={{ background: 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)' }}
-                    ></div>
-                    
-                    <div className="absolute top-4 right-4 z-10">
-                      <span 
-                        className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                        style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
-                      >
-                        {machine.badge}
-                      </span>
-                    </div>
-
-                    <div className="relative bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] p-6 h-48 flex items-center justify-center overflow-hidden">
-                      {machine.image ? (
-                        <img 
-                          src={machine.image} 
-                          alt={machine.name}
-                          className="max-h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="w-24 h-24 bg-gradient-to-br from-[#FBA600]/10 to-[#E09500]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Zap className="w-12 h-12 text-[#FBA600] group-hover:text-[#E09500] transition-colors" />
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="p-5">
-                      <h3 className="text-lg font-extrabold text-[#1A2634] mb-1 group-hover:text-[#FBA600] transition-colors">
-                        {machine.name}
-                      </h3>
-                      <p className="text-[#64748B] text-sm mb-3 line-clamp-2">
-                        {machine.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-1 mb-4">
-                        {machine.features.map((feature, i) => (
-                          <span 
-                            key={i}
-                            className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#FBA600] rounded"
-                          >
-                            {feature}
-                          </span>
-                        ))}
+                      key={machine.id}
+                      className={`group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 ${
+                        inQuote ? 'border-[#FBA600] ring-2 ring-[#FBA600]/20' : 'border-gray-100'
+                      }`}
+                    >
+                      {/* Checkbox de sélection */}
+                      <div className="absolute top-4 left-4 z-10">
+                        <button
+                          onClick={() => {
+                            if (inQuote) {
+                              removeFromQuote(`machine-${machine.id}`);
+                            } else {
+                              addToQuote({
+                                id: `machine-${machine.id}`,
+                                name: `Machine ${machine.name}`,
+                                price_ht: 0,
+                                image_url: machine.image,
+                                unit: 'unité'
+                              });
+                            }
+                          }}
+                          className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
+                            inQuote 
+                              ? 'bg-[#FBA600] text-white' 
+                              : 'bg-white/90 border-2 border-gray-300 hover:border-[#FBA600]'
+                          }`}
+                        >
+                          {inQuote && <CheckCircle className="w-5 h-5" />}
+                        </button>
                       </div>
 
-                      <Link
-                        to="/demande-devis"
-                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-white text-sm transition-all hover:shadow-lg"
-                        style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
-                      >
-                        Devis gratuit
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
+                      <div 
+                        className="absolute top-0 left-0 right-0 h-1"
+                        style={{ background: 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)' }}
+                      ></div>
+                      
+                      <div className="absolute top-4 right-4 z-10">
+                        <span 
+                          className="px-3 py-1 rounded-full text-xs font-bold text-white"
+                          style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                        >
+                          {machine.badge}
+                        </span>
+                      </div>
+
+                      <div className="relative bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] p-6 h-48 flex items-center justify-center overflow-hidden">
+                        {machine.image ? (
+                          <img 
+                            src={machine.image} 
+                            alt={machine.name}
+                            className="max-h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="w-24 h-24 bg-gradient-to-br from-[#FBA600]/10 to-[#E09500]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <Zap className="w-12 h-12 text-[#FBA600] group-hover:text-[#E09500] transition-colors" />
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="p-5">
+                        <h3 className="text-lg font-extrabold text-[#1A2634] mb-1 group-hover:text-[#FBA600] transition-colors">
+                          {machine.name}
+                        </h3>
+                        <p className="text-[#64748B] text-sm mb-3 line-clamp-2">
+                          {machine.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {machine.features.map((feature, i) => (
+                            <span 
+                              key={i}
+                              className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#FBA600] rounded"
+                            >
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            if (inQuote) {
+                              removeFromQuote(`machine-${machine.id}`);
+                            } else {
+                              addToQuote({
+                                id: `machine-${machine.id}`,
+                                name: `Machine ${machine.name}`,
+                                price_ht: 0,
+                                image_url: machine.image,
+                                unit: 'unité'
+                              });
+                            }
+                          }}
+                          className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all ${
+                            inQuote 
+                              ? 'bg-[#1A2634] text-white hover:bg-[#0F172A]' 
+                              : 'text-white hover:shadow-lg'
+                          }`}
+                          style={!inQuote ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
+                        >
+                          {inQuote ? (
+                            <>
+                              <CheckCircle className="w-4 h-4" />
+                              Dans le devis
+                            </>
+                          ) : (
+                            <>
+                              Ajouter au devis
+                              <ArrowRight className="w-4 h-4" />
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
+
+              {/* Bouton récap si machines sélectionnées */}
+              {machinesPro.some(m => isInQuote(`machine-${m.id}`)) && (
+                <div className="mt-8 text-center">
+                  <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-[#FBA600]/10 to-[#E09500]/10 p-6 rounded-2xl border border-[#FBA600]/20">
+                    <div className="text-left">
+                      <p className="font-bold text-[#1A2634]">
+                        {machinesPro.filter(m => isInQuote(`machine-${m.id}`)).length} machine(s) sélectionnée(s)
+                      </p>
+                      <p className="text-sm text-[#64748B]">
+                        {machinesPro.filter(m => isInQuote(`machine-${m.id}`)).map(m => m.name).join(' + ')}
+                      </p>
+                    </div>
+                    <Link
+                      to="/demande-devis"
+                      className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-all hover:shadow-lg"
+                      style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                    >
+                      <FileText className="w-5 h-5" />
+                      Demander mon devis
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Calculator Section */}
           <div className="max-w-7xl mx-auto px-4 py-12 bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC]">
             <div className="max-w-xl mx-auto">
-              <SurfaceCalculator />
+              <SurfaceCalculator 
+                onAddToCart={({ productId, name, quantity, unit }) => {
+                  // Trouver le produit correspondant dans le catalogue pour avoir le prix
+                  const catalogProduct = products.find(p => 
+                    p.name.toLowerCase().includes(productId.replace(/-/g, ' ').toLowerCase()) ||
+                    p.slug?.includes(productId)
+                  );
+                  
+                  // Ajouter chaque unité au panier
+                  for (let i = 0; i < quantity; i++) {
+                    addItem({
+                      id: catalogProduct?.id || productId,
+                      name: catalogProduct?.name || name,
+                      price_ht: catalogProduct?.price_public_ht || 0,
+                      image_url: catalogProduct?.image_url || '',
+                      unit: unit,
+                    });
+                  }
+                }}
+              />
             </div>
           </div>
 

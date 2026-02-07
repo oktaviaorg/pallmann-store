@@ -84,12 +84,16 @@ const Header: React.FC = () => {
               <Sparkles className="w-4 h-4" />
               {t('common.pro')}
             </Link>
-            <a
-              href="mailto:contact@pallmann-store.com"
-              className="transition-all font-semibold text-[#64748B] hover:text-[#E67E22]"
+            <Link
+              to="/contact"
+              className={`transition-all font-semibold ${
+                isActive('/contact') 
+                  ? 'text-[#E67E22] border-b-2 border-[#D35400] pb-1' 
+                  : 'text-[#64748B] hover:text-[#E67E22]'
+              }`}
             >
               {t('common.contact')}
-            </a>
+            </Link>
 
             {/* Language Selector */}
             <LanguageSelector />
@@ -213,13 +217,17 @@ const Header: React.FC = () => {
             >
               📋 {t('common.quote')}
             </Link>
-            <a
-              href="mailto:contact@pallmann-store.com"
-              className="block px-4 py-3 rounded-xl text-base font-semibold text-[#64748B] hover:bg-[#FFFFFF] transition-colors"
+            <Link
+              to="/contact"
+              className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
+                isActive('/contact') 
+                  ? 'bg-[#F8FAFC] text-[#E67E22]' 
+                  : 'text-[#64748B] hover:bg-[#FFFFFF]'
+              }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               ✉️ {t('common.contact')}
-            </a>
+            </Link>
             
             {/* Mobile cart summary */}
             {itemCount > 0 && (

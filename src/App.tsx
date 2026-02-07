@@ -26,6 +26,9 @@ import QuotePage from './pages/QuotePage';
 // Calculateur
 import CalculateurPage from './pages/CalculateurPage';
 
+// Contact
+import ContactPage from './pages/ContactPage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -59,6 +62,9 @@ export default function App() {
           
           {/* Page PRO */}
           <Route path="/pro" element={<ProPage />} />
+          
+          {/* Contact */}
+          <Route path="/contact" element={<ContactPage />} />
           
           {/* Pages légales */}
           <Route path="/mentions-legales" element={<MentionsLegales />} />
