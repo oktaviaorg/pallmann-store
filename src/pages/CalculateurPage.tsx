@@ -34,7 +34,13 @@ const CalculateurPage: React.FC = () => {
   const [projectType, setProjectType] = useState<'renovation' | 'neuf'>('renovation');
   const [finishType, setFinishType] = useState<'vitrification' | 'huile'>('vitrification');
   const [addedProducts, setAddedProducts] = useState<string[]>([]);
+  
+  // Options produits complémentaires (cochés par défaut pour pousser à la vente)
   const [includeLiant, setIncludeLiant] = useState<boolean>(true);
+  const [includeSpatule, setIncludeSpatule] = useState<boolean>(true);
+  const [includeRouleau, setIncludeRouleau] = useState<boolean>(true);
+  const [includeNettoyant, setIncludeNettoyant] = useState<boolean>(true);
+  const [includeEntretien, setIncludeEntretien] = useState<boolean>(true);
 
   // Calculs des quantités
   const calculateProducts = (): ProductRecommendation[] => {
@@ -87,12 +93,70 @@ const CalculateurPage: React.FC = () => {
       products.push({
         id: 'liant',
         name: 'PALL-X KITT - Liant',
-        description: 'Pour rebouchage des joints et fissures (optionnel)',
+        description: 'Pour rebouchage des joints et fissures',
         quantity: liantLitres,
         unit: 'L',
         pricePerUnit: 24.20,
         totalPrice: liantLitres * 24.20,
         productId: 'pall-x-kitt'
+      });
+    }
+
+    // Spatule de mise en œuvre
+    if (includeSpatule) {
+      products.push({
+        id: 'spatule',
+        name: 'Spatule inox crantée',
+        description: 'Pour application uniforme du fond dur',
+        quantity: 1,
+        unit: 'pièce',
+        pricePerUnit: 18.50,
+        totalPrice: 18.50,
+        productId: 'spatule-inox'
+      });
+    }
+
+    // Rouleau applicateur
+    if (includeRouleau) {
+      const nbRouleaux = Math.ceil(surface / 50);
+      products.push({
+        id: 'rouleau',
+        name: 'Rouleau microfibre PRO',
+        description: 'Rouleau 25cm pour vitrificateur/huile',
+        quantity: nbRouleaux,
+        unit: 'pièce(s)',
+        pricePerUnit: 12.90,
+        totalPrice: nbRouleaux * 12.90,
+        productId: 'rouleau-microfibre'
+      });
+    }
+
+    // Nettoyant avant application
+    if (includeNettoyant) {
+      const nettoyantLitres = Math.ceil(surface / 100);
+      products.push({
+        id: 'nettoyant',
+        name: 'CLEAN & GO - Nettoyant',
+        description: 'Nettoyage avant application (dilué)',
+        quantity: nettoyantLitres,
+        unit: 'L',
+        pricePerUnit: 15.80,
+        totalPrice: nettoyantLitres * 15.80,
+        productId: 'clean-and-go'
+      });
+    }
+
+    // Produit d'entretien
+    if (includeEntretien) {
+      products.push({
+        id: 'entretien',
+        name: 'MAGIC OIL CARE - Entretien',
+        description: 'Entretien régulier après finition',
+        quantity: 1,
+        unit: 'L',
+        pricePerUnit: 28.50,
+        totalPrice: 28.50,
+        productId: 'magic-oil-care'
       });
     }
 
@@ -273,23 +337,90 @@ const CalculateurPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Option Liant (si rénovation) */}
-                {projectType === 'renovation' && (
-                  <div className="mb-6">
-                    <label className="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all">
+                {/* Options produits complémentaires */}
+                <div className="mb-6">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-3">
+                    🛒 Produits complémentaires recommandés
+                  </label>
+                  <div className="space-y-2">
+                    {/* Liant - seulement si rénovation */}
+                    {projectType === 'renovation' && (
+                      <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all bg-white">
+                        <input
+                          type="checkbox"
+                          checked={includeLiant}
+                          onChange={(e) => setIncludeLiant(e.target.checked)}
+                          className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
+                        />
+                        <div className="flex-grow">
+                          <div className="font-semibold text-[#1A2634] text-sm">PALL-X KITT - Liant</div>
+                          <div className="text-xs text-[#627D98]">Rebouchage joints et fissures</div>
+                        </div>
+                        <span className="text-xs font-bold text-[#E67E22]">24,20€/L</span>
+                      </label>
+                    )}
+
+                    {/* Spatule */}
+                    <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all bg-white">
                       <input
                         type="checkbox"
-                        checked={includeLiant}
-                        onChange={(e) => setIncludeLiant(e.target.checked)}
+                        checked={includeSpatule}
+                        onChange={(e) => setIncludeSpatule(e.target.checked)}
                         className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                       />
-                      <div>
-                        <div className="font-bold text-[#1A2634]">Inclure le liant (PALL-X KITT)</div>
-                        <div className="text-xs text-[#627D98]">Pour reboucher joints et fissures — Décochez si pas nécessaire</div>
+                      <div className="flex-grow">
+                        <div className="font-semibold text-[#1A2634] text-sm">Spatule inox crantée</div>
+                        <div className="text-xs text-[#627D98]">Application uniforme du fond dur</div>
                       </div>
+                      <span className="text-xs font-bold text-[#E67E22]">18,50€</span>
+                    </label>
+
+                    {/* Rouleau */}
+                    <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all bg-white">
+                      <input
+                        type="checkbox"
+                        checked={includeRouleau}
+                        onChange={(e) => setIncludeRouleau(e.target.checked)}
+                        className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
+                      />
+                      <div className="flex-grow">
+                        <div className="font-semibold text-[#1A2634] text-sm">Rouleau microfibre PRO</div>
+                        <div className="text-xs text-[#627D98]">25cm pour vitrificateur/huile</div>
+                      </div>
+                      <span className="text-xs font-bold text-[#E67E22]">12,90€</span>
+                    </label>
+
+                    {/* Nettoyant */}
+                    <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all bg-white">
+                      <input
+                        type="checkbox"
+                        checked={includeNettoyant}
+                        onChange={(e) => setIncludeNettoyant(e.target.checked)}
+                        className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
+                      />
+                      <div className="flex-grow">
+                        <div className="font-semibold text-[#1A2634] text-sm">CLEAN & GO - Nettoyant</div>
+                        <div className="text-xs text-[#627D98]">Préparation avant application</div>
+                      </div>
+                      <span className="text-xs font-bold text-[#E67E22]">15,80€/L</span>
+                    </label>
+
+                    {/* Entretien */}
+                    <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all bg-white">
+                      <input
+                        type="checkbox"
+                        checked={includeEntretien}
+                        onChange={(e) => setIncludeEntretien(e.target.checked)}
+                        className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
+                      />
+                      <div className="flex-grow">
+                        <div className="font-semibold text-[#1A2634] text-sm">MAGIC OIL CARE - Entretien</div>
+                        <div className="text-xs text-[#627D98]">Entretien régulier après finition</div>
+                      </div>
+                      <span className="text-xs font-bold text-[#E67E22]">28,50€/L</span>
                     </label>
                   </div>
-                )}
+                </div>
 
                 {/* Info */}
                 <div className="bg-[#F8FAFC] p-4 rounded-xl flex items-start gap-3">
