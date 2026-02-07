@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ProBanner from '../components/ProBanner';
 import MarqueeBanner from '../components/MarqueeBanner';
-import SurfaceCalculator from '../components/SurfaceCalculator';
+// SurfaceCalculator déplacé vers CalculateurPage
 import Footer from '../components/Footer';
 import TrustBar from '../components/TrustBar';
 import CartReminder from '../components/CartReminder';
@@ -753,31 +753,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Calculator Section */}
-          <div className="max-w-7xl mx-auto px-4 py-12 bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC]">
-            <div className="max-w-xl mx-auto">
-              <SurfaceCalculator 
-                onAddToCart={({ productId, name, quantity, unit }) => {
-                  // Trouver le produit correspondant dans le catalogue pour avoir le prix
-                  const catalogProduct = products.find(p => 
-                    p.name.toLowerCase().includes(productId.replace(/-/g, ' ').toLowerCase()) ||
-                    p.slug?.includes(productId)
-                  );
-                  
-                  // Ajouter chaque unité au panier
-                  for (let i = 0; i < quantity; i++) {
-                    addItem({
-                      id: catalogProduct?.id || productId,
-                      name: catalogProduct?.name || name,
-                      price_ht: catalogProduct?.price_public_ht || 0,
-                      image_url: catalogProduct?.image_url || '',
-                      unit: unit,
-                    });
-                  }
-                }}
-              />
-            </div>
-          </div>
+          {/* Calculator CTA - Redirige vers page dédiée */}
 
           {/* Products Section */}
           <div id="products" className="max-w-7xl mx-auto px-4 py-12">

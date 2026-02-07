@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ProBanner from '../components/ProBanner';
 import Footer from '../components/Footer';
+import SurfaceCalculator from '../components/SurfaceCalculator';
 import { useCart } from '../lib/CartContext';
 import { 
   Calculator, 
@@ -14,8 +15,11 @@ import {
   Info,
   CheckCircle,
   Package,
-  Sparkles
+  Sparkles,
+  Layers
 } from 'lucide-react';
+
+type CalculatorTab = 'projet' | 'surface';
 
 interface ProductRecommendation {
   id: string;
@@ -30,6 +34,7 @@ interface ProductRecommendation {
 
 const CalculateurPage: React.FC = () => {
   const { addItem } = useCart();
+  const [activeTab, setActiveTab] = useState<CalculatorTab>('projet');
   const [surface, setSurface] = useState<number>(20);
   const [projectType, setProjectType] = useState<'renovation' | 'neuf'>('renovation');
   const [finishType, setFinishType] = useState<'vitrification' | 'huile'>('vitrification');
@@ -233,6 +238,53 @@ const CalculateurPage: React.FC = () => {
           </div>
 
           <div className="max-w-6xl mx-auto px-4 py-12">
+            {/* Onglets */}
+            <div className="flex gap-2 mb-8 bg-gray-100 p-1 rounded-xl max-w-md mx-auto">
+              <button
+                onClick={() => setActiveTab('projet')}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold transition-all ${
+                  activeTab === 'projet'
+                    ? 'bg-white text-[#E67E22] shadow-md'
+                    : 'text-gray-600 hover:text-[#E67E22]'
+                }`}
+              >
+                <Package className="w-4 h-4" />
+                Projet complet
+              </button>
+              <button
+                onClick={() => setActiveTab('surface')}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold transition-all ${
+                  activeTab === 'surface'
+                    ? 'bg-white text-[#E67E22] shadow-md'
+                    : 'text-gray-600 hover:text-[#E67E22]'
+                }`}
+              >
+                <Layers className="w-4 h-4" />
+                Surface → Quantité
+              </button>
+            </div>
+
+            {/* Onglet Calculateur Surface */}
+            {activeTab === 'surface' && (
+              <div className="max-w-xl mx-auto">
+                <SurfaceCalculator 
+                  onAddToCart={({ productId, name, quantity, unit }) => {
+                    for (let i = 0; i < quantity; i++) {
+                      addItem({
+                        id: productId,
+                        name: name,
+                        price_ht: 0,
+                        image_url: '',
+                        unit: unit,
+                      });
+                    }
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Onglet Projet complet */}
+            {activeTab === 'projet' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
               {/* Formulaire */}
@@ -494,6 +546,7 @@ const CalculateurPage: React.FC = () => {
                 </p>
               </div>
             </div>
+            )}
 
             {/* FAQ SEO */}
             <div className="mt-12 bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
