@@ -3,76 +3,262 @@
 
   <!-- Page principale -->
   <url>
-    <loc>https://pallmann-store.com/</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Pages principales -->
+  <!-- Services -->
   <url>
-    <loc>https://pallmann-store.com/panier</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/services</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://pallmann-store.com/pro</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/analyse-parquet-gratuite</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/gallery</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Pages locales -->
   <url>
-    <loc>https://pallmann-store.com/demande-devis</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-strasbourg</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://pallmann-store.com/calculateur-pro</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-belfort</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://pallmann-store.com/contact</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-sarrebourg</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.95</priority>
   </url>
 
-  <!-- Blog -->
   <url>
-    <loc>https://pallmann-store.com/blog</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-mulhouse</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-colmar</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-colmar-mulhouse</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-bas-rhin</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-dijon</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-beaune</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/renovation-parquet-lyon</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/expert-renovation-parquet</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Autres pages -->
+  <url>
+    <loc>https://ponceur-parquet.fr/about</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/reviews</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/parquet-pose</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/location-ponceuse</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/formation</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/boutique</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/boutique/contact</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/youtube</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Pages de services spécifiques -->
+  <url>
+    <loc>https://ponceur-parquet.fr/services/pose-parquet</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/parquet-raye-meuble</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/degat-urine-parquet</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/injection-anti-grincement-parquet</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/faq</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/formulaire-devis</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://ponceur-parquet.fr/franchise</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Blog principal -->
+  <url>
+    <loc>https://ponceur-parquet.fr/blog</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Articles de blog (1) -->
+  <url>
+    <loc>https://ponceur-parquet.fr/blog/proteger-parquet-huile-ou-vitrificateur</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Pages légales -->
   <url>
-    <loc>https://pallmann-store.com/mentions-legales</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/mentions-legales</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://pallmann-store.com/cgv</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/cgv</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://pallmann-store.com/politique-confidentialite</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://ponceur-parquet.fr/politique-confidentialite</loc>
+    <lastmod>2026-02-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
+  <!-- Article Salle de Sport -->
+  <url>
+    <loc>https://ponceur-parquet.fr/articles/renovation-parquet-salle-sport-salle-fete-collectivites</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
