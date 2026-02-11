@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, ShoppingCart, FileText, Sparkles, Package } from 'lucide-react';
+import { Menu, X, ShoppingCart, FileText, Sparkles, Package, Search } from 'lucide-react';
 import { useCart } from '../lib/CartContext';
 import { useQuote } from '../lib/QuoteContext';
 import LanguageSelector from './LanguageSelector';
@@ -10,10 +10,21 @@ import ThemeToggle from './ThemeToggle';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSearch, setMobileSearch] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
   const { itemCount, totalHT } = useCart();
   const { itemCount: quoteItemCount } = useQuote();
   const { t } = useTranslation();
+
+  const handleMobileSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (mobileSearch.trim()) {
+      navigate(`/?search=${encodeURIComponent(mobileSearch.trim())}`);
+      setMobileMenuOpen(false);
+      setMobileSearch('');
+    }
+  };
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -181,6 +192,28 @@ const Header: React.FC = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-gray-100 animate-fade-in">
+            {/* Barre de recherche mobile */}
+            <form onSubmit={handleMobileSearch} className="px-4 mb-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Rechercher un produit..."
+                  value={mobileSearch}
+                  onChange={(e) => setMobileSearch(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#E67E22] focus:border-transparent text-base"
+                />
+                {mobileSearch && (
+                  <button
+                    type="submit"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#E67E22] text-white rounded-lg text-sm font-semibold"
+                  >
+                    OK
+                  </button>
+                )}
+              </div>
+            </form>
+            
             <Link
               to="/"
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${

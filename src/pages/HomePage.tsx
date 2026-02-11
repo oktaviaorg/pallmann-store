@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import ProBanner from '../components/ProBanner';
 import MarqueeBanner from '../components/MarqueeBanner';
@@ -132,12 +132,13 @@ const stats = [
 
 const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [searchParams] = useSearchParams();
   const [categories, setCategories] = useState<Category[]>([]);
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
   
   const { addItem, companyCode, setCompanyCode, totalHT } = useCart();
   const { addItem: addToQuote, removeItem: removeFromQuote, isInQuote } = useQuote();
