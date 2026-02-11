@@ -98,16 +98,29 @@ const QuotePage: React.FC = () => {
         status: 'pending',
       };
 
-      // Utiliser form_submissions avec les bonnes colonnes
+      // Utiliser form_submissions - seuls email, message, phone fonctionnent
+      const messageContent = `[DEVIS PALLMANN-STORE]
+
+Contact: ${formData.contact_name}
+Entreprise: ${formData.company_name || 'Particulier'}
+Email: ${formData.email}
+Téléphone: ${formData.phone || 'N/A'}
+
+Adresse livraison:
+${formData.address || 'N/A'}
+${formData.postal_code || ''} ${formData.city || ''}
+
+PRODUITS:
+${quoteData.products.map(p => `- ${p.name} x${p.quantity} (${p.price_ht || 0}€ HT)`).join('\n')}
+
+TOTAL HT: ${totalHT}€
+
+Message: ${formData.message || 'Aucun'}`;
+
       const formSubmissionData = {
-        full_name: `${formData.company_name || ''} - ${formData.contact_name}`.trim().replace(/^- /, ''),
         email: formData.email,
-        phone: formData.phone || null,
-        address: formData.address || null,
-        postal_code: formData.postal_code || null,
-        service_type: 'Devis Pallmann Store',
-        surface: 0,
-        message: `[DEVIS PALLMANN-STORE]\n\nProduits:\n${quoteData.products.map(p => `- ${p.name} x${p.quantity}`).join('\n')}\n\nTotal HT: ${totalHT}€\n\nVille: ${formData.city || 'N/A'}\n\nMessage client: ${formData.message || 'Aucun'}`
+        phone: formData.phone || '',
+        message: messageContent
       };
 
       const { error: dbError } = await supabase
