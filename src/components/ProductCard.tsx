@@ -201,10 +201,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             ) : (
               <div className="flex items-baseline gap-1 flex-wrap">
-                <span className="text-lg sm:text-xl font-extrabold text-[#1A1A1A] whitespace-nowrap">
+                <span className="text-lg sm:text-xl font-extrabold text-[#E67E22] whitespace-nowrap">
                   {product.price_ht.toFixed(2)}€
                 </span>
-                <span className="text-[10px] text-[#6B6B6B] whitespace-nowrap">HT/{product.unit || 'UN'}</span>
+                <span className="text-[10px] text-gray-500 dark:text-gray-400 whitespace-nowrap">HT/{product.unit || 'UN'}</span>
               </div>
             )}
           </div>
