@@ -98,9 +98,28 @@ const QuotePage: React.FC = () => {
         status: 'pending',
       };
 
+      // Utiliser form_submissions (table existante qui fonctionne)
+      const formSubmissionData = {
+        full_name: `${formData.company_name || ''} - ${formData.contact_name}`.trim(),
+        email: formData.email,
+        phone: formData.phone || '',
+        service_type: 'Demande de devis Pallmann Store',
+        postal_code: formData.postal_code || '',
+        surface: 0,
+        message: JSON.stringify({
+          products: quoteData.products,
+          company_name: formData.company_name,
+          contact_name: formData.contact_name,
+          address: formData.address,
+          city: formData.city,
+          total_ht: totalHT,
+          user_message: formData.message
+        }, null, 2)
+      };
+
       const { error: dbError } = await supabase
-        .from('quote_requests')
-        .insert(quoteData);
+        .from('form_submissions')
+        .insert(formSubmissionData);
 
       if (dbError) {
         console.error('Supabase error:', dbError);
