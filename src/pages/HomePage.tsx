@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ProBanner from '../components/ProBanner';
 import MarqueeBanner from '../components/MarqueeBanner';
+import PromoCodeBanner from '../components/PromoCodeBanner';
 // SurfaceCalculator déplacé vers CalculateurPage
 import Footer from '../components/Footer';
 import TrustBar from '../components/TrustBar';
@@ -231,50 +232,64 @@ const HomePage: React.FC = () => {
     fetchData();
   }, []);
 
+  // Détection automatique de catégorie basée sur le nom du produit
+  const detectCategory = (product: any): { name: string; order: number } => {
+    const text = (product.name + ' ' + (product.description || '')).toLowerCase();
+    if (['vitrificateur', 'pall-x 9', 'pall-x 96', 'pall-x 98', 'is 90', 'extreme'].some(k => text.includes(k))) 
+      return { name: 'Vitrificateurs', order: 1 };
+    if (['huile', 'oil'].some(k => text.includes(k))) 
+      return { name: 'Huiles', order: 2 };
+    if (['colle', 'p9', 'p15', 'p 625'].some(k => text.includes(k))) 
+      return { name: 'Colles', order: 3 };
+    if (['fond dur', 'pall-x 3', 'primer', 'texture'].some(k => text.includes(k))) 
+      return { name: 'Préparation', order: 4 };
+    if (['clean', 'care', 'finish care', 'refresher', 'soap'].some(k => text.includes(k))) 
+      return { name: 'Entretien', order: 5 };
+    if (['machine', 'ponceuse', 'spider', 'pad', 'rouleau'].some(k => text.includes(k))) 
+      return { name: 'Machines', order: 6 };
+    return { name: 'Autres', order: 99 };
+  };
+
   const fetchData = async () => {
     try {
-      const [productsRes, categoriesRes, subcategoriesRes] = await Promise.all([
-        supabase
-          .from('products')
-          .select('*')
-          .eq('is_available', true)
-          .order('name'),
-        supabase
-          .from('categories')
-          .select('*')
-          .order('display_order'),
-        supabase
-          .from('subcategories')
-          .select('*')
-          .order('name')
-      ]);
+      // Utiliser pallmann_products au lieu de products
+      const { data: productsData, error: productsError } = await supabase
+        .from('pallmann_products')
+        .select('*')
+        .order('name');
 
-      if (productsRes.error) throw productsRes.error;
-      if (categoriesRes.error) throw categoriesRes.error;
-      if (subcategoriesRes.error) throw subcategoriesRes.error;
+      if (productsError) throw productsError;
 
-      // Best-sellers Pallmann (définis manuellement)
-      const bestsellerSlugs = [
-        'pall-x-320',            // Fond dur 320
-        'pall-x-extreme-mat-ka', // PALL-X EXTREME MAT
-        'pall-x-pure',           // PALL-X PURE
-      ];
+      // Best-sellers Pallmann (produits phares définis par LPR)
+      const bestsellerConfig: Record<string, { order: number; tagline?: string }> = {
+        'pall-x-extreme': { order: 1, tagline: '⭐ Le plus polyvalent' },
+        'pall-x-pure': { order: 2, tagline: '🌿 Effet bois brut' },
+        'pall-x-320': { order: 3, tagline: '💪 Résistance max' },
+        'pall-x-325': { order: 4, tagline: '🎯 Préparation pro' },
+        'magic-oil-2k-change': { order: 5, tagline: '🍃 100% naturel' },
+        'magic-oil-2k-original': { order: 6, tagline: '👑 Le classique' },
+      };
+      const bestsellerSlugs = Object.keys(bestsellerConfig);
 
-      const enrichedProducts = (productsRes.data || []).map((product, index) => {
-        const category = categoriesRes.data?.find(c => c.id === product.category_id);
-        const subcategory = subcategoriesRes.data?.find(s => s.id === product.subcategory_id);
+      const enrichedProducts = (productsData || []).map((product) => {
+        const category = detectCategory(product);
+        const matchingBestseller = bestsellerSlugs.find(slug => product.slug?.includes(slug));
+        const config = matchingBestseller ? bestsellerConfig[matchingBestseller] : null;
         return {
           ...product,
-          category_name: category?.name,
-          category_display_order: category?.display_order ?? 99,
-          subcategory_name: subcategory?.name,
-          is_bestseller: product.is_bestseller || bestsellerSlugs.includes(product.slug),
+          price_ht: product.price_public_ht, // Mapper le champ prix
+          category_name: category.name,
+          category_display_order: category.order,
+          subcategory_name: '',
+          is_bestseller: !!matchingBestseller,
+          bestseller_order: config?.order || 99,
+          bestseller_tagline: config?.tagline || '',
           is_new: false,
           stock_status: 'in_stock' as const,
         };
       });
 
-      // Trier par catégorie (vitrificateurs/huiles en premier) puis par nom
+      // Trier par catégorie puis par nom
       enrichedProducts.sort((a, b) => {
         if (a.category_display_order !== b.category_display_order) {
           return a.category_display_order - b.category_display_order;
@@ -282,9 +297,18 @@ const HomePage: React.FC = () => {
         return a.name.localeCompare(b.name);
       });
 
+      // Générer les catégories uniques
+      const uniqueCategories = [...new Set(enrichedProducts.map(p => p.category_name))]
+        .map((name, index) => ({
+          id: name.toLowerCase().replace(/\s+/g, '-'),
+          name,
+          slug: name.toLowerCase().replace(/\s+/g, '-'),
+          display_order: index
+        }));
+
       setProducts(enrichedProducts);
-      setCategories(categoriesRes.data || []);
-      setSubcategories(subcategoriesRes.data || []);
+      setCategories(uniqueCategories);
+      setSubcategories([]);
     } catch (error) {
       console.error('Error fetching shop data:', error);
     } finally {
@@ -294,16 +318,13 @@ const HomePage: React.FC = () => {
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' ||
-      subcategories.find(s => s.id === product.subcategory_id)?.category_id === selectedCategory;
-
-    const matchesSubcategory = selectedSubcategory === 'all' ||
-      product.subcategory_id === selectedSubcategory;
+      product.category_name?.toLowerCase().replace(/\s+/g, '-') === selectedCategory;
 
     const matchesSearch = searchTerm === '' ||
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchesCategory && matchesSubcategory && matchesSearch;
+    return matchesCategory && matchesSearch;
   });
 
   const filteredSubcategories = selectedCategory === 'all'
@@ -311,7 +332,10 @@ const HomePage: React.FC = () => {
     : subcategories.filter(s => s.category_id === selectedCategory);
 
   // Get bestsellers
-  const bestsellers = products.filter(p => p.is_bestseller).slice(0, 4);
+  const bestsellers = products
+    .filter(p => p.is_bestseller)
+    .sort((a, b) => (a.bestseller_order || 99) - (b.bestseller_order || 99))
+    .slice(0, 6);
 
   if (loading) {
     return (
@@ -343,6 +367,7 @@ const HomePage: React.FC = () => {
 
       <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
         <Header />
+        <PromoCodeBanner />
         <ProBanner />
         <MarqueeBanner />
         <TrustBar />
@@ -557,42 +582,77 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Bestsellers Section - QUICK CONVERSION */}
+          {/* Bestsellers Section - PRODUITS PHARES */}
           {bestsellers.length > 0 && (
-            <div className="bg-gradient-to-b from-[#FFFFFF] to-white py-12">
-              <div className="max-w-7xl mx-auto px-4">
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp className="w-5 h-5 text-amber-500" />
-                      <span className="text-amber-600 font-bold text-sm uppercase tracking-wide">Les plus vendus</span>
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A]">
-                      Best-sellers Pallmann
-                    </h2>
-                  </div>
-                  <a 
-                    href="#products"
-                    className="hidden md:flex items-center gap-1 text-[#FF9900] font-semibold hover:underline"
+            <div className="relative py-16 overflow-hidden">
+              {/* Background avec dégradé dynamique */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-200/30 to-orange-200/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-yellow-200/30 to-amber-200/30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+              
+              <div className="relative max-w-7xl mx-auto px-4">
+                {/* Header accrocheur */}
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-white mb-4 shadow-lg"
+                    style={{ background: 'linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)' }}
                   >
-                    Voir tout
-                    <ChevronRight className="w-4 h-4" />
-                  </a>
+                    <TrendingUp className="w-4 h-4 animate-pulse" />
+                    🔥 PRODUITS PHARES
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-[#1A1A1A] mb-3">
+                    Les <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}>incontournables</span> Pallmann
+                  </h2>
+                  <p className="text-[#6B6B6B] text-lg max-w-2xl mx-auto">
+                    Plébiscités par les professionnels du parquet. 
+                    <span className="font-semibold text-[#1A1A1A]"> Qualité allemande, résultats garantis.</span>
+                  </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {bestsellers.map(product => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      validatedCode={validatedCode}
-                      onAddToCart={handleAddToCart}
-                      onAddToQuote={handleAddToQuote}
-                      isInQuote={isInQuote(product.id)}
-                      addedToCart={addedToCart === product.id}
-                      addedToQuote={addedToQuote === product.id}
-                    />
+                {/* Grille responsive avec effet hover */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                  {bestsellers.slice(0, 6).map((product, index) => (
+                    <div key={product.id} className="relative group">
+                      {/* Badge de classement pour les 3 premiers */}
+                      {index < 3 && (
+                        <div className="absolute -top-3 -left-3 z-20 w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-lg shadow-lg"
+                          style={{ background: index === 0 ? 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' : index === 1 ? 'linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%)' : 'linear-gradient(135deg, #CD7F32 0%, #B87333 100%)' }}
+                        >
+                          #{index + 1}
+                        </div>
+                      )}
+                      {/* Tagline vendeuse */}
+                      {(product as any).bestseller_tagline && (
+                        <div className="absolute -top-2 right-4 z-20 px-3 py-1 rounded-full text-xs font-bold text-white shadow-md"
+                          style={{ background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)' }}
+                        >
+                          {(product as any).bestseller_tagline}
+                        </div>
+                      )}
+                      <div className="transform transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl">
+                        <ProductCard
+                          product={product}
+                          validatedCode={validatedCode}
+                          onAddToCart={handleAddToCart}
+                          onAddToQuote={handleAddToQuote}
+                          isInQuote={isInQuote(product.id)}
+                          addedToCart={addedToCart === product.id}
+                          addedToQuote={addedToQuote === product.id}
+                        />
+                      </div>
+                    </div>
                   ))}
+                </div>
+
+                {/* CTA voir tout */}
+                <div className="text-center">
+                  <a 
+                    href="#products"
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1"
+                    style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
+                  >
+                    Voir tous les produits
+                    <ArrowRight className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
             </div>

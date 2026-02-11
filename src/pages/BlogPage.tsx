@@ -95,12 +95,12 @@ const BlogPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Blog - Conseils Parquet | Pallmann Store</title>
-        <meta name="description" content="Conseils et guides pratiques sur l'entretien, la vitrification et la rénovation de parquet. Découvrez nos astuces professionnelles pour sublimer vos sols." />
+        <title>Conseils & Guides Parquet Pro | Pallmann Store</title>
+        <meta name="description" content="Conseils d'experts, tutoriels DIY et guides professionnels sur l'entretien, la vitrification et la rénovation de parquet. Techniques pro et astuces terrain." />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://pallmann-store.com/blog" />
-        <meta property="og:title" content="Blog - Conseils Parquet | Pallmann Store" />
-        <meta property="og:description" content="Conseils et guides pratiques sur l'entretien et la rénovation de parquet." />
+        <meta property="og:title" content="Conseils & Guides Parquet Pro | Pallmann Store" />
+        <meta property="og:description" content="Conseils d'experts et guides professionnels pour l'entretien et la rénovation de parquet." />
         <meta property="og:url" content="https://pallmann-store.com/blog" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -113,10 +113,10 @@ const BlogPage: React.FC = () => {
             {/* Hero */}
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-6">
-                Blog <span className="text-[#FF9900]">Parquet</span>
+                Conseils & <span className="text-[#FF9900]">Guides Pro</span>
               </h1>
               <p className="text-xl text-[#6B6B6B] max-w-3xl mx-auto leading-relaxed">
-                Conseils d'experts, guides pratiques et actualités sur l'entretien, la vitrification et la rénovation de parquets.
+                Conseils d'experts, guides pratiques et tutoriels DIY sur l'entretien, la vitrification et la rénovation de parquets. Par des professionnels, pour tous.
               </p>
             </div>
 
@@ -181,7 +181,7 @@ const BlogPage: React.FC = () => {
                         <Calendar className="w-4 h-4" />
                         <span>{formatDate(article.published_at)}</span>
                       </div>
-                      <h2 className="text-xl font-bold text-[#1A1A1A] mb-3 line-clamp-2 group-hover:text-[#2D2D2D] transition-colors">
+                      <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A] mb-3 line-clamp-2 group-hover:text-[#FF9900] transition-colors leading-tight">
                         {article.title}
                       </h2>
                       {article.excerpt && (

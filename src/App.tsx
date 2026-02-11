@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { ThemeProvider } from './lib/ThemeProvider';
+import { AuthProvider } from './lib/AuthProvider';
 import { CartProvider } from './lib/CartContext';
 import { QuoteProvider } from './lib/QuoteContext';
 
 // Pages principales
 import HomePage from './pages/HomePage';
+import BoutiquePage from './pages/BoutiquePage';
 import CartPage from './pages/CartPage';
 import CheckoutSuccessPage from './pages/CheckoutSuccessPage';
 
@@ -40,11 +43,14 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <CartProvider>
-      <QuoteProvider>
-        <Routes>
+    <ThemeProvider>
+      <AuthProvider>
+        <CartProvider>
+          <QuoteProvider>
+            <Routes>
           {/* Boutique (Homepage) */}
           <Route path="/" element={<HomePage />} />
+          <Route path="/boutique" element={<BoutiquePage />} />
           
           {/* Panier & Checkout */}
           <Route path="/panier" element={<CartPage />} />
@@ -73,9 +79,11 @@ export default function App() {
           
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </QuoteProvider>
-    </CartProvider>
+            </Routes>
+          </QuoteProvider>
+        </CartProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 // Force rebuild 1770821188

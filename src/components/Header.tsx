@@ -5,6 +5,8 @@ import { Menu, X, ShoppingCart, FileText, Sparkles, Package } from 'lucide-react
 import { useCart } from '../lib/CartContext';
 import { useQuote } from '../lib/QuoteContext';
 import LanguageSelector from './LanguageSelector';
+import GoogleLoginButton from './GoogleLoginButton';
+import ThemeToggle from './ThemeToggle';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -95,8 +97,14 @@ const Header: React.FC = () => {
               {t('common.contact')}
             </Link>
 
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Language Selector */}
             <LanguageSelector />
+
+            {/* Connexion Google */}
+            <GoogleLoginButton />
 
             {/* Demande de devis */}
             <Link
