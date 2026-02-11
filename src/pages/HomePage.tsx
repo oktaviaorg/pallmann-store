@@ -312,8 +312,8 @@ const HomePage: React.FC = () => {
         <MarqueeBanner />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FBA600] mx-auto"></div>
-            <p className="mt-4 text-[#64748B]">Chargement de la boutique...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF9900] mx-auto"></div>
+            <p className="mt-4 text-[#6B6B6B]">Chargement de la boutique...</p>
           </div>
         </main>
         <Footer />
@@ -345,14 +345,14 @@ const HomePage: React.FC = () => {
             <div 
               className="absolute inset-0"
               style={{ 
-                background: 'linear-gradient(135deg, #1E3A5F 0%, #2C5282 50%, #1E3A5F 100%)'
+                background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #1A1A1A 100%)'
               }}
             ></div>
             
             <div 
               className="absolute inset-0 opacity-10"
               style={{
-                background: 'radial-gradient(circle at 20% 80%, #FBA600 0%, transparent 50%)',
+                background: 'radial-gradient(circle at 20% 80%, #FF9900 0%, transparent 50%)',
               }}
             ></div>
             
@@ -366,7 +366,7 @@ const HomePage: React.FC = () => {
                 
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">
                   Produits <span style={{
-                    background: 'linear-gradient(135deg, #FFD700 0%, #FBA600 100%)',
+                    background: 'linear-gradient(135deg, #F0C300 0%, #FF9900 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -383,7 +383,7 @@ const HomePage: React.FC = () => {
                   <a 
                     href="#products"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white text-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                    style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                    style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                   >
                     <ShoppingCart className="w-6 h-6" />
                     Commander maintenant
@@ -421,7 +421,7 @@ const HomePage: React.FC = () => {
                           width: `${francoProgress}%`,
                           background: francoProgress >= 100 
                             ? 'linear-gradient(90deg, #10B981 0%, #34D399 100%)'
-                            : 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)'
+                            : 'linear-gradient(90deg, #FF9900 0%, #F0C300 100%)'
                         }}
                       />
                     </div>
@@ -435,11 +435,11 @@ const HomePage: React.FC = () => {
                     Produits authentiques
                   </span>
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
-                    <Truck className="w-4 h-4 text-[#FFD700]" />
+                    <Truck className="w-4 h-4 text-[#F0C300]" />
                     48-72h chrono
                   </span>
                   <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-white/10">
-                    <Shield className="w-4 h-4 text-[#FBA600]" />
+                    <Shield className="w-4 h-4 text-[#FF9900]" />
                     Paiement sécurisé
                   </span>
                 </div>
@@ -462,9 +462,9 @@ const HomePage: React.FC = () => {
                     key={index}
                     className="bg-white rounded-xl p-4 text-center shadow-card border border-gray-100"
                   >
-                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#FBA600]" />
-                    <div className="text-2xl font-extrabold text-[#1A2634]">{stat.value}</div>
-                    <div className="text-xs text-[#64748B]">{stat.label}</div>
+                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-[#FF9900]" />
+                    <div className="text-2xl font-extrabold text-[#1A1A1A]">{stat.value}</div>
+                    <div className="text-xs text-[#6B6B6B]">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -472,27 +472,27 @@ const HomePage: React.FC = () => {
           </div>
 
           {/* CTA Calculateur */}
-          <div className="bg-gradient-to-r from-[#F8FAFC] to-[#F8FAFC] py-6 border-y border-[#BCCCDC]">
+          <div className="bg-gradient-to-r from-[#F8FAFC] to-[#F8FAFC] py-6 border-y border-[#D4D4D4]">
             <div className="max-w-7xl mx-auto px-4">
               <Link 
                 to="/calculateur-pro"
-                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#FBA600]/20 hover:border-[#FBA600] transition-all hover:shadow-xl group"
+                className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 shadow-lg border-2 border-[#FF9900]/20 hover:border-[#FF9900] transition-all hover:shadow-xl group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FBA600] to-[#E09500] flex items-center justify-center text-white">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#FF9900] to-[#F0C300] flex items-center justify-center text-white">
                     <Calculator className="w-7 h-7" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#1A2634] group-hover:text-[#FBA600] transition-colors">
+                    <h3 className="text-xl font-bold text-[#1A1A1A] group-hover:text-[#FF9900] transition-colors">
                       🧮 Calculateur PRO
                     </h3>
-                    <p className="text-[#627D98]">
+                    <p className="text-[#6B6B6B]">
                       Estimez vos besoins en produits selon votre surface — <strong>Gratuit</strong>
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold"
-                  style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                 >
                   Accéder au Calculateur PRO
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -516,7 +516,7 @@ const HomePage: React.FC = () => {
                       ? 'text-white shadow-md'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
-                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
+                  style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
                 >
                   Tous ({products.length})
                 </a>
@@ -538,7 +538,7 @@ const HomePage: React.FC = () => {
                           ? 'text-white shadow-md'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
-                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
+                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
                     >
                       {cat.name} ({count})
                     </a>
@@ -558,13 +558,13 @@ const HomePage: React.FC = () => {
                       <TrendingUp className="w-5 h-5 text-amber-500" />
                       <span className="text-amber-600 font-bold text-sm uppercase tracking-wide">Les plus vendus</span>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A2634]">
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A]">
                       Best-sellers Pallmann
                     </h2>
                   </div>
                   <a 
                     href="#products"
-                    className="hidden md:flex items-center gap-1 text-[#FBA600] font-semibold hover:underline"
+                    className="hidden md:flex items-center gap-1 text-[#FF9900] font-semibold hover:underline"
                   >
                     Voir tout
                     <ChevronRight className="w-4 h-4" />
@@ -593,15 +593,15 @@ const HomePage: React.FC = () => {
           <div className="bg-white py-12 lg:py-16">
             <div className="max-w-7xl mx-auto px-4">
               <div className="text-center mb-10">
-                <div className="inline-flex items-center gap-2 bg-[#D9E2EC] text-[#E09500] px-4 py-2 rounded-full text-sm font-bold mb-4">
+                <div className="inline-flex items-center gap-2 bg-[#D9E2EC] text-[#F0C300] px-4 py-2 rounded-full text-sm font-bold mb-4">
                   <Sparkles className="w-4 h-4" />
                   ÉQUIPEMENT PRO
                 </div>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A2634] mb-3">
+                <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A] mb-3">
                   Machines Professionnelles
                 </h2>
-                <p className="text-[#64748B] max-w-xl mx-auto">
-                  Ponceuses de référence mondiale. <span className="font-semibold text-[#1A2634]">Sélectionnez vos machines et demandez un devis.</span>
+                <p className="text-[#6B6B6B] max-w-xl mx-auto">
+                  Ponceuses de référence mondiale. <span className="font-semibold text-[#1A1A1A]">Sélectionnez vos machines et demandez un devis.</span>
                 </p>
               </div>
 
@@ -612,7 +612,7 @@ const HomePage: React.FC = () => {
                     <div 
                       key={machine.id}
                       className={`group relative bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 ${
-                        inQuote ? 'border-[#FBA600] ring-2 ring-[#FBA600]/20' : 'border-gray-100'
+                        inQuote ? 'border-[#FF9900] ring-2 ring-[#FF9900]/20' : 'border-gray-100'
                       }`}
                     >
                       {/* Checkbox de sélection */}
@@ -633,8 +633,8 @@ const HomePage: React.FC = () => {
                           }}
                           className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
                             inQuote 
-                              ? 'bg-[#FBA600] text-white' 
-                              : 'bg-white/90 border-2 border-gray-300 hover:border-[#FBA600]'
+                              ? 'bg-[#FF9900] text-white' 
+                              : 'bg-white/90 border-2 border-gray-300 hover:border-[#FF9900]'
                           }`}
                         >
                           {inQuote && <CheckCircle className="w-5 h-5" />}
@@ -643,13 +643,13 @@ const HomePage: React.FC = () => {
 
                       <div 
                         className="absolute top-0 left-0 right-0 h-1"
-                        style={{ background: 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)' }}
+                        style={{ background: 'linear-gradient(90deg, #FF9900 0%, #F0C300 100%)' }}
                       ></div>
                       
                       <div className="absolute top-4 right-4 z-10">
                         <span 
                           className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                          style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                          style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                         >
                           {machine.badge}
                         </span>
@@ -663,17 +663,17 @@ const HomePage: React.FC = () => {
                             className="max-h-40 w-auto object-contain group-hover:scale-110 transition-transform duration-300"
                           />
                         ) : (
-                          <div className="w-24 h-24 bg-gradient-to-br from-[#FBA600]/10 to-[#E09500]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Zap className="w-12 h-12 text-[#FBA600] group-hover:text-[#E09500] transition-colors" />
+                          <div className="w-24 h-24 bg-gradient-to-br from-[#FF9900]/10 to-[#F0C300]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <Zap className="w-12 h-12 text-[#FF9900] group-hover:text-[#F0C300] transition-colors" />
                           </div>
                         )}
                       </div>
 
                       <div className="p-5">
-                        <h3 className="text-lg font-extrabold text-[#1A2634] mb-1 group-hover:text-[#FBA600] transition-colors">
+                        <h3 className="text-lg font-extrabold text-[#1A1A1A] mb-1 group-hover:text-[#FF9900] transition-colors">
                           {machine.name}
                         </h3>
-                        <p className="text-[#64748B] text-sm mb-3 line-clamp-2">
+                        <p className="text-[#6B6B6B] text-sm mb-3 line-clamp-2">
                           {machine.description}
                         </p>
                         
@@ -681,7 +681,7 @@ const HomePage: React.FC = () => {
                           {machine.features.map((feature, i) => (
                             <span 
                               key={i}
-                              className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#FBA600] rounded"
+                              className="text-[10px] font-medium px-2 py-0.5 bg-[#F8FAFC] text-[#FF9900] rounded"
                             >
                               {feature}
                             </span>
@@ -704,10 +704,10 @@ const HomePage: React.FC = () => {
                           }}
                           className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all ${
                             inQuote 
-                              ? 'bg-[#1A2634] text-white hover:bg-[#0F172A]' 
+                              ? 'bg-[#1A1A1A] text-white hover:bg-[#0F172A]' 
                               : 'text-white hover:shadow-lg'
                           }`}
-                          style={!inQuote ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
+                          style={!inQuote ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
                         >
                           {inQuote ? (
                             <>
@@ -730,19 +730,19 @@ const HomePage: React.FC = () => {
               {/* Bouton récap si machines sélectionnées */}
               {machinesPro.some(m => isInQuote(`machine-${m.id}`)) && (
                 <div className="mt-8 text-center">
-                  <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-[#FBA600]/10 to-[#E09500]/10 p-6 rounded-2xl border border-[#FBA600]/20">
+                  <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-[#FF9900]/10 to-[#F0C300]/10 p-6 rounded-2xl border border-[#FF9900]/20">
                     <div className="text-left">
-                      <p className="font-bold text-[#1A2634]">
+                      <p className="font-bold text-[#1A1A1A]">
                         {machinesPro.filter(m => isInQuote(`machine-${m.id}`)).length} machine(s) sélectionnée(s)
                       </p>
-                      <p className="text-sm text-[#64748B]">
+                      <p className="text-sm text-[#6B6B6B]">
                         {machinesPro.filter(m => isInQuote(`machine-${m.id}`)).map(m => m.name).join(' + ')}
                       </p>
                     </div>
                     <Link
                       to="/demande-devis"
                       className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white transition-all hover:shadow-lg"
-                      style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                      style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                     >
                       <FileText className="w-5 h-5" />
                       Demander mon devis
@@ -758,10 +758,10 @@ const HomePage: React.FC = () => {
           {/* Products Section */}
           <div id="products" className="max-w-7xl mx-auto px-4 py-12">
             <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A2634] mb-2">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1A1A1A] mb-2">
                 Tous nos produits
               </h2>
-              <p className="text-[#64748B]">
+              <p className="text-[#6B6B6B]">
                 {products.length} produits disponibles • Livraison France entière
               </p>
             </div>
@@ -770,21 +770,21 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-card p-4 md:p-6 mb-8 border border-gray-100">
               {/* Search */}
               <div className="relative mb-6">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#64748B]" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#6B6B6B]" />
                 <input
                   type="text"
                   placeholder="Rechercher un produit..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#1A2634]"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#1A1A1A]"
                 />
               </div>
 
               {/* Category Pills */}
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <Filter className="w-4 h-4 text-[#64748B]" />
-                  <span className="text-sm font-semibold text-[#64748B]">Catégories</span>
+                  <Filter className="w-4 h-4 text-[#6B6B6B]" />
+                  <span className="text-sm font-semibold text-[#6B6B6B]">Catégories</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <button
@@ -797,7 +797,7 @@ const HomePage: React.FC = () => {
                         ? 'text-white shadow-md'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
-                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
+                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
                   >
                     Tout voir ({products.length})
                   </button>
@@ -818,7 +818,7 @@ const HomePage: React.FC = () => {
                             ? 'text-white shadow-md'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
-                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' } : {}}
+                        style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
                       >
                         {cat.name} ({count})
                       </button>
@@ -831,16 +831,16 @@ const HomePage: React.FC = () => {
               {selectedCategory !== 'all' && filteredSubcategories.length > 0 && (
                 <div className="mb-4 pt-4 border-t border-gray-100">
                   <div className="flex items-center gap-2 mb-3">
-                    <ChevronRight className="w-4 h-4 text-[#64748B]" />
-                    <span className="text-sm font-semibold text-[#64748B]">Sous-catégories</span>
+                    <ChevronRight className="w-4 h-4 text-[#6B6B6B]" />
+                    <span className="text-sm font-semibold text-[#6B6B6B]">Sous-catégories</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <button
                       onClick={() => setSelectedSubcategory('all')}
                       className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                         selectedSubcategory === 'all'
-                          ? 'bg-[#FBA600] text-white'
-                          : 'bg-blue-50 text-[#FBA600] hover:bg-blue-100'
+                          ? 'bg-[#FF9900] text-white'
+                          : 'bg-blue-50 text-[#FF9900] hover:bg-blue-100'
                       }`}
                     >
                       Toutes
@@ -853,8 +853,8 @@ const HomePage: React.FC = () => {
                           onClick={() => setSelectedSubcategory(sub.id)}
                           className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                             selectedSubcategory === sub.id
-                              ? 'bg-[#FBA600] text-white'
-                              : 'bg-blue-50 text-[#FBA600] hover:bg-blue-100'
+                              ? 'bg-[#FF9900] text-white'
+                              : 'bg-blue-50 text-[#FF9900] hover:bg-blue-100'
                           }`}
                         >
                           {sub.name} ({count})
@@ -868,8 +868,8 @@ const HomePage: React.FC = () => {
               {/* Results count */}
               {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm) && (
                 <div className="mt-4 flex items-center justify-between text-sm">
-                  <span className="text-[#64748B]">
-                    <span className="font-bold text-[#1A2634]">{filteredProducts.length}</span> produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
+                  <span className="text-[#6B6B6B]">
+                    <span className="font-bold text-[#1A1A1A]">{filteredProducts.length}</span> produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
                   </span>
                   <button
                     onClick={() => {
@@ -877,7 +877,7 @@ const HomePage: React.FC = () => {
                       setSelectedSubcategory('all');
                       setSearchTerm('');
                     }}
-                    className="text-[#E09500] font-semibold hover:underline"
+                    className="text-[#F0C300] font-semibold hover:underline"
                   >
                     Réinitialiser
                   </button>
@@ -904,10 +904,10 @@ const HomePage: React.FC = () => {
             ) : (
               <div className="bg-white rounded-2xl shadow-card p-12 text-center border border-gray-100">
                 <Search className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-                <h3 className="text-xl font-bold text-[#1A2634] mb-2">
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">
                   Aucun produit trouvé
                 </h3>
-                <p className="text-[#64748B] mb-6">
+                <p className="text-[#6B6B6B] mb-6">
                   Essayez d'autres critères de recherche
                 </p>
                 <button
@@ -917,7 +917,7 @@ const HomePage: React.FC = () => {
                     setSearchTerm('');
                   }}
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
-                  style={{ background: 'linear-gradient(135deg, #FBA600 0%, #E09500 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                 >
                   Voir tous les produits
                 </button>
@@ -927,15 +927,15 @@ const HomePage: React.FC = () => {
             {/* Shipping CTA */}
             <div 
               className="mt-12 rounded-2xl p-8 text-center text-white relative overflow-hidden"
-              style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 50%, #FBA600 100%)' }}
+              style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #243B53 50%, #FF9900 100%)' }}
             >
               <div 
                 className="absolute top-0 left-0 right-0 h-1"
-                style={{ background: 'linear-gradient(90deg, #FBA600 0%, #E09500 100%)' }}
+                style={{ background: 'linear-gradient(90deg, #FF9900 0%, #F0C300 100%)' }}
               ></div>
               
               <div className="flex items-center justify-center gap-3 mb-4">
-                <Package className="w-8 h-8 text-[#FBA600]" />
+                <Package className="w-8 h-8 text-[#FF9900]" />
                 <h2 className="text-2xl font-extrabold">Franco de port dès 630€ HT</h2>
               </div>
               <p className="text-white/80 mb-6 max-w-xl mx-auto">
@@ -943,7 +943,7 @@ const HomePage: React.FC = () => {
               </p>
               <Link
                 to="/panier"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#1A2634] bg-white hover:bg-gray-100 transition-all shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#1A1A1A] bg-white hover:bg-gray-100 transition-all shadow-lg"
               >
                 <ShoppingCart className="w-5 h-5" />
                 Voir mon panier

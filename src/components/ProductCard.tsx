@@ -70,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {/* Badges */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
         {product.category_name && (
-          <span className="bg-[#1A2634] text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide">
+          <span className="bg-[#1A1A1A] text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide">
             {product.category_name}
           </span>
         )}
@@ -140,18 +140,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Card Body */}
       <div className="p-4 flex-grow flex flex-col">
-        <h3 className="text-sm font-bold text-[#1A2634] mb-1 group-hover:text-[#E67E22] transition-colors line-clamp-2 leading-tight">
+        <h3 className="text-sm font-bold text-[#1A1A1A] mb-1 group-hover:text-[#E67E22] transition-colors line-clamp-2 leading-tight">
           {product.name}
         </h3>
         
         {product.subcategory_name && (
-          <p className="text-[10px] text-[#64748B] mb-1 uppercase tracking-wide">
+          <p className="text-[10px] text-[#6B6B6B] mb-1 uppercase tracking-wide">
             {product.subcategory_name}
           </p>
         )}
 
         {product.description && (
-          <p className="text-[#64748B] text-xs mb-2 line-clamp-2 flex-grow">
+          <p className="text-[#6B6B6B] text-xs mb-2 line-clamp-2 flex-grow">
             {product.description}
           </p>
         )}
@@ -164,7 +164,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               className={`w-3 h-3 ${i < 4 ? 'text-amber-400 fill-amber-400' : 'text-gray-200'}`} 
             />
           ))}
-          <span className="text-[10px] text-[#64748B] ml-1">Pro</span>
+          <span className="text-[10px] text-[#6B6B6B] ml-1">Pro</span>
         </div>
 
         {/* Prix - SUPER VISIBLE */}
@@ -186,7 +186,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   >
                     {getDiscountedPrice(product.price_public_ht).toFixed(2)}€
                   </span>
-                  <span className="text-[10px] text-[#64748B]">HT/{product.unit || 'L'}</span>
+                  <span className="text-[10px] text-[#6B6B6B]">HT/{product.unit || 'L'}</span>
                 </div>
                 <div className="flex items-center gap-1 mt-1">
                   <span className="bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
@@ -199,10 +199,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             ) : (
               <div className="flex items-baseline gap-1">
-                <span className="text-xl font-extrabold text-[#1A2634]">
+                <span className="text-xl font-extrabold text-[#1A1A1A]">
                   {product.price_public_ht.toFixed(2)}€
                 </span>
-                <span className="text-[10px] text-[#64748B]">HT/{product.unit || 'L'}</span>
+                <span className="text-[10px] text-[#6B6B6B]">HT/{product.unit || 'L'}</span>
               </div>
             )}
           </div>
@@ -214,7 +214,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             href={product.pdf_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[10px] text-[#64748B] hover:text-[#D35400] transition-colors mb-2"
+            className="inline-flex items-center gap-1 text-[10px] text-[#6B6B6B] hover:text-[#D35400] transition-colors mb-2"
           >
             <Download className="w-3 h-3" />
             Fiche technique PDF
@@ -254,11 +254,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onClick={() => onAddToQuote(product)}
           className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
             addedToQuote 
-              ? 'bg-[#1A2634] text-white' 
+              ? 'bg-[#1A1A1A] text-white' 
               : isInQuote
                 ? 'bg-[#D9E2EC] text-[#D35400] border border-[#D35400]/20'
                 : product.price_public_ht
-                  ? 'bg-[#FFFFFF] hover:bg-[#F8FAFC] text-[#64748B] border border-gray-200'
+                  ? 'bg-[#FFFFFF] hover:bg-[#F8FAFC] text-[#6B6B6B] border border-gray-200'
                   : 'text-white shadow-md hover:shadow-xl'
           }`}
           style={!product.price_public_ht && !addedToQuote && !isInQuote ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}

@@ -99,10 +99,10 @@ const BlogPage: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Hero */}
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-[#1E3A5F] mb-6">
-                Blog <span className="text-[#FBA600]">Parquet</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-[#1A1A1A] mb-6">
+                Blog <span className="text-[#FF9900]">Parquet</span>
               </h1>
-              <p className="text-xl text-[#64748B] max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-[#6B6B6B] max-w-3xl mx-auto leading-relaxed">
                 Conseils d'experts, guides pratiques et actualités sur l'entretien, la vitrification et la rénovation de parquets.
               </p>
             </div>
@@ -114,8 +114,8 @@ const BlogPage: React.FC = () => {
                   onClick={() => setSelectedCategory('all')}
                   className={`px-6 py-2 rounded-full font-semibold transition-all ${
                     selectedCategory === 'all'
-                      ? 'bg-[#FBA600] text-white shadow-lg'
-                      : 'bg-white text-[#2C5282] hover:bg-[#EBF4FF] border border-gray-200'
+                      ? 'bg-[#FF9900] text-white shadow-lg'
+                      : 'bg-white text-[#2D2D2D] hover:bg-[#EBF4FF] border border-gray-200'
                   }`}
                 >
                   Tous ({articles.length})
@@ -126,8 +126,8 @@ const BlogPage: React.FC = () => {
                     onClick={() => setSelectedCategory(category.id)}
                     className={`px-6 py-2 rounded-full font-semibold transition-all ${
                       selectedCategory === category.id
-                        ? 'bg-[#FBA600] text-white shadow-lg'
-                        : 'bg-white text-[#2C5282] hover:bg-[#EBF4FF] border border-gray-200'
+                        ? 'bg-[#FF9900] text-white shadow-lg'
+                        : 'bg-white text-[#2D2D2D] hover:bg-[#EBF4FF] border border-gray-200'
                     }`}
                   >
                     {category.name}
@@ -139,12 +139,12 @@ const BlogPage: React.FC = () => {
             {/* Articles */}
             {loading ? (
               <div className="text-center py-16">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#1E3A5F] border-t-transparent"></div>
-                <p className="text-[#64748B] mt-4">Chargement des articles...</p>
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#1A1A1A] border-t-transparent"></div>
+                <p className="text-[#6B6B6B] mt-4">Chargement des articles...</p>
               </div>
             ) : filteredArticles.length === 0 ? (
               <div className="text-center py-16">
-                <p className="text-[#64748B] text-xl">Aucun article disponible pour le moment.</p>
+                <p className="text-[#6B6B6B] text-xl">Aucun article disponible pour le moment.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -164,11 +164,11 @@ const BlogPage: React.FC = () => {
                       </div>
                     )}
                     <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center gap-2 text-[#64748B] text-sm mb-3">
+                      <div className="flex items-center gap-2 text-[#6B6B6B] text-sm mb-3">
                         <Calendar className="w-4 h-4" />
                         <span>{formatDate(article.published_at)}</span>
                       </div>
-                      <h2 className="text-xl font-bold text-[#1E3A5F] mb-3 line-clamp-2 group-hover:text-[#2C5282] transition-colors">
+                      <h2 className="text-xl font-bold text-[#1A1A1A] mb-3 line-clamp-2 group-hover:text-[#2D2D2D] transition-colors">
                         {article.title}
                       </h2>
                       {article.excerpt && (
@@ -178,7 +178,7 @@ const BlogPage: React.FC = () => {
                       )}
                       <Link
                         to={`/blog/${article.slug}`}
-                        className="inline-flex items-center gap-2 text-[#FBA600] font-semibold hover:gap-3 transition-all mt-auto"
+                        className="inline-flex items-center gap-2 text-[#FF9900] font-semibold hover:gap-3 transition-all mt-auto"
                       >
                         Lire la suite
                         <ArrowRight className="w-4 h-4" />
@@ -190,8 +190,8 @@ const BlogPage: React.FC = () => {
             )}
 
             {/* CTA - Bleu avec accent orange */}
-            <div className="mt-16 bg-gradient-to-r from-[#1E3A5F] to-[#2C5282] rounded-xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-[#FBA600]"></div>
+            <div className="mt-16 bg-gradient-to-r from-[#1A1A1A] to-[#2D2D2D] rounded-xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-[#FF9900]"></div>
               <h2 className="text-3xl font-bold mb-4">
                 Besoin de produits professionnels ?
               </h2>
@@ -200,7 +200,7 @@ const BlogPage: React.FC = () => {
               </p>
               <Link
                 to="/"
-                className="inline-block bg-[#FBA600] hover:bg-[#E09500] text-white px-8 py-4 rounded-lg font-bold transition-all shadow-sm hover:shadow-md"
+                className="inline-block bg-[#FF9900] hover:bg-[#F0C300] text-white px-8 py-4 rounded-lg font-bold transition-all shadow-sm hover:shadow-md"
               >
                 Voir la boutique
               </Link>

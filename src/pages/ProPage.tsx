@@ -137,15 +137,15 @@ const ProPage: React.FC = () => {
 
         <main className="flex-grow">
           {/* Hero Section - Bleu moderne */}
-          <div className="bg-gradient-to-br from-[#1E3A5F] via-[#2C5282] to-[#1A365D] py-16 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-[#FBA600]"></div>
+          <div className="bg-gradient-to-br from-[#1A1A1A] via-[#2D2D2D] to-[#1A365D] py-16 relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-[#FF9900]"></div>
             <div className="max-w-4xl mx-auto px-4 text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-semibold mb-6">
-                <Building2 className="w-4 h-4 text-[#FBA600]" />
+                <Building2 className="w-4 h-4 text-[#FF9900]" />
                 Espace réservé aux professionnels
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                Espace <span className="text-[#FBA600]">Professionnel</span>
+                Espace <span className="text-[#FF9900]">Professionnel</span>
               </h1>
               <p className="text-xl text-white/90 max-w-2xl mx-auto">
                 Demandez votre code réduction et bénéficiez de tarifs préférentiels sur tous les produits Pallmann
@@ -158,61 +158,61 @@ const ProPage: React.FC = () => {
               {/* Informations */}
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-[#1E3A5F] mb-6">
+                  <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6">
                     Pourquoi devenir client PRO ?
                   </h2>
                   
                   <div className="space-y-4">
                     <div className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-card border border-gray-100">
                       <div className="p-3 bg-[#EBF4FF] rounded-lg">
-                        <Package className="w-6 h-6 text-[#1E3A5F]" />
+                        <Package className="w-6 h-6 text-[#1A1A1A]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[#1E3A5F]">Tarifs préférentiels</h3>
-                        <p className="text-[#64748B] text-sm">Code réduction personnalisé sur l'ensemble du catalogue Pallmann</p>
+                        <h3 className="font-semibold text-[#1A1A1A]">Tarifs préférentiels</h3>
+                        <p className="text-[#6B6B6B] text-sm">Code réduction personnalisé sur l'ensemble du catalogue Pallmann</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-card border border-gray-100">
                       <div className="p-3 bg-[#EBF4FF] rounded-lg">
-                        <Truck className="w-6 h-6 text-[#1E3A5F]" />
+                        <Truck className="w-6 h-6 text-[#1A1A1A]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[#1E3A5F]">Franco de port dès 630€ HT</h3>
-                        <p className="text-[#64748B] text-sm">En dessous : 9,90€ par article</p>
+                        <h3 className="font-semibold text-[#1A1A1A]">Franco de port dès 630€ HT</h3>
+                        <p className="text-[#6B6B6B] text-sm">En dessous : 9,90€ par article</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-4 p-4 bg-white rounded-xl shadow-card border border-gray-100">
                       <div className="p-3 bg-[#EBF4FF] rounded-lg">
-                        <MapPin className="w-6 h-6 text-[#1E3A5F]" />
+                        <MapPin className="w-6 h-6 text-[#1A1A1A]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-[#1E3A5F]">Livraison sur toute la France</h3>
-                        <p className="text-[#64748B] text-sm">Métropole et DOM-TOM (conditions spécifiques)</p>
+                        <h3 className="font-semibold text-[#1A1A1A]">Livraison sur toute la France</h3>
+                        <p className="text-[#6B6B6B] text-sm">Métropole et DOM-TOM (conditions spécifiques)</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Info box - Bleu foncé */}
-                <div className="bg-gradient-to-br from-[#1E3A5F] to-[#2C5282] rounded-2xl p-6 text-white relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#FBA600]"></div>
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2D2D2D] rounded-2xl p-6 text-white relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#FF9900]"></div>
                   <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                    <Truck className="w-5 h-5 text-[#FBA600]" />
+                    <Truck className="w-5 h-5 text-[#FF9900]" />
                     Conditions de livraison
                   </h3>
                   <ul className="space-y-3 text-gray-200">
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#FBA600] flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#FF9900] flex-shrink-0" />
                       <span><strong className="text-white">Franco de port</strong> à partir de 630€ HT</span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#FBA600] flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#FF9900] flex-shrink-0" />
                       <span>En dessous : <strong className="text-white">9,90€ par article</strong></span>
                     </li>
                     <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#FBA600] flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#FF9900] flex-shrink-0" />
                       <span>Livraison en <strong className="text-white">48-72h ouvrées</strong></span>
                     </li>
                   </ul>
@@ -226,32 +226,32 @@ const ProPage: React.FC = () => {
                     <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <CheckCircle className="w-10 h-10 text-green-500" />
                     </div>
-                    <h2 className="text-2xl font-bold text-[#1E3A5F] mb-4">
+                    <h2 className="text-2xl font-bold text-[#1A1A1A] mb-4">
                       Demande envoyée !
                     </h2>
-                    <p className="text-[#64748B] mb-6">
+                    <p className="text-[#6B6B6B] mb-6">
                       Nous avons bien reçu votre demande d'inscription professionnelle. 
                       Notre équipe reviendra vers vous dans les plus brefs délais avec votre code réduction personnalisé.
                     </p>
                     <button
                       onClick={() => setSuccess(false)}
-                      className="text-[#FBA600] hover:text-[#E09500] font-semibold"
+                      className="text-[#FF9900] hover:text-[#F0C300] font-semibold"
                     >
                       Faire une nouvelle demande
                     </button>
                   </div>
                 ) : (
                   <>
-                    <h2 className="text-2xl font-bold text-[#1E3A5F] mb-2">
+                    <h2 className="text-2xl font-bold text-[#1A1A1A] mb-2">
                       Demandez votre code réduction
                     </h2>
-                    <p className="text-[#64748B] mb-6">
+                    <p className="text-[#6B6B6B] mb-6">
                       Remplissez ce formulaire pour recevoir vos identifiants professionnels
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div>
-                        <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                           <Building2 className="w-4 h-4 inline mr-1" />
                           Nom de l'entreprise *
                         </label>
@@ -261,13 +261,13 @@ const ProPage: React.FC = () => {
                           value={formData.company_name}
                           onChange={handleChange}
                           placeholder="Ex: Parquets Dupont SARL"
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                           <FileText className="w-4 h-4 inline mr-1" />
                           Numéro SIRET *
                         </label>
@@ -278,13 +278,13 @@ const ProPage: React.FC = () => {
                           onChange={handleChange}
                           placeholder="14 chiffres"
                           maxLength={17}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                           <User className="w-4 h-4 inline mr-1" />
                           Nom du contact *
                         </label>
@@ -294,14 +294,14 @@ const ProPage: React.FC = () => {
                           value={formData.contact_name}
                           onChange={handleChange}
                           placeholder="Prénom Nom"
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                           required
                         />
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                             <Mail className="w-4 h-4 inline mr-1" />
                             Email *
                           </label>
@@ -311,12 +311,12 @@ const ProPage: React.FC = () => {
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="contact@entreprise.fr"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                             <Phone className="w-4 h-4 inline mr-1" />
                             Téléphone *
                           </label>
@@ -326,14 +326,14 @@ const ProPage: React.FC = () => {
                             value={formData.phone}
                             onChange={handleChange}
                             placeholder="06 12 34 56 78"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                             required
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                           <MapPin className="w-4 h-4 inline mr-1" />
                           Adresse complète
                         </label>
@@ -343,7 +343,7 @@ const ProPage: React.FC = () => {
                           value={formData.address}
                           onChange={handleChange}
                           placeholder="Numéro et rue"
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all mb-3 text-[#2D3748]"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all mb-3 text-[#2D3748]"
                         />
                         <div className="grid grid-cols-2 gap-3">
                           <input
@@ -352,7 +352,7 @@ const ProPage: React.FC = () => {
                             value={formData.postal_code}
                             onChange={handleChange}
                             placeholder="Code postal"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                           />
                           <input
                             type="text"
@@ -360,13 +360,13 @@ const ProPage: React.FC = () => {
                             value={formData.city}
                             onChange={handleChange}
                             placeholder="Ville"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all text-[#2D3748]"
+                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#2D3748]"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-[#1E3A5F] mb-2">
+                        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
                           Message (optionnel)
                         </label>
                         <textarea
@@ -375,7 +375,7 @@ const ProPage: React.FC = () => {
                           onChange={handleChange}
                           placeholder="Précisions sur votre activité, volumes estimés..."
                           rows={3}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all resize-none text-[#2D3748]"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all resize-none text-[#2D3748]"
                         />
                       </div>
 
@@ -389,7 +389,7 @@ const ProPage: React.FC = () => {
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-[#FBA600] hover:bg-[#E09500] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
+                        className="w-full bg-[#FF9900] hover:bg-[#F0C300] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                       >
                         {loading ? (
                           <>
@@ -404,7 +404,7 @@ const ProPage: React.FC = () => {
                         )}
                       </button>
 
-                      <p className="text-xs text-[#64748B] text-center">
+                      <p className="text-xs text-[#6B6B6B] text-center">
                         En soumettant ce formulaire, vous acceptez d'être contacté par notre équipe commerciale.
                       </p>
                     </form>

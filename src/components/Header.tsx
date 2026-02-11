@@ -42,10 +42,10 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="flex flex-col leading-tight">
-              <span className="text-xl font-extrabold text-[#1A2634] tracking-tight group-hover:text-[#E67E22] transition-colors">
+              <span className="text-xl font-extrabold text-[#1A1A1A] tracking-tight group-hover:text-[#E67E22] transition-colors">
                 PALLMANN STORE
               </span>
-              <span className="text-xs text-[#64748B] font-medium">
+              <span className="text-xs text-[#6B6B6B] font-medium">
                 Groupe Epenon
               </span>
             </div>
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
               className={`transition-all font-semibold ${
                 isActive('/') && location.pathname === '/' 
                   ? 'text-[#E67E22] border-b-2 border-[#D35400] pb-1' 
-                  : 'text-[#64748B] hover:text-[#E67E22]'
+                  : 'text-[#6B6B6B] hover:text-[#E67E22]'
               }`}
             >
               {t('common.shop')}
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
               className={`transition-all font-semibold ${
                 isActive('/blog') 
                   ? 'text-[#E67E22] border-b-2 border-[#D35400] pb-1' 
-                  : 'text-[#64748B] hover:text-[#E67E22]'
+                  : 'text-[#6B6B6B] hover:text-[#E67E22]'
               }`}
             >
               {t('common.blog')}
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
               className={`transition-all font-semibold flex items-center gap-1 ${
                 isActive('/pro') 
                   ? 'text-[#E67E22] border-b-2 border-[#D35400] pb-1' 
-                  : 'text-[#64748B] hover:text-[#E67E22]'
+                  : 'text-[#6B6B6B] hover:text-[#E67E22]'
               }`}
             >
               <Sparkles className="w-4 h-4" />
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
               className={`transition-all font-semibold ${
                 isActive('/contact') 
                   ? 'text-[#E67E22] border-b-2 border-[#D35400] pb-1' 
-                  : 'text-[#64748B] hover:text-[#E67E22]'
+                  : 'text-[#6B6B6B] hover:text-[#E67E22]'
               }`}
             >
               {t('common.contact')}
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
             {/* Demande de devis */}
             <Link
               to="/demande-devis"
-              className="relative flex items-center gap-2 bg-[#1A2634] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
+              className="relative flex items-center gap-2 bg-[#1A1A1A] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
             >
               <FileText className="w-5 h-5" />
               <span className="hidden lg:inline">{t('common.quote')}</span>
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
               to="/demande-devis"
               className="relative p-2"
             >
-              <FileText className="w-6 h-6 text-[#1A2634]" />
+              <FileText className="w-6 h-6 text-[#1A1A1A]" />
               {quoteItemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-[#D35400] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {quoteItemCount}
@@ -162,9 +162,9 @@ const Header: React.FC = () => {
               aria-label="Menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#1A2634]" />
+                <X className="w-6 h-6 text-[#1A1A1A]" />
               ) : (
-                <Menu className="w-6 h-6 text-[#1A2634]" />
+                <Menu className="w-6 h-6 text-[#1A1A1A]" />
               )}
             </button>
           </div>
@@ -178,7 +178,7 @@ const Header: React.FC = () => {
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/') && location.pathname === '/' 
                   ? 'bg-[#F8FAFC] text-[#E67E22]' 
-                  : 'text-[#64748B] hover:bg-[#FFFFFF]'
+                  : 'text-[#6B6B6B] hover:bg-[#FFFFFF]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -189,7 +189,7 @@ const Header: React.FC = () => {
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/blog') 
                   ? 'bg-[#F8FAFC] text-[#E67E22]' 
-                  : 'text-[#64748B] hover:bg-[#FFFFFF]'
+                  : 'text-[#6B6B6B] hover:bg-[#FFFFFF]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -200,7 +200,7 @@ const Header: React.FC = () => {
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/pro') 
                   ? 'bg-[#F8FAFC] text-[#E67E22]' 
-                  : 'text-[#64748B] hover:bg-[#FFFFFF]'
+                  : 'text-[#6B6B6B] hover:bg-[#FFFFFF]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -211,7 +211,7 @@ const Header: React.FC = () => {
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/demande-devis') 
                   ? 'bg-[#F8FAFC] text-[#E67E22]' 
-                  : 'text-[#64748B] hover:bg-[#FFFFFF]'
+                  : 'text-[#6B6B6B] hover:bg-[#FFFFFF]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -222,7 +222,7 @@ const Header: React.FC = () => {
               className={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
                 isActive('/contact') 
                   ? 'bg-[#F8FAFC] text-[#E67E22]' 
-                  : 'text-[#64748B] hover:bg-[#FFFFFF]'
+                  : 'text-[#6B6B6B] hover:bg-[#FFFFFF]'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -233,7 +233,7 @@ const Header: React.FC = () => {
             {itemCount > 0 && (
               <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#F8FAFC] to-[#F0F4F8] border border-blue-100">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold text-[#1A2634]">{t('common.cart')}</span>
+                  <span className="font-semibold text-[#1A1A1A]">{t('common.cart')}</span>
                   <span className="font-bold text-[#E67E22]">{totalHT.toFixed(2)}€ HT</span>
                 </div>
                 <Link

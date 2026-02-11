@@ -5,107 +5,51 @@ export default {
   theme: {
     extend: {
       colors: {
-        // PALLMANN PRO - Style professionnel tech
+        // PALLMANN OFFICIEL
         primary: {
-          DEFAULT: '#E67E22',  // Orange Pallmann
-          dark: '#D35400',
-          light: '#F39C12',
-          50: '#FEF5E7',
-          100: '#FCE4C4',
-          200: '#F9D09D',
-          300: '#F5B876',
-          400: '#F1A04F',
-          500: '#E67E22',
-          600: '#D35400',
-          700: '#A04000',
-          800: '#6D2C00',
-          900: '#3A1700',
+          DEFAULT: '#FF9900',
+          dark: '#E68A00',
+          light: '#FFB340',
+          hover: '#F0C300',
+          50: '#FFF8E6',
+          100: '#FFECC4',
+          200: '#FFD98A',
+          300: '#FFC650',
+          400: '#FFB316',
+          500: '#FF9900',
+          600: '#E68A00',
+          700: '#B36B00',
+          800: '#804D00',
+          900: '#4D2E00',
         },
-        // Bleu foncé pro
+        // Fond sombre
         dark: {
-          DEFAULT: '#1A2634',
-          50: '#F0F4F8',
-          100: '#D9E2EC',
-          200: '#BCCCDC',
-          300: '#9FB3C8',
-          400: '#829AB1',
-          500: '#627D98',
-          600: '#486581',
-          700: '#334E68',
-          800: '#243B53',
-          900: '#1A2634',
+          DEFAULT: '#1A1A1A',
+          50: '#F5F5F5',
+          100: '#E5E5E5',
+          200: '#D4D4D4',
+          300: '#A3A3A3',
+          400: '#737373',
+          500: '#525252',
+          600: '#404040',
+          700: '#2D2D2D',
+          800: '#1A1A1A',
+          900: '#0A0A0A',
         },
-        // Surfaces
-        background: {
-          DEFAULT: '#FFFFFF',
-          alt: '#F8FAFC',
-          card: '#FFFFFF',
-          dark: '#1A2634',
-        },
-        // Texte
-        text: {
-          primary: '#1A2634',
-          secondary: '#627D98',
-          muted: '#9FB3C8',
-          light: '#FFFFFF',
-        },
-        // Accent vert succès
-        accent: {
-          DEFAULT: '#27AE60',
-          light: '#E8F8F0',
-          dark: '#1E8449',
-        },
-        // Legacy
-        secondary: {
-          50: '#F0F4F8',
-          100: '#D9E2EC',
-          200: '#BCCCDC',
-          300: '#9FB3C8',
-          400: '#829AB1',
-          500: '#627D98',
-          600: '#486581',
-          700: '#334E68',
-          800: '#243B53',
-          900: '#1A2634',
-        },
-        success: {
-          DEFAULT: '#27AE60',
-          light: '#E8F8F0',
-        },
+        // Bleu Pallmann (accent)
+        pallmann: {
+          blue: '#143D59',
+          gray: '#3c4650',
+        }
       },
       fontFamily: {
-        sans: ['Inter', 'Montserrat', 'sans-serif'],
-        display: ['Montserrat', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'soft': '0 4px 20px rgba(26, 38, 52, 0.08)',
-        'medium': '0 8px 30px rgba(26, 38, 52, 0.12)',
-        'strong': '0 20px 40px rgba(26, 38, 52, 0.15)',
-        'glow-orange': '0 0 30px rgba(230, 126, 34, 0.3)',
-        'card': '0 2px 8px rgba(26, 38, 52, 0.06), 0 4px 16px rgba(26, 38, 52, 0.04)',
-        'card-hover': '0 8px 24px rgba(26, 38, 52, 0.12), 0 4px 12px rgba(230, 126, 34, 0.08)',
-      },
-      backgroundImage: {
-        'gradient-pro': 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
-        'gradient-hero': 'linear-gradient(135deg, #1A2634 0%, #243B53 40%, #334E68 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #1A2634 0%, #243B53 100%)',
+        'card': '0 2px 8px rgba(0,0,0,0.08)',
+        'card-hover': '0 8px 24px rgba(0,0,0,0.12)',
       },
     },
   },
-  plugins: [
-    function({ addUtilities }) {
-      const newUtilities = {
-        '.bg-gradient-pro': {
-          background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
-        },
-        '.text-gradient-pro': {
-          background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
-          '-webkit-background-clip': 'text',
-          '-webkit-text-fill-color': 'transparent',
-          'background-clip': 'text',
-        },
-      }
-      addUtilities(newUtilities)
-    }
-  ],
+  plugins: [],
 };
