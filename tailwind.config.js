@@ -7,16 +7,16 @@ export default {
       colors: {
         // PALLMANN PRO - Style professionnel tech
         primary: {
-          DEFAULT: '#E67E22',  // Orange Pallmann
-          dark: '#D35400',
-          light: '#F39C12',
+          DEFAULT: '#C41E3A',  // Rouge Pallmann
+          dark: '#9B1830',
+          light: '#E8354F',
           50: '#FEF5E7',
           100: '#FCE4C4',
           200: '#F9D09D',
           300: '#F5B876',
           400: '#F1A04F',
-          500: '#E67E22',
-          600: '#D35400',
+          500: '#C41E3A',
+          600: '#9B1830',
           700: '#A04000',
           800: '#6D2C00',
           900: '#3A1700',
@@ -86,7 +86,7 @@ export default {
         'card-hover': '0 8px 24px rgba(26, 38, 52, 0.12), 0 4px 12px rgba(230, 126, 34, 0.08)',
       },
       backgroundImage: {
-        'gradient-pro': 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
+        'gradient-pro': 'linear-gradient(135deg, #C41E3A 0%, #9B1830 100%)',
         'gradient-hero': 'linear-gradient(135deg, #1A2634 0%, #243B53 40%, #334E68 100%)',
         'gradient-dark': 'linear-gradient(135deg, #1A2634 0%, #243B53 100%)',
       },
@@ -96,10 +96,10 @@ export default {
     function({ addUtilities }) {
       const newUtilities = {
         '.bg-gradient-pro': {
-          background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
+          background: 'linear-gradient(135deg, #C41E3A 0%, #9B1830 100%)',
         },
         '.text-gradient-pro': {
-          background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)',
+          background: 'linear-gradient(135deg, #C41E3A 0%, #9B1830 100%)',
           '-webkit-background-clip': 'text',
           '-webkit-text-fill-color': 'transparent',
           'background-clip': 'text',

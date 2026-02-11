@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-[#1A2634] text-white mt-auto">
+    <footer className="bg-[#1A1A1A] text-white mt-auto">
       {/* Gradient accent bar */}
       <div className="h-1" style={{ background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)' }}></div>
       

@@ -70,7 +70,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {/* Badges */}
       <div className="absolute top-3 left-3 z-10 flex flex-col gap-1">
         {product.category_name && (
-          <span className="bg-[#1A2634] text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide">
+          <span className="bg-[#1A1A1A] text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide">
             {product.category_name}
           </span>
         )}
@@ -140,7 +140,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Card Body */}
       <div className="p-4 flex-grow flex flex-col">
-        <h3 className="text-sm font-bold text-[#1A2634] mb-1 group-hover:text-[#E67E22] transition-colors line-clamp-2 leading-tight">
+        <h3 className="text-sm font-bold text-[#1A1A1A] mb-1 group-hover:text-[#E67E22] transition-colors line-clamp-2 leading-tight">
           {product.name}
         </h3>
         
@@ -199,7 +199,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </div>
             ) : (
               <div className="flex items-baseline gap-1">
-                <span className="text-xl font-extrabold text-[#1A2634]">
+                <span className="text-xl font-extrabold text-[#1A1A1A]">
                   {product.price_public_ht.toFixed(2)}€
                 </span>
                 <span className="text-[10px] text-[#64748B]">HT/{product.unit || 'L'}</span>
@@ -254,7 +254,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onClick={() => onAddToQuote(product)}
           className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
             addedToQuote 
-              ? 'bg-[#1A2634] text-white' 
+              ? 'bg-[#1A1A1A] text-white' 
               : isInQuote
                 ? 'bg-[#D9E2EC] text-[#D35400] border border-[#D35400]/20'
                 : product.price_public_ht

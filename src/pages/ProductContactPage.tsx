@@ -112,12 +112,12 @@ const ProductContactPage: React.FC = () => {
           <div className="bg-white border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
               <nav className="flex items-center space-x-2 text-sm">
-                <Link to="/" className="text-gray-500 hover:text-[#FBA600] transition-colors flex items-center gap-1">
+                <Link to="/" className="text-gray-500 hover:text-[#C41E3A] transition-colors flex items-center gap-1">
                   <Home className="w-4 h-4" />
                   <span>Accueil</span>
                 </Link>
                 <ChevronRight className="w-4 h-4 text-gray-400" />
-                <Link to="/boutique" className="text-gray-500 hover:text-[#FBA600] transition-colors">
+                <Link to="/boutique" className="text-gray-500 hover:text-[#C41E3A] transition-colors">
                   Boutique
                 </Link>
                 <ChevronRight className="w-4 h-4 text-gray-400" />
@@ -129,7 +129,7 @@ const ProductContactPage: React.FC = () => {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
 
             {/* Info Banner */}
-            <div className="bg-gradient-to-r from-[#FBA600] to-[#E09500] rounded-2xl shadow-xl p-8 mb-8 text-center">
+            <div className="bg-gradient-to-r from-[#C41E3A] to-[#9B1830] rounded-2xl shadow-xl p-8 mb-8 text-center">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/40 text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
                 <Clock className="w-4 h-4" />
                 Bientôt disponible
@@ -146,9 +146,9 @@ const ProductContactPage: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-8 mb-12">
 
               {/* Contact rapide */}
-              <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-[#FBA600]">
+              <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-[#C41E3A]">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-[#FBA600] rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-[#C41E3A] rounded-full flex items-center justify-center">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -163,7 +163,7 @@ const ProductContactPage: React.FC = () => {
 
                 <a
                   href="tel:+33757821306"
-                  className="inline-flex items-center gap-3 bg-[#FBA600] hover:bg-[#E09500] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all w-full justify-center shadow-md hover:shadow-lg hover:scale-105"
+                  className="inline-flex items-center gap-3 bg-[#C41E3A] hover:bg-[#9B1830] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all w-full justify-center shadow-md hover:shadow-lg hover:scale-105"
                 >
                   <Phone className="w-5 h-5" />
                   07 57 82 13 06
@@ -176,9 +176,9 @@ const ProductContactPage: React.FC = () => {
               </div>
 
               {/* Email rapide */}
-              <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-[#FBA600]">
+              <div className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-[#C41E3A]">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-[#FBA600] rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-[#C41E3A] rounded-full flex items-center justify-center">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -202,9 +202,9 @@ const ProductContactPage: React.FC = () => {
             </div>
 
             {/* Formulaire de demande */}
-            <div className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-[#FBA600]">
+            <div className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-[#C41E3A]">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#FBA600] to-[#E09500] rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#C41E3A] to-[#9B1830] rounded-full flex items-center justify-center">
                   <ShoppingCart className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -232,7 +232,7 @@ const ProductContactPage: React.FC = () => {
                     value={formData.product}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C41E3A] focus:border-transparent transition-all"
                     placeholder="Nom du produit"
                   />
                 </div>
@@ -249,7 +249,7 @@ const ProductContactPage: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C41E3A] focus:border-transparent transition-all"
                       placeholder="Jean Dupont"
                     />
                   </div>
@@ -265,7 +265,7 @@ const ProductContactPage: React.FC = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C41E3A] focus:border-transparent transition-all"
                       placeholder="06 12 34 56 78"
                     />
                   </div>
@@ -282,7 +282,7 @@ const ProductContactPage: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C41E3A] focus:border-transparent transition-all"
                     placeholder="jean.dupont@email.com"
                   />
                 </div>
@@ -297,7 +297,7 @@ const ProductContactPage: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FBA600] focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C41E3A] focus:border-transparent transition-all resize-none"
                     placeholder="Précisez la quantité souhaitée, votre délai, ou toute autre information utile..."
                   />
                 </div>
@@ -305,7 +305,7 @@ const ProductContactPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center gap-3 bg-gradient-to-r from-[#FBA600] to-[#E09500] hover:from-[#E09500] hover:to-[#FBA600] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed justify-center"
+                  className="w-full inline-flex items-center gap-3 bg-gradient-to-r from-[#C41E3A] to-[#9B1830] hover:from-[#9B1830] hover:to-[#C41E3A] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed justify-center"
                 >
                   {loading ? (
                     <>
@@ -330,7 +330,7 @@ const ProductContactPage: React.FC = () => {
             <div className="mt-8 text-center">
               <Link
                 to="/boutique"
-                className="inline-flex items-center gap-2 text-gray-600 hover:text-[#FBA600] transition-colors font-semibold"
+                className="inline-flex items-center gap-2 text-gray-600 hover:text-[#C41E3A] transition-colors font-semibold"
               >
                 <ChevronRight className="w-4 h-4 rotate-180" />
                 Retour à la boutique

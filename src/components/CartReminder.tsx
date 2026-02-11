@@ -45,11 +45,11 @@ const CartReminder: React.FC = () => {
             <ShoppingCart className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1">
-            <p className="font-bold text-[#1A2634] text-sm">
+            <p className="font-bold text-[#1A1A1A] text-sm">
               {itemCount} article{itemCount > 1 ? 's' : ''} dans votre panier
             </p>
             <p className="text-[#64748B] text-xs mt-0.5">
-              Total : <span className="font-bold text-[#1A2634]">{totalHT.toFixed(2)}€ HT</span>
+              Total : <span className="font-bold text-[#1A1A1A]">{totalHT.toFixed(2)}€ HT</span>
             </p>
 
             {/* Franco progress */}

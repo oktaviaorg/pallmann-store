@@ -146,7 +146,7 @@ const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) =>
           <Calculator className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-[#1A2634]">Calculateur de surface</h2>
+          <h2 className="text-xl font-bold text-[#1A1A1A]">Calculateur de surface</h2>
           <p className="text-sm text-[#64748B]">Estimez vos besoins en produits</p>
         </div>
       </div>
@@ -179,7 +179,7 @@ const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) =>
 
       {/* Product selector */}
       <div className="mb-6">
-        <label className="block text-sm font-semibold text-[#1A2634] mb-2">Produit</label>
+        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">Produit</label>
         <select
           value={selectedProduct}
           onChange={(e) => setSelectedProduct(e.target.value)}
@@ -201,7 +201,7 @@ const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) =>
       <div className="mb-6">
         {mode === 'surface-to-quantity' ? (
           <div>
-            <label className="block text-sm font-semibold text-[#1A2634] mb-2">
+            <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
               Surface à traiter (m²)
             </label>
             <input
@@ -215,7 +215,7 @@ const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) =>
           </div>
         ) : (
           <div>
-            <label className="block text-sm font-semibold text-[#1A2634] mb-2">
+            <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
               Quantité disponible ({product?.unit || 'L'})
             </label>
             <input
@@ -235,7 +235,7 @@ const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) =>
         <div className="bg-gradient-to-br from-[#F8FAFC] to-[#F0F4F8] rounded-xl p-6 border border-[#C7D2FE]">
           <div className="flex items-center gap-2 mb-4">
             <ArrowRight className="w-5 h-5 text-[#E67E22]" />
-            <span className="font-bold text-[#1A2634]">Résultat</span>
+            <span className="font-bold text-[#1A1A1A]">Résultat</span>
           </div>
 
           {mode === 'surface-to-quantity' && 'totalLiters' in result && (
@@ -251,14 +251,14 @@ const SurfaceCalculator: React.FC<SurfaceCalculatorProps> = ({ onAddToCart }) =>
 
               {result.containers.length > 0 && (
                 <div className="bg-white rounded-lg p-4 mt-4">
-                  <div className="text-sm font-semibold text-[#1A2634] mb-2">
+                  <div className="text-sm font-semibold text-[#1A1A1A] mb-2">
                     📦 Conditionnement suggéré :
                   </div>
                   <div className="space-y-1">
                     {result.containers.map((c, i) => (
                       <div key={i} className="flex justify-between text-sm">
                         <span className="text-[#64748B]">{c.count}x {c.size}{product.unit}</span>
-                        <span className="font-semibold text-[#1A2634]">{(c.count * c.size).toFixed(1)} {product.unit}</span>
+                        <span className="font-semibold text-[#1A1A1A]">{(c.count * c.size).toFixed(1)} {product.unit}</span>
                       </div>
                     ))}
                   </div>
