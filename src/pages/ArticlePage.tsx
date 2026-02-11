@@ -154,21 +154,53 @@ const ArticlePage: React.FC = () => {
         <Header />
 
         <main className="flex-grow">
-          {/* Hero Image */}
-          {article.featured_image && (
-            <div className="w-full h-64 md:h-96 bg-gray-200 relative overflow-hidden">
-              <img
-                src={article.featured_image}
-                alt={article.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            </div>
-          )}
+          {/* Hero avec titre superposé */}
+          <div className="relative">
+            {article.featured_image ? (
+              <div className="w-full h-72 md:h-[28rem] bg-gray-200 relative overflow-hidden">
+                <img
+                  src={article.featured_image}
+                  alt={article.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                
+                {/* Titre sur l'image */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
+                  <div className="max-w-4xl mx-auto">
+                    {article.categories?.name && (
+                      <span className="inline-flex items-center gap-1 text-sm text-[#FF9900] font-semibold mb-3 bg-black/30 px-3 py-1 rounded-full backdrop-blur-sm">
+                        <Tag className="w-4 h-4" />
+                        {article.categories.name}
+                      </span>
+                    )}
+                    <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight drop-shadow-lg">
+                      {article.title}
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Sans image - titre sur fond sombre */
+              <div className="bg-gradient-to-r from-[#1A1A1A] to-[#2D2D2D] py-12 md:py-16">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                  {article.categories?.name && (
+                    <span className="inline-flex items-center gap-1 text-sm text-[#FF9900] font-semibold mb-3">
+                      <Tag className="w-4 h-4" />
+                      {article.categories.name}
+                    </span>
+                  )}
+                  <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    {article.title}
+                  </h1>
+                </div>
+              </div>
+            )}
+          </div>
 
-          <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
             {/* Breadcrumb */}
-            <nav className="mb-8">
+            <nav className="mb-6">
               <Link
                 to="/blog"
                 className="inline-flex items-center gap-2 text-[#ff9900] hover:text-[#e68a00] font-semibold transition-colors"
@@ -178,18 +210,8 @@ const ArticlePage: React.FC = () => {
               </Link>
             </nav>
 
-            {/* Article Header */}
+            {/* Métadonnées article */}
             <header className="mb-8">
-              {article.categories?.name && (
-                <span className="inline-flex items-center gap-1 text-sm text-[#ff9900] font-semibold mb-4">
-                  <Tag className="w-4 h-4" />
-                  {article.categories.name}
-                </span>
-              )}
-              
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                {article.title}
-              </h1>
 
               <div className="flex flex-wrap items-center gap-4 text-gray-500 text-sm">
                 <span className="flex items-center gap-2">
