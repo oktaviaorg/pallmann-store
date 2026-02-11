@@ -376,3 +376,133 @@ textarea:focus-visible {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* ========================================
+   BLOG ARTICLES - Pallmann Store
+   ======================================== */
+
+/* Bouton d'achat CTA */
+.product-cta {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #007bff;
+}
+
+.product-cta.final {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+}
+
+.product-cta.final p {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.btn-buy {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #28a745;
+  color: white !important;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-buy:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+/* Produits recommandés */
+.products-related {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 0 8px 8px 0;
+}
+
+.products-related h3 {
+  margin-top: 0;
+  color: #856404;
+}
+
+.products-related ul {
+  margin-bottom: 0;
+}
+
+.products-related li {
+  margin: 0.5rem 0;
+}
+
+.products-related a {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* Tips et warnings */
+.tip {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: #d4edda;
+  border-left: 4px solid #28a745;
+  border-radius: 0 8px 8px 0;
+}
+
+.warning {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: #f8d7da;
+  border-left: 4px solid #dc3545;
+  border-radius: 0 8px 8px 0;
+}
+
+/* FAQ items */
+.faq-item {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.faq-item h3 {
+  margin-top: 0;
+  color: #007bff;
+  font-size: 1.1rem;
+}
+
+.faq-item p {
+  margin-bottom: 0;
+}
+
+/* Article headings */
+article h1 {
+  font-size: 2.2rem;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+article h2 {
+  font-size: 1.6rem;
+  color: #333;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #007bff;
+}
+
+article h3 {
+  font-size: 1.3rem;
+  color: #444;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
