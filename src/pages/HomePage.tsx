@@ -263,12 +263,11 @@ const HomePage: React.FC = () => {
 
       // Best-sellers Pallmann (produits phares définis par LPR)
       const bestsellerConfig: Record<string, { order: number; tagline?: string }> = {
-        'pall-x-extreme': { order: 1, tagline: '⭐ Le plus polyvalent' },
-        'pall-x-pure': { order: 2, tagline: '🌿 Effet bois brut' },
-        'pall-x-320': { order: 3, tagline: '💪 Résistance max' },
-        'pall-x-325': { order: 4, tagline: '🎯 Préparation pro' },
-        'magic-oil-2k-change': { order: 5, tagline: '🍃 100% naturel' },
-        'magic-oil-2k-original': { order: 6, tagline: '👑 Le classique' },
+        'pall-x-extreme': { order: 1, tagline: '🏆 N°1 des ventes' },
+        'pall-x-320': { order: 2, tagline: '💪 Ultra résistant' },
+        'magic-oil-2k': { order: 3, tagline: '🍃 Huile naturelle' },
+        'pall-x-pure': { order: 4, tagline: '🌿 Effet bois brut' },
+        'pall-x-333-color': { order: 5, tagline: '🎨 Teinte sur mesure' },
       };
       const bestsellerSlugs = Object.keys(bestsellerConfig);
 
