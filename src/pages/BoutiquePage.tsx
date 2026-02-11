@@ -546,13 +546,16 @@ const BoutiquePage: React.FC = () => {
                         </div>
                       )}
                       
-                      {/* Product Image */}
+                      {/* Product Image - déborde au-dessus du fond noir */}
                       {product.image_url && (
-                        <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 p-6">
+                        <div className="relative pt-6 pb-0">
+                          {/* Fond noir en bas */}
+                          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1A1A1A] to-[#2D2D2D] rounded-t-3xl"></div>
+                          {/* Image qui déborde */}
                           <img
                             src={product.image_url}
                             alt={product.name}
-                            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
+                            className="relative z-10 w-full h-52 object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-xl"
                           />
                         </div>
                       )}

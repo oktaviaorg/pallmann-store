@@ -124,19 +124,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       )}
 
-      {/* Product Image */}
-      <div className="relative bg-gradient-to-br from-[#FFFFFF] via-white to-[#F8FAFC] p-4 pt-10">
+      {/* Product Image - déborde au-dessus du fond noir */}
+      <div className="relative pt-6 pb-0">
+        {/* Fond noir en bas */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1A1A1A] to-[#2D2D2D] rounded-t-3xl"></div>
         {product.image_url ? (
           <img
             src={product.image_url}
             alt={product.name}
-            className={`w-full h-44 object-contain transition-transform duration-500 ${
+            className={`relative z-10 w-full h-48 object-contain transition-transform duration-500 drop-shadow-xl ${
               isHovered ? 'scale-110' : 'scale-100'
             }`}
           />
         ) : (
-          <div className="w-full h-36 flex items-center justify-center">
-            <ShoppingCart className="w-16 h-16 text-gray-200" />
+          <div className="relative z-10 w-full h-36 flex items-center justify-center">
+            <ShoppingCart className="w-16 h-16 text-gray-300" />
           </div>
         )}
         
