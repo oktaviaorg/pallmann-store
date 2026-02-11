@@ -58,7 +58,7 @@ const ContactPage: React.FC = () => {
             'Authorization': `Bearer ${supabaseAnonKey}`,
           },
           body: JSON.stringify({
-            from: 'onboarding@resend.dev',
+            from: 'pallmann@ponceur-parquet.fr',
             to: 'j.dietemann@renoline.fr',
             subject: `🔔 Pallmann Store - Message de ${formData.name}`,
             html: `
