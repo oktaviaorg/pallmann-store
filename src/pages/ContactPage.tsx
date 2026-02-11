@@ -46,6 +46,51 @@ const ContactPage: React.FC = () => {
 
       if (submitError) throw submitError;
 
+      // Envoyer notification email via Edge Function
+      try {
+        const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+        const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+        
+        await fetch(`${supabaseUrl}/functions/v1/send-form-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${supabaseAnonKey}`,
+          },
+          body: JSON.stringify({
+            from: 'onboarding@resend.dev',
+            to: 'j.dietemann@renoline.fr',
+            subject: `🔔 Pallmann Store - Message de ${formData.name}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #ff9900, #f0c300); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
+                  <h1 style="margin: 0;">📬 Nouveau message</h1>
+                  <p style="margin: 5px 0 0 0;">Pallmann Store</p>
+                </div>
+                <div style="padding: 20px; background: #f9f9f9; border: 1px solid #e0e0e0;">
+                  <p><strong>👤 Nom:</strong> ${formData.name}</p>
+                  <p><strong>📧 Email:</strong> <a href="mailto:${formData.email}">${formData.email}</a></p>
+                  <p><strong>📱 Téléphone:</strong> ${formData.phone || 'Non renseigné'}</p>
+                  <p><strong>📌 Sujet:</strong> ${formData.subject}</p>
+                  <hr style="border: 1px solid #ddd; margin: 15px 0;">
+                  <p><strong>💬 Message:</strong></p>
+                  <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #ff9900;">
+                    ${formData.message.replace(/\n/g, '<br>')}
+                  </div>
+                </div>
+                <div style="padding: 10px; text-align: center; color: #666; font-size: 12px; background: #f0f0f0; border-radius: 0 0 8px 8px;">
+                  Pallmann Store - ${new Date().toLocaleString('fr-FR')}
+                </div>
+              </div>
+            `,
+            replyTo: formData.email,
+          }),
+        });
+      } catch (emailError) {
+        console.error('Email notification failed:', emailError);
+        // On ne bloque pas si l'email échoue
+      }
+
       setSuccess(true);
       setFormData({ name: '', email: '', phone: '', subject: 'general', message: '' });
     } catch (err) {

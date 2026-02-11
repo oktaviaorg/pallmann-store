@@ -1,0 +1,41 @@
+{
+  "name": "Pallmann Store - Notifications Contact",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pallmann-contact",
+        "responseMode": "onReceived",
+        "responseData": "allEntries"
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "j.dietemann@renoline.fr",
+        "toEmail": "j.dietemann@renoline.fr",
+        "subject": "=🔔 Pallmann Store - {{ $json.record.name }} vous contacte",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px;\">\n<div style=\"background: #ff9900; color: white; padding: 20px; text-align: center;\">\n<h1>📬 Nouveau message</h1>\n</div>\n<div style=\"padding: 20px; background: #f9f9f9;\">\n<p><strong>👤 Nom:</strong> {{ $json.record.name }}</p>\n<p><strong>📧 Email:</strong> <a href=\"mailto:{{ $json.record.email }}\">{{ $json.record.email }}</a></p>\n<p><strong>📱 Téléphone:</strong> {{ $json.record.phone }}</p>\n<p><strong>📌 Sujet:</strong> {{ $json.record.subject }}</p>\n<hr style=\"border: 1px solid #ddd;\">\n<p><strong>💬 Message:</strong></p>\n<p style=\"background: white; padding: 15px; border-radius: 8px;\">{{ $json.record.message }}</p>\n</div>\n<div style=\"padding: 10px; text-align: center; color: #666; font-size: 12px;\">\nPallmann Store - {{ $json.record.created_at }}\n</div>\n</div>"
+      },
+      "name": "Envoyer Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [500, 300],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "Gmail SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [[{"node": "Envoyer Email", "type": "main", "index": 0}]]
+    }
+  }
+}
