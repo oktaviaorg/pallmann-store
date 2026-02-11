@@ -235,16 +235,16 @@ const HomePage: React.FC = () => {
     try {
       const [productsRes, categoriesRes, subcategoriesRes] = await Promise.all([
         supabase
-          .from('pallmann_products')
+          .from('products')
           .select('*')
           .eq('published', true)
           .order('display_order'),
         supabase
-          .from('pallmann_categories')
+          .from('categories')
           .select('*')
           .order('display_order'),
         supabase
-          .from('pallmann_subcategories')
+          .from('subcategories')
           .select('*')
           .order('display_order')
       ]);
