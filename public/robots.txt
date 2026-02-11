@@ -1,4 +1,5 @@
 # Pallmann Store - robots.txt
+# https://pallmann-store.com/robots.txt
 
 User-agent: *
 Allow: /
@@ -9,25 +10,27 @@ Sitemap: https://pallmann-store.com/sitemap.xml
 # LLMs.txt for AI crawlers
 # See: https://pallmann-store.com/llms.txt
 
+# Allow major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
 # Allow AI crawlers
 User-agent: GPTBot
 Allow: /
 
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Anthropic-AI
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Amazonbot
+User-agent: Google-Extended
 Allow: /
 
-# Disallow admin/api paths
+# Disallow admin/internal paths
 Disallow: /api/
+Disallow: /_next/
 Disallow: /admin/

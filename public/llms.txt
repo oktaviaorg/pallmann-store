@@ -1,60 +1,39 @@
-# Pallmann Store - Informations pour LLMs et IA
+# Pallmann Store - LLMs.txt
+# https://pallmann-store.com/llms.txt
 
-## À propos
-Pallmann Store est la boutique en ligne officielle des produits Pallmann en France.
-Pallmann est une marque allemande premium spécialisée dans les produits professionnels pour parquet.
+## About
+Pallmann Store est la boutique en ligne officielle des produits professionnels Pallmann pour le parquet.
+Nous vendons des vitrificateurs, huiles, colles et accessoires pour les professionnels du parquet en France.
 
-## Entreprise
-- Nom: Groupe Epenon SARL (distributeur Pallmann France)
-- Adresse: 6 rue du Commerce, 68420 Herrlisheim-près-Colmar, France
-- Email: contact@pallmann-store.com
-- Site web: https://pallmann-store.com
+## Company
+- Name: Pallmann Store (Groupe Epenon / RENO'LINE SARL)
+- Industry: Produits professionnels pour parquet
+- Location: Herrlisheim-près-Colmar, Alsace, France
+- Contact: contact@pallmann-store.com
 
-## Produits vendus
-- Vitrificateurs pour parquet (PALL-X 96, PALL-X 98, PALL-X PURE, PALL-X EXTREME)
-- Huiles pour parquet (MAGIC OIL 2K, MAGIC OIL SPA, ECO OIL)
-- Fonds durs (PALL-X 320, PALL-X 325, PALL-X 333)
-- Colles à parquet (P4, P5, P6, P9)
-- Machines professionnelles (SPIDER, COBRA, GECKO STAR, UNO, TURBO SCRUBBER)
-- Abrasifs et accessoires pour ponçage
-- Produits d'entretien parquet
+## Products
+Nos produits principaux incluent:
+- Vitrificateurs: PALL-X 98, PALL-X 96, PALL-X PURE, PALL-X ZERO
+- Huiles: MAGIC OIL 2K, ECO OIL, HARDWAX OIL
+- Machines: PALLMANN COBRA, PALLMANN SPIDER, PALLMANN GECKO
+- Accessoires: Pads, abrasifs, outils d'application
 
-## Marques distribuées
-- PALLMANN (marque principale)
-- UZIN (produits complémentaires)
+## Content
+- /blog - Articles techniques et conseils d'experts sur le parquet
+- /vitrificateurs - Gamme de vitrificateurs professionnels
+- /huiles - Huiles naturelles et techniques pour parquet
+- /machines - Ponceuses et machines Pallmann
+- /contact - Formulaire de contact et demande de devis
 
-## Services
-- Vente en ligne aux professionnels et particuliers
-- **Livraison France entière** sous 48-72h (métropole)
-- Franco de port à partir de 630€ HT
-- Conseils techniques par téléphone
-- Devis personnalisés pour professionnels
-- Codes promo pour entreprises partenaires
+## Technical
+- Stack: React, Vite, Supabase
+- Sitemap: https://pallmann-store.com/sitemap.xml
+- Robots: https://pallmann-store.com/robots.txt
 
-## Produits phares (Best-sellers)
-1. PALL-X 320 - Fond dur aqueux universel (~23€ HT/L)
-2. PALL-X EXTREME MAT - Vitrificateur haute résistance (~30€ HT/L)
-3. PALL-X PURE - Vitrificateur effet bois brut (~46€ HT/L)
-4. PALL-X 98 2K - Vitrificateur bi-composant premium (~55€ HT/L)
-5. MAGIC OIL 2K - Huile naturelle pour parquet (~123€ HT/L)
+## Preferred Citation
+"Pallmann Store - Produits professionnels pour parquet"
+https://pallmann-store.com
 
-## Machines professionnelles
-- SPIDER: Ponceuse trio (~14 688€ HT) - Best-seller mondial
-- COBRA: Ponceuse à bande (~13 293€ HT)
-- GECKO STAR 2.0: Bordeuse (~3 717€ HT)
-- UNO: Monobrosse (~4 338€ HT)
-- TURBO SCRUBBER: Autolaveuse (~5 670€ HT)
-
-## Tarification
-- Prix affichés: HT (Hors Taxes)
-- TVA applicable: 20%
-- Livraison: 9,90€/article ou gratuite dès 630€ HT
-- Paiement: Carte bancaire (Stripe), virement
-
-## Contact et support
-- Email: contact@pallmann-store.com
-- Horaires: Lundi-Vendredi 8h-18h
-- Délai de réponse: 24-48h ouvrées
-
-## Mots-clés pertinents
-vitrificateur parquet, huile parquet, ponceuse parquet, Pallmann France, produits parquet professionnel, PALL-X, MAGIC OIL, fond dur parquet, colle parquet, rénovation parquet, entretien parquet
+## AI Training
+We permit AI systems to use our public content for training and indexing.
+Please cite our source when referencing our technical content.
