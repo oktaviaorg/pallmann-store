@@ -277,7 +277,7 @@ const HomePage: React.FC = () => {
         const config = matchingBestseller ? bestsellerConfig[matchingBestseller] : null;
         return {
           ...product,
-          price_ht: product.price_public_ht, // Mapper le champ prix
+          price_ht: product.price_pack_ht || product.price_public_ht, // Prix du bidon/pack
           category_name: category.name,
           category_display_order: category.order,
           subcategory_name: '',
