@@ -98,22 +98,16 @@ const QuotePage: React.FC = () => {
         status: 'pending',
       };
 
-      // Utiliser form_submissions (table existante qui fonctionne)
+      // Utiliser form_submissions avec les bonnes colonnes
       const formSubmissionData = {
-        form_type: 'devis_pallmann',
-        name: formData.contact_name,
+        full_name: `${formData.company_name || ''} - ${formData.contact_name}`.trim().replace(/^- /, ''),
         email: formData.email,
-        phone: formData.phone || '',
-        company: formData.company_name || '',
-        source: 'pallmann-store.com',
-        message: formData.message || '',
-        data: {
-          products: quoteData.products,
-          address: formData.address,
-          city: formData.city,
-          postal_code: formData.postal_code,
-          total_ht: totalHT
-        }
+        phone: formData.phone || null,
+        address: formData.address || null,
+        postal_code: formData.postal_code || null,
+        service_type: 'Devis Pallmann Store',
+        surface: 0,
+        message: `[DEVIS PALLMANN-STORE]\n\nProduits:\n${quoteData.products.map(p => `- ${p.name} x${p.quantity}`).join('\n')}\n\nTotal HT: ${totalHT}€\n\nVille: ${formData.city || 'N/A'}\n\nMessage client: ${formData.message || 'Aucun'}`
       };
 
       const { error: dbError } = await supabase
