@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F8F8F8"/>
+  <rect x="140" y="120" width="120" height="140" rx="10" fill="#FF9900" opacity="0.2"/>
+  <rect x="160" y="100" width="80" height="30" rx="5" fill="#FF9900" opacity="0.3"/>
+  <text x="200" y="200" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FF9900" text-anchor="middle">V</text>
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="16" fill="#666" text-anchor="middle">Vitrificateur</text>
+</svg>
