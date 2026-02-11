@@ -506,3 +506,41 @@ article h3 {
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
+
+/* Image principale article */
+article .featured-image,
+article img:first-of-type {
+  max-width: 400px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background: #f8f9fa;
+  padding: 1rem;
+}
+
+/* Container image produit */
+.product-image-container {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+}
+
+.product-image-container img {
+  max-width: 350px;
+  max-height: 280px;
+  object-fit: contain;
+}
+
+.product-image-container figcaption {
+  margin-top: 1rem;
+  color: #6c757d;
+  font-style: italic;
+}

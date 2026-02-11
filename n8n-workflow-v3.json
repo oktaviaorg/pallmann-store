@@ -1,0 +1,126 @@
+{
+  "name": "Pallmann Article Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "triggerAtHour": 8 },
+            { "triggerAtHour": 20 }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Cron 8h et 20h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://mjuzyqhxifyvebtnlrra.supabase.co/rest/v1/pallmann_products",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "select", "value": "id,name,slug,description,features,image_url,pdf_url,subcategory_id" },
+            { "name": "limit", "value": "100" }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" },
+            { "name": "Authorization", "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" }
+          ]
+        }
+      },
+      "id": "get-products",
+      "name": "Récupérer produits",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [320, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Sélectionner un produit au hasard\nconst products = $input.first().json;\nconst randomProduct = products[Math.floor(Math.random() * products.length)];\nreturn [{ json: randomProduct }];"
+      },
+      "id": "select-random",
+      "name": "Produit aléatoire",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [540, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDQIvQIb54_PE86eVKmtnX5mmocYMEl5NY",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [{\n    \"parts\": [{\n      \"text\": \"Tu es Éric, technicien d'application Pallmann avec 15 ans d'expérience. Tu écris pour pallmann-store.com (boutique).\\n\\nProduit: {{ $json.name }}\\nDescription: {{ $json.description }}\\nURL: https://pallmann-store.com/produit/{{ $json.slug }}\\nImage: {{ $json.image_url }}\\n\\nÉcris un article de blog avec:\\n\\n1. <h1>Titre accrocheur</h1>\\n\\n2. IMAGE PRODUIT au début:\\n<div class=\\\"product-image-container\\\">\\n  <img src=\\\"{{ $json.image_url }}\\\" alt=\\\"{{ $json.name }}\\\"/>\\n</div>\\n\\n3. Intro + BOUTON ACHAT:\\n<div class=\\\"product-cta\\\"><a href=\\\"https://pallmann-store.com/produit/{{ $json.slug }}\\\" class=\\\"btn-buy\\\">🛒 Commander</a></div>\\n\\n4. <h2>Pourquoi ce produit ?</h2> avec avantages\\n\\n5. <h2>Mode opératoire</h2> avec <h3>sous-sections</h3>\\n\\n6. PRODUITS RECOMMANDÉS:\\n<div class=\\\"products-related\\\"><h3>🔗 Produits complémentaires</h3><ul><li><a href=\\\"/produit/xxx\\\">Produit</a> - raison</li></ul></div>\\n\\n7. <h2>Erreurs à éviter</h2>\\n\\n8. <h2>Mon verdict</h2>\\n\\n9. BOUTON ACHAT final:\\n<div class=\\\"product-cta final\\\"><a href=\\\"https://pallmann-store.com/produit/{{ $json.slug }}\\\" class=\\\"btn-buy\\\">🛒 Commander maintenant</a></div>\\n\\n10. <h2>FAQ</h2> avec 6 questions format:\\n<div class=\\\"faq-item\\\"><h3>Question ?</h3><p>Réponse</p></div>\\n\\nUtilise <div class=\\\"tip\\\"> et <div class=\\\"warning\\\">\\n\\nRÉPONDS EN JSON UNIQUEMENT:\\n{\\n  \\\"title\\\": \\\"Titre H1\\\",\\n  \\\"slug\\\": \\\"slug-url\\\",\\n  \\\"excerpt\\\": \\\"150 car max\\\",\\n  \\\"content\\\": \\\"HTML complet\\\",\\n  \\\"meta_description\\\": \\\"155 car max\\\",\\n  \\\"keywords\\\": [\\\"mot1\\\",\\\"mot2\\\"],\\n  \\\"faq\\\": [{\\\"question\\\":\\\"Q?\\\",\\\"answer\\\":\\\"R\\\"}]\\n}\"\n    }]\n  }],\n  \"generationConfig\": { \"temperature\": 0.75, \"maxOutputTokens\": 8192 }\n}",
+        "options": {}
+      },
+      "id": "generate-article",
+      "name": "Générer article (Gemini)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [760, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const geminiResponse = $input.first().json;\nconst product = $('Produit aléatoire').first().json;\nconst text = geminiResponse.candidates[0].content.parts[0].text;\n\nlet cleanJson = text.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n\ntry {\n  const article = JSON.parse(cleanJson);\n  \n  // Catégories Pallmann\n  const CATEGORIES = {\n    'vitrificateurs': 'f9ec8b17-4d33-412f-9629-1b38c0760f0a',\n    'huiles': '948cc153-44e5-40d0-bfff-1ae3d87ae6c8',\n    'colles': 'f70b545e-64cc-4fe8-b6db-6da3283a26f0',\n    'preparation': '83073496-efb3-4f2e-8387-0ec24bb73aef',\n    'machines': 'ce9e4d80-6242-498d-b03d-99bc0331ca54',\n    'pro-tips': '1bd4e931-54e4-4536-98f0-a1766afc4d9f'\n  };\n  \n  // Détecter catégorie\n  const name = (product.name || '').toLowerCase();\n  let categoryId = CATEGORIES['pro-tips'];\n  if (name.includes('vitrificateur') || name.includes('pall-x 9') || name.includes('is 90')) categoryId = CATEGORIES['vitrificateurs'];\n  else if (name.includes('huile') || name.includes('oil')) categoryId = CATEGORIES['huiles'];\n  else if (name.includes('colle') || name.includes('p9') || name.includes('p15')) categoryId = CATEGORIES['colles'];\n  else if (name.includes('fond dur') || name.includes('primer') || name.includes('pall-x 3')) categoryId = CATEGORIES['preparation'];\n  else if (name.includes('machine') || name.includes('spider') || name.includes('ponceuse')) categoryId = CATEGORIES['machines'];\n  \n  article.category_id = categoryId;\n  article.site = 'pallmann-store';\n  article.featured_image = product.image_url;\n  article.product_id = product.id;\n  \n  return [{ json: article }];\n} catch (e) {\n  throw new Error('Erreur parsing: ' + e.message + '\\n' + text.substring(0, 500));\n}"
+      },
+      "id": "parse-article",
+      "name": "Parser article",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [980, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mjuzyqhxifyvebtnlrra.supabase.co/rest/v1/articles",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": {{ JSON.stringify($json.title) }},\n  \"slug\": {{ JSON.stringify($json.slug) }},\n  \"excerpt\": {{ JSON.stringify($json.excerpt) }},\n  \"content\": {{ JSON.stringify($json.content) }},\n  \"meta_description\": {{ JSON.stringify($json.meta_description) }},\n  \"published\": true,\n  \"category_id\": {{ JSON.stringify($json.category_id) }},\n  \"site\": \"pallmann-store\",\n  \"featured_image\": {{ JSON.stringify($json.featured_image) }},\n  \"keywords\": {{ JSON.stringify($json.keywords || []) }}\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" },
+            { "name": "Authorization", "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=representation" }
+          ]
+        }
+      },
+      "id": "publish-article",
+      "name": "Publier sur Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8396433858:AAEW-CzdczY82L2YDvWTl9_OJ0PjB72kPiw/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"2088880565\",\n  \"text\": \"📝 <b>Nouvel article Pallmann!</b>\\n\\n📌 {{ $('Parser article').first().json.title }}\\n\\n🔗 https://pallmann-store.com/blog/{{ $('Parser article').first().json.slug }}\\n\\n✅ Boutons achat + Produits recommandés\\n✅ {{ $('Parser article').first().json.faq ? $('Parser article').first().json.faq.length : 0 }} FAQ\",\n  \"parse_mode\": \"HTML\"\n}"
+      },
+      "id": "notify-telegram",
+      "name": "Notifier Julien",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1420, 300]
+    }
+  ],
+  "connections": {
+    "Cron 8h et 20h": { "main": [[{ "node": "Récupérer produits", "type": "main", "index": 0 }]] },
+    "Récupérer produits": { "main": [[{ "node": "Produit aléatoire", "type": "main", "index": 0 }]] },
+    "Produit aléatoire": { "main": [[{ "node": "Générer article (Gemini)", "type": "main", "index": 0 }]] },
+    "Générer article (Gemini)": { "main": [[{ "node": "Parser article", "type": "main", "index": 0 }]] },
+    "Parser article": { "main": [[{ "node": "Publier sur Supabase", "type": "main", "index": 0 }]] },
+    "Publier sur Supabase": { "main": [[{ "node": "Notifier Julien", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
