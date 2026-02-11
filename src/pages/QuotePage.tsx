@@ -285,7 +285,7 @@ Message: ${formData.message || 'Aucun'}`;
                           </h3>
                           <p className="text-sm text-gray-500">
                             {item.price_ht > 0 
-                              ? `${item.price_ht.toFixed(2)}€ HT/${item.unit || 'unité'}`
+                              ? `${item.price_ht.toFixed(2)}€ HT`
                               : 'Prix sur devis'}
                           </p>
                         </div>

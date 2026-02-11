@@ -187,7 +187,7 @@ const CartPage: React.FC = () => {
                     )}
                     <div className="flex-grow">
                       <h3 className="font-bold text-[#1A1A1A]">{item.name}</h3>
-                      <p className="text-[#FF9900] font-bold">{item.price_ht.toFixed(2)}€ HT/{item.unit || 'L'}</p>
+                      <p className="text-[#FF9900] font-bold">{item.price_ht.toFixed(2)}€ HT</p>
                       
                       <div className="flex items-center gap-3 mt-3">
                         <button

@@ -222,7 +222,7 @@ const BoutiquePage: React.FC = () => {
     if (unit === 'L' || unit === '1 L') {
       return {
         mainPrice: price,
-        mainLabel: packSize > 1 ? `bidon ${packSize}L` : 'L',
+        mainLabel: packSize > 1 ? `Bidon ${packSize}L` : 'Bidon 1L',
         subPrice: packSize > 1 ? product.price_public_ht : null,
         subLabel: packSize > 1 ? '/L' : null
       };
@@ -232,7 +232,7 @@ const BoutiquePage: React.FC = () => {
     if (packSize > 1) {
       return {
         mainPrice: price,
-        mainLabel: `boîte de ${packSize}`,
+        mainLabel: `Lot de ${packSize}`,
         subPrice: null,
         subLabel: null
       };
@@ -241,7 +241,7 @@ const BoutiquePage: React.FC = () => {
     // Unité simple
     return {
       mainPrice: price,
-      mainLabel: 'unité',
+      mainLabel: '',
       subPrice: null,
       subLabel: null
     };
@@ -411,7 +411,10 @@ const BoutiquePage: React.FC = () => {
                           {priceInfo && (
                             <div className="mb-4">
                               <span className="text-2xl font-bold text-[#ff9900]">{priceInfo.mainPrice.toFixed(2)}€</span>
-                              <span className="text-sm text-gray-500"> HT/{priceInfo.mainLabel}</span>
+                              <span className="text-sm text-gray-500"> HT</span>
+                              {priceInfo.mainLabel && (
+                                <span className="text-sm text-gray-500"> • {priceInfo.mainLabel}</span>
+                              )}
                               {priceInfo.subPrice && (
                                 <div className="text-xs text-gray-400">
                                   soit {priceInfo.subPrice.toFixed(2)}€{priceInfo.subLabel}
@@ -595,7 +598,10 @@ const BoutiquePage: React.FC = () => {
                             ) : (
                               <div>
                                 <span className="text-xl font-bold text-[#ff9900]">{priceInfo.mainPrice.toFixed(2)}€</span>
-                                <span className="text-xs text-gray-500"> HT/{priceInfo.mainLabel}</span>
+                                <span className="text-xs text-gray-500"> HT</span>
+                                {priceInfo.mainLabel && (
+                                  <span className="text-xs text-gray-500"> • {priceInfo.mainLabel}</span>
+                                )}
                                 {priceInfo.subPrice && (
                                   <div className="text-xs text-gray-400">
                                     soit {priceInfo.subPrice.toFixed(2)}€{priceInfo.subLabel}

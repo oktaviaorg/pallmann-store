@@ -23,6 +23,7 @@ interface Product {
   price_ht?: number;
   pdf_url?: string;
   unit?: string;
+  pack_size?: number;
   is_bestseller?: boolean;
   is_new?: boolean;
   stock_status?: 'in_stock' | 'low_stock' | 'out_of_stock';
@@ -62,6 +63,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const savings = validatedCode && product.price_ht 
     ? product.price_ht - getDiscountedPrice(product.price_ht)
     : 0;
+
+  // Formater la contenance de façon claire
+  const formatContenance = (): string | null => {
+    const size = product.pack_size || 1;
+    const unit = product.unit;
+    
+    if (!unit) return null;
+    
+    if (unit === 'L') {
+      return size === 1 ? 'Bidon 1L' : `Bidon ${size}L`;
+    } else if (unit === 'UN') {
+      if (size === 1) return null; // Pas besoin de préciser pour 1 unité
+      return `Lot de ${size}`;
+    }
+    return size > 1 ? `${size} ${unit}` : unit;
+  };
+
+  const contenance = formatContenance();
 
   return (
     <div
@@ -188,7 +207,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   >
                     {getDiscountedPrice(product.price_ht).toFixed(2)}€
                   </span>
-                  <span className="text-[10px] text-[#6B6B6B]">HT/{product.unit || 'L'}</span>
+                  <span className="text-[10px] text-[#6B6B6B]">HT</span>
+                  {contenance && (
+                    <span className="text-[10px] text-[#6B6B6B] ml-1">• {contenance}</span>
+                  )}
                 </div>
                 <div className="flex items-center gap-1 mt-1">
                   <span className="bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded">
@@ -204,7 +226,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 <span className="text-lg sm:text-xl font-extrabold text-[#E67E22] whitespace-nowrap">
                   {product.price_ht.toFixed(2)}€
                 </span>
-                <span className="text-[10px] text-gray-500 dark:text-gray-400 whitespace-nowrap">HT/{product.unit || 'UN'}</span>
+                <span className="text-[10px] text-gray-500 dark:text-gray-400 whitespace-nowrap">HT</span>
+                {contenance && (
+                  <span className="text-[10px] text-gray-500 dark:text-gray-400 ml-1">• {contenance}</span>
+                )}
               </div>
             )}
           </div>
