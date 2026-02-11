@@ -42,7 +42,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="flex flex-col leading-tight">
-              <span className="text-xl font-extrabold text-[#1A1A1A] tracking-tight group-hover:text-[#E67E22] transition-colors">
+              <span className="text-xl font-extrabold text-[#1A2634] tracking-tight group-hover:text-[#E67E22] transition-colors">
                 PALLMANN STORE
               </span>
               <span className="text-xs text-[#64748B] font-medium">
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
             {/* Demande de devis */}
             <Link
               to="/demande-devis"
-              className="relative flex items-center gap-2 bg-[#1A1A1A] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
+              className="relative flex items-center gap-2 bg-[#1A2634] hover:bg-[#1E293B] text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-sm hover:shadow-md"
             >
               <FileText className="w-5 h-5" />
               <span className="hidden lg:inline">{t('common.quote')}</span>
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
               to="/demande-devis"
               className="relative p-2"
             >
-              <FileText className="w-6 h-6 text-[#1A1A1A]" />
+              <FileText className="w-6 h-6 text-[#1A2634]" />
               {quoteItemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-[#D35400] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {quoteItemCount}
@@ -162,9 +162,9 @@ const Header: React.FC = () => {
               aria-label="Menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#1A1A1A]" />
+                <X className="w-6 h-6 text-[#1A2634]" />
               ) : (
-                <Menu className="w-6 h-6 text-[#1A1A1A]" />
+                <Menu className="w-6 h-6 text-[#1A2634]" />
               )}
             </button>
           </div>
@@ -233,7 +233,7 @@ const Header: React.FC = () => {
             {itemCount > 0 && (
               <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#F8FAFC] to-[#F0F4F8] border border-blue-100">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold text-[#1A1A1A]">{t('common.cart')}</span>
+                  <span className="font-semibold text-[#1A2634]">{t('common.cart')}</span>
                   <span className="font-bold text-[#E67E22]">{totalHT.toFixed(2)}€ HT</span>
                 </div>
                 <Link

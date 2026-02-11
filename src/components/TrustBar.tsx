@@ -39,7 +39,7 @@ const TrustBar: React.FC = () => {
             >
               <item.icon className="w-5 h-5 text-[#E67E22] flex-shrink-0" />
               <div className="text-left">
-                <p className="text-xs font-bold text-[#1A1A1A] leading-tight">{t(item.titleKey)}</p>
+                <p className="text-xs font-bold text-[#1A2634] leading-tight">{t(item.titleKey)}</p>
                 <p className="text-[10px] text-[#64748B]">{item.subtitle}</p>
               </div>
             </div>

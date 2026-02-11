@@ -217,7 +217,7 @@ const CalculateurPage: React.FC = () => {
           {/* Hero */}
           <div 
             className="py-16 text-white relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #243B53 30%, #D35400 70%, #E67E22 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 30%, #D35400 70%, #E67E22 100%)' }}
           >
             <div className="absolute inset-0 opacity-10" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
@@ -289,14 +289,14 @@ const CalculateurPage: React.FC = () => {
               
               {/* Formulaire */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-[#1A2634] mb-6 flex items-center gap-2">
                   <Ruler className="w-6 h-6 text-[#E67E22]" />
                   Votre projet
                 </h2>
 
                 {/* Surface */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                     Surface à traiter (m²)
                   </label>
                   <div className="flex items-center gap-4">
@@ -318,7 +318,7 @@ const CalculateurPage: React.FC = () => {
                         max="500"
                         value={surface}
                         onChange={(e) => setSurface(Number(e.target.value) || 5)}
-                        className="w-16 text-center font-bold text-[#1A1A1A] bg-transparent focus:outline-none"
+                        className="w-16 text-center font-bold text-[#1A2634] bg-transparent focus:outline-none"
                       />
                       <span className="text-[#627D98]">m²</span>
                     </div>
@@ -327,7 +327,7 @@ const CalculateurPage: React.FC = () => {
 
                 {/* Type de projet */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                     Type de projet
                   </label>
                   <div className="grid grid-cols-2 gap-3">
@@ -339,7 +339,7 @@ const CalculateurPage: React.FC = () => {
                           : 'border-gray-200 hover:border-[#E67E22]/50'
                       }`}
                     >
-                      <div className="font-bold text-[#1A1A1A]">Rénovation</div>
+                      <div className="font-bold text-[#1A2634]">Rénovation</div>
                       <div className="text-xs text-[#627D98]">Parquet existant à rénover</div>
                     </button>
                     <button
@@ -350,7 +350,7 @@ const CalculateurPage: React.FC = () => {
                           : 'border-gray-200 hover:border-[#E67E22]/50'
                       }`}
                     >
-                      <div className="font-bold text-[#1A1A1A]">Parquet neuf</div>
+                      <div className="font-bold text-[#1A2634]">Parquet neuf</div>
                       <div className="text-xs text-[#627D98]">Première mise en finition</div>
                     </button>
                   </div>
@@ -358,7 +358,7 @@ const CalculateurPage: React.FC = () => {
 
                 {/* Type de finition */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                     Type de finition
                   </label>
                   <div className="grid grid-cols-2 gap-3">
@@ -371,7 +371,7 @@ const CalculateurPage: React.FC = () => {
                       }`}
                     >
                       <Droplets className={`w-5 h-5 mb-2 ${finishType === 'vitrification' ? 'text-[#E67E22]' : 'text-gray-400'}`} />
-                      <div className="font-bold text-[#1A1A1A]">Vitrification</div>
+                      <div className="font-bold text-[#1A2634]">Vitrification</div>
                       <div className="text-xs text-[#627D98]">Protection maximale, brillant à mat</div>
                     </button>
                     <button
@@ -383,7 +383,7 @@ const CalculateurPage: React.FC = () => {
                       }`}
                     >
                       <Droplets className={`w-5 h-5 mb-2 ${finishType === 'huile' ? 'text-[#E67E22]' : 'text-gray-400'}`} />
-                      <div className="font-bold text-[#1A1A1A]">Huilage</div>
+                      <div className="font-bold text-[#1A2634]">Huilage</div>
                       <div className="text-xs text-[#627D98]">Aspect naturel, toucher bois</div>
                     </button>
                   </div>
@@ -391,7 +391,7 @@ const CalculateurPage: React.FC = () => {
 
                 {/* Options produits complémentaires */}
                 <div className="mb-6">
-                  <label className="block text-sm font-semibold text-[#1A1A1A] mb-3">
+                  <label className="block text-sm font-semibold text-[#1A2634] mb-3">
                     🛒 Produits complémentaires recommandés
                   </label>
                   <div className="space-y-2">
@@ -405,7 +405,7 @@ const CalculateurPage: React.FC = () => {
                           className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                         />
                         <div className="flex-grow">
-                          <div className="font-semibold text-[#1A1A1A] text-sm">PALL-X KITT - Liant</div>
+                          <div className="font-semibold text-[#1A2634] text-sm">PALL-X KITT - Liant</div>
                           <div className="text-xs text-[#627D98]">Rebouchage joints et fissures</div>
                         </div>
                         <span className="text-xs font-bold text-[#E67E22]">24,20€/L</span>
@@ -421,7 +421,7 @@ const CalculateurPage: React.FC = () => {
                         className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                       />
                       <div className="flex-grow">
-                        <div className="font-semibold text-[#1A1A1A] text-sm">Spatule inox crantée</div>
+                        <div className="font-semibold text-[#1A2634] text-sm">Spatule inox crantée</div>
                         <div className="text-xs text-[#627D98]">Application uniforme du fond dur</div>
                       </div>
                       <span className="text-xs font-bold text-[#E67E22]">18,50€</span>
@@ -436,7 +436,7 @@ const CalculateurPage: React.FC = () => {
                         className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                       />
                       <div className="flex-grow">
-                        <div className="font-semibold text-[#1A1A1A] text-sm">Rouleau microfibre PRO</div>
+                        <div className="font-semibold text-[#1A2634] text-sm">Rouleau microfibre PRO</div>
                         <div className="text-xs text-[#627D98]">25cm pour vitrificateur/huile</div>
                       </div>
                       <span className="text-xs font-bold text-[#E67E22]">12,90€</span>
@@ -451,7 +451,7 @@ const CalculateurPage: React.FC = () => {
                         className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                       />
                       <div className="flex-grow">
-                        <div className="font-semibold text-[#1A1A1A] text-sm">CLEAN & GO - Nettoyant</div>
+                        <div className="font-semibold text-[#1A2634] text-sm">CLEAN & GO - Nettoyant</div>
                         <div className="text-xs text-[#627D98]">Préparation avant application</div>
                       </div>
                       <span className="text-xs font-bold text-[#E67E22]">15,80€/L</span>
@@ -466,7 +466,7 @@ const CalculateurPage: React.FC = () => {
                         className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                       />
                       <div className="flex-grow">
-                        <div className="font-semibold text-[#1A1A1A] text-sm">MAGIC OIL CARE - Entretien</div>
+                        <div className="font-semibold text-[#1A2634] text-sm">MAGIC OIL CARE - Entretien</div>
                         <div className="text-xs text-[#627D98]">Entretien régulier après finition</div>
                       </div>
                       <span className="text-xs font-bold text-[#E67E22]">28,50€/L</span>
@@ -485,7 +485,7 @@ const CalculateurPage: React.FC = () => {
 
               {/* Résultats */}
               <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
+                <h2 className="text-2xl font-bold text-[#1A2634] mb-6 flex items-center gap-2">
                   <Package className="w-6 h-6 text-[#E67E22]" />
                   Produits recommandés
                 </h2>
@@ -498,7 +498,7 @@ const CalculateurPage: React.FC = () => {
                       className="flex items-center justify-between p-3 bg-[#F8FAFC] rounded-xl"
                     >
                       <div>
-                        <h3 className="font-semibold text-[#1A1A1A]">{product.name}</h3>
+                        <h3 className="font-semibold text-[#1A2634]">{product.name}</h3>
                         <p className="text-xs text-[#627D98]">{product.quantity} {product.unit} × {product.pricePerUnit}€</p>
                       </div>
                       <div className="font-bold text-[#E67E22]">{product.totalPrice.toFixed(2)}€</div>
@@ -507,7 +507,7 @@ const CalculateurPage: React.FC = () => {
                 </div>
 
                 {/* Total */}
-                <div className="bg-[#1A1A1A] text-white rounded-xl p-4 mb-6">
+                <div className="bg-[#1A2634] text-white rounded-xl p-4 mb-6">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="opacity-80">Total HT</span>
                     <span className="font-semibold">{totalHT.toFixed(2)}€</span>
@@ -550,18 +550,18 @@ const CalculateurPage: React.FC = () => {
 
             {/* FAQ SEO */}
             <div className="mt-12 bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-              <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6">Questions fréquentes</h2>
+              <h2 className="text-2xl font-bold text-[#1A2634] mb-6">Questions fréquentes</h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-[#1A1A1A] mb-1">Combien de vitrificateur pour 20m² ?</h3>
+                  <h3 className="font-semibold text-[#1A2634] mb-1">Combien de vitrificateur pour 20m² ?</h3>
                   <p className="text-[#627D98] text-sm">Pour 20m², comptez environ 2L de fond dur et 4L de vitrificateur (2 couches). Le rendement moyen est de 10-12m² par litre.</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#1A1A1A] mb-1">Quelle différence entre vitrification et huilage ?</h3>
+                  <h3 className="font-semibold text-[#1A2634] mb-1">Quelle différence entre vitrification et huilage ?</h3>
                   <p className="text-[#627D98] text-sm">La vitrification forme un film protecteur en surface (aspect brillant à mat). L'huilage pénètre le bois pour un aspect naturel. La vitrification est plus résistante, l'huile plus facile à réparer localement.</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#1A1A1A] mb-1">Puis-je commander pour un professionnel ?</h3>
+                  <h3 className="font-semibold text-[#1A2634] mb-1">Puis-je commander pour un professionnel ?</h3>
                   <p className="text-[#627D98] text-sm">Oui ! Inscrivez-vous sur notre <Link to="/pro" className="text-[#E67E22] underline">espace PRO</Link> pour bénéficier de remises exclusives et de tarifs dégressifs.</p>
                 </div>
               </div>

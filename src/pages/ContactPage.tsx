@@ -70,7 +70,7 @@ const ContactPage: React.FC = () => {
           {/* Hero */}
           <div 
             className="py-16 text-white relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #243B53 50%, #E67E22 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #1A2634 0%, #243B53 50%, #E67E22 100%)' }}
           >
             <div className="max-w-4xl mx-auto px-4 text-center relative">
               <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
@@ -94,7 +94,7 @@ const ContactPage: React.FC = () => {
                       <Wrench className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#1A1A1A]">Conseils Techniques</h3>
+                      <h3 className="font-bold text-[#1A2634]">Conseils Techniques</h3>
                       <p className="text-sm text-[#64748B]">Parlez à un expert</p>
                     </div>
                   </div>
@@ -104,7 +104,7 @@ const ContactPage: React.FC = () => {
                   >
                     <Phone className="w-5 h-5 text-[#E67E22]" />
                     <div>
-                      <div className="font-bold text-[#1A1A1A] group-hover:text-[#E67E22] transition-colors">
+                      <div className="font-bold text-[#1A2634] group-hover:text-[#E67E22] transition-colors">
                         07 57 82 13 06
                       </div>
                       <div className="text-xs text-[#64748B]">Technicien parquet</div>
@@ -115,21 +115,21 @@ const ContactPage: React.FC = () => {
                 {/* Standard */}
                 <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-[#1A1A1A] rounded-xl">
+                    <div className="p-3 bg-[#1A2634] rounded-xl">
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#1A1A1A]">Standard</h3>
+                      <h3 className="font-bold text-[#1A2634]">Standard</h3>
                       <p className="text-sm text-[#64748B]">Commandes & suivi</p>
                     </div>
                   </div>
                   <a 
                     href="tel:+33389210000"
-                    className="flex items-center gap-3 p-4 bg-[#F8FAFC] rounded-xl hover:bg-[#1A1A1A]/10 transition-colors group"
+                    className="flex items-center gap-3 p-4 bg-[#F8FAFC] rounded-xl hover:bg-[#1A2634]/10 transition-colors group"
                   >
-                    <Phone className="w-5 h-5 text-[#1A1A1A]" />
+                    <Phone className="w-5 h-5 text-[#1A2634]" />
                     <div>
-                      <div className="font-bold text-[#1A1A1A]">03 89 21 00 00</div>
+                      <div className="font-bold text-[#1A2634]">03 89 21 00 00</div>
                       <div className="text-xs text-[#64748B]">Lun-Ven 8h-17h</div>
                     </div>
                   </a>
@@ -142,7 +142,7 @@ const ContactPage: React.FC = () => {
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#1A1A1A]">Email</h3>
+                      <h3 className="font-bold text-[#1A2634]">Email</h3>
                       <p className="text-sm text-[#64748B]">Réponse sous 24h</p>
                     </div>
                   </div>
@@ -152,7 +152,7 @@ const ContactPage: React.FC = () => {
                   >
                     <Mail className="w-5 h-5 text-blue-500" />
                     <div>
-                      <div className="font-bold text-[#1A1A1A] group-hover:text-blue-500 transition-colors text-sm">
+                      <div className="font-bold text-[#1A2634] group-hover:text-blue-500 transition-colors text-sm">
                         contact@pallmann-store.com
                       </div>
                     </div>
@@ -166,12 +166,12 @@ const ContactPage: React.FC = () => {
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#1A1A1A]">Retrait sur place</h3>
+                      <h3 className="font-bold text-[#1A2634]">Retrait sur place</h3>
                       <p className="text-sm text-[#64748B]">Sur rendez-vous</p>
                     </div>
                   </div>
                   <div className="p-4 bg-[#F8FAFC] rounded-xl">
-                    <p className="text-sm text-[#1A1A1A] font-medium">
+                    <p className="text-sm text-[#1A2634] font-medium">
                       6 rue du Commerce<br />
                       68420 Herrlisheim près Colmar
                     </p>
@@ -179,7 +179,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 {/* Horaires */}
-                <div className="bg-gradient-to-br from-[#1A1A1A] to-[#243B53] rounded-2xl p-6 text-white">
+                <div className="bg-gradient-to-br from-[#1A2634] to-[#243B53] rounded-2xl p-6 text-white">
                   <div className="flex items-center gap-2 mb-4">
                     <Clock className="w-5 h-5 text-[#E67E22]" />
                     <h3 className="font-bold">Horaires</h3>
@@ -200,7 +200,7 @@ const ContactPage: React.FC = () => {
               {/* Formulaire */}
               <div className="lg:col-span-2">
                 <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                  <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
+                  <h2 className="text-2xl font-bold text-[#1A2634] mb-6 flex items-center gap-2">
                     <MessageSquare className="w-6 h-6 text-[#E67E22]" />
                     Envoyez-nous un message
                   </h2>
@@ -210,7 +210,7 @@ const ContactPage: React.FC = () => {
                       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <CheckCircle className="w-8 h-8 text-green-500" />
                       </div>
-                      <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Message envoyé !</h3>
+                      <h3 className="text-xl font-bold text-[#1A2634] mb-2">Message envoyé !</h3>
                       <p className="text-[#64748B]">Nous vous répondrons dans les plus brefs délais.</p>
                       <button
                         onClick={() => setSuccess(false)}
@@ -223,7 +223,7 @@ const ContactPage: React.FC = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                          <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                             Nom complet *
                           </label>
                           <div className="relative">
@@ -240,7 +240,7 @@ const ContactPage: React.FC = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                          <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                             Email *
                           </label>
                           <div className="relative">
@@ -259,7 +259,7 @@ const ContactPage: React.FC = () => {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                          <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                             Téléphone
                           </label>
                           <div className="relative">
@@ -275,7 +275,7 @@ const ContactPage: React.FC = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                          <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                             Sujet
                           </label>
                           <select
@@ -293,7 +293,7 @@ const ContactPage: React.FC = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">
+                        <label className="block text-sm font-semibold text-[#1A2634] mb-2">
                           Message *
                         </label>
                         <textarea
