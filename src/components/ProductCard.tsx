@@ -130,7 +130,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <img
             src={product.image_url}
             alt={product.name}
-            className={`w-full h-36 object-contain transition-transform duration-500 ${
+            className={`w-full h-44 object-contain transition-transform duration-500 ${
               isHovered ? 'scale-110' : 'scale-100'
             }`}
           />

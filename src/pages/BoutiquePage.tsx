@@ -392,7 +392,7 @@ const BoutiquePage: React.FC = () => {
                             <img
                               src={product.image_url}
                               alt={product.name}
-                              className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
+                              className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
                             />
                           </div>
                         )}
@@ -552,7 +552,7 @@ const BoutiquePage: React.FC = () => {
                           <img
                             src={product.image_url}
                             alt={product.name}
-                            className="w-full h-40 object-contain group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
                           />
                         </div>
                       )}
