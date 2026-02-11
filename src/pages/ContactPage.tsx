@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
+  const formRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,6 +27,14 @@ const ContactPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+
+  // Scroll automatique vers le formulaire au chargement
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -243,7 +252,7 @@ const ContactPage: React.FC = () => {
               </div>
 
               {/* Formulaire */}
-              <div className="lg:col-span-2">
+              <div ref={formRef} className="lg:col-span-2 scroll-mt-24">
                 <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
                   <h2 className="text-2xl font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
                     <MessageSquare className="w-6 h-6 text-[#E67E22]" />
