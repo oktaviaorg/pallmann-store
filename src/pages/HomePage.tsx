@@ -237,16 +237,16 @@ const HomePage: React.FC = () => {
         supabase
           .from('products')
           .select('*')
-          .eq('published', true)
-          .order('display_order'),
+          .eq('is_available', true)
+          .order('name'),
         supabase
           .from('categories')
           .select('*')
-          .order('display_order'),
+          .order('name'),
         supabase
           .from('subcategories')
           .select('*')
-          .order('display_order')
+          .order('name')
       ]);
 
       if (productsRes.error) throw productsRes.error;
