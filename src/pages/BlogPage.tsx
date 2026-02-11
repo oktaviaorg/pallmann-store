@@ -187,12 +187,12 @@ const BlogPage: React.FC = () => {
                         </div>
                       )}
                     </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center gap-2 text-[#6B6B6B] text-sm mb-3">
-                        <Calendar className="w-4 h-4" />
+                    <div className="p-5 flex flex-col flex-grow">
+                      <div className="flex items-center gap-2 text-[#6B6B6B] text-xs mb-1">
+                        <Calendar className="w-3 h-3" />
                         <span>{formatDate(article.published_at)}</span>
                       </div>
-                      <h2 className="text-xl md:text-2xl font-bold text-[#1A1A1A] mb-3 line-clamp-2 group-hover:text-[#FF9900] transition-colors leading-tight">
+                      <h2 className="text-lg md:text-xl font-bold text-[#1A1A1A] mb-2 line-clamp-2 group-hover:text-[#FF9900] transition-colors leading-tight">
                         {article.title}
                       </h2>
                       {article.excerpt && (
