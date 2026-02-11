@@ -268,7 +268,7 @@ const HomePage: React.FC = () => {
         'magic-oil-2k': { order: 3, tagline: '🍃 Huile naturelle' },
         'pall-x-pure': { order: 4, tagline: '🌿 Effet bois brut' },
         'pall-x-333-color': { order: 5, tagline: '🎨 Teinte sur mesure' },
-        'x-filler': { order: 6, tagline: '🔧 Bouche les trous' },
+        'x-filler': { order: 6, tagline: '🔧 Indispensable + spatule' },
       };
       const bestsellerSlugs = Object.keys(bestsellerConfig);
 
