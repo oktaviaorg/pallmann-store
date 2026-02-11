@@ -31,4 +31,4 @@ createRoot(document.getElementById('root')!).render(
       </AuthProvider>
     </ErrorBoundary>
   </StrictMode>
-);// Build 20260211-1442
+);// Build 20260211-144446 - BLOG-LPR fix
