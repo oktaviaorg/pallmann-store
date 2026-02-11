@@ -33,6 +33,10 @@ import CalculateurPage from './pages/CalculateurPage';
 // Contact
 import ContactPage from './pages/ContactPage';
 
+// Entretien
+import EntretienVitrifiePage from './pages/EntretienVitrifiePage';
+import EntretienHuilePage from './pages/EntretienHuilePage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -72,6 +76,10 @@ export default function App() {
           
           {/* Contact */}
           <Route path="/contact" element={<ContactPage />} />
+          
+          {/* Entretien (pages clients avec codes promo) */}
+          <Route path="/entretien-parquet-vitrifie" element={<EntretienVitrifiePage />} />
+          <Route path="/entretien-parquet-huile" element={<EntretienHuilePage />} />
           
           {/* Pages légales */}
           <Route path="/mentions-legales" element={<MentionsLegales />} />
