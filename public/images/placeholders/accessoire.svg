@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F8F8F8"/>
+  <circle cx="200" cy="180" r="80" fill="#FF9900" opacity="0.15"/>
+  <path d="M160 160 L240 160 L240 220 L160 220 Z" fill="none" stroke="#FF9900" stroke-width="4"/>
+  <circle cx="200" cy="190" r="20" fill="#FF9900" opacity="0.3"/>
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="16" fill="#666" text-anchor="middle">Accessoire</text>
+</svg>

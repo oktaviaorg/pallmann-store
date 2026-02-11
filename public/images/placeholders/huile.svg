@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F8F8F8"/>
+  <path d="M170 140 L230 140 L240 260 L160 260 Z" fill="#FF9900" opacity="0.2"/>
+  <ellipse cx="200" cy="140" rx="30" ry="10" fill="#FF9900" opacity="0.3"/>
+  <circle cx="200" cy="200" r="25" fill="#E68A00" opacity="0.4"/>
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="16" fill="#666" text-anchor="middle">Huile</text>
+</svg>
