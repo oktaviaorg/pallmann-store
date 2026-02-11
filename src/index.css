@@ -467,20 +467,42 @@ textarea:focus-visible {
 /* FAQ items */
 .faq-item {
   margin: 1.5rem 0;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #dee2e6;
+  padding: 1.25rem;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #FF9900;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-.faq-item h3 {
+.faq-item h3,
+.faq-item strong {
+  display: block;
   margin-top: 0;
-  color: #007bff;
+  margin-bottom: 0.75rem;
+  color: #1A1A1A !important;
   font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .faq-item p {
   margin-bottom: 0;
+  color: #4A5568;
+  line-height: 1.6;
+}
+
+/* Dark mode FAQ */
+.dark .faq-item {
+  background: #2D2D2D;
+  border-color: #FF9900;
+}
+
+.dark .faq-item h3,
+.dark .faq-item strong {
+  color: #FFFFFF !important;
+}
+
+.dark .faq-item p {
+  color: #CBD5E0;
 }
 
 /* Article headings */

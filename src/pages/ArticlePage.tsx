@@ -218,19 +218,72 @@ const ArticlePage: React.FC = () => {
               />
             </div>
 
-            {/* CTA */}
-            <div className="mt-12 bg-gradient-to-r from-[#003366] to-[#004d99] rounded-xl p-8 text-center text-white">
-              <h2 className="text-2xl font-bold mb-4">
-                Besoin de produits professionnels ?
+            {/* CTA Acheter le produit */}
+            <div className="mt-8 bg-gradient-to-br from-[#FF9900] to-[#E67E22] rounded-xl p-6 md:p-8 text-white">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-1">
+                  <h2 className="text-xl md:text-2xl font-bold mb-2">
+                    🛒 Commander ce produit
+                  </h2>
+                  <p className="text-white/90 mb-4">
+                    Retrouvez ce produit et toute la gamme Pallmann dans notre boutique en ligne.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      to="/boutique"
+                      className="inline-block bg-white text-[#E67E22] px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-all shadow-lg"
+                    >
+                      Voir en boutique
+                    </Link>
+                    <Link
+                      to="/demande-devis"
+                      className="inline-block bg-[#1A1A1A] text-white px-6 py-3 rounded-lg font-bold hover:bg-black transition-all"
+                    >
+                      Demander un devis
+                    </Link>
+                  </div>
+                </div>
+                <div className="text-6xl">📦</div>
+              </div>
+            </div>
+
+            {/* Produits similaires */}
+            <div className="mt-8 bg-white rounded-xl shadow-md p-6">
+              <h3 className="text-xl font-bold text-[#1A1A1A] mb-4 flex items-center gap-2">
+                <span>🔥</span> Produits populaires
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { name: 'PALL-X 98', desc: 'Vitrificateur mat', link: '/boutique' },
+                  { name: 'Magic Oil 2K', desc: 'Huile naturelle', link: '/boutique' },
+                  { name: 'PALL-X 325', desc: 'Fond dur', link: '/boutique' },
+                  { name: 'Clean', desc: 'Nettoyant parquet', link: '/boutique' },
+                ].map((product, idx) => (
+                  <Link
+                    key={idx}
+                    to={product.link}
+                    className="bg-gray-50 hover:bg-[#FFF7ED] border border-gray-200 hover:border-[#FF9900] rounded-lg p-4 text-center transition-all group"
+                  >
+                    <div className="text-sm font-bold text-[#1A1A1A] group-hover:text-[#FF9900]">{product.name}</div>
+                    <div className="text-xs text-gray-500">{product.desc}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Pro */}
+            <div className="mt-8 bg-gradient-to-r from-[#1A1A1A] to-[#2D2D2D] rounded-xl p-6 md:p-8 text-center text-white">
+              <h2 className="text-xl md:text-2xl font-bold mb-3">
+                Vous êtes professionnel ?
               </h2>
-              <p className="text-blue-100 mb-6">
-                Découvrez notre gamme complète de produits Pallmann pour vos travaux.
+              <p className="text-gray-300 mb-6">
+                Bénéficiez de tarifs préférentiels et d'un accompagnement dédié.
               </p>
               <Link
-                to="/"
+                to="/pro"
                 className="inline-block bg-[#ff9900] hover:bg-[#e68a00] text-white px-8 py-4 rounded-lg font-bold transition-all"
               >
-                Voir la boutique
+                Espace Pro →
               </Link>
             </div>
           </article>
