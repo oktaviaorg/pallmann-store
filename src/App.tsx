@@ -4,6 +4,7 @@ import { ThemeProvider } from './lib/ThemeProvider';
 import { AuthProvider } from './lib/AuthProvider';
 import { CartProvider } from './lib/CartContext';
 import { QuoteProvider } from './lib/QuoteContext';
+import MobileCartButton from './components/MobileCartButton';
 
 // Pages principales
 import HomePage from './pages/HomePage';
@@ -80,6 +81,7 @@ export default function App() {
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            <MobileCartButton />
           </QuoteProvider>
         </CartProvider>
       </AuthProvider>
