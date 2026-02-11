@@ -19,7 +19,7 @@ interface Product {
   image_url?: string;
   category_name?: string;
   subcategory_name?: string;
-  price_public_ht?: number;
+  price_ht?: number;
   pdf_url?: string;
   unit?: string;
   is_bestseller?: boolean;
@@ -57,8 +57,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
     return price * (1 - validatedCode.discount_percent / 100);
   };
 
-  const savings = validatedCode && product.price_public_ht 
-    ? product.price_public_ht - getDiscountedPrice(product.price_public_ht)
+  const savings = validatedCode && product.price_ht 
+    ? product.price_ht - getDiscountedPrice(product.price_ht)
     : 0;
 
   return (
@@ -120,7 +120,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
         
         {/* Quick add overlay on hover */}
-        {product.price_public_ht && (
+        {product.price_ht && (
           <div 
             className={`absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-300 ${
               isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -168,13 +168,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Prix - SUPER VISIBLE */}
-        {product.price_public_ht && (
+        {product.price_ht && (
           <div className="mb-2 p-2.5 bg-gradient-to-r from-[#F8FAFC] to-[#F0F4F8] rounded-xl border border-blue-100">
             {validatedCode ? (
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-[#94A3B8] line-through text-xs">
-                    {product.price_public_ht.toFixed(2)}€
+                    {product.price_ht.toFixed(2)}€
                   </span>
                   <span 
                     className="text-lg font-extrabold"
@@ -184,7 +184,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                       WebkitTextFillColor: 'transparent',
                     }}
                   >
-                    {getDiscountedPrice(product.price_public_ht).toFixed(2)}€
+                    {getDiscountedPrice(product.price_ht).toFixed(2)}€
                   </span>
                   <span className="text-[10px] text-[#6B6B6B]">HT/{product.unit || 'L'}</span>
                 </div>
@@ -200,7 +200,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             ) : (
               <div className="flex items-baseline gap-1">
                 <span className="text-xl font-extrabold text-[#1A1A1A]">
-                  {product.price_public_ht.toFixed(2)}€
+                  {product.price_ht.toFixed(2)}€
                 </span>
                 <span className="text-[10px] text-[#6B6B6B]">HT/{product.unit || 'L'}</span>
               </div>
@@ -225,7 +225,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {/* Action Buttons - TRÈS VISIBLES */}
       <div className="p-4 pt-0 space-y-2">
         {/* Bouton Panier - seulement si prix défini */}
-        {product.price_public_ht && (
+        {product.price_ht && (
           <button
             onClick={() => onAddToCart(product)}
             className={`w-full py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
@@ -257,11 +257,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
               ? 'bg-[#1A1A1A] text-white' 
               : isInQuote
                 ? 'bg-[#D9E2EC] text-[#D35400] border border-[#D35400]/20'
-                : product.price_public_ht
+                : product.price_ht
                   ? 'bg-[#FFFFFF] hover:bg-[#F8FAFC] text-[#6B6B6B] border border-gray-200'
                   : 'text-white shadow-md hover:shadow-xl'
           }`}
-          style={!product.price_public_ht && !addedToQuote && !isInQuote ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
+          style={!product.price_ht && !addedToQuote && !isInQuote ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
         >
           {addedToQuote ? (
             <>

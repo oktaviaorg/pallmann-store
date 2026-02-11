@@ -51,7 +51,7 @@ interface Product {
   category_name?: string;
   subcategory_name?: string;
   price_achat?: number;
-  price_public_ht?: number;
+  price_ht?: number;
   ref?: string;
   unit?: string;
   is_bestseller?: boolean;
@@ -200,12 +200,12 @@ const HomePage: React.FC = () => {
   };
 
   const handleAddToCart = (product: Product) => {
-    if (!product.price_public_ht) return;
+    if (!product.price_ht) return;
     
     addItem({
       id: product.id,
       name: product.name,
-      price_ht: getDiscountedPrice(product.price_public_ht),
+      price_ht: getDiscountedPrice(product.price_ht),
       image_url: product.image_url,
       unit: product.unit || 'L',
     });
@@ -218,7 +218,7 @@ const HomePage: React.FC = () => {
     addToQuote({
       id: product.id,
       name: product.name,
-      price_ht: product.price_public_ht || 0, // Prix à définir par le technicien
+      price_ht: product.price_ht || 0, // Prix à définir par le technicien
       image_url: product.image_url,
       unit: product.unit || 'unité',
     });
