@@ -166,21 +166,23 @@ const BlogPage: React.FC = () => {
                     key={article.id}
                     className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-medium transition-all duration-300 hover:-translate-y-1 group flex flex-col border border-gray-100"
                   >
-                    {/* Image flottante sur fond noir */}
+                    {/* Image flottante sur fond dégradé orange/doré */}
                     <div className="relative pt-4 pb-0">
-                      {/* Fond noir en bas */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1A1A1A] to-[#2D2D2D] rounded-t-2xl"></div>
+                      {/* Fond dégradé orange chaud */}
+                      <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-br from-[#FF9900] via-[#F59E0B] to-[#D97706] rounded-t-[2rem]"></div>
+                      {/* Motif subtil */}
+                      <div className="absolute bottom-0 left-0 right-0 h-2/3 rounded-t-[2rem] opacity-10" style={{backgroundImage: 'radial-gradient(circle at 20% 80%, white 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
                       {article.featured_image ? (
                         <img
                           src={article.featured_image}
                           alt={article.title}
-                          className="relative z-10 w-full h-48 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-xl"
+                          className="relative z-10 w-full h-52 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-2xl"
                           loading="lazy"
                         />
                       ) : (
-                        <div className="relative z-10 w-full h-48 flex items-center justify-center">
-                          <div className="w-20 h-20 bg-gradient-to-br from-[#FF9900] to-[#E67E22] rounded-2xl flex items-center justify-center">
-                            <span className="text-white text-3xl font-bold">P</span>
+                        <div className="relative z-10 w-full h-52 flex items-center justify-center">
+                          <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30">
+                            <span className="text-white text-4xl font-bold">📖</span>
                           </div>
                         </div>
                       )}
