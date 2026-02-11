@@ -263,12 +263,19 @@ const HomePage: React.FC = () => {
 
       // Best-sellers Pallmann (produits phares définis par LPR)
       const bestsellerConfig: Record<string, { order: number; tagline?: string }> = {
+        // Vitrificateurs & Huiles
         'pall-x-extreme': { order: 1, tagline: '🏆 N°1 des ventes' },
         'pall-x-320': { order: 2, tagline: '💪 Ultra résistant' },
         'magic-oil-2k': { order: 3, tagline: '🍃 Huile naturelle' },
         'pall-x-pure': { order: 4, tagline: '🌿 Effet bois brut' },
         'pall-x-333-color': { order: 5, tagline: '🎨 Teinte sur mesure' },
         'x-filler': { order: 6, tagline: '🔧 Indispensable + spatule' },
+        // Abrasifs les plus demandés
+        'grain-36': { order: 7, tagline: '⚡ Décapage' },
+        'grain-50': { order: 8, tagline: '🔥 Ponçage intensif' },
+        'grain-80': { order: 9, tagline: '✨ Finition standard' },
+        'grain-100': { order: 10, tagline: '💎 Finition fine' },
+        'treillis': { order: 11, tagline: '🎯 Égrenage pro' },
       };
       const bestsellerSlugs = Object.keys(bestsellerConfig);
 
