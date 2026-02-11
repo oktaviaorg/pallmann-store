@@ -22,7 +22,7 @@ interface CartContextType {
   items: CartItem[];
   companyCode: CompanyCode | null;
   deliveryMode: DeliveryMode;
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
+  addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -81,15 +81,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('pallmann-delivery-mode', deliveryMode);
   }, [deliveryMode]);
 
-  const addItem = (item: Omit<CartItem, 'quantity'>) => {
+  const addItem = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
     setItems(prev => {
       const existing = prev.find(i => i.id === item.id);
       if (existing) {
         return prev.map(i => 
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
         );
       }
-      return [...prev, { ...item, quantity: 1 }];
+      return [...prev, { ...item, quantity }];
     });
   };
 

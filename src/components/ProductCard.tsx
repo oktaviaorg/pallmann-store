@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
-  Plus, 
+  Plus,
+  Minus,
   CheckCircle, 
   FileText, 
   Download, 
@@ -33,7 +34,7 @@ interface ProductCardProps {
     company_name: string;
     discount_percent: number;
   } | null;
-  onAddToCart: (product: Product) => void;
+  onAddToCart: (product: Product, quantity?: number) => void;
   onAddToQuote: (product: Product) => void;
   isInQuote: boolean;
   addedToCart: boolean;
@@ -50,6 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   addedToQuote,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const { t } = useTranslation();
 
   const getDiscountedPrice = (price: number): number => {
@@ -224,29 +226,54 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       {/* Action Buttons - TRÈS VISIBLES */}
       <div className="p-4 pt-0 space-y-2">
-        {/* Bouton Panier - seulement si prix défini */}
+        {/* Sélecteur de quantité + Bouton Panier */}
         {product.price_ht && (
-          <button
-            onClick={() => onAddToCart(product)}
-            className={`w-full py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
-              addedToCart 
-                ? 'bg-green-500 text-white' 
-                : 'text-white shadow-md hover:shadow-xl hover:-translate-y-0.5'
-            }`}
-            style={!addedToCart ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
-          >
-            {addedToCart ? (
-              <>
-                <CheckCircle className="w-5 h-5" />
-                ✓ {t('common.cart')}
-              </>
+          <div className="flex items-center gap-2">
+            {/* Quantité */}
+            <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden">
+              <button
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="p-2 hover:bg-gray-100 transition-colors"
+              >
+                <Minus className="w-4 h-4 text-gray-600" />
+              </button>
+              <span className="px-3 py-2 font-bold text-[#1A1A1A] min-w-[40px] text-center">
+                {quantity}
+              </span>
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="p-2 hover:bg-gray-100 transition-colors"
+              >
+                <Plus className="w-4 h-4 text-gray-600" />
+              </button>
+            </div>
+            
+            {/* Bouton Ajouter */}
+            <button
+              onClick={() => {
+                onAddToCart(product, quantity);
+                setQuantity(1);
+              }}
+              className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 ${
+                addedToCart 
+                  ? 'bg-green-500 text-white' 
+                  : 'text-white shadow-md hover:shadow-xl hover:-translate-y-0.5'
+              }`}
+              style={!addedToCart ? { background: 'linear-gradient(135deg, #E67E22 0%, #D35400 100%)' } : {}}
+            >
+              {addedToCart ? (
+                <>
+                  <CheckCircle className="w-5 h-5" />
+                  ✓ Ajouté
+                </>
             ) : (
               <>
                 <ShoppingCart className="w-5 h-5" />
                 {t('common.addToCart')}
               </>
             )}
-          </button>
+            </button>
+          </div>
         )}
         
         {/* Bouton Devis - TOUJOURS visible */}
