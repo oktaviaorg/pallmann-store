@@ -102,16 +102,16 @@ const BoutiquePage: React.FC = () => {
     try {
       const [productsRes, categoriesRes, subcategoriesRes] = await Promise.all([
         supabase
-          .from('products')
+          .from('pallmann_products')
           .select('*')
           .eq('published', true)
           .order('display_order'),
         supabase
-          .from('categories')
+          .from('pallmann_categories')
           .select('*')
           .order('display_order'),
         supabase
-          .from('subcategories')
+          .from('pallmann_subcategories')
           .select('*')
           .order('display_order')
       ]);
