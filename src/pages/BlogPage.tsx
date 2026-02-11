@@ -40,6 +40,7 @@ const BlogPage: React.FC = () => {
         .from('articles')
         .select('*')
         .eq('published', true)
+        .eq('site', 'pallmann-store')
         .order('updated_at', { ascending: false });
 
       if (error) throw error;
@@ -51,11 +52,23 @@ const BlogPage: React.FC = () => {
     }
   };
 
+  // IDs des catégories Pallmann Store
+  const PALLMANN_CATEGORY_IDS = [
+    'f9ec8b17-4d33-412f-9629-1b38c0760f0a', // Vitrificateurs
+    '948cc153-44e5-40d0-bfff-1ae3d87ae6c8', // Huiles
+    'f70b545e-64cc-4fe8-b6db-6da3283a26f0', // Colles
+    '83073496-efb3-4f2e-8387-0ec24bb73aef', // Préparation
+    'ce9e4d80-6242-498d-b03d-99bc0331ca54', // Machines
+    'f97c515b-3c96-49b6-988b-a3b8a9d4ffb1', // DIY
+    '1bd4e931-54e4-4536-98f0-a1766afc4d9f', // Pro Tips
+  ];
+
   const fetchCategories = async () => {
     try {
       const { data, error } = await supabase
         .from('categories')
         .select('*')
+        .in('id', PALLMANN_CATEGORY_IDS)
         .order('name');
 
       if (error) throw error;

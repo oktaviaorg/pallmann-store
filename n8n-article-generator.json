@@ -1,0 +1,99 @@
+{
+  "name": "Pallmann Article Generator",
+  "nodes": [
+    {
+      "id": "cron",
+      "name": "Cron (2x/jour)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [100, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "hours", "hoursInterval": 12 }
+          ]
+        }
+      }
+    },
+    {
+      "id": "get_product",
+      "name": "Récupérer produit",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [300, 300],
+      "parameters": {
+        "url": "https://mjuzyqhxifyvebtnlrra.supabase.co/rest/v1/pallmann_products",
+        "method": "GET",
+        "queryParameters": {
+          "parameters": [
+            { "name": "select", "value": "id,name,slug,description,features,image_url,pdf_url" },
+            { "name": "limit", "value": "1" },
+            { "name": "order", "value": "random()" }
+          ]
+        },
+        "headers": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$credentials.supabaseKey}}" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "generate_article",
+      "name": "Générer article (Gemini)",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [500, 300],
+      "parameters": {
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+        "method": "POST",
+        "queryParameters": {
+          "parameters": [
+            { "name": "key", "value": "={{$credentials.geminiKey}}" }
+          ]
+        },
+        "body": {
+          "contents": [{
+            "parts": [{
+              "text": "Tu es Éric, technicien d'application Pallmann avec 15 ans d'expérience.\n\nÉcris un article SEO sur le produit suivant:\nNom: {{$json.name}}\nDescription: {{$json.description}}\n\nSTYLE: Parle comme un artisan passionné, utilise 'je' et 'on', ajoute des anecdotes terrain.\n\nSTRUCTURE (800-1200 mots):\n1. ACCROCHE (problème réel)\n2. SOLUTION (présentation produit)\n3. MODE OPÉRATOIRE (étapes)\n4. ERREURS CLASSIQUES\n5. VERDICT PERSO\n\nFormat JSON: {title, slug, excerpt, content, meta_description, keywords}"
+            }]
+          }]
+        }
+      }
+    },
+    {
+      "id": "publish_article",
+      "name": "Publier article",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [700, 300],
+      "parameters": {
+        "url": "https://mjuzyqhxifyvebtnlrra.supabase.co/rest/v1/articles",
+        "method": "POST",
+        "headers": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$credentials.supabaseKey}}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=representation" }
+          ]
+        },
+        "body": "={{$json.generatedArticle}}"
+      }
+    },
+    {
+      "id": "notify_telegram",
+      "name": "Notifier Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [900, 300],
+      "parameters": {
+        "chatId": "2088880565",
+        "text": "📝 Nouvel article publié!\n\nTitre: {{$json.title}}\nURL: https://pallmann-store.com/blog/{{$json.slug}}"
+      }
+    }
+  ],
+  "connections": {
+    "cron": { "main": [[{ "node": "get_product", "type": "main", "index": 0 }]] },
+    "get_product": { "main": [[{ "node": "generate_article", "type": "main", "index": 0 }]] },
+    "generate_article": { "main": [[{ "node": "publish_article", "type": "main", "index": 0 }]] },
+    "publish_article": { "main": [[{ "node": "notify_telegram", "type": "main", "index": 0 }]] }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

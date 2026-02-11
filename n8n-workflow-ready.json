@@ -1,0 +1,134 @@
+{
+  "name": "Pallmann Article Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            },
+            {
+              "triggerAtHour": 20
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Cron 8h et 20h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://mjuzyqhxifyvebtnlrra.supabase.co/rest/v1/pallmann_products",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "select", "value": "id,name,slug,description,features,image_url,pdf_url" },
+            { "name": "limit", "value": "1" }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" },
+            { "name": "Authorization", "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-random-product",
+      "name": "Récupérer produit random",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [320, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDQIvQIb54_PE86eVKmtnX5mmocYMEl5NY",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"contents\": [{\n    \"parts\": [{\n      \"text\": \"Tu es Éric, technicien d'application Pallmann avec 15 ans d'expérience terrain.\\n\\nÉcris un article de blog SEO-friendly sur ce produit:\\n\\nNom: {{ $json[0].name }}\\nDescription: {{ $json[0].description }}\\nCaractéristiques: {{ $json[0].features }}\\n\\nSTYLE:\\n- Parle comme un artisan passionné qui conseille un collègue\\n- Utilise 'je', 'on', des expressions de chantier\\n- Ajoute 1-2 anecdotes terrain crédibles\\n- Ton: pro mais accessible, jamais commercial\\n\\nSTRUCTURE (800-1200 mots):\\n1. ACCROCHE (problème réel de chantier)\\n2. SOLUTION (présentation du produit)\\n3. MODE OPÉRATOIRE (étapes concrètes)\\n4. ERREURS CLASSIQUES (ce qu'on voit sur le terrain)\\n5. VERDICT PERSO (ton avis franc)\\n\\nRéponds UNIQUEMENT en JSON valide:\\n{\\n  \\\"title\\\": \\\"Titre accrocheur avec mot-clé\\\",\\n  \\\"slug\\\": \\\"titre-en-minuscules\\\",\\n  \\\"excerpt\\\": \\\"Résumé 150 caractères max\\\",\\n  \\\"content\\\": \\\"Article complet en HTML (h2, h3, p, ul)\\\",\\n  \\\"meta_description\\\": \\\"Description SEO 155 caractères\\\",\\n  \\\"keywords\\\": [\\\"mot1\\\", \\\"mot2\\\", \\\"mot3\\\"]\\n}\"\n    }]\n  }],\n  \"generationConfig\": {\n    \"temperature\": 0.8,\n    \"maxOutputTokens\": 4096\n  }\n}",
+        "options": {}
+      },
+      "id": "generate-article",
+      "name": "Générer article (Gemini)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [540, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraire le JSON de la réponse Gemini\nconst geminiResponse = $input.first().json;\nconst text = geminiResponse.candidates[0].content.parts[0].text;\n\n// Nettoyer le JSON (enlever ```json si présent)\nlet cleanJson = text.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n\ntry {\n  const article = JSON.parse(cleanJson);\n  \n  // Ajouter les métadonnées\n  article.product_id = $('Récupérer produit random').first().json[0].id;\n  article.product_slug = $('Récupérer produit random').first().json[0].slug;\n  article.author = 'Éric';\n  article.category_id = 1; // Blog\n  article.status = 'published';\n  article.created_at = new Date().toISOString();\n  \n  return [{ json: article }];\n} catch (e) {\n  throw new Error('Erreur parsing JSON Gemini: ' + e.message + '\\n\\nTexte reçu: ' + text.substring(0, 500));\n}"
+      },
+      "id": "parse-article",
+      "name": "Parser article JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mjuzyqhxifyvebtnlrra.supabase.co/rest/v1/articles",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"{{ $json.title }}\",\n  \"slug\": \"{{ $json.slug }}\",\n  \"excerpt\": \"{{ $json.excerpt }}\",\n  \"content\": {{ JSON.stringify($json.content) }},\n  \"meta_description\": \"{{ $json.meta_description }}\",\n  \"author\": \"{{ $json.author }}\",\n  \"status\": \"published\",\n  \"category_id\": {{ $json.category_id }}\n}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" },
+            { "name": "Authorization", "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1qdXp5cWh4aWZ5dmVidG5scnJhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0MjgxOTMzMywiZXhwIjoyMDU4Mzk1MzMzfQ.MifUYblRmRAEIHVF1Z7aohfvR99rjVXee_-16Fvt5sY" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=representation" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "publish-article",
+      "name": "Publier sur Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [980, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/bot8396433858:AAEW-CzdczY82L2YDvWTl9_OJ0PjB72kPiw/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"chat_id\": \"2088880565\",\n  \"text\": \"📝 Nouvel article Pallmann publié!\\n\\n📌 {{ $('Parser article JSON').first().json.title }}\\n\\n🔗 https://pallmann-store.com/blog/{{ $('Parser article JSON').first().json.slug }}\\n\\n✍️ Par Éric (IA)\",\n  \"parse_mode\": \"HTML\"\n}",
+        "options": {}
+      },
+      "id": "notify-telegram",
+      "name": "Notifier Julien",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Cron 8h et 20h": {
+      "main": [[{ "node": "Récupérer produit random", "type": "main", "index": 0 }]]
+    },
+    "Récupérer produit random": {
+      "main": [[{ "node": "Générer article (Gemini)", "type": "main", "index": 0 }]]
+    },
+    "Générer article (Gemini)": {
+      "main": [[{ "node": "Parser article JSON", "type": "main", "index": 0 }]]
+    },
+    "Parser article JSON": {
+      "main": [[{ "node": "Publier sur Supabase", "type": "main", "index": 0 }]]
+    },
+    "Publier sur Supabase": {
+      "main": [[{ "node": "Notifier Julien", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

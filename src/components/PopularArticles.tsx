@@ -31,6 +31,7 @@ const PopularArticles: React.FC<PopularArticlesProps> = ({ currentSlug, limit = 
         .from('articles')
         .select('id, title, slug, excerpt, click_count, view_count')
         .eq('published', true)
+        .eq('site', 'pallmann-store')
         .eq('is_popular', true)
         .order('click_count', { ascending: false })
         .limit(limit + 1);
