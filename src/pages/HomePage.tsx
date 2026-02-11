@@ -242,7 +242,7 @@ const HomePage: React.FC = () => {
         supabase
           .from('categories')
           .select('*')
-          .order('name'),
+          .order('display_order'),
         supabase
           .from('subcategories')
           .select('*')
@@ -261,16 +261,25 @@ const HomePage: React.FC = () => {
       ];
 
       const enrichedProducts = (productsRes.data || []).map((product, index) => {
+        const category = categoriesRes.data?.find(c => c.id === product.category_id);
         const subcategory = subcategoriesRes.data?.find(s => s.id === product.subcategory_id);
-        const category = categoriesRes.data?.find(c => c.id === subcategory?.category_id);
         return {
           ...product,
           category_name: category?.name,
+          category_display_order: category?.display_order ?? 99,
           subcategory_name: subcategory?.name,
-          is_bestseller: bestsellerSlugs.includes(product.slug),
+          is_bestseller: product.is_bestseller || bestsellerSlugs.includes(product.slug),
           is_new: false,
           stock_status: 'in_stock' as const,
         };
+      });
+
+      // Trier par catégorie (vitrificateurs/huiles en premier) puis par nom
+      enrichedProducts.sort((a, b) => {
+        if (a.category_display_order !== b.category_display_order) {
+          return a.category_display_order - b.category_display_order;
+        }
+        return a.name.localeCompare(b.name);
       });
 
       setProducts(enrichedProducts);
