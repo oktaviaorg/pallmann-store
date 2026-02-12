@@ -39,8 +39,7 @@ const LanguageSelector: React.FC = () => {
         aria-label="Sélectionner la langue"
       >
         <Globe className="w-4 h-4" />
-        <span className="text-lg">{currentLanguage.flag}</span>
-        <span className="font-medium text-sm hidden sm:inline">{currentLanguage.label}</span>
+        <span className="font-medium text-sm">{currentLanguage.label}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
