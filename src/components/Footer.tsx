@@ -96,6 +96,11 @@ const Footer: React.FC = () => {
                   {t('common.cart')}
                 </Link>
               </li>
+              <li>
+                <Link to="/parrainage" className="text-gray-400 hover:text-[#D35400] transition-colors flex items-center gap-1">
+                  🎁 Parrainage
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
