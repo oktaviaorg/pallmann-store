@@ -183,7 +183,7 @@ const ContactPage: React.FC = () => {
                   >
                     <Phone className="w-5 h-5 text-[#1A1A1A]" />
                     <div>
-                      <div className="font-bold text-[#1A1A1A]">03 89 21 00 00</div>
+                      <div className="font-bold text-[#1A1A1A]">07 57 82 13 06</div>
                       <div className="text-xs text-[#6B6B6B]">Lun-Ven 8h-17h</div>
                     </div>
                   </a>

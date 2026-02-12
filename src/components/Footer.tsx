@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
                   className="flex items-center gap-2 text-gray-400 hover:text-[#D35400] transition-colors"
                 >
                   <Phone className="w-4 h-4 flex-shrink-0 text-[#E67E22]" />
-                  <span>03 89 21 00 00</span>
+                  <span>07 57 82 13 06</span>
                 </a>
               </li>
               <li className="flex items-start gap-2 text-gray-400">
