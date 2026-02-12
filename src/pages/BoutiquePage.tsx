@@ -356,26 +356,53 @@ const BoutiquePage: React.FC = () => {
                   Vitrificateurs, huiles, colles, machines et accessoires professionnels Pallmann.
                 </p>
 
-                {/* Produit Vedette */}
-                <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-3xl mx-auto border border-white/20">
-                  <div className="flex flex-col md:flex-row items-center gap-6">
-                    <img 
-                      src="https://fr.pallmann.net/fileadmin/_processed_/f/1/csm_PALLMANN_dummy_SPECIAL_APPLICATION_ROLLER_2020-06_9420607ec1.png" 
-                      alt="ECO OIL 1K" 
-                      className="w-32 h-32 object-contain bg-white rounded-xl p-2"
-                    />
-                    <div className="text-left flex-1">
-                      <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-xs font-bold mb-2 border border-green-500/30">
-                        ⭐ Produit du moment
+                {/* Produits Vedettes */}
+                <div className="mt-8 grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                  {/* ECO OIL 1K */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/20 hover:bg-white/15 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <img 
+                        src="https://fr.pallmann.net/fileadmin/_processed_/f/1/csm_PALLMANN_dummy_SPECIAL_APPLICATION_ROLLER_2020-06_9420607ec1.png" 
+                        alt="ECO OIL 1K" 
+                        className="w-24 h-24 object-contain bg-white rounded-xl p-2"
+                      />
+                      <div className="text-left flex-1">
+                        <div className="inline-flex items-center gap-1 bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full text-xs font-bold mb-1 border border-green-500/30">
+                          ⭐ Vedette
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-1">ECO OIL 1K</h3>
+                        <p className="text-white/70 text-xs mb-2">Huile sans solvant, au rouleau</p>
+                        <Link 
+                          to="/produit/eco-oil-1k" 
+                          className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FF9900] to-[#F0C300] text-white px-3 py-1.5 rounded-lg font-bold text-xs hover:opacity-90 transition-opacity"
+                        >
+                          Voir →
+                        </Link>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-1">ECO OIL 1K</h3>
-                      <p className="text-white/70 text-sm mb-3">Huile mono composante pour parquet sans solvant, application au rouleau</p>
-                      <Link 
-                        to="/produit/eco-oil-1k" 
-                        className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF9900] to-[#F0C300] text-white px-4 py-2 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity"
-                      >
-                        Voir le produit →
-                      </Link>
+                    </div>
+                  </div>
+
+                  {/* HARDWAXOIL */}
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/20 hover:bg-white/15 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <img 
+                        src="https://fr.pallmann.net/fileadmin/MAM/37206/PALLMANN_dummy_Hardwaxoil_3l_msl_2021-12.png" 
+                        alt="HARDWAXOIL" 
+                        className="w-24 h-24 object-contain bg-white rounded-xl p-2"
+                      />
+                      <div className="text-left flex-1">
+                        <div className="inline-flex items-center gap-1 bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full text-xs font-bold mb-1 border border-green-500/30">
+                          ⭐ Vedette
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-1">HARDWAXOIL</h3>
+                        <p className="text-white/70 text-xs mb-2">Huile solvantée, au rouleau</p>
+                        <Link 
+                          to="/produit/hardwaxoil" 
+                          className="inline-flex items-center gap-1 bg-gradient-to-r from-[#FF9900] to-[#F0C300] text-white px-3 py-1.5 rounded-lg font-bold text-xs hover:opacity-90 transition-opacity"
+                        >
+                          Voir →
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
