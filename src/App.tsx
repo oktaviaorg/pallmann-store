@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './lib/ThemeProvider';
 import { AuthProvider } from './lib/AuthProvider';
 import { CartProvider } from './lib/CartContext';
@@ -85,6 +85,11 @@ export default function App() {
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/cgv" element={<CGV />} />
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+          
+          {/* Redirections (pages non implémentées) */}
+          <Route path="/compte" element={<Navigate to="/boutique" replace />} />
+          <Route path="/produit/:slug" element={<Navigate to="/boutique" replace />} />
+          <Route path="/produits/:slug" element={<Navigate to="/boutique" replace />} />
           
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />
