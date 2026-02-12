@@ -2,10 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import ProBanner from '../components/ProBanner';
+import MarqueeBanner from '../components/MarqueeBanner';
+import PromoCodeBanner from '../components/PromoCodeBanner';
 import Footer from '../components/Footer';
+import TrustBar from '../components/TrustBar';
+import CartReminder from '../components/CartReminder';
+import ProductCard from '../components/ProductCard';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../lib/CartContext';
-import { ShoppingCart, ExternalLink, Filter, Search, Home, ChevronRight, Download, Phone, Tag, CheckCircle, XCircle, Package, AlertTriangle, Plus } from 'lucide-react';
+import { useQuote } from '../lib/QuoteContext';
+import { ShoppingCart, Filter, Search, Home, ChevronRight, Phone, Tag, CheckCircle, XCircle, Package, AlertTriangle, Plus, ArrowUpDown, SortAsc, SortDesc } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -45,19 +52,26 @@ interface CompanyCode {
   is_active: boolean;
 }
 
+// Options de tri
+type SortOption = 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc' | 'popular';
+
 const BoutiquePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const { addItem, items } = useCart();
+  const [sortBy, setSortBy] = useState<SortOption>('popular');
+  const { addItem, items, companyCode, setCompanyCode, totalHT } = useCart();
+  const { addItem: addToQuote, removeItem: removeFromQuote, isInQuote } = useQuote();
   
   // Code promo pro
   const [promoCode, setPromoCode] = useState('');
-  const [validatedCode, setValidatedCode] = useState<CompanyCode | null>(null);
+  const [validatedCode, setValidatedCode] = useState<CompanyCode | null>(companyCode);
   const [codeError, setCodeError] = useState('');
   const [checkingCode, setCheckingCode] = useState(false);
+  const [addedToCart, setAddedToCart] = useState<string | null>(null);
+  const [addedToQuote, setAddedToQuote] = useState<string | null>(null);
   
   // Alerte durcisseur
   const [hardenerAlert, setHardenerAlert] = useState<{show: boolean; product: Product | null; hardener: Product | null}>({
@@ -82,8 +96,10 @@ const BoutiquePage: React.FC = () => {
       if (error || !data) {
         setCodeError('Code invalide ou expiré');
         setValidatedCode(null);
+        setCompanyCode(null);
       } else {
         setValidatedCode(data);
+        setCompanyCode(data);
         setCodeError('');
       }
     } catch (err) {
@@ -96,6 +112,34 @@ const BoutiquePage: React.FC = () => {
   const getDiscountedPrice = (price: number): number => {
     if (!validatedCode) return price;
     return price * (1 - validatedCode.discount_percent / 100);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    if (!product.price_pack_ht && !product.price_public_ht) return;
+    
+    addItem({
+      id: product.id,
+      name: product.name,
+      price_ht: getDiscountedPrice(product.price_pack_ht || product.price_public_ht || 0),
+      image_url: product.image_url,
+      unit: product.unit || 'L',
+    });
+    
+    setAddedToCart(product.id);
+    setTimeout(() => setAddedToCart(null), 2000);
+  };
+
+  const handleAddToQuote = (product: Product) => {
+    addToQuote({
+      id: product.id,
+      name: product.name,
+      price_ht: product.price_pack_ht || product.price_public_ht || 0,
+      image_url: product.image_url,
+      unit: product.unit || 'unité',
+    });
+    
+    setAddedToQuote(product.id);
+    setTimeout(() => setAddedToQuote(null), 2000);
   };
 
   useEffect(() => {
@@ -128,52 +172,6 @@ const BoutiquePage: React.FC = () => {
     }
   };
 
-  // Ajouter au panier avec vérification durcisseur
-  const handleAddToCart = async (product: Product) => {
-    // Vérifier si le produit nécessite un durcisseur
-    const needs2K = product.name.toLowerCase().includes('2k') || 
-                    product.name.toLowerCase().includes('bi-composant') ||
-                    product.name.toLowerCase().includes('bi composant');
-    
-    if (needs2K) {
-      // Chercher le durcisseur correspondant
-      const hardenerName = product.name.includes('Magic Oil') ? 'MAGIC OIL' :
-                          product.name.includes('Pall-X 98') ? 'PALL-X 98' :
-                          product.name.includes('Pall-X 96') ? 'PALL-X 96' : null;
-      
-      if (hardenerName) {
-        const hardener = products.find(p => 
-          p.name.toLowerCase().includes('durcisseur') && 
-          p.name.toLowerCase().includes(hardenerName.toLowerCase())
-        );
-        
-        if (hardener) {
-          // Ajouter le produit principal
-          addItem({
-            id: product.id,
-            name: product.name,
-            price_ht: product.price_pack_ht || product.price_public_ht || 0,
-            image_url: product.image_url,
-            unit: product.unit || 'unité'
-          });
-          
-          // Afficher alerte pour le durcisseur
-          setHardenerAlert({ show: true, product, hardener });
-          return;
-        }
-      }
-    }
-    
-    // Ajouter normalement
-    addItem({
-      id: product.id,
-      name: product.name,
-      price_ht: product.price_pack_ht || product.price_public_ht || 0,
-      image_url: product.image_url,
-      unit: product.unit || 'unité'
-    });
-  };
-
   // Ajouter le durcisseur
   const addHardener = () => {
     if (hardenerAlert.hardener) {
@@ -188,6 +186,7 @@ const BoutiquePage: React.FC = () => {
     setHardenerAlert({ show: false, product: null, hardener: null });
   };
 
+  // Filtrer les produits
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' || 
       product.category_id === selectedCategory;
@@ -199,62 +198,45 @@ const BoutiquePage: React.FC = () => {
     return matchesCategory && matchesSearch;
   });
 
+  // Trier les produits
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    const priceA = a.price_pack_ht || a.price_public_ht || 0;
+    const priceB = b.price_pack_ht || b.price_public_ht || 0;
+    
+    switch (sortBy) {
+      case 'name-asc':
+        return a.name.localeCompare(b.name);
+      case 'name-desc':
+        return b.name.localeCompare(a.name);
+      case 'price-asc':
+        return priceA - priceB;
+      case 'price-desc':
+        return priceB - priceA;
+      case 'popular':
+      default:
+        // Priorité aux bestsellers
+        const aPopular = ['pall-x 98', 'magic oil', 'pall-x 96', 'extreme'].some(kw => a.name.toLowerCase().includes(kw)) ? 0 : 1;
+        const bPopular = ['pall-x 98', 'magic oil', 'pall-x 96', 'extreme'].some(kw => b.name.toLowerCase().includes(kw)) ? 0 : 1;
+        return aPopular - bPopular || a.name.localeCompare(b.name);
+    }
+  });
+
   // Compter les produits par catégorie
   const categoryCounts = categories.map(cat => ({
     ...cat,
     count: products.filter(p => p.category_id === cat.id).length
   })).filter(cat => cat.count > 0);
 
-  // Best sellers (premiers produits populaires)
-  const bestSellers = products
-    .filter(p => ['pall-x 98', 'magic oil', 'pall-x 96'].some(kw => p.name.toLowerCase().includes(kw)))
-    .slice(0, 3);
-
-  // Formater le prix selon le type de produit
-  const formatPrice = (product: Product) => {
-    const price = product.price_pack_ht || product.price_public_ht;
-    if (!price) return null;
-    
-    const packSize = product.pack_size || 1;
-    const unit = product.unit?.toUpperCase();
-    
-    // Produit liquide (prix au litre)
-    if (unit === 'L' || unit === '1 L') {
-      return {
-        mainPrice: price,
-        mainLabel: packSize > 1 ? `Bidon ${packSize}L` : 'Bidon 1L',
-        subPrice: packSize > 1 ? product.price_public_ht : null,
-        subLabel: packSize > 1 ? '/L' : null
-      };
-    }
-    
-    // Boîte/pack
-    if (packSize > 1) {
-      return {
-        mainPrice: price,
-        mainLabel: `Lot de ${packSize}`,
-        subPrice: null,
-        subLabel: null
-      };
-    }
-    
-    // Unité simple
-    return {
-      mainPrice: price,
-      mainLabel: '',
-      subPrice: null,
-      subLabel: null
-    };
-  };
-
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
         <Header />
+        <ProBanner />
+        <MarqueeBanner />
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#ff9900] mx-auto"></div>
-            <p className="mt-4 text-gray-600">Chargement de la boutique...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#FF9900] mx-auto"></div>
+            <p className="mt-4 text-[#6B6B6B]">Chargement de la boutique...</p>
           </div>
         </main>
         <Footer />
@@ -281,20 +263,20 @@ const BoutiquePage: React.FC = () => {
               <div className="bg-amber-100 p-2 rounded-full">
                 <AlertTriangle className="w-6 h-6 text-amber-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900">Durcisseur recommandé</h3>
+              <h3 className="text-lg font-bold text-[#1A1A1A]">Durcisseur recommandé</h3>
             </div>
             
-            <p className="text-gray-600 mb-4">
+            <p className="text-[#6B6B6B] mb-4">
               <strong>{hardenerAlert.product?.name}</strong> est un produit bi-composant qui nécessite un durcisseur pour une application correcte.
             </p>
             
-            <div className="bg-gray-50 rounded-xl p-4 mb-4 flex items-center gap-4">
+            <div className="bg-[#F8FAFC] rounded-xl p-4 mb-4 flex items-center gap-4">
               {hardenerAlert.hardener.image_url && (
                 <img src={hardenerAlert.hardener.image_url} alt={hardenerAlert.hardener.name} className="w-16 h-16 object-contain" />
               )}
               <div>
-                <p className="font-semibold text-gray-900">{hardenerAlert.hardener.name}</p>
-                <p className="text-[#ff9900] font-bold">
+                <p className="font-semibold text-[#1A1A1A]">{hardenerAlert.hardener.name}</p>
+                <p className="text-[#FF9900] font-bold">
                   {(hardenerAlert.hardener.price_pack_ht || hardenerAlert.hardener.price_public_ht)?.toFixed(2)}€ HT
                 </p>
               </div>
@@ -303,13 +285,14 @@ const BoutiquePage: React.FC = () => {
             <div className="flex gap-3">
               <button
                 onClick={() => setHardenerAlert({ show: false, product: null, hardener: null })}
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg font-semibold text-[#6B6B6B] hover:bg-gray-50 transition-colors"
               >
                 Non merci
               </button>
               <button
                 onClick={addHardener}
-                className="flex-1 px-4 py-3 bg-[#ff9900] hover:bg-[#f0c300] text-white rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-3 text-white rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
               >
                 <Plus className="w-4 h-4" />
                 Ajouter
@@ -319,165 +302,184 @@ const BoutiquePage: React.FC = () => {
         </div>
       )}
 
-      <div className="min-h-screen flex flex-col bg-gray-50">
+      <div className="min-h-screen flex flex-col bg-[#FFFFFF]">
         <Header />
+        <PromoCodeBanner />
+        <ProBanner />
+        <MarqueeBanner />
+        <TrustBar />
+        <CartReminder />
 
-        <main className="flex-grow pt-24 pb-16">
-          {/* Breadcrumb Navigation */}
-          <div className="bg-white border-b border-gray-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-              <nav className="flex items-center space-x-2 text-sm">
-                <Link to="/" className="text-gray-500 hover:text-[#ff9900] transition-colors flex items-center gap-1">
-                  <Home className="w-4 h-4" />
-                  <span>Accueil</span>
-                </Link>
-                <ChevronRight className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-900 font-semibold">Boutique</span>
-              </nav>
-            </div>
-          </div>
-
-          {/* Orange Header Section */}
-          <div className="bg-gradient-to-r from-[#ff9900] to-[#f0c300] py-12 shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="flex-grow">
+          {/* Hero Section - Style PRO harmonisé */}
+          <div className="relative overflow-hidden">
+            <div 
+              className="absolute inset-0"
+              style={{ 
+                background: 'linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 50%, #1A1A1A 100%)'
+              }}
+            ></div>
+            
+            <div 
+              className="absolute inset-0 opacity-10"
+              style={{
+                background: 'radial-gradient(circle at 20% 80%, #FF9900 0%, transparent 50%)',
+              }}
+            ></div>
+            
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
               <div className="text-center">
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/40 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <nav className="flex items-center justify-center space-x-2 text-sm mb-6">
+                  <Link to="/" className="text-white/70 hover:text-white transition-colors flex items-center gap-1">
+                    <Home className="w-4 h-4" />
+                    <span>Accueil</span>
+                  </Link>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                  <span className="text-white font-semibold">Boutique</span>
+                </nav>
+
+                <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm text-amber-300 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
                   <Package className="w-4 h-4" />
-                  {products.length} produits disponibles • Livraison France entière
+                  {products.length} produits • Livraison France entière
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                  Tous nos produits
+                
+                <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+                  Tous nos <span style={{
+                    background: 'linear-gradient(135deg, #F0C300 0%, #FF9900 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}>produits</span>
                 </h1>
-                <p className="text-xl text-white/90 max-w-3xl mx-auto">
-                  Vitrificateurs, huiles, colles, machines et accessoires de qualité professionnelle Pallmann.
+                
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8">
+                  Vitrificateurs, huiles, colles, machines et accessoires professionnels Pallmann.
                 </p>
               </div>
             </div>
+            
+            <div className="absolute bottom-0 left-0 right-0">
+              <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+                <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#FFFFFF"/>
+              </svg>
+            </div>
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
-
-            {/* Best Sellers Section */}
-            {bestSellers.length > 0 && (
-              <div className="bg-gradient-to-br from-[#ff9900] to-[#f0c300] rounded-2xl shadow-2xl p-8 mb-8 border-4 border-white/30">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/40 text-white px-4 py-2 rounded-full text-sm font-bold mb-3">
-                    <ShoppingCart className="w-4 h-4" />
-                    Les plus vendus
-                  </div>
-                  <h2 className="text-3xl font-bold text-white mb-2">
-                    Nos produits phares
-                  </h2>
-                  <p className="text-white/90 text-lg">
-                    Les favoris des professionnels du parquet
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {bestSellers.map((product, index) => {
-                    const priceInfo = formatPrice(product);
-                    return (
-                      <div
-                        key={product.id}
-                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex flex-col h-full relative"
-                      >
-                        <div className="absolute top-4 left-4 z-20">
-                          <div className="bg-[#ff9900] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
-                            {index + 1}
-                          </div>
-                        </div>
-
-                        {product.image_url && (
-                          <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 p-6 pt-16">
-                            <img
-                              src={product.image_url}
-                              alt={product.name}
-                              className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
-                            />
-                          </div>
-                        )}
-
-                        <div className="p-6 flex-grow flex flex-col">
-                          <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#ff9900] transition-colors">
-                            {product.name}
-                          </h3>
-
-                          {product.description && (
-                            <p className="text-gray-700 text-sm mb-4 line-clamp-2 flex-grow">
-                              {product.description}
-                            </p>
-                          )}
-
-                          {priceInfo && (
-                            <div className="mb-4">
-                              <span className="text-2xl font-bold text-[#ff9900]">{priceInfo.mainPrice.toFixed(2)}€</span>
-                              <span className="text-sm text-gray-500"> HT</span>
-                              {priceInfo.mainLabel && (
-                                <span className="text-sm text-gray-500"> • {priceInfo.mainLabel}</span>
-                              )}
-                              {priceInfo.subPrice && (
-                                <div className="text-xs text-gray-400">
-                                  soit {priceInfo.subPrice.toFixed(2)}€{priceInfo.subLabel}
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="p-6 pt-0">
-                          <button
-                            onClick={() => handleAddToCart(product)}
-                            className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#f0c300] text-white px-6 py-3 rounded-lg font-bold text-sm transition-all w-full justify-center shadow-md hover:shadow-lg"
-                          >
-                            <ShoppingCart className="w-4 h-4" />
-                            Ajouter au panier
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Filters Section */}
-            <div className="bg-white rounded-xl shadow-md p-6 mb-8 border-l-4 border-[#ff9900]">
-              <div className="flex items-center gap-2 mb-4">
-                <Filter className="w-5 h-5 text-[#ff9900]" />
-                <h2 className="text-lg font-bold text-gray-900">Filtrer les produits</h2>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {/* Filters Section - Style harmonisé */}
+            <div className="bg-white rounded-2xl shadow-card p-4 md:p-6 mb-8 border border-gray-100">
+              {/* Search */}
+              <div className="relative mb-6">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#6B6B6B]" />
+                <input
+                  type="text"
+                  placeholder="Rechercher un produit (ex: abrasif, vitrificateur, huile...)"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#1A1A1A]"
+                />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Search */}
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Rechercher un produit..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all"
-                  />
+              {/* Category Pills */}
+              <div className="mb-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Filter className="w-4 h-4 text-[#6B6B6B]" />
+                  <span className="text-sm font-semibold text-[#6B6B6B]">Catégories</span>
                 </div>
-
-                {/* Category Filter - utilise les vraies catégories */}
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all"
-                >
-                  <option value="all">Toutes les catégories ({products.length})</option>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                      selectedCategory === 'all'
+                        ? 'text-white shadow-md'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                    style={selectedCategory === 'all' ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
+                  >
+                    Tout voir ({products.length})
+                  </button>
                   {categoryCounts.map(cat => (
-                    <option key={cat.id} value={cat.id}>{cat.name} ({cat.count})</option>
+                    <button
+                      key={cat.id}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                        selectedCategory === cat.id
+                          ? 'text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                      style={selectedCategory === cat.id ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
+                    >
+                      {cat.name} ({cat.count})
+                    </button>
                   ))}
-                </select>
+                </div>
+              </div>
+
+              {/* Tri des produits */}
+              <div className="mb-4 pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-2 mb-3">
+                  <ArrowUpDown className="w-4 h-4 text-[#6B6B6B]" />
+                  <span className="text-sm font-semibold text-[#6B6B6B]">Trier par</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setSortBy('popular')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                      sortBy === 'popular'
+                        ? 'bg-[#FF9900] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    🔥 Populaires
+                  </button>
+                  <button
+                    onClick={() => setSortBy('name-asc')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 ${
+                      sortBy === 'name-asc'
+                        ? 'bg-[#FF9900] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    <SortAsc className="w-3 h-3" /> Nom A-Z
+                  </button>
+                  <button
+                    onClick={() => setSortBy('name-desc')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all flex items-center gap-1 ${
+                      sortBy === 'name-desc'
+                        ? 'bg-[#FF9900] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    <SortDesc className="w-3 h-3" /> Nom Z-A
+                  </button>
+                  <button
+                    onClick={() => setSortBy('price-asc')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                      sortBy === 'price-asc'
+                        ? 'bg-[#FF9900] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    💰 Prix croissant
+                  </button>
+                  <button
+                    onClick={() => setSortBy('price-desc')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                      sortBy === 'price-desc'
+                        ? 'bg-[#FF9900] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    💎 Prix décroissant
+                  </button>
+                </div>
               </div>
 
               {/* Code promo PRO */}
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-2 mb-2">
-                  <Tag className="w-4 h-4 text-[#ff9900]" />
-                  <span className="text-sm font-semibold text-gray-700">Code professionnel</span>
+                  <Tag className="w-4 h-4 text-[#FF9900]" />
+                  <span className="text-sm font-semibold text-[#6B6B6B]">Code professionnel</span>
                 </div>
                 <div className="flex gap-2">
                   <input
@@ -485,12 +487,13 @@ const BoutiquePage: React.FC = () => {
                     placeholder="Entrez votre code pro..."
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#ff9900] focus:border-transparent transition-all uppercase"
+                    className="flex-1 px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all uppercase text-[#1A1A1A]"
                   />
                   <button
                     onClick={validatePromoCode}
                     disabled={checkingCode || !promoCode.trim()}
-                    className="px-4 py-2 bg-[#ff9900] hover:bg-[#f0c300] text-white font-semibold rounded-lg transition-all disabled:opacity-50"
+                    className="px-4 py-2 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
+                    style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                   >
                     {checkingCode ? '...' : 'Valider'}
                   </button>
@@ -511,145 +514,49 @@ const BoutiquePage: React.FC = () => {
 
               {/* Active filters display */}
               {(selectedCategory !== 'all' || searchTerm) && (
-                <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
-                  <span className="font-semibold">{filteredProducts.length}</span>
-                  <span>produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}</span>
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <span className="text-[#6B6B6B]">
+                    <span className="font-bold text-[#1A1A1A]">{sortedProducts.length}</span> produit{sortedProducts.length > 1 ? 's' : ''} trouvé{sortedProducts.length > 1 ? 's' : ''}
+                  </span>
                   <button
                     onClick={() => {
                       setSelectedCategory('all');
                       setSearchTerm('');
                     }}
-                    className="ml-auto text-[#ff9900] hover:text-[#f0c300] font-semibold transition-colors"
+                    className="text-[#F0C300] font-semibold hover:underline"
                   >
-                    Réinitialiser les filtres
+                    Réinitialiser
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Products Grid */}
-            {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.map(product => {
-                  const priceInfo = formatPrice(product);
-                  const isInCart = items.some(item => item.id === product.id);
-                  
-                  return (
-                    <div
-                      key={product.id}
-                      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 group flex flex-col h-full relative"
-                    >
-                      {/* Badge si dans le panier */}
-                      {isInCart && (
-                        <div className="absolute top-2 right-2 z-10 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                          ✓ Dans le panier
-                        </div>
-                      )}
-                      
-                      {/* Product Image - déborde au-dessus du fond noir */}
-                      {product.image_url && (
-                        <div className="relative pt-6 pb-0">
-                          {/* Fond noir en bas */}
-                          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1A1A1A] to-[#2D2D2D] rounded-t-3xl"></div>
-                          {/* Image qui déborde */}
-                          <img
-                            src={product.image_url}
-                            alt={product.name}
-                            className="relative z-10 w-full h-52 object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-xl"
-                          />
-                        </div>
-                      )}
-
-                      {/* Card Body */}
-                      <div className="p-5 flex-grow flex flex-col">
-                        <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-[#ff9900] transition-colors line-clamp-2">
-                          {product.name}
-                        </h3>
-
-                        {product.description && (
-                          <p className="text-gray-600 text-sm mb-3 line-clamp-2 flex-grow">
-                            {product.description}
-                          </p>
-                        )}
-
-                        {/* Features */}
-                        {product.features && product.features.length > 0 && (
-                          <ul className="space-y-1 mb-3 text-xs text-gray-500">
-                            {product.features.slice(0, 2).map((feature, idx) => (
-                              <li key={idx} className="flex items-start gap-1">
-                                <ChevronRight className="w-3 h-3 text-[#ff9900] mt-0.5 flex-shrink-0" />
-                                <span className="line-clamp-1">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-
-                      {/* Card Footer */}
-                      <div className="p-5 pt-0 border-t border-gray-100 bg-gray-50">
-                        {/* Prix */}
-                        {priceInfo && (
-                          <div className="mb-3">
-                            {validatedCode ? (
-                              <div className="flex items-center gap-2">
-                                <span className="text-gray-400 line-through text-sm">{priceInfo.mainPrice.toFixed(2)}€</span>
-                                <span className="text-xl font-bold text-green-600">
-                                  {getDiscountedPrice(priceInfo.mainPrice).toFixed(2)}€
-                                </span>
-                                <span className="text-xs text-gray-500">HT</span>
-                              </div>
-                            ) : (
-                              <div>
-                                <span className="text-xl font-bold text-[#ff9900]">{priceInfo.mainPrice.toFixed(2)}€</span>
-                                <span className="text-xs text-gray-500"> HT</span>
-                                {priceInfo.mainLabel && (
-                                  <span className="text-xs text-gray-500"> • {priceInfo.mainLabel}</span>
-                                )}
-                                {priceInfo.subPrice && (
-                                  <div className="text-xs text-gray-400">
-                                    soit {priceInfo.subPrice.toFixed(2)}€{priceInfo.subLabel}
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        )}
-
-                        {/* PDF Link */}
-                        {product.pdf_url && (
-                          <a
-                            href={product.pdf_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-gray-500 hover:text-[#ff9900] transition-colors mb-3"
-                          >
-                            <Download className="w-3 h-3" />
-                            Fiche technique
-                          </a>
-                        )}
-
-                        {/* CTA - Ajouter au panier */}
-                        <button
-                          onClick={() => handleAddToCart(product)}
-                          className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#f0c300] text-white px-4 py-2 rounded-lg font-bold text-sm transition-all w-full justify-center"
-                        >
-                          <ShoppingCart className="w-4 h-4" />
-                          Ajouter au panier
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+            {/* Products Grid - Utilise ProductCard comme HomePage */}
+            {sortedProducts.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {sortedProducts.map(product => (
+                  <ProductCard
+                    key={product.id}
+                    product={{
+                      ...product,
+                      price_ht: product.price_pack_ht || product.price_public_ht
+                    }}
+                    validatedCode={validatedCode}
+                    onAddToCart={() => handleAddToCart(product)}
+                    onAddToQuote={() => handleAddToQuote(product)}
+                    isInQuote={isInQuote(product.id)}
+                    addedToCart={addedToCart === product.id}
+                    addedToQuote={addedToQuote === product.id}
+                  />
+                ))}
               </div>
             ) : (
-              <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-                <div className="text-gray-400 mb-4">
-                  <Search className="w-16 h-16 mx-auto" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+              <div className="bg-white rounded-2xl shadow-card p-12 text-center border border-gray-100">
+                <Search className="w-16 h-16 mx-auto text-gray-300 mb-4" />
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">
                   Aucun produit trouvé
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-[#6B6B6B] mb-6">
                   Essayez d'autres critères de recherche
                 </p>
                 <button
@@ -657,38 +564,47 @@ const BoutiquePage: React.FC = () => {
                     setSelectedCategory('all');
                     setSearchTerm('');
                   }}
-                  className="inline-flex items-center gap-2 bg-[#ff9900] hover:bg-[#f0c300] text-white px-6 py-3 rounded-lg font-bold transition-colors"
+                  className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
+                  style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
                 >
                   Voir tous les produits
                 </button>
               </div>
             )}
 
-            {/* CTA Section */}
-            <div className="mt-16 bg-gradient-to-r from-[#ff9900] to-[#f0c300] rounded-2xl p-8 md:p-12 shadow-2xl">
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-white mb-4">
-                  Franco de port dès 630€ HT
-                </h2>
-                <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg">
-                  Livraison France entière en 48-72h • Produits Pallmann 100% authentiques • Support expert
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-[#ff9900] px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:scale-105"
-                  >
-                    Demander un devis
-                    <ChevronRight className="w-5 h-5" />
-                  </Link>
-                  <a
-                    href="tel:+33604440903"
-                    className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:scale-105"
-                  >
-                    <Phone className="w-5 h-5" />
-                    06 04 44 09 03
-                  </a>
-                </div>
+            {/* Shipping CTA - Style harmonisé */}
+            <div 
+              className="mt-12 rounded-2xl p-8 text-center text-white relative overflow-hidden"
+              style={{ background: 'linear-gradient(135deg, #1A1A1A 0%, #243B53 50%, #FF9900 100%)' }}
+            >
+              <div 
+                className="absolute top-0 left-0 right-0 h-1"
+                style={{ background: 'linear-gradient(90deg, #FF9900 0%, #F0C300 100%)' }}
+              ></div>
+              
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Package className="w-8 h-8 text-[#FF9900]" />
+                <h2 className="text-2xl font-extrabold">Franco de port dès 630€ HT</h2>
+              </div>
+              <p className="text-white/80 mb-6 max-w-xl mx-auto">
+                Livraison France entière en 48-72h • Produits Pallmann 100% authentiques • Support expert
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  to="/panier"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#1A1A1A] bg-white hover:bg-gray-100 transition-all shadow-lg"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                  Voir mon panier
+                  <ChevronRight className="w-5 h-5" />
+                </Link>
+                <a
+                  href="tel:+33604440903"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white border-2 border-white/30 hover:bg-white/10 transition-all"
+                >
+                  <Phone className="w-5 h-5" />
+                  06 04 44 09 03
+                </a>
               </div>
             </div>
 
