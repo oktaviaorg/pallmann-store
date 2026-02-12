@@ -233,33 +233,31 @@ const HomePage: React.FC = () => {
     fetchData();
   }, []);
 
-  // Détection automatique de catégorie basée sur le nom du produit
-  const detectCategory = (product: any): { name: string; order: number } => {
-    const text = (product.name + ' ' + (product.description || '')).toLowerCase();
-    if (['vitrificateur', 'pall-x 9', 'pall-x 96', 'pall-x 98', 'is 90', 'extreme'].some(k => text.includes(k))) 
-      return { name: 'Vitrificateurs', order: 1 };
-    if (['huile', 'oil'].some(k => text.includes(k))) 
-      return { name: 'Huiles', order: 2 };
-    if (['colle', 'p9', 'p15', 'p 625'].some(k => text.includes(k))) 
-      return { name: 'Colles', order: 3 };
-    if (['fond dur', 'pall-x 3', 'primer', 'texture'].some(k => text.includes(k))) 
-      return { name: 'Préparation', order: 4 };
-    if (['clean', 'care', 'finish care', 'refresher', 'soap'].some(k => text.includes(k))) 
-      return { name: 'Entretien', order: 5 };
-    if (['machine', 'ponceuse', 'spider', 'pad', 'rouleau'].some(k => text.includes(k))) 
-      return { name: 'Machines', order: 6 };
-    return { name: 'Autres', order: 99 };
-  };
-
   const fetchData = async () => {
     try {
-      // Utiliser pallmann_products au lieu de products
+      // Charger les catégories depuis pallmann_categories
+      const { data: categoriesData } = await supabase
+        .from('pallmann_categories')
+        .select('*')
+        .order('display_order');
+
+      // Charger les produits PUBLIÉS uniquement
       const { data: productsData, error: productsError } = await supabase
         .from('pallmann_products')
         .select('*')
+        .eq('published', true)
         .order('name');
 
       if (productsError) throw productsError;
+
+      // Créer un map des catégories par ID
+      const categoryMap: Record<string, { name: string; order: number }> = {};
+      (categoriesData || []).forEach((cat, index) => {
+        categoryMap[cat.id] = { 
+          name: cat.name, 
+          order: cat.display_order || index 
+        };
+      });
 
       // Best-sellers Pallmann (produits phares définis par LPR)
       const bestsellerConfig: Record<string, { order: number; tagline?: string }> = {
@@ -280,7 +278,11 @@ const HomePage: React.FC = () => {
       const bestsellerSlugs = Object.keys(bestsellerConfig);
 
       const enrichedProducts = (productsData || []).map((product) => {
-        const category = detectCategory(product);
+        // Utiliser category_id pour obtenir la catégorie
+        const category = product.category_id && categoryMap[product.category_id] 
+          ? categoryMap[product.category_id] 
+          : { name: 'Autres', order: 99 };
+        
         const matchingBestseller = bestsellerSlugs.find(slug => product.slug?.includes(slug));
         const config = matchingBestseller ? bestsellerConfig[matchingBestseller] : null;
         return {
@@ -305,13 +307,22 @@ const HomePage: React.FC = () => {
         return a.name.localeCompare(b.name);
       });
 
-      // Générer les catégories uniques
-      const uniqueCategories = [...new Set(enrichedProducts.map(p => p.category_name))]
-        .map((name, index) => ({
-          id: name.toLowerCase().replace(/\s+/g, '-'),
-          name,
-          slug: name.toLowerCase().replace(/\s+/g, '-'),
-          display_order: index
+      // Générer les catégories avec comptage (seulement celles qui ont des produits)
+      const categoryCounts: Record<string, number> = {};
+      enrichedProducts.forEach(p => {
+        if (p.category_name) {
+          categoryCounts[p.category_name] = (categoryCounts[p.category_name] || 0) + 1;
+        }
+      });
+
+      const uniqueCategories = (categoriesData || [])
+        .filter(cat => categoryCounts[cat.name] > 0)
+        .map(cat => ({
+          id: cat.id,
+          name: cat.name,
+          slug: cat.slug,
+          display_order: cat.display_order || 0,
+          count: categoryCounts[cat.name] || 0
         }));
 
       setProducts(enrichedProducts);
@@ -326,7 +337,7 @@ const HomePage: React.FC = () => {
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' ||
-      product.category_name?.toLowerCase().replace(/\s+/g, '-') === selectedCategory;
+      product.category_id === selectedCategory;
 
     const matchesSearch = searchTerm === '' ||
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -563,10 +574,7 @@ const HomePage: React.FC = () => {
                   Tous ({products.length})
                 </a>
                 {categories.map(cat => {
-                  const count = products.filter(p => {
-                    const sub = subcategories.find(s => s.id === p.subcategory_id);
-                    return sub?.category_id === cat.id;
-                  }).length;
+                  const count = products.filter(p => p.category_id === cat.id).length;
                   return (
                     <a
                       key={cat.id}
@@ -879,10 +887,7 @@ const HomePage: React.FC = () => {
                     Tout voir ({products.length})
                   </button>
                   {categories.map(cat => {
-                    const count = products.filter(p => {
-                      const sub = subcategories.find(s => s.id === p.subcategory_id);
-                      return sub?.category_id === cat.id;
-                    }).length;
+                    const count = products.filter(p => p.category_id === cat.id).length;
                     return (
                       <button
                         key={cat.id}
