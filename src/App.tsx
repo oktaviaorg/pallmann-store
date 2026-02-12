@@ -63,6 +63,7 @@ export default function App() {
           {/* Panier & Checkout */}
           <Route path="/panier" element={<CartPage />} />
           <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
+          <Route path="/commande-confirmee" element={<CheckoutSuccessPage />} />
           
           {/* Demande de devis */}
           <Route path="/demande-devis" element={<QuotePage />} />
