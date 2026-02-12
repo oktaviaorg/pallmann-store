@@ -84,7 +84,7 @@ export default async function handler(req: any, res: any) {
       // Email to admin
       await resend.emails.send({
         from: 'Pallmann Store <noreply@pallmann-store.com>',
-        to: ['pro@pallmann-store.com'],
+        to: ['contact@pallmann-store.com'],
         subject: `🛒 Nouvelle commande #${order?.id?.substring(0, 8)} - ${(session.amount_total! / 100).toFixed(2)}€`,
         html: `
           <!DOCTYPE html>
