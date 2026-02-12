@@ -14,6 +14,11 @@ interface CompanyCode {
   code: string;
   company_name: string;
   discount_percent: number;
+  contact_email?: string;
+  contact_phone?: string;
+  address?: string;
+  city?: string;
+  postal_code?: string;
 }
 
 export type DeliveryMode = 'delivery' | 'pickup';

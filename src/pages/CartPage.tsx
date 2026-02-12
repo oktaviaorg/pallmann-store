@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -35,6 +35,21 @@ const CartPage: React.FC = () => {
     city: '',
     postalCode: '',
   });
+
+  // Pré-remplir le formulaire quand un code PRO est appliqué
+  useEffect(() => {
+    if (companyCode) {
+      setCustomerInfo(prev => ({
+        ...prev,
+        email: companyCode.contact_email || prev.email,
+        name: companyCode.company_name || prev.name,
+        phone: companyCode.contact_phone || prev.phone,
+        address: companyCode.address || prev.address,
+        city: companyCode.city || prev.city,
+        postalCode: companyCode.postal_code || prev.postalCode,
+      }));
+    }
+  }, [companyCode]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
