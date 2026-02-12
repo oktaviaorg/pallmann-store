@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCart, PICKUP_ADDRESS, DeliveryMode } from '../lib/CartContext';
 import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag, MapPin, Package, X } from 'lucide-react';
+import AddressAutocomplete from '../components/AddressAutocomplete';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -406,13 +407,17 @@ const CartPage: React.FC = () => {
                       onChange={e => setCustomerInfo({...customerInfo, phone: e.target.value})}
                       className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent text-[#2D3748]"
                     />
-                    <input
-                      type="text"
-                      placeholder="Adresse de livraison *"
+                    <AddressAutocomplete
                       value={customerInfo.address}
-                      onChange={e => setCustomerInfo({...customerInfo, address: e.target.value})}
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#FF9900] focus:border-transparent text-[#2D3748]"
-                      required
+                      onChange={(address, city, postalCode) => {
+                        setCustomerInfo({
+                          ...customerInfo,
+                          address,
+                          city: city || customerInfo.city,
+                          postalCode: postalCode || customerInfo.postalCode,
+                        });
+                      }}
+                      placeholder="Adresse de livraison *"
                     />
                     <div className="grid grid-cols-2 gap-4">
                       <input
