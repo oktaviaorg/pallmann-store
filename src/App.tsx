@@ -40,6 +40,9 @@ import ParrainagePage from './pages/ParrainagePage';
 import EntretienVitrifiePage from './pages/EntretienVitrifiePage';
 import EntretienHuilePage from './pages/EntretienHuilePage';
 
+// Livraison
+import LivraisonPage from './pages/LivraisonPage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -92,6 +95,7 @@ export default function App() {
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/cgv" element={<CGV />} />
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+          <Route path="/livraison" element={<LivraisonPage />} />
           
           {/* Redirections (pages non implémentées) */}
           <Route path="/compte" element={<Navigate to="/boutique" replace />} />
