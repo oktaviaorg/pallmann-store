@@ -168,7 +168,7 @@ export default function ProductPage() {
             <div className="space-y-6">
               <div>
                 <p className="text-sm text-[#FF9900] font-semibold mb-2">PALLMANN</p>
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">{cleanName}</h1>
+                <h1 className="text-3xl font-bold text-[#1A1A1A] mb-2">{cleanName}</h1>
                 {product.ref && (
                   <p className="text-sm text-gray-500">Réf: {product.ref}</p>
                 )}
