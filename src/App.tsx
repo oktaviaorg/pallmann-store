@@ -43,6 +43,9 @@ import EntretienHuilePage from './pages/EntretienHuilePage';
 // Livraison
 import LivraisonPage from './pages/LivraisonPage';
 
+// Page produit individuel
+import ProductPage from './pages/ProductPage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -97,10 +100,12 @@ export default function App() {
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
           <Route path="/livraison" element={<LivraisonPage />} />
           
-          {/* Redirections (pages non implémentées) */}
+          {/* Page produit */}
+          <Route path="/produit/:slug" element={<ProductPage />} />
+          
+          {/* Redirections */}
           <Route path="/compte" element={<Navigate to="/boutique" replace />} />
-          <Route path="/produit/:slug" element={<Navigate to="/boutique" replace />} />
-          <Route path="/produits/:slug" element={<Navigate to="/boutique" replace />} />
+          <Route path="/produits/:slug" element={<Navigate to="/produit/:slug" replace />} />
           
           {/* 404 */}
           <Route path="*" element={<NotFoundPage />} />

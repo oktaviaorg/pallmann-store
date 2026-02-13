@@ -65,8 +65,8 @@ export default async function handler(req: any, res: any) {
       // Calculer le prix TTC (TVA 20%)
       const priceTTC = (product.price_public_ht * 1.20).toFixed(2);
       
-      // URL du produit
-      const productUrl = `${baseUrl}/boutique?product=${product.slug}`;
+      // URL du produit (page dédiée pour SEO/Merchant)
+      const productUrl = `${baseUrl}/produit/${product.slug}`;
       
       // Image URL (utiliser une image par défaut si manquante)
       const imageUrl = product.image_url || `${baseUrl}/images/pallmann-default.png`;
