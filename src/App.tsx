@@ -46,6 +46,9 @@ import LivraisonPage from './pages/LivraisonPage';
 // Page produit individuel
 import ProductPage from './pages/ProductPage';
 
+// Admin
+import AdminQuotePage from './pages/AdminQuotePage';
+
 // 404
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -102,6 +105,9 @@ export default function App() {
           
           {/* Page produit */}
           <Route path="/produit/:slug" element={<ProductPage />} />
+          
+          {/* Admin */}
+          <Route path="/admin/devis" element={<AdminQuotePage />} />
           
           {/* Redirections */}
           <Route path="/compte" element={<Navigate to="/boutique" replace />} />

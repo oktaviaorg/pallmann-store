@@ -1,0 +1,442 @@
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { supabase } from '../lib/supabase';
+import { Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock } from 'lucide-react';
+
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  price_public_ht: number;
+  image_url: string;
+  ref: string;
+}
+
+interface QuoteItem {
+  product: Product;
+  quantity: number;
+}
+
+export default function AdminQuotePage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [customerInfo, setCustomerInfo] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    notes: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  // Simple auth (à améliorer avec un vrai système)
+  const ADMIN_PASSWORD = 'pallmann2026'; // À changer en variable d'env
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === ADMIN_PASSWORD) {
+      setIsAuthenticated(true);
+      localStorage.setItem('admin_auth', 'true');
+    } else {
+      setError('Mot de passe incorrect');
+    }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('admin_auth') === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  // Recherche de produits
+  useEffect(() => {
+    const searchProducts = async () => {
+      if (searchTerm.length < 2) {
+        setSearchResults([]);
+        return;
+      }
+
+      const { data } = await supabase
+        .from('pallmann_products')
+        .select('id, name, slug, price_public_ht, image_url, ref')
+        .eq('published', true)
+        .gt('price_public_ht', 0)
+        .or(`name.ilike.%${searchTerm}%,ref.ilike.%${searchTerm}%`)
+        .limit(10);
+
+      setSearchResults(data || []);
+    };
+
+    const debounce = setTimeout(searchProducts, 300);
+    return () => clearTimeout(debounce);
+  }, [searchTerm]);
+
+  const addProduct = (product: Product) => {
+    const existing = quoteItems.find(item => item.product.id === product.id);
+    if (existing) {
+      setQuoteItems(quoteItems.map(item =>
+        item.product.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+    } else {
+      setQuoteItems([...quoteItems, { product, quantity: 1 }]);
+    }
+    setSearchTerm('');
+    setSearchResults([]);
+  };
+
+  const updateQuantity = (productId: string, quantity: number) => {
+    if (quantity <= 0) {
+      setQuoteItems(quoteItems.filter(item => item.product.id !== productId));
+    } else {
+      setQuoteItems(quoteItems.map(item =>
+        item.product.id === productId ? { ...item, quantity } : item
+      ));
+    }
+  };
+
+  const removeItem = (productId: string) => {
+    setQuoteItems(quoteItems.filter(item => item.product.id !== productId));
+  };
+
+  // Calculs
+  const subtotalHT = quoteItems.reduce((sum, item) => sum + item.product.price_public_ht * item.quantity, 0);
+  const discountAmount = subtotalHT * (discountPercent / 100);
+  const totalHT = subtotalHT - discountAmount;
+  const totalTTC = totalHT * 1.20;
+
+  const handleSendQuote = async () => {
+    if (!customerInfo.email || !customerInfo.name || quoteItems.length === 0) {
+      setError('Veuillez remplir le nom, email et ajouter au moins un produit');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const response = await fetch('/api/create-admin-quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: quoteItems.map(item => ({
+            id: item.product.id,
+            name: item.product.name,
+            price_ht: item.product.price_public_ht,
+            quantity: item.quantity,
+            ref: item.product.ref,
+          })),
+          customerInfo,
+          discountPercent,
+          subtotalHT,
+          discountAmount,
+          totalHT,
+          totalTTC,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setSuccess(`✅ Devis envoyé à ${customerInfo.email} ! Lien de paiement: ${data.paymentUrl}`);
+        // Reset form
+        setQuoteItems([]);
+        setCustomerInfo({ name: '', email: '', phone: '', notes: '' });
+        setDiscountPercent(0);
+      }
+    } catch (err: any) {
+      setError('Erreur lors de l\'envoi du devis');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Page de login
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+          <div className="text-center mb-6">
+            <Lock className="w-12 h-12 text-[#FF9900] mx-auto mb-3" />
+            <h1 className="text-2xl font-bold text-gray-900">Admin Devis</h1>
+            <p className="text-gray-600">Pallmann Store</p>
+          </div>
+          <form onSubmit={handleLogin}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Mot de passe admin"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-[#FF9900]"
+            />
+            {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+            <button
+              type="submit"
+              className="w-full bg-[#FF9900] hover:bg-[#E68A00] text-white py-3 rounded-lg font-bold"
+            >
+              Connexion
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Helmet>
+        <title>Admin - Créer un devis | Pallmann Store</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
+      {/* Header */}
+      <header className="bg-[#1a1a1a] text-white py-4 px-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <FileText className="w-6 h-6 text-[#FF9900]" />
+            <h1 className="text-xl font-bold">Créer un devis</h1>
+          </div>
+          <button
+            onClick={() => {
+              localStorage.removeItem('admin_auth');
+              setIsAuthenticated(false);
+            }}
+            className="text-gray-400 hover:text-white text-sm"
+          >
+            Déconnexion
+          </button>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto p-6">
+        <div className="grid lg:grid-cols-3 gap-6">
+          {/* Colonne gauche: Recherche + Produits */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Recherche */}
+            <div className="bg-white rounded-xl shadow p-6">
+              <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <Search className="w-5 h-5 text-[#FF9900]" />
+                Ajouter des produits
+              </h2>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Rechercher par nom ou référence..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                />
+                {searchResults.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 max-h-80 overflow-y-auto z-10">
+                    {searchResults.map(product => (
+                      <button
+                        key={product.id}
+                        onClick={() => addProduct(product)}
+                        className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 border-b border-gray-100 text-left"
+                      >
+                        {product.image_url && (
+                          <img src={product.image_url} alt="" className="w-12 h-12 object-contain" />
+                        )}
+                        <div className="flex-grow">
+                          <p className="font-medium text-gray-900 text-sm">{product.name}</p>
+                          <p className="text-xs text-gray-500">Réf: {product.ref}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-[#FF9900]">{product.price_public_ht.toFixed(2)}€ HT</p>
+                        </div>
+                        <Plus className="w-5 h-5 text-green-500" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Liste des produits du devis */}
+            <div className="bg-white rounded-xl shadow p-6">
+              <h2 className="font-bold text-lg mb-4">Produits du devis ({quoteItems.length})</h2>
+              
+              {quoteItems.length === 0 ? (
+                <p className="text-gray-500 text-center py-8">Aucun produit ajouté</p>
+              ) : (
+                <div className="space-y-3">
+                  {quoteItems.map(item => (
+                    <div key={item.product.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                      {item.product.image_url && (
+                        <img src={item.product.image_url} alt="" className="w-16 h-16 object-contain" />
+                      )}
+                      <div className="flex-grow">
+                        <p className="font-medium text-gray-900">{item.product.name}</p>
+                        <p className="text-sm text-gray-500">Réf: {item.product.ref} • {item.product.price_public_ht.toFixed(2)}€ HT/u</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                          className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                        >
+                          <Minus className="w-4 h-4" />
+                        </button>
+                        <span className="w-10 text-center font-bold">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                          className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                        >
+                          <Plus className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <p className="font-bold text-gray-900 w-24 text-right">
+                        {(item.product.price_public_ht * item.quantity).toFixed(2)}€
+                      </p>
+                      <button
+                        onClick={() => removeItem(item.product.id)}
+                        className="p-2 text-red-500 hover:bg-red-50 rounded"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Colonne droite: Client + Totaux */}
+          <div className="space-y-6">
+            {/* Infos client */}
+            <div className="bg-white rounded-xl shadow p-6">
+              <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <User className="w-5 h-5 text-[#FF9900]" />
+                Informations client
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nom / Entreprise *</label>
+                  <input
+                    type="text"
+                    value={customerInfo.name}
+                    onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                  <input
+                    type="email"
+                    value={customerInfo.email}
+                    onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
+                  <input
+                    type="tel"
+                    value={customerInfo.phone}
+                    onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Notes internes</label>
+                  <textarea
+                    value={customerInfo.notes}
+                    onChange={(e) => setCustomerInfo({ ...customerInfo, notes: e.target.value })}
+                    rows={2}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                    placeholder="Notes pour vous (non envoyées au client)"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Remise */}
+            <div className="bg-white rounded-xl shadow p-6">
+              <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <Percent className="w-5 h-5 text-[#FF9900]" />
+                Remise
+              </h2>
+              <div className="flex items-center gap-3">
+                <input
+                  type="number"
+                  min="0"
+                  max="50"
+                  value={discountPercent}
+                  onChange={(e) => setDiscountPercent(Math.min(50, Math.max(0, parseInt(e.target.value) || 0)))}
+                  className="w-24 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900] text-center"
+                />
+                <span className="text-gray-600">%</span>
+                {discountAmount > 0 && (
+                  <span className="text-green-600 font-medium">-{discountAmount.toFixed(2)}€</span>
+                )}
+              </div>
+            </div>
+
+            {/* Totaux */}
+            <div className="bg-white rounded-xl shadow p-6">
+              <h2 className="font-bold text-lg mb-4">Récapitulatif</h2>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Sous-total HT</span>
+                  <span>{subtotalHT.toFixed(2)}€</span>
+                </div>
+                {discountAmount > 0 && (
+                  <div className="flex justify-between text-green-600">
+                    <span>Remise ({discountPercent}%)</span>
+                    <span>-{discountAmount.toFixed(2)}€</span>
+                  </div>
+                )}
+                <div className="flex justify-between font-bold border-t pt-2">
+                  <span>Total HT</span>
+                  <span>{totalHT.toFixed(2)}€</span>
+                </div>
+                <div className="flex justify-between text-gray-600">
+                  <span>TVA (20%)</span>
+                  <span>{(totalTTC - totalHT).toFixed(2)}€</span>
+                </div>
+                <div className="flex justify-between font-bold text-xl text-[#FF9900] pt-2 border-t">
+                  <span>Total TTC</span>
+                  <span>{totalTTC.toFixed(2)}€</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bouton envoi */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                {error}
+              </div>
+            )}
+            {success && (
+              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
+                {success}
+              </div>
+            )}
+            <button
+              onClick={handleSendQuote}
+              disabled={loading || quoteItems.length === 0}
+              className="w-full bg-[#FF9900] hover:bg-[#E68A00] disabled:bg-gray-300 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                'Envoi en cours...'
+              ) : (
+                <>
+                  <Send className="w-5 h-5" />
+                  Envoyer le devis
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
