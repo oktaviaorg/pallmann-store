@@ -70,6 +70,47 @@ export default function AdminQuotePage() {
 
   const ADMIN_PASSWORD = 'Lematoubleu1789';
 
+  // ===== PRESETS SURFACE =====
+  const surfacePresets = [20, 30, 50, 80, 100, 150];
+
+  // ===== PACKS PRECONFIGURES =====
+  const quickPacks = [
+    {
+      id: 'vitri-standard',
+      name: '🛡️ Pack Vitrification',
+      description: 'Fond dur + Vitrificateur + Accessoires',
+      color: 'from-orange-500 to-amber-500',
+      finishType: 'vitrification' as const,
+    },
+    {
+      id: 'huile-standard',
+      name: '🌿 Pack Huile Naturelle',
+      description: 'Huile 2K + Accessoires + Entretien',
+      color: 'from-green-500 to-emerald-500',
+      finishType: 'huile' as const,
+    },
+    {
+      id: 'reno-complete',
+      name: '🔄 Pack Réno Complète',
+      description: 'Tout inclus : liant, abrasifs, finition',
+      color: 'from-blue-500 to-indigo-500',
+      finishType: 'vitrification' as const,
+      fullReno: true,
+    },
+  ];
+
+  // ===== PRODUITS STARS (ajout rapide) =====
+  const starProducts = [
+    { name: 'PALL-X 96', slug: 'pall-x-96', emoji: '⭐' },
+    { name: 'PALL-X EXTREME', slug: 'extreme', emoji: '💪' },
+    { name: 'MAGIC OIL 2K', slug: 'magic-oil-2k', emoji: '🌿' },
+    { name: 'PALL-X 320', slug: 'pall-x-320', emoji: '🎯' },
+    { name: 'Grain 80', slug: 'grain-80', emoji: '⚙️' },
+    { name: 'Grain 100', slug: 'grain-100', emoji: '⚙️' },
+    { name: 'KITT Liant', slug: 'kitt', emoji: '🔧' },
+    { name: 'CLEAN & GO', slug: 'clean', emoji: '🧹' },
+  ];
+
   // ===== CALCULS DU CALCULATEUR =====
   const calculateProducts = (): CalculatorProduct[] => {
     const products: CalculatorProduct[] = [];
@@ -419,6 +460,43 @@ export default function AdminQuotePage() {
     }
   };
 
+  // ===== QUICK PACK - Ajoute un pack complet en 1 clic =====
+  const applyQuickPack = async (pack: typeof quickPacks[0], surfaceM2: number) => {
+    // Définir les paramètres
+    setSurface(surfaceM2);
+    setFinishType(pack.finishType);
+    if (pack.fullReno) {
+      setProjectType('renovation');
+      setIncludeLiant(true);
+      setIncludeAbrasifs(true);
+    }
+    setIncludeSpatule(true);
+    setIncludeRouleau(true);
+    setIncludeNettoyant(true);
+    setIncludeEntretien(true);
+    
+    // Attendre que le state soit mis à jour puis ajouter
+    setTimeout(async () => {
+      await addAllFromCalculator();
+    }, 100);
+  };
+
+  // ===== AJOUT RAPIDE PRODUIT STAR =====
+  const addStarProduct = async (slug: string) => {
+    const { data } = await supabase
+      .from('pallmann_products')
+      .select('id, name, slug, price_public_ht, image_url, ref')
+      .eq('published', true)
+      .ilike('slug', `%${slug}%`)
+      .limit(5);
+    
+    if (data && data.length > 0) {
+      // Ouvrir les résultats de recherche pour choisir
+      setSearchResults(data);
+      setSearchTerm(slug);
+    }
+  };
+
   const updateQuantity = (productId: string, quantity: number) => {
     if (quantity <= 0) {
       setQuoteItems(quoteItems.filter(item => item.product.id !== productId));
@@ -555,7 +633,57 @@ export default function AdminQuotePage() {
       </header>
 
       <main className="max-w-7xl mx-auto p-4 md:p-6">
-        {/* ===== CALCULATEUR PRO ===== */}
+        
+        {/* ===== ZONE ACTION RAPIDE - EN HAUT ===== */}
+        <div className="mb-6 bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-6 shadow-xl">
+          <h2 className="text-white text-lg font-bold mb-4 flex items-center gap-2">
+            <Zap className="w-5 h-5 text-yellow-400" />
+            ⚡ Actions Rapides — Concentrez-vous sur l'appel !
+          </h2>
+          
+          {/* PACKS PRECONFIGURES */}
+          <div className="mb-6">
+            <p className="text-gray-400 text-sm mb-3">📦 Packs complets (1 clic = tout ajouté)</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {quickPacks.map(pack => (
+                <div key={pack.id} className={`bg-gradient-to-r ${pack.color} rounded-xl p-4 text-white`}>
+                  <div className="font-bold text-lg mb-1">{pack.name}</div>
+                  <div className="text-sm text-white/80 mb-3">{pack.description}</div>
+                  <div className="flex flex-wrap gap-2">
+                    {surfacePresets.slice(0, 4).map(s => (
+                      <button
+                        key={s}
+                        onClick={() => applyQuickPack(pack, s)}
+                        className="px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-bold transition-all"
+                      >
+                        {s}m²
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* PRODUITS STARS - Ajout rapide */}
+          <div>
+            <p className="text-gray-400 text-sm mb-3">⭐ Produits stars — Ajout rapide</p>
+            <div className="flex flex-wrap gap-2">
+              {starProducts.map(sp => (
+                <button
+                  key={sp.slug}
+                  onClick={() => addStarProduct(sp.slug)}
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-semibold transition-all flex items-center gap-2"
+                >
+                  <span>{sp.emoji}</span>
+                  {sp.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ===== CALCULATEUR PRO (DÉTAILLÉ) ===== */}
         <div className="mb-6">
           <button
             onClick={() => setShowCalculator(!showCalculator)}
@@ -566,8 +694,8 @@ export default function AdminQuotePage() {
                 <Calculator className="w-6 h-6" />
               </div>
               <div className="text-left">
-                <h2 className="text-lg font-bold">🧮 Calculateur PRO</h2>
-                <p className="text-sm text-white/80">Estimation rapide des besoins selon la surface</p>
+                <h2 className="text-lg font-bold">🧮 Calculateur Personnalisé</h2>
+                <p className="text-sm text-white/80">Ajuster les détails si besoin</p>
               </div>
             </div>
             {showCalculator ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
@@ -578,12 +706,27 @@ export default function AdminQuotePage() {
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Paramètres */}
                 <div className="space-y-6">
-                  {/* Surface */}
+                  {/* Presets Surface */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
                       <Ruler className="w-4 h-4 text-orange-500" />
-                      Surface à traiter
+                      Surface rapide
                     </label>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {surfacePresets.map(s => (
+                        <button
+                          key={s}
+                          onClick={() => setSurface(s)}
+                          className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                            surface === s 
+                              ? 'bg-orange-500 text-white shadow-md' 
+                              : 'bg-gray-100 text-gray-700 hover:bg-orange-100'
+                          }`}
+                        >
+                          {s}m²
+                        </button>
+                      ))}
+                    </div>
                     <div className="flex items-center gap-4">
                       <input
                         type="range"
