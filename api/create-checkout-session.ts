@@ -56,14 +56,56 @@ export default async function handler(req: any, res: any) {
       });
     }
 
-    // Créer la session Stripe Checkout
+    // Créer ou récupérer le client Stripe
+    let customer;
+    const existingCustomers = await stripe.customers.list({
+      email: customerInfo.email,
+      limit: 1,
+    });
+
+    if (existingCustomers.data.length > 0) {
+      customer = existingCustomers.data[0];
+      // Mettre à jour les infos si nécessaire
+      await stripe.customers.update(customer.id, {
+        name: customerInfo.name,
+        phone: customerInfo.phone || undefined,
+        address: {
+          line1: customerInfo.address,
+          city: customerInfo.city,
+          postal_code: customerInfo.postalCode,
+          country: 'FR',
+        },
+      });
+    } else {
+      customer = await stripe.customers.create({
+        email: customerInfo.email,
+        name: customerInfo.name,
+        phone: customerInfo.phone || undefined,
+        address: {
+          line1: customerInfo.address,
+          city: customerInfo.city,
+          postal_code: customerInfo.postalCode,
+          country: 'FR',
+        },
+      });
+    }
+
+    // Créer la session Stripe Checkout avec facturation automatique
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
+      customer: customer.id,
       success_url: `${req.headers.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.origin}/panier`,
-      customer_email: customerInfo.email,
+      // Activer la génération automatique de factures
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: 'Commande Pallmann Store',
+          footer: 'Pallmann Store - Groupe Epenon SARL - SIRET 832 059 513 00016 - TVA FR48832059513',
+        },
+      },
       metadata: {
         customer_name: customerInfo.name,
         customer_phone: customerInfo.phone || '',
