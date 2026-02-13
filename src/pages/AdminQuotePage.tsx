@@ -35,7 +35,7 @@ export default function AdminQuotePage() {
   const [error, setError] = useState('');
 
   // Simple auth (à améliorer avec un vrai système)
-  const ADMIN_PASSWORD = 'pallmann2026'; // À changer en variable d'env
+  const ADMIN_PASSWORD = 'Lematoubleu1789'; // À changer en variable d'env
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
