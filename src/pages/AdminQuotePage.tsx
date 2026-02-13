@@ -111,10 +111,77 @@ export default function AdminQuotePage() {
     { name: 'PALL-X EXTREME', slug: 'extreme', emoji: '💪' },
     { name: 'MAGIC OIL 2K', slug: 'magic-oil-2k', emoji: '🌿' },
     { name: 'PALL-X 320', slug: 'pall-x-320', emoji: '🎯' },
-    { name: 'Grain 80', slug: 'grain-80', emoji: '⚙️' },
-    { name: 'Grain 100', slug: 'grain-100', emoji: '⚙️' },
-    { name: 'KITT Liant', slug: 'kitt', emoji: '🔧' },
-    { name: 'CLEAN & GO', slug: 'clean', emoji: '🧹' },
+  ];
+
+  // ===== UPSELL MALIN - Catégories de produits complémentaires =====
+  const upsellCategories = [
+    {
+      title: '🖌️ Rouleaux & Manchons',
+      color: 'bg-blue-500',
+      products: [
+        { name: 'Manchon Aqua SP 8mm', slug: 'aqua', hint: 'vitrificateur' },
+        { name: 'Manchon Mohair 11mm', slug: 'mohair', hint: 'huile' },
+        { name: 'Manchon microfibre', slug: 'microfibre', hint: 'polyvalent' },
+        { name: 'Monture rouleau 25cm', slug: 'monture', hint: 'support' },
+        { name: 'Perche télescopique', slug: 'perche', hint: '1.2-2.4m' },
+      ]
+    },
+    {
+      title: '⚙️ Abrasifs',
+      color: 'bg-orange-500',
+      products: [
+        { name: 'Grain 36', slug: 'grain-36', hint: 'décapage' },
+        { name: 'Grain 50', slug: 'grain-50', hint: 'ponçage' },
+        { name: 'Grain 80', slug: 'grain-80', hint: 'finition' },
+        { name: 'Grain 100', slug: 'grain-100', hint: 'fin' },
+        { name: 'Grain 120', slug: 'grain-120', hint: 'extra fin' },
+        { name: 'Treillis égrenage', slug: 'treillis', hint: 'inter-couches' },
+      ]
+    },
+    {
+      title: '🔧 Joints & Rebouchage',
+      color: 'bg-amber-600',
+      products: [
+        { name: 'Joint acrylique Chêne', slug: 'joint chene', hint: 'acrylique' },
+        { name: 'Joint acrylique Hêtre', slug: 'joint hetre', hint: 'acrylique' },
+        { name: 'Joint acrylique Noyer', slug: 'joint noyer', hint: 'acrylique' },
+        { name: 'Joint acrylique Blanc', slug: 'joint blanc', hint: 'plinthes' },
+        { name: 'PALL-X KITT 1L', slug: 'kitt 1l', hint: 'liant' },
+        { name: 'PALL-X KITT 5L', slug: 'kitt 5l', hint: 'liant XL' },
+        { name: 'X-FILLER', slug: 'filler', hint: 'rebouchage' },
+      ]
+    },
+    {
+      title: '🧴 Nettoyage & Entretien',
+      color: 'bg-green-600',
+      products: [
+        { name: 'CLEAN & GO', slug: 'clean go', hint: 'nettoyant' },
+        { name: 'FINISH CARE', slug: 'finish care', hint: 'entretien vitri' },
+        { name: 'MAGIC OIL CARE', slug: 'magic oil care', hint: 'entretien huile' },
+        { name: 'REFRESH', slug: 'refresh', hint: 'rénovateur' },
+        { name: 'CLEAN STRONG', slug: 'clean strong', hint: 'décrassant' },
+      ]
+    },
+    {
+      title: '🎨 Teintes & Couleurs',
+      color: 'bg-purple-600',
+      products: [
+        { name: 'PALL-X 333 Color', slug: '333 color', hint: 'teinte fond' },
+        { name: 'MAGIC OIL 2K Color', slug: 'magic oil color', hint: 'huile teintée' },
+        { name: 'Coffret Color Collection', slug: 'color collection', hint: 'nuancier' },
+      ]
+    },
+    {
+      title: '🛠️ Outils & Accessoires',
+      color: 'bg-gray-600',
+      products: [
+        { name: 'Spatule inox crantée', slug: 'spatule', hint: 'application' },
+        { name: 'Spatule japonaise', slug: 'japonaise', hint: 'finition' },
+        { name: 'Bac à peinture', slug: 'bac', hint: 'support' },
+        { name: 'Grille d\'essorage', slug: 'grille', hint: 'accessoire' },
+        { name: 'Pistolet cartouche', slug: 'pistolet', hint: 'joints' },
+      ]
+    },
   ];
 
   // ===== GUIDE D'APPEL - Questions types =====
@@ -737,8 +804,8 @@ export default function AdminQuotePage() {
           </div>
           
           {/* PRODUITS STARS - Ajout rapide */}
-          <div>
-            <p className="text-gray-400 text-sm mb-3">⭐ Produits stars — Ajout rapide</p>
+          <div className="mb-6">
+            <p className="text-gray-400 text-sm mb-3">⭐ Produits stars — Finitions principales</p>
             <div className="flex flex-wrap gap-2">
               {starProducts.map(sp => (
                 <button
@@ -749,6 +816,33 @@ export default function AdminQuotePage() {
                   <span>{sp.emoji}</span>
                   {sp.name}
                 </button>
+              ))}
+            </div>
+          </div>
+
+          {/* UPSELL MALIN - Accessoires par catégorie */}
+          <div>
+            <p className="text-gray-400 text-sm mb-3">💰 Upsell Malin — Accessoires & Compléments</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              {upsellCategories.map(cat => (
+                <div key={cat.title} className="bg-white/5 rounded-xl p-3 border border-white/10">
+                  <div className={`${cat.color} text-white text-xs font-bold px-2 py-1 rounded-lg mb-2 text-center`}>
+                    {cat.title}
+                  </div>
+                  <div className="space-y-1">
+                    {cat.products.map(p => (
+                      <button
+                        key={p.slug}
+                        onClick={() => addStarProduct(p.slug)}
+                        className="w-full text-left px-2 py-1.5 text-xs text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                        title={p.hint}
+                      >
+                        {p.name}
+                        <span className="text-white/40 ml-1">({p.hint})</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
