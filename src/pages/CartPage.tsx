@@ -54,10 +54,16 @@ const CartPage: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [acceptedCGV, setAcceptedCGV] = useState(false);
 
   const handleCheckout = async () => {
     if (!customerInfo.email || !customerInfo.name || !customerInfo.address) {
       setError('Veuillez remplir tous les champs obligatoires');
+      return;
+    }
+
+    if (!acceptedCGV) {
+      setError('Veuillez accepter les Conditions Générales de Vente');
       return;
     }
 
@@ -441,9 +447,38 @@ const CartPage: React.FC = () => {
                     <p className="text-red-500 text-sm mt-4">{error}</p>
                   )}
 
+                  {/* Acceptation CGV */}
+                  <label className="flex items-start gap-3 mt-6 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={acceptedCGV}
+                      onChange={(e) => setAcceptedCGV(e.target.checked)}
+                      className="mt-1 w-4 h-4 accent-[#FF9900] rounded"
+                    />
+                    <span className="text-sm text-[#2D3748]">
+                      J'accepte les{' '}
+                      <a 
+                        href="/cgv-boutique" 
+                        target="_blank" 
+                        className="text-[#FF9900] hover:underline font-medium"
+                      >
+                        Conditions Générales de Vente
+                      </a>
+                      {' '}et la{' '}
+                      <a 
+                        href="/politique-confidentialite" 
+                        target="_blank" 
+                        className="text-[#FF9900] hover:underline font-medium"
+                      >
+                        Politique de confidentialité
+                      </a>
+                      {' '}*
+                    </span>
+                  </label>
+
                   <button
                     onClick={handleCheckout}
-                    disabled={loading}
+                    disabled={loading || !acceptedCGV}
                     className="w-full mt-6 bg-[#FF9900] hover:bg-[#F0C300] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all shadow-sm hover:shadow-md"
                   >
                     {loading ? (
