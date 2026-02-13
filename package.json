@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-products.cjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
     "generate:feed": "node scripts/generate-merchant-feed.cjs",
-    "build:prod": "npm run generate:feed && vite build"
+    "prerender": "node scripts/prerender-products.cjs",
+    "build:prod": "npm run generate:feed && vite build && npm run prerender"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
