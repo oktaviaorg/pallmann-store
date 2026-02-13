@@ -4,7 +4,8 @@ import { supabase } from '../lib/supabase';
 import { 
   Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock, 
   Calculator, Lightbulb, ShoppingBag, Package, Ruler, Droplets, CheckCircle, 
-  ArrowRight, Sparkles, Zap, ChevronDown, ChevronUp, RefreshCw
+  ArrowRight, Sparkles, Zap, ChevronDown, ChevronUp, RefreshCw, ClipboardCopy,
+  MessageCircle, Camera, HelpCircle, CheckSquare, Square
 } from 'lucide-react';
 
 interface Product {
@@ -67,6 +68,11 @@ export default function AdminQuotePage() {
   // Produits Supabase pour suggestions
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [suggestedProducts, setSuggestedProducts] = useState<Product[]>([]);
+  
+  // Guide d'appel
+  const [showCallGuide, setShowCallGuide] = useState(false);
+  const [checkedQuestions, setCheckedQuestions] = useState<string[]>([]);
+  const [copiedMessage, setCopiedMessage] = useState<string | null>(null);
 
   const ADMIN_PASSWORD = 'Lematoubleu1789';
 
@@ -109,6 +115,48 @@ export default function AdminQuotePage() {
     { name: 'Grain 100', slug: 'grain-100', emoji: '⚙️' },
     { name: 'KITT Liant', slug: 'kitt', emoji: '🔧' },
     { name: 'CLEAN & GO', slug: 'clean', emoji: '🧹' },
+  ];
+
+  // ===== GUIDE D'APPEL - Questions types =====
+  const callGuideQuestions = [
+    { id: 'surface', question: "📐 Quelle est la surface à traiter ?", hint: "en m²" },
+    { id: 'type-parquet', question: "🪵 Quel type de parquet ?", hint: "massif, contrecollé, stratifié..." },
+    { id: 'etat', question: "🔍 État actuel du parquet ?", hint: "vitrifié, huilé, brut, abîmé..." },
+    { id: 'finition', question: "✨ Quelle finition souhaitée ?", hint: "vitrification ou huile" },
+    { id: 'aspect', question: "🎨 Quel aspect ?", hint: "mat, satiné, brillant, teinté..." },
+    { id: 'pieces', question: "🏠 Quelles pièces ?", hint: "salon, chambre, cuisine, salle de bain..." },
+    { id: 'escalier', question: "🪜 Y a-t-il un escalier ?", hint: "nombre de marches" },
+    { id: 'meubles', question: "🛋️ Les meubles sont déplacés ?", hint: "ou à prévoir" },
+    { id: 'delai', question: "📅 Délai souhaité ?", hint: "urgence ou flexible" },
+    { id: 'budget', question: "💰 Budget approximatif ?", hint: "si mentionné" },
+  ];
+
+  const whatsappMessages = [
+    {
+      id: 'photo-parquet',
+      label: '📸 Demander photo parquet',
+      message: "Bonjour ! Pour établir votre devis, pourriez-vous m'envoyer une photo de votre parquet actuel ? Cela m'aidera à vous conseiller le meilleur produit. Merci ! 🙏"
+    },
+    {
+      id: 'photo-surface',
+      label: '📐 Demander photo pièce',
+      message: "Bonjour ! Pourriez-vous m'envoyer une photo de la pièce entière ? Cela me permettra d'évaluer la surface et les contraintes. Merci !"
+    },
+    {
+      id: 'photo-etat',
+      label: '🔍 Demander photo détail usure',
+      message: "Bonjour ! Pourriez-vous me faire une photo des zones les plus abîmées de votre parquet ? Je pourrai ainsi mieux évaluer le travail nécessaire. Merci !"
+    },
+    {
+      id: 'devis-envoye',
+      label: '✅ Devis envoyé',
+      message: "Bonjour ! Je viens de vous envoyer le devis par email. N'hésitez pas si vous avez des questions. Le lien de paiement sécurisé est inclus si vous souhaitez commander directement. À bientôt !"
+    },
+    {
+      id: 'relance',
+      label: '🔔 Relance douce',
+      message: "Bonjour ! Je me permets de revenir vers vous concernant le devis envoyé. Avez-vous eu le temps de le consulter ? Je reste disponible pour toute question. Bonne journée !"
+    },
   ];
 
   // ===== CALCULS DU CALCULATEUR =====
@@ -497,6 +545,29 @@ export default function AdminQuotePage() {
     }
   };
 
+  // ===== GUIDE D'APPEL =====
+  const toggleQuestion = (id: string) => {
+    setCheckedQuestions(prev => 
+      prev.includes(id) ? prev.filter(q => q !== id) : [...prev, id]
+    );
+  };
+
+  const copyToClipboard = async (text: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedMessage(id);
+      setTimeout(() => setCopiedMessage(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  const openWhatsApp = (phone: string, message: string) => {
+    const cleanPhone = phone.replace(/\s/g, '').replace(/^0/, '33');
+    const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
   const updateQuantity = (productId: string, quantity: number) => {
     if (quantity <= 0) {
       setQuoteItems(quoteItems.filter(item => item.product.id !== productId));
@@ -681,6 +752,137 @@ export default function AdminQuotePage() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* ===== GUIDE D'APPEL TÉLÉPHONIQUE ===== */}
+        <div className="mb-6">
+          <button
+            onClick={() => setShowCallGuide(!showCallGuide)}
+            className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl p-4 flex items-center justify-between shadow-lg hover:shadow-xl transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <HelpCircle className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <h2 className="text-lg font-bold">📋 Guide d'Appel</h2>
+                <p className="text-sm text-white/80">Questions types + Messages WhatsApp</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-bold">
+                {checkedQuestions.length}/{callGuideQuestions.length} ✓
+              </span>
+              {showCallGuide ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+            </div>
+          </button>
+
+          {showCallGuide && (
+            <div className="bg-white rounded-b-xl shadow-lg p-6 border-x border-b border-purple-200 -mt-2">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Questions à poser */}
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <CheckSquare className="w-5 h-5 text-purple-600" />
+                    Questions à poser au client
+                  </h3>
+                  <div className="space-y-2">
+                    {callGuideQuestions.map(q => (
+                      <button
+                        key={q.id}
+                        onClick={() => toggleQuestion(q.id)}
+                        className={`w-full p-3 rounded-xl border-2 transition-all text-left flex items-start gap-3 ${
+                          checkedQuestions.includes(q.id)
+                            ? 'border-green-500 bg-green-50'
+                            : 'border-gray-200 hover:border-purple-300'
+                        }`}
+                      >
+                        <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                          checkedQuestions.includes(q.id)
+                            ? 'bg-green-500 text-white'
+                            : 'bg-gray-200'
+                        }`}>
+                          {checkedQuestions.includes(q.id) && <CheckCircle className="w-4 h-4" />}
+                        </div>
+                        <div>
+                          <div className={`font-semibold ${checkedQuestions.includes(q.id) ? 'text-green-700 line-through' : 'text-gray-900'}`}>
+                            {q.question}
+                          </div>
+                          <div className="text-xs text-gray-500">{q.hint}</div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setCheckedQuestions([])}
+                    className="mt-4 text-sm text-purple-600 hover:underline"
+                  >
+                    🔄 Réinitialiser la checklist
+                  </button>
+                </div>
+
+                {/* Messages WhatsApp */}
+                <div>
+                  <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                    <MessageCircle className="w-5 h-5 text-green-600" />
+                    Messages WhatsApp prêts
+                  </h3>
+                  <div className="space-y-3">
+                    {whatsappMessages.map(msg => (
+                      <div key={msg.id} className="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-semibold text-gray-800">{msg.label}</span>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => copyToClipboard(msg.message, msg.id)}
+                              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                                copiedMessage === msg.id
+                                  ? 'bg-green-500 text-white'
+                                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                              }`}
+                            >
+                              <ClipboardCopy className="w-3 h-3" />
+                              {copiedMessage === msg.id ? 'Copié !' : 'Copier'}
+                            </button>
+                            {customerInfo.phone && (
+                              <button
+                                onClick={() => openWhatsApp(customerInfo.phone, msg.message)}
+                                className="px-3 py-1 bg-green-500 text-white rounded-lg text-xs font-bold hover:bg-green-600 transition-all flex items-center gap-1"
+                              >
+                                <Send className="w-3 h-3" />
+                                Envoyer
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600 bg-white p-2 rounded-lg border border-gray-100">
+                          {msg.message}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Lien WhatsApp direct si téléphone renseigné */}
+                  {customerInfo.phone && (
+                    <div className="mt-4 p-3 bg-green-50 rounded-xl border border-green-200">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-green-800">
+                          📱 WhatsApp : {customerInfo.phone}
+                        </span>
+                        <button
+                          onClick={() => openWhatsApp(customerInfo.phone, '')}
+                          className="px-4 py-2 bg-green-500 text-white rounded-lg font-bold hover:bg-green-600 transition-all flex items-center gap-2"
+                        >
+                          <MessageCircle className="w-4 h-4" />
+                          Ouvrir WhatsApp
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* ===== CALCULATEUR PRO (DÉTAILLÉ) ===== */}
