@@ -329,7 +329,7 @@ export default function AdminQuotePage() {
               </div>
             </div>
 
-            {{/* Calculateur de surface */}
+            {/* Calculateur de surface */}
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow p-6 border border-blue-200">
               <button 
                 onClick={() => setShowCalculator(!showCalculator)}

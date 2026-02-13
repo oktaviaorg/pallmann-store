@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 import TrustBar from '../components/TrustBar';
 import CartReminder from '../components/CartReminder';
 import ProductCard from '../components/ProductCard';
+import ProductSearchBar from '../components/ProductSearchBar';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../lib/CartContext';
 import { 
@@ -139,6 +140,7 @@ const HomePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+  const [productType, setProductType] = useState<'all' | 'vitrificateurs' | 'huiles'>('all');
   
   const { addItem, companyCode, setCompanyCode, totalHT } = useCart();
   const { addItem: addToQuote, removeItem: removeFromQuote, isInQuote } = useQuote();
@@ -335,6 +337,25 @@ const HomePage: React.FC = () => {
     }
   };
 
+  // Helper function to determine if a product is an oil
+  const isOilProduct = (product: Product): boolean => {
+    const name = product.name.toLowerCase();
+    const slug = product.slug?.toLowerCase() || '';
+    return name.includes('oil') || name.includes('huile') || 
+           slug.includes('oil') || slug.includes('huile') ||
+           name.includes('hardwax');
+  };
+
+  // Helper function to determine if a product is a vitrificateur
+  const isVitrificateurProduct = (product: Product): boolean => {
+    const name = product.name.toLowerCase();
+    const slug = product.slug?.toLowerCase() || '';
+    return name.includes('pall-x') || name.includes('is 90') || 
+           name.includes('vitrificateur') || slug.includes('pall-x') ||
+           name.includes('fond dur') || name.includes('filler') ||
+           name.includes('kitt') || name.includes('base');
+  };
+
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' ||
       product.category_id === selectedCategory;
@@ -343,7 +364,15 @@ const HomePage: React.FC = () => {
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchesCategory && matchesSearch;
+    // Filter by product type (vitrificateurs vs huiles)
+    let matchesType = true;
+    if (productType === 'huiles') {
+      matchesType = isOilProduct(product);
+    } else if (productType === 'vitrificateurs') {
+      matchesType = isVitrificateurProduct(product);
+    }
+
+    return matchesCategory && matchesSearch && matchesType;
   });
 
   const filteredSubcategories = selectedCategory === 'all'
@@ -553,6 +582,15 @@ const HomePage: React.FC = () => {
               </Link>
             </div>
           </div>
+
+          {/* Barre de recherche rapide - sous Calculateur PRO */}
+          <ProductSearchBar
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            productType={productType}
+            onTypeChange={setProductType}
+            variant="hero"
+          />
 
           {/* Category Navigation Bar - STICKY */}
           <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
@@ -948,16 +986,23 @@ const HomePage: React.FC = () => {
               )}
 
               {/* Results count */}
-              {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm) && (
+              {(selectedCategory !== 'all' || selectedSubcategory !== 'all' || searchTerm || productType !== 'all') && (
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-[#6B6B6B]">
                     <span className="font-bold text-[#1A1A1A]">{filteredProducts.length}</span> produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
+                    {productType !== 'all' && (
+                      <span className="ml-2 px-2 py-0.5 rounded-full text-xs font-bold text-white" 
+                        style={{ background: productType === 'huiles' ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}>
+                        {productType === 'huiles' ? '🛢️ Huiles' : '🛡️ Vitrificateurs'}
+                      </span>
+                    )}
                   </span>
                   <button
                     onClick={() => {
                       setSelectedCategory('all');
                       setSelectedSubcategory('all');
                       setSearchTerm('');
+                      setProductType('all');
                     }}
                     className="text-[#F0C300] font-semibold hover:underline"
                   >
@@ -967,21 +1012,46 @@ const HomePage: React.FC = () => {
               )}
             </div>
 
-            {/* Products Grid */}
+            {/* Products Grid with intermediate search bars */}
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredProducts.map(product => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    validatedCode={validatedCode}
-                    onAddToCart={handleAddToCart}
-                    onAddToQuote={handleAddToQuote}
-                    isInQuote={isInQuote(product.id)}
-                    addedToCart={addedToCart === product.id}
-                    addedToQuote={addedToQuote === product.id}
-                  />
-                ))}
+              <div className="space-y-8">
+                {/* Split products into chunks of 32 with search bars between */}
+                {Array.from({ length: Math.ceil(filteredProducts.length / 32) }, (_, chunkIndex) => {
+                  const start = chunkIndex * 32;
+                  const end = Math.min(start + 32, filteredProducts.length);
+                  const chunk = filteredProducts.slice(start, end);
+                  
+                  return (
+                    <div key={chunkIndex}>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {chunk.map(product => (
+                          <ProductCard
+                            key={product.id}
+                            product={product}
+                            validatedCode={validatedCode}
+                            onAddToCart={handleAddToCart}
+                            onAddToQuote={handleAddToQuote}
+                            isInQuote={isInQuote(product.id)}
+                            addedToCart={addedToCart === product.id}
+                            addedToQuote={addedToQuote === product.id}
+                          />
+                        ))}
+                      </div>
+                      {/* Intermediate search bar (show if not the last chunk) */}
+                      {end < filteredProducts.length && (
+                        <div className="mt-8">
+                          <ProductSearchBar
+                            searchTerm={searchTerm}
+                            onSearchChange={setSearchTerm}
+                            productType={productType}
+                            onTypeChange={setProductType}
+                            variant="inline"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div className="bg-white rounded-2xl shadow-card p-12 text-center border border-gray-100">
@@ -997,6 +1067,7 @@ const HomePage: React.FC = () => {
                     setSelectedCategory('all');
                     setSelectedSubcategory('all');
                     setSearchTerm('');
+                    setProductType('all');
                   }}
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
                   style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
