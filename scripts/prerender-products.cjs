@@ -59,15 +59,71 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+// Générer des mots-clés SEO pertinents
+function generateKeywords(product, name) {
+  const keywords = ['Pallmann', name];
+  
+  if (name.toLowerCase().includes('pall-x')) {
+    keywords.push('vitrificateur', 'vitrificateur parquet', 'vernis parquet', 'protection parquet');
+  }
+  if (name.toLowerCase().includes('magic oil') || name.toLowerCase().includes('huile')) {
+    keywords.push('huile parquet', 'huile naturelle bois', 'finition huile', 'huilage parquet');
+  }
+  if (name.toLowerCase().includes('grain') || name.toLowerCase().includes('disque') || name.toLowerCase().includes('bande')) {
+    keywords.push('abrasif', 'ponçage parquet', 'disque abrasif', 'bande abrasive');
+  }
+  if (name.toLowerCase().includes('clean') || name.toLowerCase().includes('care')) {
+    keywords.push('entretien parquet', 'nettoyant parquet', 'produit entretien bois');
+  }
+  if (name.toLowerCase().includes('colle') || name.toLowerCase().includes('adhesif')) {
+    keywords.push('colle parquet', 'adhésif parquet', 'collage bois');
+  }
+  if (name.toLowerCase().includes('joint') || name.toLowerCase().includes('kitt')) {
+    keywords.push('joint parquet', 'mastic bois', 'rebouchage parquet');
+  }
+  if (name.toLowerCase().includes('rouleau') || name.toLowerCase().includes('manchon')) {
+    keywords.push('rouleau vitrificateur', 'manchon application', 'outil parquet');
+  }
+  
+  keywords.push('parquet', 'bois', 'professionnel', 'qualité allemande');
+  
+  return [...new Set(keywords)].join(', ');
+}
+
+// Générer une description SEO enrichie
+function generateSeoDescription(product, name) {
+  const baseName = name.split(' - ')[0];
+  let desc = product.description || product.meta_description || '';
+  
+  // Si pas de description, en créer une
+  if (!desc || desc.length < 50) {
+    if (name.toLowerCase().includes('pall-x')) {
+      desc = `${baseName} - Vitrificateur professionnel Pallmann pour parquet. Protection durable et finition haute qualité. Produit allemand utilisé par les professionnels du parquet.`;
+    } else if (name.toLowerCase().includes('magic oil')) {
+      desc = `${baseName} - Huile naturelle Pallmann pour parquet. Finition aspect bois brut, protection invisible. Qualité professionnelle allemande.`;
+    } else if (name.toLowerCase().includes('grain') || name.toLowerCase().includes('disque')) {
+      desc = `${baseName} - Abrasif professionnel Pallmann pour ponçage de parquet. Haute qualité et durabilité. Compatible ponceuses professionnelles.`;
+    } else if (name.toLowerCase().includes('clean') || name.toLowerCase().includes('care')) {
+      desc = `${baseName} - Produit d'entretien Pallmann pour parquet. Nettoyage et protection de votre sol en bois. Formule professionnelle.`;
+    } else {
+      desc = `${baseName} - Produit professionnel Pallmann pour parquet. Qualité allemande, utilisé par les artisans du parquet.`;
+    }
+  }
+  
+  return cleanDescription(desc);
+}
+
 // Générer le HTML d'une page produit
 function generateProductHtml(product, assets) {
   const name = cleanName(product.name);
-  const description = cleanDescription(product.description || product.meta_description || '');
+  const description = generateSeoDescription(product, name);
   const descShort = description.substring(0, 160);
+  const keywords = generateKeywords(product, name);
   const priceTTC = (product.price_public_ht * (1 + TVA_RATE)).toFixed(2);
   const priceHT = product.price_public_ht.toFixed(2);
   const imageUrl = product.image_url || '/images/pallmann-default.png';
   const productUrl = `${STORE_URL}/produit/${product.slug}`;
+  const pdfUrl = product.pdf_url || null;
   
   // Date de validité du prix (30 jours)
   const priceValidDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
@@ -125,6 +181,45 @@ function generateProductHtml(product, assets) {
     ]
   };
 
+  // Organization schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pallmann Store",
+    "url": STORE_URL,
+    "logo": `${STORE_URL}/favicon.svg`,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+33-7-57-82-13-06",
+      "contactType": "customer service",
+      "availableLanguage": "French"
+    }
+  };
+
+  // FAQ schema pour le SEO
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `Comment utiliser ${name.split(' - ')[0]} ?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `${name.split(' - ')[0]} est un produit professionnel Pallmann. Consultez la fiche technique pour les instructions détaillées d'application. Pour tout conseil, contactez notre équipe au 07 57 82 13 06.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la livraison ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Livraison France entière en 48-72h. Franco de port dès 630€ HT d'achat."
+        }
+      }
+    ]
+  };
+
   return `<!doctype html>
 <html lang="fr">
   <head>
@@ -136,7 +231,7 @@ function generateProductHtml(product, assets) {
     <!-- SEO Meta Tags -->
     <title>${escapeHtml(name)} | Pallmann Store</title>
     <meta name="description" content="${escapeHtml(descShort)}" />
-    <meta name="keywords" content="Pallmann, ${escapeHtml(name)}, parquet, vitrificateur, huile parquet" />
+    <meta name="keywords" content="${escapeHtml(keywords)}" />
     <meta name="author" content="Pallmann Store" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="${productUrl}" />
@@ -184,6 +279,12 @@ ${JSON.stringify(productSchema, null, 2)}
     <script type="application/ld+json">
 ${JSON.stringify(breadcrumbSchema, null, 2)}
     </script>
+    <script type="application/ld+json">
+${JSON.stringify(organizationSchema, null, 2)}
+    </script>
+    <script type="application/ld+json">
+${JSON.stringify(faqSchema, null, 2)}
+    </script>
     
     <!-- Critical CSS for pre-rendered content -->
     <style>
@@ -197,7 +298,17 @@ ${JSON.stringify(breadcrumbSchema, null, 2)}
       .prerender-product .description { color: #4a5568; margin-bottom: 1.5rem; }
       .prerender-product .ref { font-size: 0.875rem; color: #a0aec0; margin-bottom: 0.5rem; }
       .prerender-product .brand { color: #FF9900; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; }
-      .prerender-product .cta { display: inline-block; background: #FF9900; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 1rem; }
+      .prerender-product .cta { display: inline-block; background: #FF9900; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 1rem; margin-right: 0.5rem; transition: all 0.2s; }
+      .prerender-product .cta:hover { background: #E68A00; transform: translateY(-2px); }
+      .prerender-product .cta-pdf { background: #2563EB; }
+      .prerender-product .cta-pdf:hover { background: #1D4ED8; }
+      .prerender-features { margin-top: 1.5rem; padding: 1rem; background: #EDF2F7; border-radius: 0.5rem; }
+      .prerender-features h3 { font-size: 1rem; font-weight: 600; color: #2D3748; margin-bottom: 0.5rem; }
+      .prerender-features ul { list-style: none; padding: 0; }
+      .prerender-features li { padding: 0.25rem 0; color: #4A5568; font-size: 0.875rem; }
+      .prerender-features li::before { content: "✓ "; color: #48BB78; font-weight: bold; }
+      .prerender-trust { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; font-size: 0.75rem; color: #718096; }
+      .prerender-trust span { display: flex; align-items: center; gap: 0.25rem; }
       .prerender-breadcrumb { font-size: 0.875rem; color: #718096; margin-bottom: 1.5rem; }
       .prerender-breadcrumb a { color: #718096; text-decoration: none; }
       .prerender-breadcrumb a:hover { color: #FF9900; }
@@ -239,7 +350,26 @@ ${JSON.stringify(breadcrumbSchema, null, 2)}
               <p>${escapeHtml(description)}</p>
             </div>
             
-            <a href="/boutique" class="cta">Voir dans la boutique</a>
+            <a href="/boutique" class="cta">🛒 Ajouter au panier</a>
+            ${pdfUrl ? `<a href="${pdfUrl}" target="_blank" rel="noopener" class="cta cta-pdf" download>📄 Fiche technique PDF</a>` : ''}
+            
+            <div class="prerender-features">
+              <h3>✨ Avantages Pallmann</h3>
+              <ul>
+                <li>Qualité professionnelle allemande</li>
+                <li>Utilisé par les artisans du parquet</li>
+                <li>Livraison France entière 48-72h</li>
+                ${pdfUrl ? '<li>Fiche technique disponible</li>' : ''}
+                <li>Conseil expert par téléphone</li>
+              </ul>
+            </div>
+            
+            <div class="prerender-trust">
+              <span>🚚 Livraison rapide</span>
+              <span>🔒 Paiement sécurisé</span>
+              <span>📞 07 57 82 13 06</span>
+              <span>⭐ Produit authentique</span>
+            </div>
           </div>
         </div>
       </article>
