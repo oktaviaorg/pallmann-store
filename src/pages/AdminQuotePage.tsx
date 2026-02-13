@@ -290,29 +290,29 @@ export default function AdminQuotePage() {
       });
     }
 
-    // Abrasifs
+    // Abrasifs - utiliser treillis pour égrenage (plus courant)
     if (includeAbrasifs) {
       const nbDisques = Math.ceil(surface / 25);
       products.push({
         id: 'abrasif-80',
-        name: 'Disques abrasifs grain 80',
+        name: 'Disque Ø150 Grain 80',
         description: 'Finition avant application',
         quantity: nbDisques,
         unit: 'pièce(s)',
         pricePerUnit: 3.50,
         totalPrice: nbDisques * 3.50,
-        productSlug: 'grain-80',
+        productSlug: 'disque-o150-zirco-velcro-gr-80',
         category: 'complementaire'
       });
       products.push({
-        id: 'abrasif-100',
-        name: 'Disques abrasifs grain 100/120',
+        id: 'treillis-100',
+        name: 'Treillis Ø406 Grain 100',
         description: 'Égrenage inter-couches',
-        quantity: nbDisques,
+        quantity: Math.ceil(nbDisques / 2),
         unit: 'pièce(s)',
-        pricePerUnit: 3.80,
-        totalPrice: nbDisques * 3.80,
-        productSlug: 'grain-100',
+        pricePerUnit: 4.50,
+        totalPrice: Math.ceil(nbDisques / 2) * 4.50,
+        productSlug: 'treillis-o406-gr-100',
         category: 'complementaire'
       });
     }
@@ -544,29 +544,68 @@ export default function AdminQuotePage() {
   };
 
   const addFromCalculator = async (calcProduct: CalculatorProduct) => {
+    // Mapping des slugs calculateur vers les vrais slugs Supabase
+    const slugMapping: Record<string, string> = {
+      'pall-x-320': 'pall-x-320',
+      'pall-x-96-original': 'pall-x-96-original',
+      'magic-oil-2k-original': 'magic-oil-2k-original',
+      'pall-x-kitt': 'pall-x-kitt-5l',
+      'grain-80': 'gr-80', // Recherche partielle pour abrasifs
+      'grain-100': 'gr-100',
+      'clean-and-go': 'clean-5l',
+      'finish-care': 'finish-care',
+      'magic-oil-care': 'magic-oil-care',
+      'spatule-inox': 'spatule',
+      'rouleau-aqua': 'rouleau',
+      'rouleau-mohair': 'rouleau',
+    };
+    
+    const searchSlug = slugMapping[calcProduct.productSlug || ''] || calcProduct.productSlug;
+    
     // Chercher le produit réel dans Supabase
-    const { data } = await supabase
+    let { data } = await supabase
       .from('pallmann_products')
       .select('id, name, slug, price_public_ht, image_url, ref')
       .eq('published', true)
-      .ilike('slug', `%${calcProduct.productSlug}%`)
+      .ilike('slug', `%${searchSlug}%`)
       .limit(1);
     
     if (data && data.length > 0) {
       addProduct(data[0], calcProduct.quantity);
-    } else {
-      // Fallback: chercher par nom
-      const { data: fallback } = await supabase
+      return;
+    }
+    
+    // Fallback 1: chercher par le nom du produit (première partie avant " - ")
+    const searchName = calcProduct.name.split(' - ')[0].trim();
+    const { data: fallback1 } = await supabase
+      .from('pallmann_products')
+      .select('id, name, slug, price_public_ht, image_url, ref')
+      .eq('published', true)
+      .ilike('name', `%${searchName}%`)
+      .limit(1);
+    
+    if (fallback1 && fallback1.length > 0) {
+      addProduct(fallback1[0], calcProduct.quantity);
+      return;
+    }
+    
+    // Fallback 2: recherche plus souple par mots-clés
+    const keywords = searchName.split(' ').filter(w => w.length > 2).slice(0, 2).join('%');
+    if (keywords) {
+      const { data: fallback2 } = await supabase
         .from('pallmann_products')
         .select('id, name, slug, price_public_ht, image_url, ref')
         .eq('published', true)
-        .ilike('name', `%${calcProduct.name.split(' - ')[0]}%`)
+        .ilike('name', `%${keywords}%`)
         .limit(1);
       
-      if (fallback && fallback.length > 0) {
-        addProduct(fallback[0], calcProduct.quantity);
+      if (fallback2 && fallback2.length > 0) {
+        addProduct(fallback2[0], calcProduct.quantity);
+        return;
       }
     }
+    
+    console.warn('Produit non trouvé:', calcProduct.name, calcProduct.productSlug);
   };
 
   const addAllFromCalculator = async () => {
