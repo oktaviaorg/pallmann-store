@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { supabase } from '../lib/supabase';
-import { Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock } from 'lucide-react';
+import { Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock, Calculator, Lightbulb, ShoppingBag, Package } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -33,6 +33,74 @@ export default function AdminQuotePage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [surfaceM2, setSurfaceM2] = useState(0);
+  const [showCalculator, setShowCalculator] = useState(false);
+  const [suggestedProducts, setSuggestedProducts] = useState<Product[]>([]);
+
+  // Produits suggérés basés sur le panier
+  const suggestions = useMemo(() => {
+    const hasVitrificateur = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('pall-x') || 
+      i.product.name.toLowerCase().includes('vitrificateur')
+    );
+    const hasHuile = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('magic oil') || 
+      i.product.name.toLowerCase().includes('huile') ||
+      i.product.name.toLowerCase().includes('hardwaxoil')
+    );
+    const hasFondDur = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('base') || 
+      i.product.name.toLowerCase().includes('fond dur')
+    );
+    const hasRouleau = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('rouleau')
+    );
+    const hasAbrasif = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('disque') || 
+      i.product.name.toLowerCase().includes('bande') ||
+      i.product.name.toLowerCase().includes('abrasif')
+    );
+
+    const tips: string[] = [];
+    
+    if (hasVitrificateur && !hasFondDur) {
+      tips.push("💡 Proposer un FOND DUR (PALL-X BASE ou PALL-X ZERO BASE) pour meilleure accroche");
+    }
+    if (hasVitrificateur && !hasRouleau) {
+      tips.push("🖌️ Proposer un ROULEAU adapté (Aqua SP 8mm pour vitrificateur)");
+    }
+    if (hasHuile && !hasRouleau) {
+      tips.push("🖌️ Proposer un ROULEAU pour huile (Mohair Aqua 11mm)");
+    }
+    if ((hasVitrificateur || hasHuile) && !hasAbrasif) {
+      tips.push("⚙️ Proposer des ABRASIFS pour la préparation (grains 60, 80, 120)");
+    }
+    if (hasVitrificateur) {
+      tips.push("🧴 Proposer CLEAN & GO ou FINISH CARE pour l'entretien");
+    }
+    if (hasHuile) {
+      tips.push("🧴 Proposer MAGIC OIL CARE pour l'entretien des parquets huilés");
+    }
+    if (quoteItems.length > 0 && !quoteItems.some(i => i.product.name.toLowerCase().includes('joint'))) {
+      tips.push("🔧 Proposer du JOINT À PARQUET si rénovation complète");
+    }
+
+    return tips;
+  }, [quoteItems]);
+
+  // Calculateur de rendement
+  const calculatedQuantities = useMemo(() => {
+    if (surfaceM2 <= 0) return null;
+    
+    return {
+      vitrificateur_5L: Math.ceil(surfaceM2 / 50), // ~10m²/L, 2 couches
+      vitrificateur_10L: Math.ceil(surfaceM2 / 100),
+      huile_2_5L: Math.ceil(surfaceM2 / 30), // ~12m²/L
+      huile_5L: Math.ceil(surfaceM2 / 60),
+      fondDur_5L: Math.ceil(surfaceM2 / 60), // ~12m²/L
+      fondDur_10L: Math.ceil(surfaceM2 / 120),
+    };
+  }, [surfaceM2]);
 
   // Simple auth (à améliorer avec un vrai système)
   const ADMIN_PASSWORD = 'Lematoubleu1789'; // À changer en variable d'env
@@ -260,6 +328,74 @@ export default function AdminQuotePage() {
                 )}
               </div>
             </div>
+
+            {{/* Calculateur de surface */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow p-6 border border-blue-200">
+              <button 
+                onClick={() => setShowCalculator(!showCalculator)}
+                className="w-full flex items-center justify-between"
+              >
+                <h2 className="font-bold text-lg flex items-center gap-2 text-blue-800">
+                  <Calculator className="w-5 h-5" />
+                  Calculateur de quantités
+                </h2>
+                <span className="text-blue-600">{showCalculator ? '▲' : '▼'}</span>
+              </button>
+              
+              {showCalculator && (
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <label className="font-medium text-gray-700">Surface à traiter :</label>
+                    <input
+                      type="number"
+                      value={surfaceM2 || ''}
+                      onChange={(e) => setSurfaceM2(parseInt(e.target.value) || 0)}
+                      placeholder="m²"
+                      className="w-24 px-3 py-2 border border-gray-300 rounded-lg text-center"
+                    />
+                    <span className="text-gray-600">m²</span>
+                  </div>
+                  
+                  {calculatedQuantities && (
+                    <div className="grid grid-cols-2 gap-3 mt-4">
+                      <div className="bg-white p-3 rounded-lg border">
+                        <p className="text-sm text-gray-600">Vitrificateur (2 couches)</p>
+                        <p className="font-bold text-lg">{calculatedQuantities.vitrificateur_5L} × 5L <span className="text-gray-400 text-sm">ou</span> {calculatedQuantities.vitrificateur_10L} × 10L</p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg border">
+                        <p className="text-sm text-gray-600">Huile (1 couche)</p>
+                        <p className="font-bold text-lg">{calculatedQuantities.huile_2_5L} × 2.5L <span className="text-gray-400 text-sm">ou</span> {calculatedQuantities.huile_5L} × 5L</p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg border">
+                        <p className="text-sm text-gray-600">Fond dur (1 couche)</p>
+                        <p className="font-bold text-lg">{calculatedQuantities.fondDur_5L} × 5L <span className="text-gray-400 text-sm">ou</span> {calculatedQuantities.fondDur_10L} × 10L</p>
+                      </div>
+                      <div className="bg-white p-3 rounded-lg border">
+                        <p className="text-sm text-gray-600">Conseil</p>
+                        <p className="text-sm text-blue-600">Prévoir +10% pour pertes/retouches</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Suggestions intelligentes */}
+            {suggestions.length > 0 && (
+              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl shadow p-6 border border-amber-200">
+                <h2 className="font-bold text-lg flex items-center gap-2 text-amber-800 mb-3">
+                  <Lightbulb className="w-5 h-5" />
+                  Suggestions de vente
+                </h2>
+                <ul className="space-y-2">
+                  {suggestions.map((tip, index) => (
+                    <li key={index} className="text-gray-700 bg-white px-3 py-2 rounded-lg border border-amber-100">
+                      {tip}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Liste des produits du devis */}
             <div className="bg-white rounded-xl shadow p-6">
