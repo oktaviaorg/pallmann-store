@@ -241,7 +241,7 @@ const CartPage: React.FC = () => {
 
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 text-[#2D2D2D] hover:text-[#FF9900] font-semibold transition-colors"
+                  className="inline-flex items-center gap-2 text-[#1A1A1A] hover:text-[#FF9900] font-bold transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Continuer mes achats
