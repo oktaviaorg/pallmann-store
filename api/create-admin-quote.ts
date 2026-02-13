@@ -1,19 +1,36 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
-});
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Vérifier les variables d'environnement
+  if (!process.env.STRIPE_SECRET_KEY) {
+    console.error('Missing STRIPE_SECRET_KEY');
+    return res.status(500).json({ error: 'Configuration manquante: STRIPE_SECRET_KEY' });
+  }
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Missing RESEND_API_KEY');
+    return res.status(500).json({ error: 'Configuration manquante: RESEND_API_KEY' });
+  }
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2023-10-16',
+  });
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   try {
     const { items, customerInfo, discountPercent, subtotalHT, discountAmount, totalHT, totalTTC } = req.body;
+
+    // Validation des données
+    if (!items || items.length === 0) {
+      return res.status(400).json({ error: 'Aucun produit dans le devis' });
+    }
+    if (!customerInfo?.email || !customerInfo?.name) {
+      return res.status(400).json({ error: 'Informations client incomplètes (nom et email requis)' });
+    }
 
     // Créer ou récupérer le client Stripe
     let customer;
@@ -98,9 +115,12 @@ export default async function handler(req: any, res: any) {
       `;
     }).join('');
 
+    // Email from (utiliser domaine vérifié si disponible, sinon test)
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Pallmann Store <onboarding@resend.dev>';
+    
     // Envoyer l'email au client
-    await resend.emails.send({
-      from: 'Pallmann Store <onboarding@resend.dev>',
+    const emailResult = await resend.emails.send({
+      from: fromEmail,
       to: [customerInfo.email],
       subject: `📋 Votre devis Pallmann Store - ${totalTTC.toFixed(2)}€`,
       html: `
@@ -187,9 +207,11 @@ export default async function handler(req: any, res: any) {
       `,
     });
 
+    console.log('Email client envoyé:', emailResult);
+
     // Envoyer une copie à l'admin
-    await resend.emails.send({
-      from: 'Pallmann Store <onboarding@resend.dev>',
+    const adminEmailResult = await resend.emails.send({
+      from: fromEmail,
       to: ['j.dietemann@renoline.fr'],
       subject: `📋 [COPIE] Devis envoyé à ${customerInfo.name} - ${totalTTC.toFixed(2)}€`,
       html: `
@@ -203,6 +225,8 @@ export default async function handler(req: any, res: any) {
         ${customerInfo.notes ? `<p><strong>Notes:</strong> ${customerInfo.notes}</p>` : ''}
       `,
     });
+    
+    console.log('Email admin envoyé:', adminEmailResult);
 
     res.status(200).json({ 
       success: true, 
@@ -212,6 +236,20 @@ export default async function handler(req: any, res: any) {
 
   } catch (err: any) {
     console.error('Error creating admin quote:', err);
-    res.status(500).json({ error: err.message });
+    console.error('Error details:', JSON.stringify(err, null, 2));
+    
+    // Message d'erreur plus explicite
+    let errorMessage = 'Erreur lors de l\'envoi du devis';
+    if (err.message) {
+      errorMessage = err.message;
+    }
+    if (err.statusCode === 403) {
+      errorMessage = 'Erreur Resend: domaine email non vérifié ou API key invalide';
+    }
+    if (err.type === 'StripeAuthenticationError') {
+      errorMessage = 'Erreur Stripe: clé API invalide';
+    }
+    
+    res.status(500).json({ error: errorMessage });
   }
 }
