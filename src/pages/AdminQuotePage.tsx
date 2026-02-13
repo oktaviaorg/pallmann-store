@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { supabase } from '../lib/supabase';
-import { Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock, Calculator, Lightbulb, ShoppingBag, Package } from 'lucide-react';
+import { 
+  Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock, 
+  Calculator, Lightbulb, ShoppingBag, Package, Ruler, Droplets, CheckCircle, 
+  ArrowRight, Sparkles, Zap, ChevronDown, ChevronUp, RefreshCw
+} from 'lucide-react';
 
 interface Product {
   id: string;
@@ -15,6 +19,18 @@ interface Product {
 interface QuoteItem {
   product: Product;
   quantity: number;
+}
+
+interface CalculatorProduct {
+  id: string;
+  name: string;
+  description: string;
+  quantity: number;
+  unit: string;
+  pricePerUnit: number;
+  totalPrice: number;
+  productSlug?: string;
+  category: 'principal' | 'complementaire' | 'entretien';
 }
 
 export default function AdminQuotePage() {
@@ -33,12 +49,190 @@ export default function AdminQuotePage() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-  const [surfaceM2, setSurfaceM2] = useState(0);
-  const [showCalculator, setShowCalculator] = useState(false);
+  
+  // ===== CALCULATEUR PRO =====
+  const [showCalculator, setShowCalculator] = useState(true);
+  const [surface, setSurface] = useState<number>(30);
+  const [projectType, setProjectType] = useState<'renovation' | 'neuf'>('renovation');
+  const [finishType, setFinishType] = useState<'vitrification' | 'huile'>('vitrification');
+  
+  // Options produits complémentaires
+  const [includeLiant, setIncludeLiant] = useState<boolean>(true);
+  const [includeSpatule, setIncludeSpatule] = useState<boolean>(true);
+  const [includeRouleau, setIncludeRouleau] = useState<boolean>(true);
+  const [includeNettoyant, setIncludeNettoyant] = useState<boolean>(true);
+  const [includeEntretien, setIncludeEntretien] = useState<boolean>(true);
+  const [includeAbrasifs, setIncludeAbrasifs] = useState<boolean>(true);
+  
+  // Produits Supabase pour suggestions
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [suggestedProducts, setSuggestedProducts] = useState<Product[]>([]);
 
-  // Produits suggérés basés sur le panier
-  const suggestions = useMemo(() => {
+  const ADMIN_PASSWORD = 'Lematoubleu1789';
+
+  // ===== CALCULS DU CALCULATEUR =====
+  const calculateProducts = (): CalculatorProduct[] => {
+    const products: CalculatorProduct[] = [];
+    
+    if (finishType === 'vitrification') {
+      // Fond dur : 1L pour 10-12m²
+      const fondDurLitres = Math.ceil(surface / 10);
+      products.push({
+        id: 'fond-dur',
+        name: 'PALL-X 320 - Fond dur',
+        description: 'Fond dur aqueux universel, 1 couche',
+        quantity: fondDurLitres,
+        unit: 'L',
+        pricePerUnit: 23,
+        totalPrice: fondDurLitres * 23,
+        productSlug: 'pall-x-320',
+        category: 'principal'
+      });
+
+      // Vitrificateur : 1L pour 10-12m² par couche, 2 couches
+      const vitrificateurLitres = Math.ceil((surface / 10) * 2);
+      products.push({
+        id: 'vitrificateur',
+        name: 'PALL-X 96 ORIGINAL - Vitrificateur',
+        description: 'Vitrificateur mono-composant premium, 2 couches',
+        quantity: vitrificateurLitres,
+        unit: 'L',
+        pricePerUnit: 40.10,
+        totalPrice: vitrificateurLitres * 40.10,
+        productSlug: 'pall-x-96-original',
+        category: 'principal'
+      });
+    } else {
+      // Huile : 1L pour 20-25m² par couche, 2 couches
+      const huileLitres = Math.ceil((surface / 20) * 2);
+      products.push({
+        id: 'huile',
+        name: 'MAGIC OIL 2K ORIGINAL - Huile',
+        description: 'Huile naturelle bi-composante, 2 couches',
+        quantity: huileLitres,
+        unit: 'L',
+        pricePerUnit: 122.86,
+        totalPrice: huileLitres * 122.86,
+        productSlug: 'magic-oil-2k-original',
+        category: 'principal'
+      });
+    }
+
+    // Liant (pour joints) si rénovation
+    if (projectType === 'renovation' && includeLiant) {
+      const liantLitres = Math.ceil(surface / 40);
+      products.push({
+        id: 'liant',
+        name: 'PALL-X KITT - Liant joints',
+        description: 'Pour rebouchage des joints et fissures',
+        quantity: liantLitres,
+        unit: 'L',
+        pricePerUnit: 24.20,
+        totalPrice: liantLitres * 24.20,
+        productSlug: 'pall-x-kitt',
+        category: 'complementaire'
+      });
+    }
+
+    // Abrasifs
+    if (includeAbrasifs) {
+      const nbDisques = Math.ceil(surface / 25);
+      products.push({
+        id: 'abrasif-80',
+        name: 'Disques abrasifs grain 80',
+        description: 'Finition avant application',
+        quantity: nbDisques,
+        unit: 'pièce(s)',
+        pricePerUnit: 3.50,
+        totalPrice: nbDisques * 3.50,
+        productSlug: 'grain-80',
+        category: 'complementaire'
+      });
+      products.push({
+        id: 'abrasif-100',
+        name: 'Disques abrasifs grain 100/120',
+        description: 'Égrenage inter-couches',
+        quantity: nbDisques,
+        unit: 'pièce(s)',
+        pricePerUnit: 3.80,
+        totalPrice: nbDisques * 3.80,
+        productSlug: 'grain-100',
+        category: 'complementaire'
+      });
+    }
+
+    // Spatule
+    if (includeSpatule) {
+      products.push({
+        id: 'spatule',
+        name: 'Spatule inox crantée',
+        description: 'Pour application uniforme',
+        quantity: 1,
+        unit: 'pièce',
+        pricePerUnit: 18.50,
+        totalPrice: 18.50,
+        productSlug: 'spatule-inox',
+        category: 'complementaire'
+      });
+    }
+
+    // Rouleau
+    if (includeRouleau) {
+      const nbRouleaux = Math.max(1, Math.ceil(surface / 50));
+      products.push({
+        id: 'rouleau',
+        name: finishType === 'vitrification' ? 'Rouleau Aqua SP 8mm' : 'Rouleau Mohair 11mm',
+        description: finishType === 'vitrification' ? 'Pour vitrificateur aqueux' : 'Pour huile naturelle',
+        quantity: nbRouleaux,
+        unit: 'pièce(s)',
+        pricePerUnit: 14.90,
+        totalPrice: nbRouleaux * 14.90,
+        productSlug: finishType === 'vitrification' ? 'rouleau-aqua' : 'rouleau-mohair',
+        category: 'complementaire'
+      });
+    }
+
+    // Nettoyant
+    if (includeNettoyant) {
+      const nettoyantLitres = Math.max(1, Math.ceil(surface / 80));
+      products.push({
+        id: 'nettoyant',
+        name: 'CLEAN & GO - Nettoyant',
+        description: 'Nettoyage avant application (dilué)',
+        quantity: nettoyantLitres,
+        unit: 'L',
+        pricePerUnit: 15.80,
+        totalPrice: nettoyantLitres * 15.80,
+        productSlug: 'clean-and-go',
+        category: 'complementaire'
+      });
+    }
+
+    // Produit d'entretien
+    if (includeEntretien) {
+      products.push({
+        id: 'entretien',
+        name: finishType === 'vitrification' ? 'FINISH CARE - Entretien' : 'MAGIC OIL CARE - Entretien',
+        description: 'Entretien régulier après finition',
+        quantity: 1,
+        unit: 'L',
+        pricePerUnit: finishType === 'vitrification' ? 22.50 : 28.50,
+        totalPrice: finishType === 'vitrification' ? 22.50 : 28.50,
+        productSlug: finishType === 'vitrification' ? 'finish-care' : 'magic-oil-care',
+        category: 'entretien'
+      });
+    }
+
+    return products;
+  };
+
+  const calculatedProducts = calculateProducts();
+  const calculatorTotalHT = calculatedProducts.reduce((sum, p) => sum + p.totalPrice, 0);
+
+  // ===== SUGGESTIONS CROSS-SELL INTELLIGENTES =====
+  const crossSellSuggestions = useMemo(() => {
+    const suggestions: { text: string; searchTerms: string[] }[] = [];
+    
     const hasVitrificateur = quoteItems.some(i => 
       i.product.name.toLowerCase().includes('pall-x') || 
       i.product.name.toLowerCase().includes('vitrificateur')
@@ -50,61 +244,81 @@ export default function AdminQuotePage() {
     );
     const hasFondDur = quoteItems.some(i => 
       i.product.name.toLowerCase().includes('base') || 
-      i.product.name.toLowerCase().includes('fond dur')
+      i.product.name.toLowerCase().includes('fond dur') ||
+      i.product.name.toLowerCase().includes('320') ||
+      i.product.name.toLowerCase().includes('325')
     );
     const hasRouleau = quoteItems.some(i => 
       i.product.name.toLowerCase().includes('rouleau')
     );
     const hasAbrasif = quoteItems.some(i => 
       i.product.name.toLowerCase().includes('disque') || 
-      i.product.name.toLowerCase().includes('bande') ||
+      i.product.name.toLowerCase().includes('grain') ||
       i.product.name.toLowerCase().includes('abrasif')
     );
-
-    const tips: string[] = [];
+    const hasEntretien = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('care') || 
+      i.product.name.toLowerCase().includes('entretien') ||
+      i.product.name.toLowerCase().includes('clean')
+    );
+    const hasTeinte = quoteItems.some(i => 
+      i.product.name.toLowerCase().includes('color') || 
+      i.product.name.toLowerCase().includes('333')
+    );
     
     if (hasVitrificateur && !hasFondDur) {
-      tips.push("💡 Proposer un FOND DUR (PALL-X BASE ou PALL-X ZERO BASE) pour meilleure accroche");
+      suggestions.push({ 
+        text: "💡 FOND DUR recommandé avec ce vitrificateur", 
+        searchTerms: ['pall-x 320', 'pall-x base', 'fond dur'] 
+      });
     }
     if (hasVitrificateur && !hasRouleau) {
-      tips.push("🖌️ Proposer un ROULEAU adapté (Aqua SP 8mm pour vitrificateur)");
+      suggestions.push({ 
+        text: "🖌️ ROULEAU AQUA SP adapté aux vitrificateurs", 
+        searchTerms: ['rouleau', 'aqua'] 
+      });
     }
     if (hasHuile && !hasRouleau) {
-      tips.push("🖌️ Proposer un ROULEAU pour huile (Mohair Aqua 11mm)");
+      suggestions.push({ 
+        text: "🖌️ ROULEAU MOHAIR idéal pour les huiles", 
+        searchTerms: ['rouleau', 'mohair'] 
+      });
     }
     if ((hasVitrificateur || hasHuile) && !hasAbrasif) {
-      tips.push("⚙️ Proposer des ABRASIFS pour la préparation (grains 60, 80, 120)");
+      suggestions.push({ 
+        text: "⚙️ ABRASIFS pour préparation et égrenage", 
+        searchTerms: ['grain', 'disque', 'treillis'] 
+      });
+    }
+    if (hasVitrificateur && !hasEntretien) {
+      suggestions.push({ 
+        text: "🧴 FINISH CARE pour entretien parquet vitrifié", 
+        searchTerms: ['finish care', 'clean go'] 
+      });
+    }
+    if (hasHuile && !hasEntretien) {
+      suggestions.push({ 
+        text: "🧴 MAGIC OIL CARE pour entretien parquet huilé", 
+        searchTerms: ['magic oil care'] 
+      });
+    }
+    if ((hasVitrificateur || hasHuile) && !hasTeinte) {
+      suggestions.push({ 
+        text: "🎨 PALL-X 333 COLOR pour teinter le parquet", 
+        searchTerms: ['333 color', 'teinte'] 
+      });
     }
     if (hasVitrificateur) {
-      tips.push("🧴 Proposer CLEAN & GO ou FINISH CARE pour l'entretien");
-    }
-    if (hasHuile) {
-      tips.push("🧴 Proposer MAGIC OIL CARE pour l'entretien des parquets huilés");
-    }
-    if (quoteItems.length > 0 && !quoteItems.some(i => i.product.name.toLowerCase().includes('joint'))) {
-      tips.push("🔧 Proposer du JOINT À PARQUET si rénovation complète");
+      suggestions.push({ 
+        text: "⭐ Upgrade PALL-X EXTREME pour ultra-résistance", 
+        searchTerms: ['extreme'] 
+      });
     }
 
-    return tips;
+    return suggestions;
   }, [quoteItems]);
 
-  // Calculateur de rendement
-  const calculatedQuantities = useMemo(() => {
-    if (surfaceM2 <= 0) return null;
-    
-    return {
-      vitrificateur_5L: Math.ceil(surfaceM2 / 50), // ~10m²/L, 2 couches
-      vitrificateur_10L: Math.ceil(surfaceM2 / 100),
-      huile_2_5L: Math.ceil(surfaceM2 / 30), // ~12m²/L
-      huile_5L: Math.ceil(surfaceM2 / 60),
-      fondDur_5L: Math.ceil(surfaceM2 / 60), // ~12m²/L
-      fondDur_10L: Math.ceil(surfaceM2 / 120),
-    };
-  }, [surfaceM2]);
-
-  // Simple auth (à améliorer avec un vrai système)
-  const ADMIN_PASSWORD = 'Lematoubleu1789'; // À changer en variable d'env
-
+  // ===== AUTH =====
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === ADMIN_PASSWORD) {
@@ -121,7 +335,20 @@ export default function AdminQuotePage() {
     }
   }, []);
 
-  // Recherche de produits
+  // Charger tous les produits au démarrage
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await supabase
+        .from('pallmann_products')
+        .select('id, name, slug, price_public_ht, image_url, ref')
+        .eq('published', true)
+        .gt('price_public_ht', 0);
+      setAllProducts(data || []);
+    };
+    fetchProducts();
+  }, []);
+
+  // ===== RECHERCHE =====
   useEffect(() => {
     const searchProducts = async () => {
       if (searchTerm.length < 2) {
@@ -134,8 +361,8 @@ export default function AdminQuotePage() {
         .select('id, name, slug, price_public_ht, image_url, ref')
         .eq('published', true)
         .gt('price_public_ht', 0)
-        .or(`name.ilike.%${searchTerm}%,ref.ilike.%${searchTerm}%`)
-        .limit(10);
+        .or(`name.ilike.%${searchTerm}%,ref.ilike.%${searchTerm}%,slug.ilike.%${searchTerm}%`)
+        .limit(12);
 
       setSearchResults(data || []);
     };
@@ -144,19 +371,52 @@ export default function AdminQuotePage() {
     return () => clearTimeout(debounce);
   }, [searchTerm]);
 
-  const addProduct = (product: Product) => {
+  // ===== ACTIONS DEVIS =====
+  const addProduct = (product: Product, qty: number = 1) => {
     const existing = quoteItems.find(item => item.product.id === product.id);
     if (existing) {
       setQuoteItems(quoteItems.map(item =>
         item.product.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
+          ? { ...item, quantity: item.quantity + qty }
           : item
       ));
     } else {
-      setQuoteItems([...quoteItems, { product, quantity: 1 }]);
+      setQuoteItems([...quoteItems, { product, quantity: qty }]);
     }
     setSearchTerm('');
     setSearchResults([]);
+  };
+
+  const addFromCalculator = async (calcProduct: CalculatorProduct) => {
+    // Chercher le produit réel dans Supabase
+    const { data } = await supabase
+      .from('pallmann_products')
+      .select('id, name, slug, price_public_ht, image_url, ref')
+      .eq('published', true)
+      .ilike('slug', `%${calcProduct.productSlug}%`)
+      .limit(1);
+    
+    if (data && data.length > 0) {
+      addProduct(data[0], calcProduct.quantity);
+    } else {
+      // Fallback: chercher par nom
+      const { data: fallback } = await supabase
+        .from('pallmann_products')
+        .select('id, name, slug, price_public_ht, image_url, ref')
+        .eq('published', true)
+        .ilike('name', `%${calcProduct.name.split(' - ')[0]}%`)
+        .limit(1);
+      
+      if (fallback && fallback.length > 0) {
+        addProduct(fallback[0], calcProduct.quantity);
+      }
+    }
+  };
+
+  const addAllFromCalculator = async () => {
+    for (const p of calculatedProducts) {
+      await addFromCalculator(p);
+    }
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -173,12 +433,13 @@ export default function AdminQuotePage() {
     setQuoteItems(quoteItems.filter(item => item.product.id !== productId));
   };
 
-  // Calculs
+  // ===== CALCULS DEVIS =====
   const subtotalHT = quoteItems.reduce((sum, item) => sum + item.product.price_public_ht * item.quantity, 0);
   const discountAmount = subtotalHT * (discountPercent / 100);
   const totalHT = subtotalHT - discountAmount;
   const totalTTC = totalHT * 1.20;
 
+  // ===== ENVOI DEVIS =====
   const handleSendQuote = async () => {
     if (!customerInfo.email || !customerInfo.name || quoteItems.length === 0) {
       setError('Veuillez remplir le nom, email et ajouter au moins un produit');
@@ -216,7 +477,6 @@ export default function AdminQuotePage() {
         setError(data.error);
       } else {
         setSuccess(`✅ Devis envoyé à ${customerInfo.email} ! Lien de paiement: ${data.paymentUrl}`);
-        // Reset form
         setQuoteItems([]);
         setCustomerInfo({ name: '', email: '', phone: '', notes: '' });
         setDiscountPercent(0);
@@ -228,28 +488,31 @@ export default function AdminQuotePage() {
     }
   };
 
-  // Page de login
+  // ===== LOGIN PAGE =====
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
           <div className="text-center mb-6">
-            <Lock className="w-12 h-12 text-[#FF9900] mx-auto mb-3" />
-            <h1 className="text-2xl font-bold text-gray-900">Admin Devis</h1>
-            <p className="text-gray-600">Pallmann Store</p>
+            <div className="w-16 h-16 bg-gradient-to-br from-[#FF9900] to-[#F0C300] rounded-full flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900">Espace Technicien</h1>
+            <p className="text-gray-600">Pallmann Store - Création de devis</p>
           </div>
           <form onSubmit={handleLogin}>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mot de passe admin"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:ring-2 focus:ring-[#FF9900]"
+              placeholder="Mot de passe"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl mb-4 focus:ring-2 focus:ring-[#FF9900] focus:border-transparent"
             />
             {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
             <button
               type="submit"
-              className="w-full bg-[#FF9900] hover:bg-[#E68A00] text-white py-3 rounded-lg font-bold"
+              className="w-full py-3 rounded-xl font-bold text-white transition-all hover:shadow-lg"
+              style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
             >
               Connexion
             </button>
@@ -259,69 +522,305 @@ export default function AdminQuotePage() {
     );
   }
 
+  // ===== MAIN PAGE =====
   return (
     <div className="min-h-screen bg-gray-100">
       <Helmet>
-        <title>Admin - Créer un devis | Pallmann Store</title>
+        <title>Espace Technicien - Devis | Pallmann Store</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       {/* Header */}
-      <header className="bg-[#1a1a1a] text-white py-4 px-6">
+      <header className="bg-gradient-to-r from-[#1a1a1a] to-[#2d2d2d] text-white py-4 px-6 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <FileText className="w-6 h-6 text-[#FF9900]" />
-            <h1 className="text-xl font-bold">Créer un devis</h1>
+            <div className="w-10 h-10 bg-gradient-to-br from-[#FF9900] to-[#F0C300] rounded-lg flex items-center justify-center">
+              <FileText className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold">Espace Technicien</h1>
+              <p className="text-xs text-gray-400">Création de devis Pallmann</p>
+            </div>
           </div>
           <button
             onClick={() => {
               localStorage.removeItem('admin_auth');
               setIsAuthenticated(false);
             }}
-            className="text-gray-400 hover:text-white text-sm"
+            className="text-gray-400 hover:text-white text-sm px-4 py-2 rounded-lg hover:bg-white/10 transition-all"
           >
             Déconnexion
           </button>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto p-6">
+      <main className="max-w-7xl mx-auto p-4 md:p-6">
+        {/* ===== CALCULATEUR PRO ===== */}
+        <div className="mb-6">
+          <button
+            onClick={() => setShowCalculator(!showCalculator)}
+            className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl p-4 flex items-center justify-between shadow-lg hover:shadow-xl transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <Calculator className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <h2 className="text-lg font-bold">🧮 Calculateur PRO</h2>
+                <p className="text-sm text-white/80">Estimation rapide des besoins selon la surface</p>
+              </div>
+            </div>
+            {showCalculator ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+          </button>
+
+          {showCalculator && (
+            <div className="bg-white rounded-b-xl shadow-lg p-6 border-x border-b border-orange-200 -mt-2">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Paramètres */}
+                <div className="space-y-6">
+                  {/* Surface */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-2 flex items-center gap-2">
+                      <Ruler className="w-4 h-4 text-orange-500" />
+                      Surface à traiter
+                    </label>
+                    <div className="flex items-center gap-4">
+                      <input
+                        type="range"
+                        min="5"
+                        max="300"
+                        value={surface}
+                        onChange={(e) => setSurface(Number(e.target.value))}
+                        className="flex-1 h-3 rounded-full appearance-none cursor-pointer"
+                        style={{ 
+                          background: `linear-gradient(to right, #F97316 0%, #F97316 ${(surface-5)/295*100}%, #D4D4D4 ${(surface-5)/295*100}%, #D4D4D4 100%)` 
+                        }}
+                      />
+                      <div className="flex items-center gap-1 bg-orange-50 border border-orange-200 px-4 py-2 rounded-xl">
+                        <input
+                          type="number"
+                          min="5"
+                          max="500"
+                          value={surface}
+                          onChange={(e) => setSurface(Number(e.target.value) || 5)}
+                          className="w-16 text-center font-bold text-gray-900 bg-transparent focus:outline-none"
+                        />
+                        <span className="text-gray-600">m²</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Type projet */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-2">Type de projet</label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        onClick={() => setProjectType('renovation')}
+                        className={`p-3 rounded-xl border-2 transition-all text-left ${
+                          projectType === 'renovation'
+                            ? 'border-orange-500 bg-orange-50'
+                            : 'border-gray-200 hover:border-orange-300'
+                        }`}
+                      >
+                        <div className="font-bold text-gray-900">🔄 Rénovation</div>
+                        <div className="text-xs text-gray-600">Parquet existant</div>
+                      </button>
+                      <button
+                        onClick={() => setProjectType('neuf')}
+                        className={`p-3 rounded-xl border-2 transition-all text-left ${
+                          projectType === 'neuf'
+                            ? 'border-orange-500 bg-orange-50'
+                            : 'border-gray-200 hover:border-orange-300'
+                        }`}
+                      >
+                        <div className="font-bold text-gray-900">✨ Parquet neuf</div>
+                        <div className="text-xs text-gray-600">Première finition</div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Type finition */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-2">Type de finition</label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <button
+                        onClick={() => setFinishType('vitrification')}
+                        className={`p-3 rounded-xl border-2 transition-all text-left ${
+                          finishType === 'vitrification'
+                            ? 'border-orange-500 bg-orange-50'
+                            : 'border-gray-200 hover:border-orange-300'
+                        }`}
+                      >
+                        <Droplets className={`w-5 h-5 mb-1 ${finishType === 'vitrification' ? 'text-orange-500' : 'text-gray-400'}`} />
+                        <div className="font-bold text-gray-900">Vitrification</div>
+                        <div className="text-xs text-gray-600">Protection filmogène</div>
+                      </button>
+                      <button
+                        onClick={() => setFinishType('huile')}
+                        className={`p-3 rounded-xl border-2 transition-all text-left ${
+                          finishType === 'huile'
+                            ? 'border-green-500 bg-green-50'
+                            : 'border-gray-200 hover:border-green-300'
+                        }`}
+                      >
+                        <Droplets className={`w-5 h-5 mb-1 ${finishType === 'huile' ? 'text-green-600' : 'text-gray-400'}`} />
+                        <div className="font-bold text-gray-900">Huilage</div>
+                        <div className="text-xs text-gray-600">Aspect naturel</div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Options */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-2">Produits complémentaires</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {projectType === 'renovation' && (
+                        <label className="flex items-center gap-2 text-sm cursor-pointer">
+                          <input type="checkbox" checked={includeLiant} onChange={(e) => setIncludeLiant(e.target.checked)} className="rounded text-orange-500" />
+                          Liant joints
+                        </label>
+                      )}
+                      <label className="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" checked={includeAbrasifs} onChange={(e) => setIncludeAbrasifs(e.target.checked)} className="rounded text-orange-500" />
+                        Abrasifs
+                      </label>
+                      <label className="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" checked={includeSpatule} onChange={(e) => setIncludeSpatule(e.target.checked)} className="rounded text-orange-500" />
+                        Spatule
+                      </label>
+                      <label className="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" checked={includeRouleau} onChange={(e) => setIncludeRouleau(e.target.checked)} className="rounded text-orange-500" />
+                        Rouleau
+                      </label>
+                      <label className="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" checked={includeNettoyant} onChange={(e) => setIncludeNettoyant(e.target.checked)} className="rounded text-orange-500" />
+                        Nettoyant
+                      </label>
+                      <label className="flex items-center gap-2 text-sm cursor-pointer">
+                        <input type="checkbox" checked={includeEntretien} onChange={(e) => setIncludeEntretien(e.target.checked)} className="rounded text-orange-500" />
+                        Entretien
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Résultats calculateur */}
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <Package className="w-5 h-5 text-orange-500" />
+                    Produits recommandés pour {surface}m²
+                  </h3>
+                  
+                  <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2">
+                    {calculatedProducts.map((p) => (
+                      <div 
+                        key={p.id}
+                        className={`flex items-center justify-between p-2 rounded-lg text-sm ${
+                          p.category === 'principal' ? 'bg-orange-100 border border-orange-200' :
+                          p.category === 'complementaire' ? 'bg-white border border-gray-200' :
+                          'bg-green-50 border border-green-200'
+                        }`}
+                      >
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900">{p.name}</div>
+                          <div className="text-xs text-gray-500">{p.quantity} {p.unit} × {p.pricePerUnit}€</div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-gray-800">{p.totalPrice.toFixed(0)}€</span>
+                          <button
+                            onClick={() => addFromCalculator(p)}
+                            className="p-1.5 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all"
+                            title="Ajouter au devis"
+                          >
+                            <Plus className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Total et CTA */}
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="font-semibold text-gray-700">Estimation totale HT</span>
+                      <span className="text-xl font-bold text-orange-600">{calculatorTotalHT.toFixed(0)}€</span>
+                    </div>
+                    <button
+                      onClick={addAllFromCalculator}
+                      className="w-full py-3 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all hover:shadow-lg"
+                      style={{ background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)' }}
+                    >
+                      <ShoppingBag className="w-5 h-5" />
+                      Tout ajouter au devis
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ===== SUGGESTIONS CROSS-SELL ===== */}
+        {crossSellSuggestions.length > 0 && quoteItems.length > 0 && (
+          <div className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-200">
+            <h3 className="font-bold text-blue-800 mb-3 flex items-center gap-2">
+              <Lightbulb className="w-5 h-5 text-yellow-500" />
+              Suggestions pour augmenter la vente
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {crossSellSuggestions.slice(0, 5).map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSearchTerm(s.searchTerms[0])}
+                  className="px-3 py-2 bg-white rounded-lg text-sm font-medium text-blue-700 hover:bg-blue-100 transition-all border border-blue-200 shadow-sm"
+                >
+                  {s.text}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Colonne gauche: Recherche + Produits */}
+          {/* Colonne gauche: Recherche + Devis */}
           <div className="lg:col-span-2 space-y-6">
             {/* Recherche */}
-            <div className="bg-white rounded-xl shadow p-6">
+            <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <Search className="w-5 h-5 text-[#FF9900]" />
-                Ajouter des produits
+                <Search className="w-5 h-5 text-orange-500" />
+                Rechercher un produit
               </h2>
               <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Rechercher par nom ou référence..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                  placeholder="Nom du produit, référence..."
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 />
+                
                 {searchResults.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-lg mt-1 max-h-80 overflow-y-auto z-10">
+                  <div className="absolute z-10 w-full mt-2 bg-white rounded-xl shadow-xl border border-gray-100 max-h-80 overflow-y-auto">
                     {searchResults.map(product => (
                       <button
                         key={product.id}
                         onClick={() => addProduct(product)}
-                        className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 border-b border-gray-100 text-left"
+                        className="w-full p-3 flex items-center gap-3 hover:bg-orange-50 transition-all text-left border-b border-gray-50 last:border-0"
                       >
                         {product.image_url && (
-                          <img src={product.image_url} alt="" className="w-12 h-12 object-contain" />
+                          <img src={product.image_url} alt="" className="w-12 h-12 object-contain rounded-lg bg-gray-50" />
                         )}
-                        <div className="flex-grow">
-                          <p className="font-medium text-gray-900 text-sm">{product.name}</p>
-                          <p className="text-xs text-gray-500">Réf: {product.ref}</p>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-gray-900 truncate">{product.name}</div>
+                          <div className="text-xs text-gray-500">Réf: {product.ref}</div>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-[#FF9900]">{product.price_public_ht.toFixed(2)}€ HT</p>
+                          <div className="font-bold text-orange-600">{product.price_public_ht?.toFixed(2)}€</div>
+                          <div className="text-xs text-gray-500">HT</div>
                         </div>
-                        <Plus className="w-5 h-5 text-green-500" />
+                        <Plus className="w-5 h-5 text-orange-500" />
                       </button>
                     ))}
                   </div>
@@ -329,114 +828,53 @@ export default function AdminQuotePage() {
               </div>
             </div>
 
-            {/* Calculateur de surface */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow p-6 border border-blue-200">
-              <button 
-                onClick={() => setShowCalculator(!showCalculator)}
-                className="w-full flex items-center justify-between"
-              >
-                <h2 className="font-bold text-lg flex items-center gap-2 text-blue-800">
-                  <Calculator className="w-5 h-5" />
-                  Calculateur de quantités
-                </h2>
-                <span className="text-blue-600">{showCalculator ? '▲' : '▼'}</span>
-              </button>
-              
-              {showCalculator && (
-                <div className="mt-4 space-y-4">
-                  <div className="flex items-center gap-4">
-                    <label className="font-medium text-gray-700">Surface à traiter :</label>
-                    <input
-                      type="number"
-                      value={surfaceM2 || ''}
-                      onChange={(e) => setSurfaceM2(parseInt(e.target.value) || 0)}
-                      placeholder="m²"
-                      className="w-24 px-3 py-2 border border-gray-300 rounded-lg text-center"
-                    />
-                    <span className="text-gray-600">m²</span>
-                  </div>
-                  
-                  {calculatedQuantities && (
-                    <div className="grid grid-cols-2 gap-3 mt-4">
-                      <div className="bg-white p-3 rounded-lg border">
-                        <p className="text-sm text-gray-600">Vitrificateur (2 couches)</p>
-                        <p className="font-bold text-lg">{calculatedQuantities.vitrificateur_5L} × 5L <span className="text-gray-400 text-sm">ou</span> {calculatedQuantities.vitrificateur_10L} × 10L</p>
-                      </div>
-                      <div className="bg-white p-3 rounded-lg border">
-                        <p className="text-sm text-gray-600">Huile (1 couche)</p>
-                        <p className="font-bold text-lg">{calculatedQuantities.huile_2_5L} × 2.5L <span className="text-gray-400 text-sm">ou</span> {calculatedQuantities.huile_5L} × 5L</p>
-                      </div>
-                      <div className="bg-white p-3 rounded-lg border">
-                        <p className="text-sm text-gray-600">Fond dur (1 couche)</p>
-                        <p className="font-bold text-lg">{calculatedQuantities.fondDur_5L} × 5L <span className="text-gray-400 text-sm">ou</span> {calculatedQuantities.fondDur_10L} × 10L</p>
-                      </div>
-                      <div className="bg-white p-3 rounded-lg border">
-                        <p className="text-sm text-gray-600">Conseil</p>
-                        <p className="text-sm text-blue-600">Prévoir +10% pour pertes/retouches</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            {/* Panier devis */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-orange-500" />
+                Panier devis ({quoteItems.length} produit{quoteItems.length > 1 ? 's' : ''})
+              </h2>
 
-            {/* Suggestions intelligentes */}
-            {suggestions.length > 0 && (
-              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl shadow p-6 border border-amber-200">
-                <h2 className="font-bold text-lg flex items-center gap-2 text-amber-800 mb-3">
-                  <Lightbulb className="w-5 h-5" />
-                  Suggestions de vente
-                </h2>
-                <ul className="space-y-2">
-                  {suggestions.map((tip, index) => (
-                    <li key={index} className="text-gray-700 bg-white px-3 py-2 rounded-lg border border-amber-100">
-                      {tip}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Liste des produits du devis */}
-            <div className="bg-white rounded-xl shadow p-6">
-              <h2 className="font-bold text-lg mb-4">Produits du devis ({quoteItems.length})</h2>
-              
               {quoteItems.length === 0 ? (
-                <p className="text-gray-500 text-center py-8">Aucun produit ajouté</p>
+                <div className="text-center py-8 text-gray-500">
+                  <ShoppingBag className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                  <p>Utilisez le calculateur PRO ou la recherche</p>
+                  <p className="text-sm">pour ajouter des produits</p>
+                </div>
               ) : (
                 <div className="space-y-3">
                   {quoteItems.map(item => (
-                    <div key={item.product.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                    <div key={item.product.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                       {item.product.image_url && (
-                        <img src={item.product.image_url} alt="" className="w-16 h-16 object-contain" />
+                        <img src={item.product.image_url} alt="" className="w-14 h-14 object-contain rounded-lg bg-white" />
                       )}
-                      <div className="flex-grow">
-                        <p className="font-medium text-gray-900">{item.product.name}</p>
-                        <p className="text-sm text-gray-500">Réf: {item.product.ref} • {item.product.price_public_ht.toFixed(2)}€ HT/u</p>
+                      <div className="flex-1 min-w-0">
+                        <div className="font-semibold text-gray-900 truncate">{item.product.name}</div>
+                        <div className="text-sm text-gray-600">{item.product.price_public_ht?.toFixed(2)}€ × {item.quantity}</div>
                       </div>
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                          className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                          className="p-1.5 bg-gray-200 rounded-lg hover:bg-gray-300"
                         >
                           <Minus className="w-4 h-4" />
                         </button>
-                        <span className="w-10 text-center font-bold">{item.quantity}</span>
+                        <span className="w-8 text-center font-bold">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                          className="p-1 rounded bg-gray-200 hover:bg-gray-300"
+                          className="p-1.5 bg-gray-200 rounded-lg hover:bg-gray-300"
                         >
                           <Plus className="w-4 h-4" />
                         </button>
                       </div>
-                      <p className="font-bold text-gray-900 w-24 text-right">
-                        {(item.product.price_public_ht * item.quantity).toFixed(2)}€
-                      </p>
+                      <div className="text-right min-w-[80px]">
+                        <div className="font-bold text-gray-900">{(item.product.price_public_ht * item.quantity).toFixed(2)}€</div>
+                      </div>
                       <button
                         onClick={() => removeItem(item.product.id)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded"
+                        className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg"
                       >
-                        <Trash2 className="w-5 h-5" />
+                        <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   ))}
@@ -445,22 +883,23 @@ export default function AdminQuotePage() {
             </div>
           </div>
 
-          {/* Colonne droite: Client + Totaux */}
+          {/* Colonne droite: Client + Totaux + Envoi */}
           <div className="space-y-6">
             {/* Infos client */}
-            <div className="bg-white rounded-xl shadow p-6">
+            <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <User className="w-5 h-5 text-[#FF9900]" />
-                Informations client
+                <User className="w-5 h-5 text-orange-500" />
+                Client
               </h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Nom / Entreprise *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
                   <input
                     type="text"
                     value={customerInfo.name}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500"
+                    placeholder="M. Dupont"
                   />
                 </div>
                 <div>
@@ -469,7 +908,8 @@ export default function AdminQuotePage() {
                     type="email"
                     value={customerInfo.email}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500"
+                    placeholder="client@email.com"
                   />
                 </div>
                 <div>
@@ -478,98 +918,110 @@ export default function AdminQuotePage() {
                     type="tel"
                     value={customerInfo.phone}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500"
+                    placeholder="06 12 34 56 78"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Notes internes</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
                   <textarea
                     value={customerInfo.notes}
                     onChange={(e) => setCustomerInfo({ ...customerInfo, notes: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500"
                     rows={2}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900]"
-                    placeholder="Notes pour vous (non envoyées au client)"
+                    placeholder="Notes internes..."
                   />
                 </div>
               </div>
             </div>
 
-            {/* Remise */}
-            <div className="bg-white rounded-xl shadow p-6">
+            {/* Remise + Totaux */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
-                <Percent className="w-5 h-5 text-[#FF9900]" />
-                Remise
+                <Percent className="w-5 h-5 text-orange-500" />
+                Remise & Total
               </h2>
-              <div className="flex items-center gap-3">
-                <input
-                  type="number"
-                  min="0"
-                  max="50"
-                  value={discountPercent}
-                  onChange={(e) => setDiscountPercent(Math.min(50, Math.max(0, parseInt(e.target.value) || 0)))}
-                  className="w-24 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF9900] text-center"
-                />
-                <span className="text-gray-600">%</span>
-                {discountAmount > 0 && (
-                  <span className="text-green-600 font-medium">-{discountAmount.toFixed(2)}€</span>
-                )}
-              </div>
-            </div>
-
-            {/* Totaux */}
-            <div className="bg-white rounded-xl shadow p-6">
-              <h2 className="font-bold text-lg mb-4">Récapitulatif</h2>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Sous-total HT</span>
-                  <span>{subtotalHT.toFixed(2)}€</span>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Remise (%)</label>
+                <div className="flex gap-2">
+                  {[0, 5, 10, 15, 20].map(pct => (
+                    <button
+                      key={pct}
+                      onClick={() => setDiscountPercent(pct)}
+                      className={`flex-1 py-2 rounded-lg text-sm font-bold transition-all ${
+                        discountPercent === pct
+                          ? 'bg-orange-500 text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {pct}%
+                    </button>
+                  ))}
                 </div>
-                {discountAmount > 0 && (
-                  <div className="flex justify-between text-green-600">
-                    <span>Remise ({discountPercent}%)</span>
+              </div>
+
+              <div className="space-y-2 pt-4 border-t border-gray-100">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Sous-total HT</span>
+                  <span className="font-semibold">{subtotalHT.toFixed(2)}€</span>
+                </div>
+                {discountPercent > 0 && (
+                  <div className="flex justify-between text-sm text-green-600">
+                    <span>Remise {discountPercent}%</span>
                     <span>-{discountAmount.toFixed(2)}€</span>
                   </div>
                 )}
-                <div className="flex justify-between font-bold border-t pt-2">
-                  <span>Total HT</span>
-                  <span>{totalHT.toFixed(2)}€</span>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Total HT</span>
+                  <span className="font-bold">{totalHT.toFixed(2)}€</span>
                 </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>TVA (20%)</span>
-                  <span>{(totalTTC - totalHT).toFixed(2)}€</span>
-                </div>
-                <div className="flex justify-between font-bold text-xl text-[#FF9900] pt-2 border-t">
-                  <span>Total TTC</span>
-                  <span>{totalTTC.toFixed(2)}€</span>
+                <div className="flex justify-between text-lg pt-2 border-t border-gray-200">
+                  <span className="font-bold">Total TTC</span>
+                  <span className="font-extrabold text-orange-600">{totalTTC.toFixed(2)}€</span>
                 </div>
               </div>
             </div>
 
-            {/* Bouton envoi */}
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
-                {error}
-              </div>
-            )}
-            {success && (
-              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg">
-                {success}
-              </div>
-            )}
-            <button
-              onClick={handleSendQuote}
-              disabled={loading || quoteItems.length === 0}
-              className="w-full bg-[#FF9900] hover:bg-[#E68A00] disabled:bg-gray-300 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2"
-            >
-              {loading ? (
-                'Envoi en cours...'
-              ) : (
-                <>
-                  <Send className="w-5 h-5" />
-                  Envoyer le devis
-                </>
+            {/* Envoi */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              {error && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  {error}
+                </div>
               )}
-            </button>
+              {success && (
+                <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm">
+                  {success}
+                </div>
+              )}
+              
+              <button
+                onClick={handleSendQuote}
+                disabled={loading || quoteItems.length === 0}
+                className={`w-full py-4 rounded-xl font-bold text-white flex items-center justify-center gap-2 transition-all ${
+                  loading || quoteItems.length === 0
+                    ? 'bg-gray-300 cursor-not-allowed'
+                    : 'hover:shadow-lg'
+                }`}
+                style={loading || quoteItems.length === 0 ? {} : { background: 'linear-gradient(135deg, #F97316 0%, #EA580C 100%)' }}
+              >
+                {loading ? (
+                  <>
+                    <RefreshCw className="w-5 h-5 animate-spin" />
+                    Envoi en cours...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    Envoyer le devis au client
+                  </>
+                )}
+              </button>
+              <p className="text-xs text-gray-500 text-center mt-3">
+                Le client recevra un email avec le récapitulatif et un lien de paiement Stripe
+              </p>
+            </div>
           </div>
         </div>
       </main>
