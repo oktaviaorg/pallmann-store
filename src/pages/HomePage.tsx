@@ -270,12 +270,14 @@ const HomePage: React.FC = () => {
         'pall-x-pure': { order: 4, tagline: '🌿 Effet bois brut' },
         'pall-x-333-color': { order: 5, tagline: '🎨 Teinte sur mesure' },
         'x-filler': { order: 6, tagline: '🔧 Indispensable + spatule' },
+        // Entretien
+        'spraymop': { order: 7, tagline: '🧹 Nettoyage facile' },
         // Abrasifs les plus demandés
-        'grain-36': { order: 7, tagline: '⚡ Décapage' },
-        'grain-50': { order: 8, tagline: '🔥 Ponçage intensif' },
-        'grain-80': { order: 9, tagline: '✨ Finition standard' },
-        'grain-100': { order: 10, tagline: '💎 Finition fine' },
-        'treillis': { order: 11, tagline: '🎯 Égrenage pro' },
+        'grain-36': { order: 8, tagline: '⚡ Décapage' },
+        'grain-50': { order: 9, tagline: '🔥 Ponçage intensif' },
+        'grain-80': { order: 10, tagline: '✨ Finition standard' },
+        'grain-100': { order: 11, tagline: '💎 Finition fine' },
+        'treillis': { order: 12, tagline: '🎯 Égrenage pro' },
       };
       const bestsellerSlugs = Object.keys(bestsellerConfig);
 
