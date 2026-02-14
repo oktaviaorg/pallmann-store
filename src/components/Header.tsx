@@ -6,7 +6,7 @@ import { useCart } from '../lib/CartContext';
 import { useQuote } from '../lib/QuoteContext';
 import LanguageSelector from './LanguageSelector';
 import GoogleLoginButton from './GoogleLoginButton';
-// ThemeToggle removed - light mode only for now
+import ThemeToggle from './ThemeToggle';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -107,6 +107,9 @@ const Header: React.FC = () => {
             >
               {t('common.contact')}
             </Link>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* Language Selector */}
             <LanguageSelector />
@@ -267,6 +270,12 @@ const Header: React.FC = () => {
               ✉️ {t('common.contact')}
             </Link>
             
+            {/* Theme toggle mobile */}
+            <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 mt-2">
+              <span className="text-[#6B6B6B] font-semibold">Mode d'affichage</span>
+              <ThemeToggle />
+            </div>
+
             {/* Mobile cart summary */}
             {itemCount > 0 && (
               <div className="mt-4 mx-4 p-4 rounded-xl bg-gradient-to-r from-[#F8FAFC] to-[#F0F4F8] border border-blue-100">
