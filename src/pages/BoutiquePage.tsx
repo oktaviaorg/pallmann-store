@@ -193,7 +193,8 @@ const BoutiquePage: React.FC = () => {
 
     const matchesSearch = searchTerm === '' ||
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description?.toLowerCase().includes(searchTerm.toLowerCase());
+      product.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.ref?.toLowerCase().includes(searchTerm.toLowerCase());
 
     return matchesCategory && matchesSearch;
   });

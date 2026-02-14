@@ -364,7 +364,8 @@ const HomePage: React.FC = () => {
 
     const matchesSearch = searchTerm === '' ||
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description?.toLowerCase().includes(searchTerm.toLowerCase());
+      product.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.ref?.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Filter by product type (vitrificateurs vs huiles)
     let matchesType = true;
