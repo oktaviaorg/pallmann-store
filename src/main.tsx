@@ -11,8 +11,8 @@ import SEOEnhancer from './components/SEOEnhancer';
 import './lib/i18n';
 import './index.css';
 
-// Enable dark mode by default
-document.documentElement.classList.add('dark');
+// Theme is managed by ThemeProvider - defaults to light mode
+// User preference is saved in localStorage
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
