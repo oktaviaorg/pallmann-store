@@ -425,7 +425,7 @@ const BoutiquePage: React.FC = () => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#6B6B6B]" />
                 <input
                   type="text"
-                  placeholder="Rechercher un produit (ex: abrasif, vitrificateur, huile...)"
+                  placeholder="Nom ou référence (ex: 041111, PALL-X 96, Magic Oil...)"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#1A1A1A]"

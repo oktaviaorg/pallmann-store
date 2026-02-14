@@ -35,7 +35,7 @@ const ProductSearchBar: React.FC<ProductSearchBarProps> = ({
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
-              placeholder="Rechercher un produit..."
+              placeholder="Nom, référence (ex: 041111, PALL-X, Magic Oil...)"
               value={searchTerm}
               onChange={(e) => onSearchChange(e.target.value)}
               className="w-full pl-10 pr-10 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-sm"
