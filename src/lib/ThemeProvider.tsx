@@ -28,17 +28,14 @@ interface ThemeProviderProps {
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Check localStorage first
+    // Check localStorage first - only use saved preference if user explicitly chose
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('pallmann-theme') as Theme;
       if (saved === 'light' || saved === 'dark') {
         return saved;
       }
-      // Check system preference
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
     }
+    // Default to light mode - ignore system preference
     return 'light';
   });
 
