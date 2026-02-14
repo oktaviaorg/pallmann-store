@@ -191,10 +191,14 @@ const BoutiquePage: React.FC = () => {
     const matchesCategory = selectedCategory === 'all' || 
       product.category_id === selectedCategory;
 
+    // Fonction pour enlever les accents
+    const normalize = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    
+    const searchNormalized = normalize(searchTerm);
     const matchesSearch = searchTerm === '' ||
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.ref?.toLowerCase().includes(searchTerm.toLowerCase());
+      normalize(product.name).includes(searchNormalized) ||
+      normalize(product.description || '').includes(searchNormalized) ||
+      (product.ref || '').toLowerCase().includes(searchTerm.toLowerCase());
 
     return matchesCategory && matchesSearch;
   });
