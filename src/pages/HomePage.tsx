@@ -896,14 +896,31 @@ const HomePage: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-card p-4 md:p-6 mb-8 border border-gray-100">
               {/* Search */}
               <div className="relative mb-6">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#6B6B6B]" />
+                <Search className={`absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 transition-colors ${searchTerm ? 'text-[#FF9900]' : 'text-[#6B6B6B]'}`} />
                 <input
                   type="text"
                   placeholder="Nom ou référence (ex: 041111, PALL-X 96...)"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-[#1A1A1A]"
+                  className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:ring-2 focus:ring-[#FF9900] transition-all text-[#1A1A1A] ${
+                    searchTerm ? 'border-[#FF9900] bg-orange-50' : 'border-gray-200 bg-white'
+                  }`}
                 />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1"
+                    title="Effacer"
+                  >
+                    <XCircle className="w-5 h-5" />
+                  </button>
+                )}
+                {searchTerm && (
+                  <div className="absolute -bottom-6 left-0 text-xs text-green-600 font-medium flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" />
+                    Recherche active
+                  </div>
+                )}
               </div>
 
               {/* Category Pills */}

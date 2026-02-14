@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Droplets, Shield, X } from 'lucide-react';
+import { Search, Droplets, Shield, X, CheckCircle } from 'lucide-react';
 
 interface ProductSearchBarProps {
   searchTerm: string;
@@ -17,6 +17,7 @@ const ProductSearchBar: React.FC<ProductSearchBarProps> = ({
   variant = 'hero'
 }) => {
   const isHero = variant === 'hero';
+  const hasSearch = searchTerm.length > 0;
   
   return (
     <div className={`${isHero ? 'bg-gradient-to-r from-gray-50 to-orange-50 py-6 border-y border-gray-200' : 'bg-white/80 backdrop-blur-sm py-4 rounded-xl shadow-sm border border-gray-100'}`}>
@@ -30,23 +31,36 @@ const ProductSearchBar: React.FC<ProductSearchBarProps> = ({
             </div>
           )}
           
-          {/* Search Input */}
-          <div className="relative flex-grow w-full sm:max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Nom, référence (ex: 041111, PALL-X, Magic Oil...)"
-              value={searchTerm}
-              onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-10 pr-10 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-transparent transition-all text-sm"
-            />
-            {searchTerm && (
-              <button
-                onClick={() => onSearchChange('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                <X className="w-4 h-4" />
-              </button>
+          {/* Search Input with Button */}
+          <div className="relative flex-grow w-full sm:max-w-lg flex gap-2">
+            <div className="relative flex-grow">
+              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-colors ${hasSearch ? 'text-[#FF9900]' : 'text-gray-400'}`} />
+              <input
+                type="text"
+                placeholder="Nom ou référence (ex: 041111, PALL-X 96...)"
+                value={searchTerm}
+                onChange={(e) => onSearchChange(e.target.value)}
+                className={`w-full pl-10 pr-10 py-2.5 border-2 rounded-xl focus:ring-2 focus:ring-[#FF9900] focus:border-[#FF9900] transition-all text-sm ${
+                  hasSearch ? 'border-[#FF9900] bg-orange-50' : 'border-gray-200 bg-white'
+                }`}
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => onSearchChange('')}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  title="Effacer la recherche"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            
+            {/* Search feedback indicator */}
+            {hasSearch && (
+              <div className="flex items-center gap-1 px-3 py-2 bg-green-100 text-green-700 rounded-xl text-sm font-medium whitespace-nowrap">
+                <CheckCircle className="w-4 h-4" />
+                <span className="hidden sm:inline">Filtré</span>
+              </div>
             )}
           </div>
           
@@ -93,7 +107,7 @@ const ProductSearchBar: React.FC<ProductSearchBarProps> = ({
         {isHero && (
           <div className="mt-3 text-center sm:text-left">
             <span className="text-xs text-gray-500">
-              💡 <strong>Vitrificateurs</strong> = protection filmogène | <strong>Huiles</strong> = finition naturelle imprégnante
+              💡 Tapez pour filtrer instantanément • <strong>Vitrificateurs</strong> = protection filmogène | <strong>Huiles</strong> = finition naturelle
             </span>
           </div>
         )}
