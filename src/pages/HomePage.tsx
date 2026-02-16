@@ -11,6 +11,7 @@ import TrustBar from '../components/TrustBar';
 import CartReminder from '../components/CartReminder';
 import ProductCard from '../components/ProductCard';
 import ProductSearchBar from '../components/ProductSearchBar';
+import SearchAutocomplete from '../components/SearchAutocomplete';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../lib/CartContext';
 import { 
@@ -590,14 +591,78 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Barre de recherche rapide - sous Calculateur PRO */}
-          <ProductSearchBar
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
-            productType={productType}
-            onTypeChange={setProductType}
-            variant="hero"
-          />
+          {/* Barre de recherche rapide avec autocomplétion */}
+          <div className="bg-gradient-to-r from-gray-50 to-orange-50 py-6 border-y border-gray-200">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="hidden md:flex items-center gap-2 text-sm font-semibold text-gray-600 min-w-fit">
+                  <Search className="w-4 h-4" />
+                  Recherche rapide :
+                </div>
+                
+                {/* Autocomplétion */}
+                <div className="flex-grow w-full sm:max-w-lg">
+                  <SearchAutocomplete
+                    products={products.map(p => ({
+                      id: p.id,
+                      name: p.name,
+                      ref: p.ref || '',
+                      slug: p.slug,
+                      price_public_ht: p.price_ht || 0,
+                      image_url: p.image_url
+                    }))}
+                    searchTerm={searchTerm}
+                    onSearchChange={setSearchTerm}
+                    placeholder="Nom ou référence (ex: 041111, PALL-X 96...)"
+                  />
+                </div>
+                
+                {/* Type Filters */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setProductType('all')}
+                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      productType === 'all'
+                        ? 'bg-[#1A1A1A] text-white shadow-md'
+                        : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    }`}
+                  >
+                    Tous
+                  </button>
+                  <button
+                    onClick={() => setProductType('vitrificateurs')}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      productType === 'vitrificateurs'
+                        ? 'text-white shadow-md'
+                        : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    }`}
+                    style={productType === 'vitrificateurs' ? { background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' } : {}}
+                  >
+                    <Shield className="w-4 h-4" />
+                    Vitrificateurs
+                  </button>
+                  <button
+                    onClick={() => setProductType('huiles')}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                      productType === 'huiles'
+                        ? 'text-white shadow-md'
+                        : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                    }`}
+                    style={productType === 'huiles' ? { background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)' } : {}}
+                  >
+                    <Package className="w-4 h-4" />
+                    Huiles
+                  </button>
+                </div>
+              </div>
+              
+              <div className="mt-3 text-center sm:text-left">
+                <span className="text-xs text-gray-500">
+                  💡 Tapez pour voir les suggestions • <strong>Vitrificateurs</strong> = protection filmogène | <strong>Huiles</strong> = finition naturelle
+                </span>
+              </div>
+            </div>
+          </div>
 
           {/* Category Navigation Bar - STICKY */}
           <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
@@ -643,8 +708,78 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Bestsellers Section - PRODUITS PHARES */}
-          {bestsellers.length > 0 && (
+          {/* RÉSULTATS DE RECHERCHE - Affiché en premier si recherche active */}
+          {searchTerm && (
+            <div id="search-results" className="bg-white py-8 border-b border-gray-200">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#FF9900] flex items-center justify-center">
+                      <Search className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl font-bold text-[#1A1A1A]">
+                        Résultats pour "{searchTerm}"
+                      </h2>
+                      <p className="text-sm text-gray-500">
+                        {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''} trouvé{filteredProducts.length > 1 ? 's' : ''}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                    Effacer
+                  </button>
+                </div>
+                
+                {filteredProducts.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {filteredProducts.slice(0, 16).map(product => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        validatedCode={validatedCode}
+                        onAddToCart={handleAddToCart}
+                        onAddToQuote={handleAddToQuote}
+                        isInQuote={isInQuote(product.id)}
+                        addedToCart={addedToCart === product.id}
+                        addedToQuote={addedToQuote === product.id}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12 bg-gray-50 rounded-xl">
+                    <Search className="w-12 h-12 mx-auto text-gray-300 mb-3" />
+                    <p className="text-gray-500">Aucun produit trouvé pour "{searchTerm}"</p>
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="mt-4 text-[#FF9900] font-semibold hover:underline"
+                    >
+                      Voir tous les produits
+                    </button>
+                  </div>
+                )}
+                
+                {filteredProducts.length > 16 && (
+                  <div className="text-center mt-6">
+                    <a 
+                      href="#products"
+                      className="inline-flex items-center gap-2 text-[#FF9900] font-semibold hover:underline"
+                    >
+                      Voir les {filteredProducts.length - 16} autres résultats
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Bestsellers Section - PRODUITS PHARES (masqué si recherche active) */}
+          {bestsellers.length > 0 && !searchTerm && (
             <div className="relative py-16 overflow-hidden">
               {/* Background avec dégradé dynamique */}
               <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50"></div>
