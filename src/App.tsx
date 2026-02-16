@@ -48,6 +48,7 @@ import ProductPage from './pages/ProductPage';
 
 // Admin
 import AdminQuotePage from './pages/AdminQuotePage';
+import AdminPricesPage from './pages/AdminPricesPage';
 
 // 404
 import NotFoundPage from './pages/NotFoundPage';
@@ -108,6 +109,7 @@ export default function App() {
           
           {/* Admin */}
           <Route path="/admin/devis" element={<AdminQuotePage />} />
+          <Route path="/admin/tarifs" element={<AdminPricesPage />} />
           
           {/* Redirections */}
           <Route path="/compte" element={<Navigate to="/boutique" replace />} />
