@@ -36,6 +36,9 @@ import ContactPage from './pages/ContactPage';
 // Parrainage
 import ParrainagePage from './pages/ParrainagePage';
 
+// Partenaires / Annuaire
+import PartenairesPage from './pages/PartenairesPage';
+
 // Entretien
 import EntretienVitrifiePage from './pages/EntretienVitrifiePage';
 import EntretienHuilePage from './pages/EntretienHuilePage';
@@ -93,6 +96,9 @@ export default function App() {
           
           {/* Parrainage */}
           <Route path="/parrainage" element={<ParrainagePage />} />
+          
+          {/* Partenaires / Annuaire */}
+          <Route path="/partenaires" element={<PartenairesPage />} />
           
           {/* Entretien (pages clients avec codes promo) */}
           <Route path="/entretien-parquet-vitrifie" element={<EntretienVitrifiePage />} />
