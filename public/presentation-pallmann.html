@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pallmann France - Stratégie Digitale | Digitale Strategie</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+    
+    .slide {
+      min-height: 100vh;
+      padding: 60px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      page-break-after: always;
+      position: relative;
+    }
+    
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      width: 120px;
+      height: 40px;
+      background: linear-gradient(135deg, #FF9900 0%, #E67E22 100%);
+      border-radius: 8px;
+    }
+    
+    .slide-title {
+      position: absolute;
+      top: 25px;
+      right: 55px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      z-index: 1;
+    }
+    
+    .lang-badge {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      display: flex;
+      gap: 8px;
+    }
+    
+    .lang-badge span {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .lang-fr { background: #3B82F6; }
+    .lang-de { background: #EF4444; }
+    
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #FF9900 0%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    h1.de {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-bottom: 1.5rem;
+      background: none;
+      -webkit-text-fill-color: #94a3b8;
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #f8fafc;
+    }
+    
+    h2.de {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: #FF9900;
+    }
+    
+    h3.de {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+    
+    p.de {
+      font-size: 1rem;
+      color: #64748b;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      color: #94a3b8;
+    }
+    
+    .highlight {
+      color: #FF9900;
+      font-weight: 600;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .card {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid #475569;
+    }
+    
+    .card-highlight {
+      border: 2px solid #FF9900;
+      background: linear-gradient(135deg, #1e293b 0%, #3d2a1a 100%);
+    }
+    
+    .stat {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #FF9900;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: #94a3b8;
+    }
+    
+    .stat-label-de {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-style: italic;
+    }
+    
+    ul {
+      list-style: none;
+      margin-top: 1rem;
+    }
+    
+    li {
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: #e2e8f0;
+    }
+    
+    li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-weight: bold;
+    }
+    
+    li .de {
+      display: block;
+      font-size: 0.9rem;
+      color: #64748b;
+      font-style: italic;
+      margin-top: 2px;
+    }
+    
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+    
+    .cta-box {
+      background: linear-gradient(135deg, #FF9900 0%, #E67E22 100%);
+      padding: 2rem 3rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    .cta-box h3, .cta-box h3.de {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    
+    .cta-box h3.de {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .cta-box p, .cta-box p.de {
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, #FF9900 0%, transparent 100%);
+      margin: 3rem 0;
+    }
+    
+    @media print {
+      .slide { page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SLIDE 1: Titre / Titel -->
+<section class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <div class="lang-badge">
+    <span class="lang-fr">FR</span>
+    <span class="lang-de">DE</span>
+  </div>
+  <h1 style="font-size: 4rem;">Pallmann France</h1>
+  <h1 class="de">Pallmann Frankreich</h1>
+  <p class="subtitle" style="font-size: 2rem;">Stratégie de Développement Digital</p>
+  <p class="de" style="font-size: 1.25rem;">Digitale Entwicklungsstrategie</p>
+  <div class="divider" style="width: 200px; margin: 2rem auto;"></div>
+  <p style="font-size: 1.5rem; color: #94a3b8;">Présenté par / Vorgestellt von <span class="highlight">Julien Dietemann</span></p>
+  <p style="color: #64748b;">RENO'LINE • Les Ponceurs Réunis • Groupe Epenon</p>
+  <p style="color: #64748b; margin-top: 2rem;">19. Februar 2026</p>
+</section>
+
+<!-- SLIDE 2: Le Constat / Die Feststellung -->
+<section class="slide">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h2>Le Constat</h2>
+  <h2 class="de">Die Feststellung</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>🇩🇪 Pallmann in Deutschland</h3>
+      <ul>
+        <li>Leader reconnu du marché<span class="de">Anerkannter Marktführer</span></li>
+        <li>Réseau de distribution dense<span class="de">Dichtes Vertriebsnetz</span></li>
+        <li>Forte présence digitale<span class="de">Starke digitale Präsenz</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🇫🇷 Pallmann in Frankreich</h3>
+      <ul>
+        <li>Marque peu connue<span class="de">Wenig bekannte Marke</span></li>
+        <li>Distribution limitée<span class="de">Begrenzte Vertrieb</span></li>
+        <li>Potentiel énorme<span class="de">Enormes Potenzial</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="cta-box" style="margin-top: 3rem;">
+    <h3>💡 L'opportunité</h3>
+    <h3 class="de">Die Chance</h3>
+    <p>Devenir le partenaire digital de référence pour Pallmann en France</p>
+    <p class="de">Der digitale Referenzpartner für Pallmann in Frankreich werden</p>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>2 / 8</span>
+  </div>
+</section>
+
+<!-- SLIDE 3: La Vision / Die Vision -->
+<section class="slide">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h2>La Vision</h2>
+  <h2 class="de">Die Vision</h2>
+  
+  <div class="grid grid-3">
+    <div class="card card-highlight">
+      <h3>🛒 E-Commerce</h3>
+      <h3 class="de">Online-Shop</h3>
+      <p>Pallmann Store</p>
+      <ul>
+        <li>322 produits<span class="de">322 Produkte</span></li>
+        <li>Fiches techniques PDF<span class="de">PDF-Datenblätter</span></li>
+        <li>Livraison France<span class="de">Lieferung Frankreich</span></li>
+      </ul>
+    </div>
+    <div class="card card-highlight">
+      <h3>🔧 Réseau Artisans</h3>
+      <h3 class="de">Handwerkernetzwerk</h3>
+      <p>Les Ponceurs Réunis</p>
+      <ul>
+        <li>Artisans certifiés<span class="de">Zertifizierte Handwerker</span></li>
+        <li>Prescription produits<span class="de">Produktempfehlung</span></li>
+        <li>Qualité garantie<span class="de">Garantierte Qualität</span></li>
+      </ul>
+    </div>
+    <div class="card card-highlight">
+      <h3>📍 SEO Local</h3>
+      <h3 class="de">Lokale SEO</h3>
+      <p>Google Visibility</p>
+      <ul>
+        <li>1000+ articles<span class="de">1000+ Artikel</span></li>
+        <li>Génération leads<span class="de">Lead-Generierung</span></li>
+        <li>Notoriété marque<span class="de">Markenbekanntheit</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>3 / 8</span>
+  </div>
+</section>
+
+<!-- SLIDE 4: Résultats / Ergebnisse -->
+<section class="slide">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h2>Résultats Concrets</h2>
+  <h2 class="de">Konkrete Ergebnisse</h2>
+  
+  <div class="grid">
+    <div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <span class="stat">322</span>
+        <span class="stat-label">Produits en ligne</span>
+        <span class="stat-label-de">Produkte online</span>
+      </div>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <span class="stat">1000+</span>
+        <span class="stat-label">Pages SEO</span>
+        <span class="stat-label-de">SEO-Seiten</span>
+      </div>
+      <div class="card">
+        <span class="stat">1317</span>
+        <span class="stat-label">Pages HTML indexées</span>
+        <span class="stat-label-de">Indexierte HTML-Seiten</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>✨ Fonctionnalités</h3>
+      <h3 class="de">Funktionen</h3>
+      <ul>
+        <li>Catalogue complet Pallmann<span class="de">Kompletter Pallmann-Katalog</span></li>
+        <li>Comparateur de produits<span class="de">Produktvergleich</span></li>
+        <li>Espace professionnel<span class="de">Profi-Bereich</span></li>
+        <li>Fiches techniques PDF<span class="de">Technische Datenblätter</span></li>
+        <li>Conseil technicien<span class="de">Technische Beratung</span></li>
+        <li>Annuaire partenaires<span class="de">Partnerverzeichnis</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>4 / 8</span>
+  </div>
+</section>
+
+<!-- SLIDE 5: Innovation -->
+<section class="slide">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h2>Innovation : Accès Fournisseur</h2>
+  <h2 class="de">Innovation: Lieferantenzugang</h2>
+  
+  <div class="card card-highlight" style="padding: 3rem;">
+    <h3>🔐 Interface Prix Temps Réel</h3>
+    <h3 class="de">Echtzeit-Preisschnittstelle</h3>
+    <p style="font-size: 1.5rem; margin: 2rem 0;">
+      Pallmann peut mettre à jour ses tarifs directement sur notre plateforme
+    </p>
+    <p class="de" style="font-size: 1.25rem;">
+      Pallmann kann seine Preise direkt auf unserer Plattform aktualisieren
+    </p>
+    
+    <div class="grid" style="margin-top: 2rem;">
+      <div>
+        <h3>Avantages / Vorteile</h3>
+        <ul>
+          <li>Mise à jour instantanée<span class="de">Sofortige Aktualisierung</span></li>
+          <li>Contrôle total des prix<span class="de">Volle Preiskontrolle</span></li>
+          <li>Pas d'intermédiaire<span class="de">Kein Zwischenhändler</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Technique / Technik</h3>
+        <ul>
+          <li>Accès sécurisé<span class="de">Sicherer Zugang</span></li>
+          <li>Historique modifications<span class="de">Änderungsprotokoll</span></li>
+          <li>Diffusion immédiate<span class="de">Sofortige Verbreitung</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>5 / 8</span>
+  </div>
+</section>
+
+<!-- SLIDE 6: Roadmap -->
+<section class="slide">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h2>Roadmap 2026-2027</h2>
+  <h2 class="de">Fahrplan 2026-2027</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>✅ Phase 1 - Fait</h3>
+      <h3 class="de">Phase 1 - Erledigt</h3>
+      <ul>
+        <li>Pallmann Store opérationnel<span class="de">Pallmann Store betriebsbereit</span></li>
+        <li>322 produits référencés<span class="de">322 Produkte gelistet</span></li>
+        <li>SEO 1000+ articles<span class="de">SEO 1000+ Artikel</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎯 Phase 2 - 2026</h3>
+      <h3 class="de">Phase 2 - 2026</h3>
+      <ul>
+        <li>Recrutement partenaires<span class="de">Partner-Rekrutierung</span></li>
+        <li>Formation artisans<span class="de">Handwerker-Schulung</span></li>
+        <li>Marketing digital<span class="de">Digitales Marketing</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🚀 Phase 3 - 2027</h3>
+      <h3 class="de">Phase 3 - 2027</h3>
+      <ul>
+        <li>Expansion nationale<span class="de">Nationale Expansion</span></li>
+        <li>50+ partenaires<span class="de">50+ Partner</span></li>
+        <li>Certification Pallmann<span class="de">Pallmann-Zertifizierung</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🏆 Phase 4 - Leadership</h3>
+      <h3 class="de">Phase 4 - Marktführer</h3>
+      <ul>
+        <li>Référence digitale France<span class="de">Digitale Referenz Frankreich</span></li>
+        <li>100+ partenaires<span class="de">100+ Partner</span></li>
+        <li>Leader du marché<span class="de">Marktführer</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>6 / 8</span>
+  </div>
+</section>
+
+<!-- SLIDE 7: Proposition -->
+<section class="slide">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h2>Proposition de Partenariat</h2>
+  <h2 class="de">Partnerschaftsvorschlag</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>🤝 Ce que j'apporte</h3>
+      <h3 class="de">Was ich einbringe</h3>
+      <ul>
+        <li>Infrastructure digitale<span class="de">Digitale Infrastruktur</span></li>
+        <li>Expertise SEO & e-commerce<span class="de">SEO & E-Commerce Expertise</span></li>
+        <li>Réseau d'artisans<span class="de">Handwerkernetzwerk</span></li>
+        <li>Connaissance marché local<span class="de">Lokale Marktkenntnisse</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎯 Ce dont j'ai besoin</h3>
+      <h3 class="de">Was ich brauche</h3>
+      <ul>
+        <li>Soutien officiel Pallmann<span class="de">Offizielle Pallmann-Unterstützung</span></li>
+        <li>Conditions partenaire<span class="de">Partnerbedingungen</span></li>
+        <li>Ressources marketing<span class="de">Marketing-Ressourcen</span></li>
+        <li>Formation technique<span class="de">Technische Schulung</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="cta-box" style="margin-top: 2rem;">
+    <h3>🏆 Objectif commun / Gemeinsames Ziel</h3>
+    <p style="font-size: 1.5rem;">Pallmann N°1 du parquet en France grâce au digital</p>
+    <p class="de">Pallmann Nr. 1 für Parkett in Frankreich durch Digitalisierung</p>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>7 / 8</span>
+  </div>
+</section>
+
+<!-- SLIDE 8: Contact -->
+<section class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <div class="lang-badge"><span class="lang-fr">FR</span><span class="lang-de">DE</span></div>
+  <span class="slide-title">PALLMANN</span>
+  <h1>Merci / Danke</h1>
+  <p class="subtitle" style="font-size: 1.75rem;">Questions & Discussion / Fragen & Diskussion</p>
+  
+  <div class="divider" style="width: 200px; margin: 2rem auto;"></div>
+  
+  <div style="margin-top: 2rem;">
+    <p style="font-size: 1.5rem; color: #f8fafc;"><strong>Julien Dietemann</strong></p>
+    <p>Gérant RENO'LINE • Fondateur Les Ponceurs Réunis</p>
+    <p class="de">Geschäftsführer RENO'LINE • Gründer Les Ponceurs Réunis</p>
+    <p style="margin-top: 1.5rem;">
+      📧 j.dietemann@renoline.fr<br>
+      📱 +33 6 04 44 09 03<br>
+      🌐 www.pallmann-store.com
+    </p>
+  </div>
+  
+  <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 3rem;">
+    <div class="card" style="padding: 1rem 2rem; background: #fff;">
+      <span style="color: #1e293b; font-weight: 700;">RENO'LINE</span>
+    </div>
+    <div class="card" style="padding: 1rem 2rem; background: #fff;">
+      <span style="color: #bd9823; font-weight: 700;">Les Ponceurs Réunis</span>
+    </div>
+    <div class="card" style="padding: 1rem 2rem; background: #fff;">
+      <span style="color: #FF9900; font-weight: 700;">PALLMANN Store</span>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <span>Confidentiel / Vertraulich - Julien Dietemann</span>
+    <span>8 / 8</span>
+  </div>
+</section>
+
+</body>
+</html>
