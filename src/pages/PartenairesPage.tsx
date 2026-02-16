@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { MapPin, Phone, Globe, Mail } from 'lucide-react';
+import { MapPin, Phone, Globe, Mail, Send, CheckCircle, Building2 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface Partner {
   name: string;
@@ -23,6 +24,7 @@ const partners: Partner[] = [
     phone: '06 04 44 09 03',
     email: 'contact@poncages.fr',
     website: 'https://ponceur-parquet.fr',
+    logo: 'https://ponceur-parquet.fr/logo-lpr.png',
     services: ['Ponçage parquet', 'Vitrification', 'Huilage', 'Rénovation complète'],
   },
   {
@@ -32,11 +34,42 @@ const partners: Partner[] = [
     phone: '',
     email: 'e.nuber@parqline.fr',
     website: '',
+    logo: '',
     services: ['Pose de parquet', 'Rénovation', 'Ponçage', 'Finition'],
   },
 ];
 
 export default function PartenairesPage() {
+  const [formData, setFormData] = useState({
+    company: '',
+    contact: '',
+    email: '',
+    phone: '',
+    city: '',
+    services: '',
+    message: '',
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    
+    try {
+      await supabase.from('form_submissions').insert({
+        form_type: 'partenaire',
+        data: formData,
+        created_at: new Date().toISOString(),
+      });
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Erreur:', error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -66,9 +99,22 @@ export default function PartenairesPage() {
                 key={index}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                {/* Header */}
+                {/* Header with Logo */}
                 <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2c5282] p-6 text-white">
-                  <h2 className="text-2xl font-bold mb-2">{partner.name}</h2>
+                  <div className="flex items-center gap-4 mb-3">
+                    {partner.logo ? (
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        className="w-16 h-16 object-contain bg-white rounded-lg p-2"
+                      />
+                    ) : (
+                      <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                        <Building2 className="w-8 h-8" />
+                      </div>
+                    )}
+                    <h2 className="text-2xl font-bold">{partner.name}</h2>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {partner.locations.map((loc, i) => (
                       <span 
@@ -138,20 +184,148 @@ export default function PartenairesPage() {
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="mt-12 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8 text-center text-white">
-            <h2 className="text-2xl font-bold mb-4">
-              Vous êtes professionnel du parquet ?
-            </h2>
-            <p className="mb-6 text-orange-100">
-              Rejoignez notre réseau de partenaires et bénéficiez de tarifs préférentiels.
-            </p>
-            <a 
-              href="/contact"
-              className="inline-block bg-white text-orange-600 px-8 py-3 rounded-lg font-bold hover:bg-orange-50 transition-colors"
-            >
-              Devenir partenaire
-            </a>
+          {/* Formulaire d'inscription */}
+          <div id="inscription" className="mt-12 bg-white rounded-2xl shadow-lg p-8">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-2">
+                Devenir Partenaire
+              </h2>
+              <p className="text-center text-gray-600 mb-8">
+                Rejoignez notre réseau et bénéficiez de tarifs préférentiels + visibilité sur notre site.
+              </p>
+
+              {submitted ? (
+                <div className="text-center py-12">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-10 h-10 text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Demande envoyée !</h3>
+                  <p className="text-gray-600">
+                    Nous vous recontacterons rapidement pour finaliser votre inscription.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Nom de l'entreprise *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.company}
+                        onChange={(e) => setFormData({...formData, company: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="Votre entreprise"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Nom du contact *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.contact}
+                        onChange={(e) => setFormData({...formData, contact: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="Prénom Nom"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Email *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="email@entreprise.fr"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Téléphone *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="06 XX XX XX XX"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Ville(s) d'intervention *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.city}
+                        onChange={(e) => setFormData({...formData, city: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="Colmar, Strasbourg..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Services proposés
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.services}
+                        onChange={(e) => setFormData({...formData, services: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="Ponçage, pose, rénovation..."
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Message / Présentation
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      placeholder="Présentez brièvement votre entreprise et votre expérience..."
+                    />
+                  </div>
+
+                  <p className="text-sm text-gray-500">
+                    📎 Vous pourrez nous envoyer votre logo par email après validation de votre inscription.
+                  </p>
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {submitting ? (
+                      'Envoi en cours...'
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Envoyer ma demande
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
         </main>
 
