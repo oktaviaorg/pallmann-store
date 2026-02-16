@@ -92,7 +92,7 @@ const ProBanner: React.FC = () => {
           {/* Titre */}
           <div className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-primary-300" />
-            <span className="font-bold text-lg">Vous êtes PRO ?</span>
+            <span className="font-bold text-lg bg-blue-500 text-black px-3 py-1 rounded">Vous êtes PRO ?</span>
           </div>
           
           {/* Input code */}
