@@ -50,23 +50,36 @@ function cleanDescription(desc) {
 
 // Convertir markdown simple en HTML
 function markdownToHtml(text) {
-  if (!text) return '';
-  return text
+  if (!text) return '<p></p>';
+  
+  let html = text
     // Titres avec emoji
-    .replace(/✅\s*\*\*([^*]+)\*\*/g, '<h3 class="feature-title">✅ $1</h3>')
-    .replace(/🎯\s*\*\*([^*]+)\*\*/g, '<h3 class="feature-title">🎯 $1</h3>')
-    .replace(/📊\s*\*\*([^*]+)\*\*/g, '<h3 class="feature-title">📊 $1</h3>')
+    .replace(/✅\s*\*\*([^*]+)\*\*\s*:?/g, '<h3 class="feature-title">✅ $1</h3>')
+    .replace(/🎯\s*\*\*([^*]+)\*\*\s*:?/g, '<h3 class="feature-title">🎯 $1</h3>')
+    .replace(/📊\s*\*\*([^*]+)\*\*\s*:?/g, '<h3 class="feature-title">📊 $1</h3>')
     // Gras
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    // Listes à puces
+    // Listes à puces (- item)
     .replace(/^- (.+)$/gm, '<li>$1</li>')
-    // Numérotation
-    .replace(/^\d+\.\s*(.+)$/gm, '<li>$1</li>')
-    // Envelopper les listes
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul class="feature-list">$&</ul>')
-    // Sauts de ligne
-    .replace(/\n\n/g, '</p><p>')
+    // Numérotation (1. item)
+    .replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+  
+  // Envelopper les li consécutifs dans ul
+  html = html.replace(/(<li>[^<]*<\/li>\s*)+/g, (match) => {
+    return '<ul class="feature-list">' + match + '</ul>';
+  });
+  
+  // Paragraphes
+  html = html
+    .replace(/\n\n+/g, '</p><p>')
     .replace(/\n/g, '<br>');
+  
+  // Envelopper dans p si pas déjà fait
+  if (!html.startsWith('<')) {
+    html = '<p>' + html + '</p>';
+  }
+  
+  return html;
 }
 
 // Échapper HTML
@@ -448,7 +461,7 @@ ${JSON.stringify(faqSchema, null, 2)}
             </div>
             
             <div class="description" itemprop="description">
-              <p>${markdownToHtml(escapeHtml(description))}</p>
+              ${markdownToHtml(description)}
             </div>
             
             <a href="/boutique" class="cta">🛒 Ajouter au panier</a>
