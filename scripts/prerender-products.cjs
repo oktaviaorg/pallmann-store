@@ -398,11 +398,11 @@ ${JSON.stringify(faqSchema, null, 2)}
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.5; background: #F7FAFC; }
       .prerender-product { max-width: 1200px; margin: 0 auto; padding: 100px 20px 40px; }
-      .prerender-product h1 { font-size: 2rem; font-weight: 700; color: #1a202c; margin-bottom: 1rem; }
-      .prerender-product .price { font-size: 2.5rem; font-weight: 700; color: #FF9900; margin-bottom: 1rem; }
-      .prerender-product .price-ht { font-size: 0.875rem; color: #718096; }
+      .prerender-product h1 { font-size: 1.75rem; font-weight: 800; color: #000000 !important; margin-bottom: 1rem; line-height: 1.3; }
+      .prerender-product .price { font-size: 2.5rem; font-weight: 700; color: #E67E22; margin-bottom: 1rem; }
+      .prerender-product .price-ht { font-size: 1rem; color: #374151; font-weight: 500; }
       .prerender-product img { max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 1.5rem; }
-      .prerender-product .description { color: #4a5568; margin-bottom: 1.5rem; line-height: 1.8; }
+      .prerender-product .description { color: #1f2937; margin-bottom: 1.5rem; line-height: 1.8; font-size: 1rem; }
       .prerender-product .description .feature-title { font-size: 1rem; font-weight: 600; color: #1a202c; margin: 1rem 0 0.5rem; }
       .prerender-product .description .feature-list { list-style: none; padding-left: 0; margin: 0.5rem 0; }
       .prerender-product .description .feature-list li { padding: 0.25rem 0 0.25rem 1.5rem; position: relative; }
