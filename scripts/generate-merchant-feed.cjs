@@ -67,8 +67,23 @@ function generateXML(products) {
     const priceHT = product.price_pack_ht || product.price_public_ht;
     const priceTTC = (priceHT * (1 + TVA_RATE)).toFixed(2);
     
-    // Nettoyer les données
-    const title = escapeXml(product.name || '');
+    // Formater le conditionnement
+    const unit = product.unit || '';
+    const packSize = product.pack_size || 1;
+    let conditionnement = '';
+    if (unit === 'L' || unit === 'l') {
+      conditionnement = packSize >= 1 ? `${packSize}L` : `${Math.round(packSize * 1000)}ml`;
+    } else if (unit === 'kg' || unit === 'KG') {
+      conditionnement = `${packSize}kg`;
+    } else if (packSize > 1) {
+      conditionnement = `x${packSize}`;
+    }
+    
+    // Nettoyer les données - ajouter conditionnement au titre (éviter doublons)
+    const baseName = (product.name || '').replace(/([a-zéèàù])([A-Z])/g, '$1 - $2').trim();
+    // Ne pas ajouter si le nom contient déjà le conditionnement
+    const nameHasConditionnement = conditionnement && baseName.toLowerCase().includes(conditionnement.toLowerCase());
+    const title = escapeXml(conditionnement && !nameHasConditionnement ? `${baseName} (${conditionnement})` : baseName);
     const description = escapeXml(product.description || product.name || '');
     const category = product.categories?.name || 'Produits pour parquet';
     const availability = 'in_stock'; // Par défaut en stock

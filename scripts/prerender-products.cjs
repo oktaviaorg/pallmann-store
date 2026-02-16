@@ -113,6 +113,78 @@ function generateSeoDescription(product, name) {
   return cleanDescription(desc);
 }
 
+// Formater le conditionnement
+function formatConditionnement(product) {
+  const unit = product.unit || '';
+  const packSize = product.pack_size || 1;
+  
+  // Mapping des unités vers un format lisible
+  const unitLabels = {
+    'L': 'Litre',
+    'l': 'Litre',
+    'kg': 'kg',
+    'KG': 'kg',
+    'm²': 'm²',
+    'pièce': 'pièce',
+    'piece': 'pièce',
+    'unité': 'unité',
+    'unite': 'unité',
+    'carton': 'carton',
+    'lot': 'lot',
+    'ml': 'ml',
+    'ML': 'ml'
+  };
+  
+  const unitLabel = unitLabels[unit] || unit || 'unité';
+  
+  // Cas spéciaux pour les liquides
+  if (unit === 'L' || unit === 'l') {
+    if (packSize >= 1) {
+      return {
+        short: `${packSize}L`,
+        full: `Bidon de ${packSize} litre${packSize > 1 ? 's' : ''}`,
+        perUnit: packSize > 1 ? `(${(product.price_public_ht / packSize).toFixed(2)}€ HT/L)` : ''
+      };
+    } else {
+      const ml = Math.round(packSize * 1000);
+      return {
+        short: `${ml}ml`,
+        full: `Flacon de ${ml}ml`,
+        perUnit: ''
+      };
+    }
+  }
+  
+  // Cas pour les lots/packs
+  if (packSize > 1 && (unit === 'pièce' || unit === 'piece' || unit === 'unité' || !unit)) {
+    return {
+      short: `x${packSize}`,
+      full: `Lot de ${packSize} pièces`,
+      perUnit: `(${(product.price_public_ht / packSize).toFixed(2)}€ HT/pièce)`
+    };
+  }
+  
+  // Cas pour kg
+  if (unit === 'kg' || unit === 'KG') {
+    return {
+      short: `${packSize}kg`,
+      full: `${packSize}kg`,
+      perUnit: packSize > 1 ? `(${(product.price_public_ht / packSize).toFixed(2)}€ HT/kg)` : ''
+    };
+  }
+  
+  // Par défaut
+  if (packSize > 1) {
+    return {
+      short: `${packSize} ${unitLabel}`,
+      full: `${packSize} ${unitLabel}${packSize > 1 ? 's' : ''}`,
+      perUnit: ''
+    };
+  }
+  
+  return { short: '', full: '', perUnit: '' };
+}
+
 // Générer le HTML d'une page produit
 function generateProductHtml(product, assets) {
   const name = cleanName(product.name);
@@ -124,6 +196,7 @@ function generateProductHtml(product, assets) {
   const imageUrl = product.image_url || '/images/pallmann-default.png';
   const productUrl = `${STORE_URL}/produit/${product.slug}`;
   const pdfUrl = product.pdf_url || null;
+  const conditionnement = formatConditionnement(product);
   
   // Date de validité du prix (30 jours)
   const priceValidDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
@@ -335,13 +408,15 @@ ${JSON.stringify(faqSchema, null, 2)}
             <p class="brand" itemprop="brand">PALLMANN</p>
             <h1 itemprop="name">${escapeHtml(name)}</h1>
             ${product.ref ? `<p class="ref">Réf: <span itemprop="sku">${escapeHtml(product.ref)}</span></p>` : ''}
+            ${conditionnement.full ? `<p class="conditionnement" style="background:#FEF3C7;padding:8px 12px;border-radius:6px;font-weight:600;color:#92400E;margin:0.75rem 0;display:inline-block;">📦 ${escapeHtml(conditionnement.full)}</p>` : ''}
             
             <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
               <p class="price">
                 <span itemprop="price" content="${priceTTC}">${priceTTC}</span>€
                 <span itemprop="priceCurrency" content="EUR">TTC</span>
+                ${conditionnement.short ? `<span style="font-size:0.875rem;color:#718096;font-weight:normal;margin-left:0.5rem;">/ ${escapeHtml(conditionnement.short)}</span>` : ''}
               </p>
-              <p class="price-ht">${priceHT}€ HT</p>
+              <p class="price-ht">${priceHT}€ HT ${conditionnement.perUnit ? `<span style="color:#059669;">${escapeHtml(conditionnement.perUnit)}</span>` : ''}</p>
               <link itemprop="availability" href="https://schema.org/InStock" />
               <meta itemprop="priceValidUntil" content="${priceValidDate}" />
             </div>
