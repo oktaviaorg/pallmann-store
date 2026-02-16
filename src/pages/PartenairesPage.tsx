@@ -24,7 +24,7 @@ const partners: Partner[] = [
     phone: '06 04 44 09 03',
     email: 'contact@poncages.fr',
     website: 'https://ponceur-parquet.fr',
-    logo: 'https://ponceur-parquet.fr/logo-lpr.png',
+    logo: '/logos/les-ponceurs-reunis-logo.jpg',
     services: ['Ponçage parquet', 'Vitrification', 'Huilage', 'Rénovation complète'],
   },
   {
