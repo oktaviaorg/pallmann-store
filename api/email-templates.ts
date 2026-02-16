@@ -21,7 +21,7 @@ export const emailStyles = `
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.05);
   }
   .header { 
-    background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
     color: white; 
     padding: 40px 30px;
     text-align: center;
@@ -50,7 +50,7 @@ export const emailStyles = `
     margin-bottom: 24px;
   }
   .total-box { 
-    background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
     color: white; 
     padding: 24px;
     border-radius: 12px;
@@ -152,7 +152,7 @@ export const emailStyles = `
   }
   .highlight-box {
     background: #FFFBEB;
-    border-left: 4px solid #FF8C00;
+    border-left: 4px solid #D97706;
     border-radius: 0 12px 12px 0;
     padding: 20px;
     margin: 24px 0;
@@ -170,7 +170,7 @@ export const emailStyles = `
   }
   .cta-button {
     display: inline-block;
-    background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);
+    background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
     color: white !important;
     padding: 14px 32px;
     border-radius: 8px;
@@ -189,14 +189,14 @@ export const emailStyles = `
   .footer-logo {
     font-weight: 700;
     font-size: 18px;
-    color: #FF8C00;
+    color: #D97706;
     margin-bottom: 12px;
   }
   .footer p {
     margin: 4px 0;
   }
   .footer a {
-    color: #FF8C00;
+    color: #D97706;
     text-decoration: none;
   }
   .social-links {
@@ -281,7 +281,7 @@ export function generateAdminOrderEmail(order: {
                 <span class="info-card-icon">✉️</span>
                 <p class="info-card-title">Email</p>
               </div>
-              <p class="info-card-value"><a href="mailto:${order.customerEmail}" style="color: #FF8C00;">${order.customerEmail}</a></p>
+              <p class="info-card-value"><a href="mailto:${order.customerEmail}" style="color: #D97706;">${order.customerEmail}</a></p>
             </div>
             
             ${order.customerPhone ? `
@@ -349,7 +349,7 @@ export function generateAdminOrderEmail(order: {
                 <span>Total HT</span>
                 <span>${order.totalHt}€</span>
               </div>
-              <div class="summary-row total" style="border-top: none; padding-top: 8px; color: #FF8C00;">
+              <div class="summary-row total" style="border-top: none; padding-top: 8px; color: #D97706;">
                 <span>Total TTC</span>
                 <span>${order.totalTtc}€</span>
               </div>
@@ -359,7 +359,7 @@ export function generateAdminOrderEmail(order: {
           <div class="footer">
             <div class="footer-logo">PALLMANN STORE</div>
             <p>6 rue du Commerce, 68420 Herrlisheim près Colmar</p>
-            <p>📞 07 57 82 13 06 • <a href="mailto:contact@pallmann-store.com">contact@pallmann-store.com</a></p>
+            <p>📞 07 57 82 13 06 • <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a></p>
           </div>
         </div>
       </div>
@@ -455,12 +455,12 @@ export function generateClientConfirmationEmail(order: {
             </div>
             
             <p style="color: #4A5568; font-size: 15px;">
-              Une question ? Notre équipe est à votre disposition au <strong>07 57 82 13 06</strong> ou par email à <a href="mailto:contact@pallmann-store.com" style="color: #FF8C00;">contact@pallmann-store.com</a>
+              Une question ? Notre équipe est à votre disposition au <strong>07 57 82 13 06</strong> ou par email à <a href="mailto:contact@ponceur-parquet.fr" style="color: #D97706;">contact@ponceur-parquet.fr</a>
             </p>
             
             <p style="color: #1A202C; font-size: 16px; margin-top: 24px;">
               Merci pour votre confiance,<br>
-              <strong style="color: #FF8C00;">L'équipe Pallmann Store</strong>
+              <strong style="color: #D97706;">L'équipe Pallmann Store</strong>
             </p>
           </div>
           
@@ -468,7 +468,7 @@ export function generateClientConfirmationEmail(order: {
             <div class="footer-logo">PALLMANN STORE</div>
             <p>Produits professionnels pour parquet</p>
             <p>6 rue du Commerce, 68420 Herrlisheim près Colmar</p>
-            <p>📞 07 57 82 13 06 • <a href="mailto:contact@pallmann-store.com">contact@pallmann-store.com</a></p>
+            <p>📞 07 57 82 13 06 • <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a></p>
             <p style="margin-top: 16px;">
               <a href="https://www.pallmann-store.com">www.pallmann-store.com</a>
             </p>
