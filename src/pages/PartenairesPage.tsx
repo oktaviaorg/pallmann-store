@@ -37,6 +37,16 @@ const partners: Partner[] = [
     logo: '/logos/parqline-logo.png',
     services: ['Pose de parquet', 'Rénovation', 'Ponçage', 'Finition'],
   },
+  {
+    name: 'Sundgau Parquets',
+    description: 'Artisan créateur en Alsace. Spécialiste de la pose de parquets, terrasses en bois et rénovation dans le Sundgau et Sud Alsace.',
+    locations: ['Bâle', 'Saint-Louis', 'Altkirch', 'Mulhouse'],
+    phone: '',
+    email: '',
+    website: 'https://sundgau-parquets.fr',
+    logo: '/logos/sundgau-parquets-logo.jpg',
+    services: ['Pose de parquets', 'Terrasses en bois', 'Entretien & Rénovation'],
+  },
 ];
 
 export default function PartenairesPage() {
