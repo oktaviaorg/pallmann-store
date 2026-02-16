@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import TechnicianCallout from '../components/TechnicianCallout';
 import { useCart, PICKUP_ADDRESS, DeliveryMode } from '../lib/CartContext';
 import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, CreditCard, Truck, Tag, MapPin, Package, X } from 'lucide-react';
 import AddressAutocomplete from '../components/AddressAutocomplete';
@@ -476,10 +477,15 @@ const CartPage: React.FC = () => {
                     </span>
                   </label>
 
+                  {/* Encart technicien avant paiement */}
+                  <div className="mt-4 mb-4">
+                    <TechnicianCallout variant="compact" />
+                  </div>
+
                   <button
                     onClick={handleCheckout}
                     disabled={loading || !acceptedCGV}
-                    className="w-full mt-6 bg-[#FF9900] hover:bg-[#F0C300] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all shadow-sm hover:shadow-md"
+                    className="w-full mt-2 bg-[#FF9900] hover:bg-[#F0C300] text-white py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all shadow-sm hover:shadow-md"
                   >
                     {loading ? (
                       'Chargement...'
