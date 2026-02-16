@@ -84,6 +84,45 @@ export default function ProductPage() {
   const cleanName = product.name.replace(/([a-zéèàù])([A-Z])/g, '$1 - $2').trim();
   const cleanDescription = (product.description || product.meta_description || '').split('ProduitsGUIDE')[0].trim();
 
+  // Formater le conditionnement
+  const formatConditionnement = () => {
+    const unit = product.unit || '';
+    const packSize = product.pack_size || 1;
+    
+    if (unit === 'L' || unit === 'l') {
+      if (packSize >= 1) {
+        return {
+          badge: `Bidon de ${packSize} litre${packSize > 1 ? 's' : ''}`,
+          short: `${packSize}L`,
+          perUnit: packSize > 1 ? `(${(product.price_public_ht / packSize).toFixed(2)}€ HT/L)` : ''
+        };
+      } else {
+        const ml = Math.round(packSize * 1000);
+        return { badge: `Flacon de ${ml}ml`, short: `${ml}ml`, perUnit: '' };
+      }
+    }
+    
+    if (packSize > 1 && (!unit || unit === 'UN' || unit === 'pièce')) {
+      return {
+        badge: `Lot de ${packSize} pièces`,
+        short: `x${packSize}`,
+        perUnit: `(${(product.price_public_ht / packSize).toFixed(2)}€ HT/pièce)`
+      };
+    }
+    
+    if (unit === 'kg' || unit === 'KG') {
+      return {
+        badge: `${packSize}kg`,
+        short: `${packSize}kg`,
+        perUnit: packSize > 1 ? `(${(product.price_public_ht / packSize).toFixed(2)}€ HT/kg)` : ''
+      };
+    }
+    
+    return { badge: '', short: '', perUnit: '' };
+  };
+  
+  const conditionnement = formatConditionnement();
+
   const handleAddToCart = () => {
     addItem({
       id: product.id,
@@ -172,15 +211,26 @@ export default function ProductPage() {
                 {product.ref && (
                   <p className="text-sm text-gray-500">Réf: {product.ref}</p>
                 )}
+                {conditionnement.badge && (
+                  <p className="inline-block mt-2 px-3 py-1.5 bg-amber-100 text-amber-800 font-semibold rounded-lg text-sm">
+                    📦 {conditionnement.badge}
+                  </p>
+                )}
               </div>
 
               <div className="bg-[#FFFBEB] border border-[#FF9900]/30 rounded-xl p-6">
                 <div className="flex items-baseline gap-3">
                   <span className="text-4xl font-bold text-[#FF9900]">{priceTTC}€</span>
                   <span className="text-gray-500">TTC</span>
+                  {conditionnement.short && (
+                    <span className="text-gray-400 text-sm">/ {conditionnement.short}</span>
+                  )}
                 </div>
                 <p className="text-sm text-gray-600 mt-1">
                   {product.price_public_ht.toFixed(2)}€ HT
+                  {conditionnement.perUnit && (
+                    <span className="text-emerald-600 ml-2">{conditionnement.perUnit}</span>
+                  )}
                 </p>
               </div>
 
