@@ -4,6 +4,8 @@ import { ThemeProvider } from './lib/ThemeProvider';
 import { AuthProvider } from './lib/AuthProvider';
 import { CartProvider } from './lib/CartContext';
 import { QuoteProvider } from './lib/QuoteContext';
+import { CompareProvider } from './lib/CompareContext';
+import CompareBar from './components/CompareBar';
 import MobileCartButton from './components/MobileCartButton';
 import TechnicianPopup from './components/TechnicianPopup';
 
@@ -40,6 +42,9 @@ import ParrainagePage from './pages/ParrainagePage';
 // Partenaires / Annuaire
 import PartenairesPage from './pages/PartenairesPage';
 
+// Comparateur
+import ComparePage from './pages/ComparePage';
+
 // Entretien
 import EntretienVitrifiePage from './pages/EntretienVitrifiePage';
 import EntretienHuilePage from './pages/EntretienHuilePage';
@@ -69,6 +74,7 @@ export default function App() {
       <AuthProvider>
         <CartProvider>
           <QuoteProvider>
+            <CompareProvider>
             <Routes>
           {/* Boutique (Homepage) */}
           <Route path="/" element={<HomePage />} />
@@ -101,6 +107,9 @@ export default function App() {
           {/* Partenaires / Annuaire */}
           <Route path="/partenaires" element={<PartenairesPage />} />
           
+          {/* Comparateur */}
+          <Route path="/comparer" element={<ComparePage />} />
+          
           {/* Entretien (pages clients avec codes promo) */}
           <Route path="/entretien-parquet-vitrifie" element={<EntretienVitrifiePage />} />
           <Route path="/entretien-parquet-huile" element={<EntretienHuilePage />} />
@@ -127,6 +136,8 @@ export default function App() {
             </Routes>
             <MobileCartButton />
             <TechnicianPopup />
+            <CompareBar />
+            </CompareProvider>
           </QuoteProvider>
         </CartProvider>
       </AuthProvider>

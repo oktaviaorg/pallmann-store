@@ -10,8 +10,10 @@ import {
   Star, 
   TrendingUp,
   ShoppingCart,
-  Zap
+  Zap,
+  GitCompare
 } from 'lucide-react';
+import { useCompare } from '../lib/CompareContext';
 
 interface Product {
   id: string;
@@ -54,6 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { t } = useTranslation();
+  const { addProduct, removeProduct, isInCompare, canAdd } = useCompare();
 
   const getDiscountedPrice = (price: number): number => {
     if (!validatedCode) return price;
@@ -303,6 +306,39 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         )}
         
+        {/* Bouton Comparer */}
+        <button
+          onClick={() => {
+            if (isInCompare(product.id)) {
+              removeProduct(product.id);
+            } else if (canAdd) {
+              addProduct({
+                id: product.id,
+                name: product.name,
+                slug: (product as any).slug || product.id,
+                description: product.description,
+                price_public_ht: product.price_ht || 0,
+                image_url: product.image_url,
+                category_name: product.category_name,
+                unit: product.unit,
+                pack_size: product.pack_size,
+                ref: (product as any).ref,
+              });
+            }
+          }}
+          className={`w-full py-2 rounded-lg font-medium text-xs transition-all flex items-center justify-center gap-1.5 ${
+            isInCompare(product.id)
+              ? 'bg-blue-100 text-blue-700 border border-blue-200'
+              : canAdd
+                ? 'bg-gray-100 hover:bg-blue-50 text-gray-600 hover:text-blue-600'
+                : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+          }`}
+          disabled={!canAdd && !isInCompare(product.id)}
+        >
+          <GitCompare className="w-3.5 h-3.5" />
+          {isInCompare(product.id) ? 'Retirer' : 'Comparer'}
+        </button>
+
         {/* Bouton Devis - TOUJOURS visible */}
         <button
           onClick={() => onAddToQuote(product)}
