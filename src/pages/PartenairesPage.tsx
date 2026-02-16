@@ -13,6 +13,7 @@ interface Partner {
   email?: string;
   website?: string;
   logo?: string;
+  banner?: string;
   services: string[];
 }
 
@@ -25,6 +26,7 @@ const partners: Partner[] = [
     email: 'contact@poncages.fr',
     website: 'https://ponceur-parquet.fr',
     logo: '/logos/les-ponceurs-reunis-logo.jpg',
+    banner: '/logos/les-ponceurs-reunis-banner.jpg',
     services: ['Ponçage parquet', 'Vitrification', 'Huilage', 'Rénovation complète'],
   },
   {
@@ -143,37 +145,71 @@ export default function PartenairesPage() {
                 key={index}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
               >
-                {/* Header with Logo */}
-                <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2c5282] p-6 text-white">
-                  <div className="flex items-center gap-4 mb-3">
-                    {partner.logo ? (
-                      <img 
-                        src={partner.logo} 
-                        alt={partner.name}
-                        className="w-16 h-16 object-contain bg-white rounded-lg p-2"
-                      />
-                    ) : (
-                      <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                        <Building2 className="w-8 h-8" />
+                {/* Header with Logo/Banner */}
+                {partner.banner ? (
+                  <div 
+                    className="relative h-48 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${partner.banner})` }}
+                  >
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <div className="flex flex-wrap gap-2">
+                        {partner.locations.map((loc, i) => (
+                          <span 
+                            key={i}
+                            className="inline-flex items-center gap-1 bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
+                          >
+                            <MapPin className="w-3 h-3" />
+                            {loc}
+                          </span>
+                        ))}
                       </div>
-                    )}
-                    <h2 className="text-2xl font-bold">{partner.name}</h2>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {partner.locations.map((loc, i) => (
-                      <span 
-                        key={i}
-                        className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm"
-                      >
-                        <MapPin className="w-3 h-3" />
-                        {loc}
-                      </span>
-                    ))}
+                ) : (
+                  <div className="bg-gradient-to-r from-[#1e3a5f] to-[#2c5282] p-6 text-white">
+                    <div className="flex items-center gap-4 mb-3">
+                      {partner.logo ? (
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name}
+                          className="w-16 h-16 object-contain bg-white rounded-lg p-2"
+                        />
+                      ) : (
+                        <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
+                          <Building2 className="w-8 h-8" />
+                        </div>
+                      )}
+                      <h2 className="text-2xl font-bold">{partner.name}</h2>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {partner.locations.map((loc, i) => (
+                        <span 
+                          key={i}
+                          className="inline-flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full text-sm"
+                        >
+                          <MapPin className="w-3 h-3" />
+                          {loc}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Content */}
                 <div className="p-6">
+                  {partner.banner && (
+                    <div className="flex items-center gap-3 mb-4">
+                      {partner.logo && (
+                        <img 
+                          src={partner.logo} 
+                          alt={partner.name}
+                          className="w-14 h-14 object-contain rounded-full border-2 border-gray-100"
+                        />
+                      )}
+                      <h2 className="text-xl font-bold text-gray-900">{partner.name}</h2>
+                    </div>
+                  )}
                   <p className="text-gray-600 mb-4">{partner.description}</p>
 
                   {/* Services */}
