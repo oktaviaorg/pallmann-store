@@ -217,6 +217,42 @@ const ProPage: React.FC = () => {
                     </li>
                   </ul>
                 </div>
+
+                {/* Annuaire Partenaires */}
+                <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-6 text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                  <div className="relative">
+                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                      🆕 NOUVEAU
+                    </span>
+                    <h3 className="font-bold text-xl mb-2">
+                      Annuaire des Partenaires
+                    </h3>
+                    <p className="text-blue-100 text-sm mb-4">
+                      Vous êtes professionnel du parquet ? Inscrivez-vous gratuitement sur notre annuaire et gagnez en visibilité auprès de nos clients.
+                    </p>
+                    <ul className="space-y-2 text-sm text-blue-100 mb-4">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-white" />
+                        Visibilité sur notre site
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-white" />
+                        Référencement local (villes)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-white" />
+                        Mise en avant de vos services
+                      </li>
+                    </ul>
+                    <a 
+                      href="/partenaires#inscription"
+                      className="inline-flex items-center gap-2 bg-white text-blue-700 px-5 py-2.5 rounded-lg font-bold hover:bg-blue-50 transition-colors"
+                    >
+                      Rejoindre l'annuaire →
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* Formulaire */}
