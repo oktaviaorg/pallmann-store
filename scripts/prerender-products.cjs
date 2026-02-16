@@ -48,6 +48,27 @@ function cleanDescription(desc) {
   return (desc || '').split('ProduitsGUIDE')[0].trim();
 }
 
+// Convertir markdown simple en HTML
+function markdownToHtml(text) {
+  if (!text) return '';
+  return text
+    // Titres avec emoji
+    .replace(/✅\s*\*\*([^*]+)\*\*/g, '<h3 class="feature-title">✅ $1</h3>')
+    .replace(/🎯\s*\*\*([^*]+)\*\*/g, '<h3 class="feature-title">🎯 $1</h3>')
+    .replace(/📊\s*\*\*([^*]+)\*\*/g, '<h3 class="feature-title">📊 $1</h3>')
+    // Gras
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    // Listes à puces
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    // Numérotation
+    .replace(/^\d+\.\s*(.+)$/gm, '<li>$1</li>')
+    // Envelopper les listes
+    .replace(/(<li>.*<\/li>\n?)+/g, '<ul class="feature-list">$&</ul>')
+    // Sauts de ligne
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+}
+
 // Échapper HTML
 function escapeHtml(str) {
   if (!str) return '';
@@ -368,7 +389,12 @@ ${JSON.stringify(faqSchema, null, 2)}
       .prerender-product .price { font-size: 2.5rem; font-weight: 700; color: #FF9900; margin-bottom: 1rem; }
       .prerender-product .price-ht { font-size: 0.875rem; color: #718096; }
       .prerender-product img { max-width: 100%; height: auto; border-radius: 1rem; margin-bottom: 1.5rem; }
-      .prerender-product .description { color: #4a5568; margin-bottom: 1.5rem; }
+      .prerender-product .description { color: #4a5568; margin-bottom: 1.5rem; line-height: 1.8; }
+      .prerender-product .description .feature-title { font-size: 1rem; font-weight: 600; color: #1a202c; margin: 1rem 0 0.5rem; }
+      .prerender-product .description .feature-list { list-style: none; padding-left: 0; margin: 0.5rem 0; }
+      .prerender-product .description .feature-list li { padding: 0.25rem 0 0.25rem 1.5rem; position: relative; }
+      .prerender-product .description .feature-list li::before { content: "•"; color: #FF9900; font-weight: bold; position: absolute; left: 0.5rem; }
+      .prerender-product .description strong { color: #1a202c; }
       .prerender-product .ref { font-size: 0.875rem; color: #a0aec0; margin-bottom: 0.5rem; }
       .prerender-product .brand { color: #FF9900; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; }
       .prerender-product .cta { display: inline-block; background: #FF9900; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 1rem; margin-right: 0.5rem; transition: all 0.2s; }
@@ -422,7 +448,7 @@ ${JSON.stringify(faqSchema, null, 2)}
             </div>
             
             <div class="description" itemprop="description">
-              <p>${escapeHtml(description)}</p>
+              <p>${markdownToHtml(escapeHtml(description))}</p>
             </div>
             
             <a href="/boutique" class="cta">🛒 Ajouter au panier</a>
