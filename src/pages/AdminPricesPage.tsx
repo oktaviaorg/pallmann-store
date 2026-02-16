@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { supabase } from '../lib/supabase';
 import { 
   Search, Lock, Filter, TrendingUp, DollarSign, Package, 
-  Percent, Download, RefreshCw, Eye, EyeOff, ChevronDown
+  Percent, Download, RefreshCw, Eye, EyeOff, ChevronDown, FileText
 } from 'lucide-react';
 
 interface Product {
@@ -244,6 +244,14 @@ export default function AdminPricesPage() {
               </div>
               
               <div className="flex items-center gap-3">
+                <a
+                  href="/admin/devis"
+                  className="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition-colors font-semibold"
+                >
+                  <FileText className="w-4 h-4" />
+                  Créer un Devis
+                </a>
+                
                 <button
                   onClick={() => setShowMargins(!showMargins)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors ${

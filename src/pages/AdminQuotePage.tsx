@@ -805,15 +805,24 @@ export default function AdminQuotePage() {
               <p className="text-xs text-gray-400">Création de devis Pallmann</p>
             </div>
           </div>
-          <button
-            onClick={() => {
-              localStorage.removeItem('admin_auth');
-              setIsAuthenticated(false);
-            }}
-            className="text-gray-400 hover:text-white text-sm px-4 py-2 rounded-lg hover:bg-white/10 transition-all"
-          >
-            Déconnexion
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href="/admin/tarifs"
+              className="text-white text-sm px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 transition-all font-semibold flex items-center gap-2"
+            >
+              <Percent className="w-4 h-4" />
+              Voir Tarifs & Marges
+            </a>
+            <button
+              onClick={() => {
+                localStorage.removeItem('admin_auth');
+                setIsAuthenticated(false);
+              }}
+              className="text-gray-400 hover:text-white text-sm px-4 py-2 rounded-lg hover:bg-white/10 transition-all"
+            >
+              Déconnexion
+            </button>
+          </div>
         </div>
       </header>
 
