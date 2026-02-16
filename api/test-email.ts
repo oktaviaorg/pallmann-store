@@ -1,7 +1,5 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export default async function handler(req: any, res: any) {
   // Only allow in dev/test - protect with secret
   const testSecret = req.query.secret || req.body?.secret;
@@ -9,6 +7,15 @@ export default async function handler(req: any, res: any) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
+  // Check config
+  if (!process.env.RESEND_API_KEY) {
+    return res.status(500).json({ 
+      error: 'RESEND_API_KEY not configured',
+      help: 'Add RESEND_API_KEY to Vercel Environment Variables'
+    });
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const testType = req.query.type || req.body?.type || 'admin';
   const testEmail = req.query.email || req.body?.email || 'j.dietemann@renoline.fr';
 
