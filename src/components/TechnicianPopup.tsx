@@ -32,7 +32,7 @@ const TechnicianPopup: React.FC = () => {
   if (!visible || dismissed) return null;
 
   return (
-    <div className="fixed bottom-24 right-4 z-40 animate-fade-in">
+    <div className="fixed bottom-44 right-4 z-40 animate-fade-in">
       <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 max-w-xs relative">
         {/* Close button */}
         <button 
