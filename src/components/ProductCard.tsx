@@ -172,10 +172,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       )}
 
-      {/* Product Image - déborde au-dessus du fond noir */}
+      {/* Product Image - déborde au-dessus du fond coloré */}
       <div className="relative pt-6 pb-0">
-        {/* Fond noir en bas */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#1A1A1A] to-[#2D2D2D] rounded-t-3xl"></div>
+        {/* Fond coloré en bas (couleur produit pour 333 Color, sinon noir) */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-1/2 rounded-t-3xl"
+          style={productColor ? {
+            background: `linear-gradient(to top, ${productColor.hex}, ${productColor.hex}dd)`
+          } : {
+            background: 'linear-gradient(to top, #1A1A1A, #2D2D2D)'
+          }}
+        ></div>
         {product.image_url ? (
           <img
             src={product.image_url}
