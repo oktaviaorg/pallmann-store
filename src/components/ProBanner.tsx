@@ -95,23 +95,23 @@ const ProBanner: React.FC = () => {
             <span className="font-bold text-lg text-[#1A1A1A]">Vous êtes PRO ?</span>
           </div>
           
-          {/* Input code */}
-          <div className="flex items-center gap-2">
+          {/* Input code - bien démarqué */}
+          <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-xl shadow-lg border-2 border-[#FF9900]">
             <div className="relative">
-              <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#FF9900]" />
               <input
                 type="text"
-                placeholder="Entrez votre code remise"
+                placeholder="CODE PRO"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                 onKeyDown={(e) => e.key === 'Enter' && validatePromoCode()}
-                className="pl-10 pr-4 py-2.5 rounded-lg bg-white border-2 border-gray-200 text-[#1A1A1A] placeholder-gray-400 focus:border-[#FF9900] focus:ring-2 focus:ring-[#FF9900]/20 focus:outline-none transition-all w-48 md:w-56 font-mono uppercase"
+                className="pl-10 pr-4 py-2 rounded-lg bg-orange-50 border-2 border-orange-200 text-[#1A1A1A] placeholder-[#FF9900]/60 focus:border-[#FF9900] focus:ring-2 focus:ring-[#FF9900]/30 focus:outline-none transition-all w-40 md:w-48 font-mono uppercase font-bold text-center"
               />
             </div>
             <button
               onClick={validatePromoCode}
               disabled={checkingCode || !promoCode.trim()}
-              className="px-5 py-2.5 text-white font-bold rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-5 py-2.5 text-white font-bold rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
               style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
             >
               {checkingCode ? '...' : 'Appliquer'}
