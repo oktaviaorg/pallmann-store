@@ -7,6 +7,7 @@ import { useQuote } from '../lib/QuoteContext';
 import LanguageSelector from './LanguageSelector';
 import GoogleLoginButton from './GoogleLoginButton';
 import ThemeToggle from './ThemeToggle';
+import PhoneBanner from './PhoneBanner';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,6 +40,9 @@ const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-soft border-b border-gray-100">
+      {/* Phone banner - Contact technicien */}
+      <PhoneBanner />
+      
       {/* Franco banner when close */}
       {itemCount > 0 && francoRemaining > 0 && francoRemaining < 200 && (
         <div 
