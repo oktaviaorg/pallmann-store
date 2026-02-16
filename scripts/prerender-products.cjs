@@ -455,7 +455,7 @@ ${JSON.stringify(faqSchema, null, 2)}
                 <span itemprop="priceCurrency" content="EUR">TTC</span>
                 ${conditionnement.short ? `<span style="font-size:0.875rem;color:#718096;font-weight:normal;margin-left:0.5rem;">/ ${escapeHtml(conditionnement.short)}</span>` : ''}
               </p>
-              <p class="price-ht">${priceHT}€ HT ${conditionnement.perUnit ? `<span style="color:#059669;">${escapeHtml(conditionnement.perUnit)}</span>` : ''}</p>
+              <p class="price-ht">${priceHT}€ HT ${conditionnement.perUnit ? `<span style="color:#718096;font-size:0.75rem;">${escapeHtml(conditionnement.perUnit)}</span>` : ''}</p>
               <link itemprop="availability" href="https://schema.org/InStock" />
               <meta itemprop="priceValidUntil" content="${priceValidDate}" />
             </div>
