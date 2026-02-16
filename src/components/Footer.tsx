@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Mail, MapPin, Phone, Sparkles } from 'lucide-react';
+import { Mail, MapPin, Phone, Sparkles, ShoppingBag, FileText, BookOpen, Users, Truck, HelpCircle } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -13,92 +13,166 @@ const Footer: React.FC = () => {
       <div className="h-1" style={{ background: 'linear-gradient(90deg, #E67E22 0%, #D35400 100%)' }}></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          
           {/* Logo & Description */}
-          <div className="md:col-span-2">
-            <h3 className="text-xl font-extrabold text-white mb-4 tracking-tight">
+          <div className="lg:col-span-2">
+            <h3 className="text-2xl font-extrabold text-white mb-4 tracking-tight">
               PALLMANN STORE
             </h3>
-            <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
               Votre boutique en ligne de produits professionnels Pallmann pour l'entretien et la finition des parquets. Vitrificateurs, huiles, colles et accessoires de qualité supérieure.
             </p>
-            <p className="text-gray-300 text-sm font-semibold">
+            <p className="text-gray-300 text-sm font-semibold mb-4">
               {t('footer.company')}
             </p>
+            
+            {/* Contact rapide */}
+            <div className="space-y-2">
+              <a
+                href="tel:+33756971137"
+                className="flex items-center gap-3 text-white hover:text-[#E67E22] transition-colors font-semibold"
+              >
+                <Phone className="w-5 h-5 text-[#E67E22]" />
+                07 56 97 11 37
+              </a>
+              <a
+                href="mailto:contact@ponceur-parquet.fr"
+                className="flex items-center gap-3 text-gray-400 hover:text-[#E67E22] transition-colors"
+              >
+                <Mail className="w-5 h-5 text-[#E67E22]" />
+                contact@ponceur-parquet.fr
+              </a>
+              <div className="flex items-start gap-3 text-gray-400">
+                <MapPin className="w-5 h-5 text-[#E67E22] flex-shrink-0 mt-0.5" />
+                <span className="text-sm">
+                  6 rue du Commerce<br />
+                  68420 Herrlisheim près Colmar
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Contact */}
+          {/* Boutique */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-gradient-to-r from-[#E67E22] to-[#D35400]"></span>
-              {t('footer.contact')}
+            <h4 className="text-base font-bold text-white mb-4 flex items-center gap-2">
+              <ShoppingBag className="w-4 h-4 text-[#E67E22]" />
+              Boutique
             </h4>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <a
-                  href="mailto:contact@pallmann-store.com | 📞 07 57 82 13 06"
-                  className="flex items-center gap-2 text-gray-400 hover:text-[#D35400] transition-colors"
-                >
-                  <Mail className="w-4 h-4 flex-shrink-0 text-[#E67E22]" />
-                  <span>contact@pallmann-store.com | 📞 07 57 82 13 06</span>
-                </a>
+                <Link to="/" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Tous les produits
+                </Link>
               </li>
               <li>
-                <a
-                  href="tel:+33389210000"
-                  className="flex items-center gap-2 text-gray-400 hover:text-[#D35400] transition-colors"
-                >
-                  <Phone className="w-4 h-4 flex-shrink-0 text-[#E67E22]" />
-                  <span>07 57 82 13 06</span>
-                </a>
+                <Link to="/?category=Vitrificateurs" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Vitrificateurs & Huiles
+                </Link>
               </li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#E67E22]" />
-                <span>
-                  6 rue du Commerce<br />
-                  68420 Herrlisheim près Colmar<br />
-                  France
-                </span>
+              <li>
+                <Link to="/?category=Colles" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Colles
+                </Link>
+              </li>
+              <li>
+                <Link to="/?category=Entretien" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Entretien
+                </Link>
+              </li>
+              <li>
+                <Link to="/?category=Abrasifs" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Abrasifs & Outils
+                </Link>
+              </li>
+              <li>
+                <Link to="/?category=Machines" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Machines
+                </Link>
+              </li>
+              <li>
+                <Link to="/?category=Outdoor" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Outdoor
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Navigation */}
+          {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-gradient-to-r from-[#E67E22] to-[#D35400]"></span>
-              Navigation
+            <h4 className="text-base font-bold text-white mb-4 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#E67E22]" />
+              Services
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-[#D35400] transition-colors">
-                  {t('common.shop')}
+                <Link to="/pro" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Espace Pro
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-gray-400 hover:text-[#D35400] transition-colors">
-                  {t('common.blog')}
+                <Link to="/demande-devis" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Demande de devis
                 </Link>
               </li>
               <li>
-                <Link to="/pro" className="text-gray-400 hover:text-[#D35400] transition-colors flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" />
-                  {t('common.pro')}
+                <Link to="/partenaires" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Nos partenaires
                 </Link>
               </li>
               <li>
-                <Link to="/demande-devis" className="text-gray-400 hover:text-[#D35400] transition-colors">
-                  {t('common.quote')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/panier" className="text-gray-400 hover:text-[#D35400] transition-colors">
-                  {t('common.cart')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/parrainage" className="text-gray-400 hover:text-[#D35400] transition-colors flex items-center gap-1">
+                <Link to="/parrainage" className="text-gray-400 hover:text-[#E67E22] transition-colors">
                   🎁 Parrainage
+                </Link>
+              </li>
+              <li>
+                <Link to="/calculateur-pro" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Calculateur surface
+                </Link>
+              </li>
+              <li>
+                <Link to="/livraison" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Livraison & Franco
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Informations */}
+          <div>
+            <h4 className="text-base font-bold text-white mb-4 flex items-center gap-2">
+              <HelpCircle className="w-4 h-4 text-[#E67E22]" />
+              Informations
+            </h4>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <Link to="/blog" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Blog & Conseils
+                </Link>
+              </li>
+              <li>
+                <Link to="/entretien-parquet-vitrifie" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Entretien parquet vitrifié
+                </Link>
+              </li>
+              <li>
+                <Link to="/entretien-parquet-huile" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Entretien parquet huilé
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link to="/mentions-legales" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  Mentions légales
+                </Link>
+              </li>
+              <li>
+                <Link to="/cgv" className="text-gray-400 hover:text-[#E67E22] transition-colors">
+                  CGV
                 </Link>
               </li>
             </ul>
@@ -107,23 +181,21 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[#1E293B]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-500 text-center md:text-left">
               © {currentYear} Pallmann Store - {t('footer.company')}. Tous droits réservés.
             </p>
-            <div className="flex flex-wrap gap-4 text-sm justify-center">
-              <Link to="/mentions-legales" className="text-gray-500 hover:text-[#D35400] transition-colors">
-                {t('footer.legal')}
+            <div className="flex flex-wrap gap-6 text-sm justify-center">
+              <Link to="/mentions-legales" className="text-gray-500 hover:text-[#E67E22] transition-colors">
+                Mentions légales
               </Link>
-              <span className="text-[#1E293B]">•</span>
-              <Link to="/cgv" className="text-gray-500 hover:text-[#D35400] transition-colors">
-                {t('footer.cgv')}
+              <Link to="/cgv" className="text-gray-500 hover:text-[#E67E22] transition-colors">
+                CGV
               </Link>
-              <span className="text-[#1E293B]">•</span>
-              <Link to="/politique-confidentialite" className="text-gray-500 hover:text-[#D35400] transition-colors">
-                {t('footer.privacy')}
+              <Link to="/politique-confidentialite" className="text-gray-500 hover:text-[#E67E22] transition-colors">
+                Confidentialité
               </Link>
             </div>
           </div>
