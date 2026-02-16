@@ -33,7 +33,7 @@ interface ProductRecommendation {
 }
 
 const CalculateurPage: React.FC = () => {
-  const { addItem } = useCart();
+  const { addItem, addItems } = useCart();
   const [activeTab, setActiveTab] = useState<CalculatorTab>('projet');
   const [surface, setSurface] = useState<number>(20);
   const [projectType, setProjectType] = useState<'renovation' | 'neuf'>('renovation');
@@ -200,17 +200,18 @@ const CalculateurPage: React.FC = () => {
   };
 
   const handleAddAllToCart = () => {
-    products.forEach(product => {
-      for (let i = 0; i < product.quantity; i++) {
-        addItem({
-          id: product.productId || product.id,
-          name: product.name,
-          price_ht: product.pricePerUnit,
-          image_url: '',
-          unit: product.unit,
-        });
-      }
-    });
+    // Utiliser addItems pour ajouter tous les produits en une seule fois
+    const itemsToAdd = products.map(product => ({
+      item: {
+        id: product.productId || product.id,
+        name: product.name,
+        price_ht: product.pricePerUnit,
+        image_url: '',
+        unit: product.unit,
+      },
+      quantity: product.quantity
+    }));
+    addItems(itemsToAdd);
     setAddedProducts(products.map(p => p.id));
   };
 

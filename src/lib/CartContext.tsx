@@ -28,6 +28,7 @@ interface CartContextType {
   companyCode: CompanyCode | null;
   deliveryMode: DeliveryMode;
   addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void;
+  addItems: (items: Array<{ item: Omit<CartItem, 'quantity'>; quantity: number }>) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -98,6 +99,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  // Ajouter plusieurs items en une seule fois (évite les problèmes de batching React)
+  const addItems = (newItems: Array<{ item: Omit<CartItem, 'quantity'>; quantity: number }>) => {
+    setItems(prev => {
+      let updated = [...prev];
+      newItems.forEach(({ item, quantity }) => {
+        const existingIndex = updated.findIndex(i => i.id === item.id);
+        if (existingIndex >= 0) {
+          updated[existingIndex] = { 
+            ...updated[existingIndex], 
+            quantity: updated[existingIndex].quantity + quantity 
+          };
+        } else {
+          updated.push({ ...item, quantity });
+        }
+      });
+      return updated;
+    });
+  };
+
   const removeItem = (id: string) => {
     setItems(prev => prev.filter(i => i.id !== id));
   };
@@ -143,6 +163,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       companyCode,
       deliveryMode,
       addItem,
+      addItems,
       removeItem,
       updateQuantity,
       clearCart,
