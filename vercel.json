@@ -7,7 +7,10 @@
   },
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" },
-    { "source": "/produit/:slug", "destination": "/produit/:slug.html" },
-    { "source": "/((?!api/|produit/).*)", "destination": "/" }
+    { "source": "/produit/:slug", "destination": "/produit/:slug/index.html" },
+    { "source": "/produit/:slug/", "destination": "/produit/:slug/index.html" },
+    { "source": "/blog/:slug", "destination": "/blog/:slug/index.html" },
+    { "source": "/blog/:slug/", "destination": "/blog/:slug/index.html" },
+    { "source": "/((?!api/|produit/|blog/).*)", "destination": "/" }
   ]
 }
