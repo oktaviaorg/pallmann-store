@@ -244,12 +244,12 @@ const HomePage: React.FC = () => {
         .select('*')
         .order('display_order');
 
-      // Charger les produits PUBLIÉS uniquement
+      // Charger les produits PUBLIÉS uniquement, triés par display_order (prix croissant)
       const { data: productsData, error: productsError } = await supabase
         .from('pallmann_products')
         .select('*')
         .eq('published', true)
-        .order('name');
+        .order('display_order');
 
       if (productsError) throw productsError;
 
@@ -304,12 +304,20 @@ const HomePage: React.FC = () => {
         };
       });
 
-      // Trier par catégorie puis par nom
+      // Trier par catégorie puis par display_order (prix croissant), bestsellers en premier
       enrichedProducts.sort((a, b) => {
+        // D'abord par catégorie
         if (a.category_display_order !== b.category_display_order) {
           return a.category_display_order - b.category_display_order;
         }
-        return a.name.localeCompare(b.name);
+        // Bestsellers en tête de catégorie
+        if (a.is_bestseller && !b.is_bestseller) return -1;
+        if (!a.is_bestseller && b.is_bestseller) return 1;
+        if (a.is_bestseller && b.is_bestseller) {
+          return a.bestseller_order - b.bestseller_order;
+        }
+        // Puis par display_order (prix croissant)
+        return (a.display_order || 999) - (b.display_order || 999);
       });
 
       // Générer les catégories avec comptage (seulement celles qui ont des produits)
