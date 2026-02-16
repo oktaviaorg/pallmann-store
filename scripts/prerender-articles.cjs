@@ -159,15 +159,9 @@ async function main() {
     if (!article.slug) continue;
     
     const html = generateArticleHtml(article, assets);
-    const articleDir = path.join(blogDir, article.slug);
     
-    // Créer le dossier de l'article
-    if (!fs.existsSync(articleDir)) {
-      fs.mkdirSync(articleDir, { recursive: true });
-    }
-    
-    // Écrire le fichier index.html
-    fs.writeFileSync(path.join(articleDir, 'index.html'), html);
+    // Écrire le fichier .html directement
+    fs.writeFileSync(path.join(blogDir, `${article.slug}.html`), html);
     count++;
     
     if (count % 100 === 0) {
