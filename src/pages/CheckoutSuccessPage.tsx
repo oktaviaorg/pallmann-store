@@ -72,7 +72,7 @@ const CheckoutSuccessPage: React.FC = () => {
                   <div>
                     <p className="font-semibold text-[#1A1A1A]">Préparation</p>
                     <p className="text-sm text-[#6B6B6B]">
-                      Votre commande sera préparée sous 24-48h ouvrées.
+                      Expédition sous 3 jours ouvrés.
                     </p>
                   </div>
                 </div>
