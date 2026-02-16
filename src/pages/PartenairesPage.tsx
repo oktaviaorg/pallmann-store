@@ -47,8 +47,24 @@ export default function PartenairesPage() {
     phone: '',
     city: '',
     services: '',
+    siret: '',
+    promoCode: '',
     message: '',
   });
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setLogoFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -57,9 +73,27 @@ export default function PartenairesPage() {
     setSubmitting(true);
     
     try {
+      let logoUrl = '';
+      
+      // Upload logo si présent
+      if (logoFile) {
+        const fileExt = logoFile.name.split('.').pop();
+        const fileName = `partenaire-${Date.now()}.${fileExt}`;
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from('photos-lpr')
+          .upload(`logos-partenaires/${fileName}`, logoFile);
+        
+        if (!uploadError && uploadData) {
+          const { data: urlData } = supabase.storage
+            .from('photos-lpr')
+            .getPublicUrl(`logos-partenaires/${fileName}`);
+          logoUrl = urlData.publicUrl;
+        }
+      }
+
       await supabase.from('form_submissions').insert({
         form_type: 'partenaire',
-        data: formData,
+        data: { ...formData, logoUrl },
         created_at: new Date().toISOString(),
       });
       setSubmitted(true);
@@ -267,6 +301,35 @@ export default function PartenairesPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        N° SIRET *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.siret}
+                        onChange={(e) => setFormData({...formData, siret: e.target.value})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="XXX XXX XXX XXXXX"
+                        pattern="[0-9\s]{14,17}"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Code Promo Pallmann
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.promoCode}
+                        onChange={(e) => setFormData({...formData, promoCode: e.target.value.toUpperCase()})}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                        placeholder="Si vous en avez un"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Ville(s) d'intervention *
                       </label>
                       <input
@@ -292,6 +355,36 @@ export default function PartenairesPage() {
                     </div>
                   </div>
 
+                  {/* Upload Logo */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Logo de votre entreprise *
+                    </label>
+                    <div className="flex items-center gap-4">
+                      <div className="flex-1">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          required
+                          onChange={handleLogoChange}
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-orange-100 file:text-orange-700 file:font-semibold"
+                        />
+                      </div>
+                      {logoPreview && (
+                        <div className="w-20 h-20 border-2 border-gray-200 rounded-lg overflow-hidden bg-white p-1">
+                          <img 
+                            src={logoPreview} 
+                            alt="Aperçu logo" 
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Format accepté : PNG, JPG. Taille recommandée : 200x200px minimum
+                    </p>
+                  </div>
+
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Message / Présentation
@@ -305,9 +398,11 @@ export default function PartenairesPage() {
                     />
                   </div>
 
-                  <p className="text-sm text-gray-500">
-                    📎 Vous pourrez nous envoyer votre logo par email après validation de votre inscription.
-                  </p>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p className="text-sm text-blue-800">
+                      🏢 <strong>Professionnels uniquement</strong> — Le SIRET et le logo sont obligatoires pour valider votre inscription.
+                    </p>
+                  </div>
 
                   <button
                     type="submit"
