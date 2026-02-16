@@ -1421,9 +1421,9 @@ export default function AdminQuotePage() {
               </h2>
               
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Remise (%)</label>
-                <div className="flex gap-2">
-                  {[0, 5, 10, 15, 20].map(pct => (
+                <label className="block text-sm font-medium text-gray-700 mb-2">Remise (%)</label>
+                <div className="flex gap-2 mb-3">
+                  {[0, 5, 10, 15, 20, 25].map(pct => (
                     <button
                       key={pct}
                       onClick={() => setDiscountPercent(pct)}
@@ -1436,6 +1436,23 @@ export default function AdminQuotePage() {
                       {pct}%
                     </button>
                   ))}
+                </div>
+                {/* Champ de saisie personnalisé */}
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-500">ou personnalisé :</span>
+                  <div className="relative flex-1">
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      step="0.5"
+                      value={discountPercent}
+                      onChange={(e) => setDiscountPercent(Math.min(100, Math.max(0, parseFloat(e.target.value) || 0)))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                      placeholder="0"
+                    />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">%</span>
+                  </div>
                 </div>
               </div>
 

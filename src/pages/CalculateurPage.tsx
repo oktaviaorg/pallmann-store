@@ -151,18 +151,31 @@ const CalculateurPage: React.FC = () => {
       });
     }
 
-    // Produit d'entretien
+    // Produit d'entretien (différent selon vitrification ou huile)
     if (includeEntretien) {
-      products.push({
-        id: 'entretien',
-        name: 'MAGIC OIL CARE - Entretien',
-        description: 'Entretien régulier après finition',
-        quantity: 1,
-        unit: 'L',
-        pricePerUnit: 28.50,
-        totalPrice: 28.50,
-        productId: 'magic-oil-care'
-      });
+      if (finishType === 'vitrification') {
+        products.push({
+          id: 'entretien',
+          name: 'FINISH CARE - Entretien',
+          description: 'Polish protecteur pour parquet vitrifié',
+          quantity: 1,
+          unit: 'L',
+          pricePerUnit: 25.90,
+          totalPrice: 25.90,
+          productId: 'finish-care'
+        });
+      } else {
+        products.push({
+          id: 'entretien',
+          name: 'MAGIC OIL CARE - Entretien',
+          description: 'Entretien régulier pour parquet huilé',
+          quantity: 1,
+          unit: 'L',
+          pricePerUnit: 28.50,
+          totalPrice: 28.50,
+          productId: 'magic-oil-care'
+        });
+      }
     }
 
     return products;
@@ -457,7 +470,7 @@ const CalculateurPage: React.FC = () => {
                       <span className="text-xs font-bold text-[#E67E22]">15,80€/L</span>
                     </label>
 
-                    {/* Entretien */}
+                    {/* Entretien - adapté selon vitrification/huile */}
                     <label className="flex items-center gap-3 p-3 rounded-xl border border-gray-200 hover:border-[#E67E22]/50 cursor-pointer transition-all bg-white">
                       <input
                         type="checkbox"
@@ -466,10 +479,16 @@ const CalculateurPage: React.FC = () => {
                         className="w-5 h-5 rounded border-gray-300 text-[#E67E22] focus:ring-[#E67E22]"
                       />
                       <div className="flex-grow">
-                        <div className="font-semibold text-[#1A1A1A] text-sm">MAGIC OIL CARE - Entretien</div>
-                        <div className="text-xs text-[#6B6B6B]">Entretien régulier après finition</div>
+                        <div className="font-semibold text-[#1A1A1A] text-sm">
+                          {finishType === 'vitrification' ? 'FINISH CARE - Entretien' : 'MAGIC OIL CARE - Entretien'}
+                        </div>
+                        <div className="text-xs text-[#6B6B6B]">
+                          {finishType === 'vitrification' ? 'Polish protecteur pour parquet vitrifié' : 'Entretien régulier pour parquet huilé'}
+                        </div>
                       </div>
-                      <span className="text-xs font-bold text-[#E67E22]">28,50€/L</span>
+                      <span className="text-xs font-bold text-[#E67E22]">
+                        {finishType === 'vitrification' ? '25,90€/L' : '28,50€/L'}
+                      </span>
                     </label>
                   </div>
                 </div>
