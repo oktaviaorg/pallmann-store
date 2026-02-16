@@ -370,6 +370,9 @@ export default function PartenairesPage() {
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                         placeholder="Si vous en avez un"
                       />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Pas encore de code ? <a href="/pro" className="text-orange-600 hover:underline font-medium">Demandez-en un ici →</a>
+                      </p>
                     </div>
                   </div>
 
