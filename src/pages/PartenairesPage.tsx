@@ -37,6 +37,7 @@ const partners: Partner[] = [
     email: 'contact@parqline.fr',
     website: 'https://parqline.fr',
     logo: '/logos/parqline-logo.png',
+    banner: '/logos/parqline-banner.png',
     services: ['Pose de parquet', 'Rénovation', 'Ponçage', 'Finition'],
   },
   {
