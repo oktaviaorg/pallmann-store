@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCompare } from '../lib/CompareContext';
-import { GitCompare, X, ShoppingCart, ArrowLeft, Check, Minus } from 'lucide-react';
+import { GitCompare, X, ShoppingCart, ArrowLeft, Check, Minus, FileText, ExternalLink } from 'lucide-react';
 import { useCart } from '../lib/CartContext';
 
 const TVA_RATE = 0.20;
@@ -173,6 +173,57 @@ export default function ComparePage() {
                       <td key={product.id} className="p-4 text-center text-gray-600 text-sm">
                         {product.description?.slice(0, 150) || '-'}
                         {product.description && product.description.length > 150 && '...'}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {/* Rendement - extrait de la description */}
+                  <tr className="border-b">
+                    <td className="p-4 font-semibold text-gray-700">Rendement</td>
+                    {products.map(product => {
+                      const match = product.description?.match(/(\d+)\s*m²\s*\/\s*litre/i) 
+                        || product.description?.match(/env\.\s*(\d+)\s*m²/i);
+                      return (
+                        <td key={product.id} className="p-4 text-center text-gray-600">
+                          {match ? `~${match[1]} m²/L` : '-'}
+                        </td>
+                      );
+                    })}
+                  </tr>
+
+                  {/* Séchage - extrait de la description */}
+                  <tr className="border-b">
+                    <td className="p-4 font-semibold text-gray-700">Séchage</td>
+                    {products.map(product => {
+                      const match = product.description?.match(/(\d+)h?\s*entre\s*couches/i)
+                        || product.description?.match(/Séchage[^:]*:\s*([^,\n]+)/i);
+                      return (
+                        <td key={product.id} className="p-4 text-center text-gray-600">
+                          {match ? match[1] + (match[1].includes('h') ? '' : 'h') : '-'}
+                        </td>
+                      );
+                    })}
+                  </tr>
+
+                  {/* Fiche technique PDF */}
+                  <tr className="border-b bg-blue-50">
+                    <td className="p-4 font-semibold text-gray-700">Fiche technique</td>
+                    {products.map(product => (
+                      <td key={product.id} className="p-4 text-center">
+                        {(product as any).pdf_url ? (
+                          <a
+                            href={(product as any).pdf_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            <FileText className="w-4 h-4" />
+                            Voir PDF
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        ) : (
+                          <span className="text-gray-400">-</span>
+                        )}
                       </td>
                     ))}
                   </tr>

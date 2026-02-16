@@ -11,6 +11,8 @@ interface Product {
   unit?: string;
   pack_size?: number;
   ref?: string;
+  pdf_url?: string;
+  features?: string[];
 }
 
 interface CompareContextType {

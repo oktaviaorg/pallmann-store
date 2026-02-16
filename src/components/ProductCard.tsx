@@ -323,6 +323,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 unit: product.unit,
                 pack_size: product.pack_size,
                 ref: (product as any).ref,
+                pdf_url: (product as any).pdf_url,
+                features: (product as any).features,
               });
             }
           }}
