@@ -22,7 +22,7 @@ export default async function handler(req: any, res: any) {
 
     // Email to admin
     const adminEmailResult = await resend.emails.send({
-      from: 'Pallmann Store <noreply@pallmann-store.com>',
+      from: 'Pallmann Store <noreply@ponceur-parquet.fr>',
       to: ['pro@pallmann-store.com'],
       subject: `🏢 Nouvelle demande PRO - ${company_name}`,
       html: `
@@ -92,7 +92,7 @@ export default async function handler(req: any, res: any) {
 
     // Confirmation email to the user
     const userEmailResult = await resend.emails.send({
-      from: 'Pallmann Store <noreply@pallmann-store.com>',
+      from: 'Pallmann Store <noreply@ponceur-parquet.fr>',
       to: [email],
       subject: 'Confirmation de votre demande PRO - Pallmann Store',
       html: `

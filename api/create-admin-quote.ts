@@ -116,7 +116,7 @@ export default async function handler(req: any, res: any) {
     }).join('');
 
     // Email from (utiliser domaine vérifié si disponible, sinon test)
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Pallmann Store <onboarding@resend.dev>';
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Pallmann Store <noreply@ponceur-parquet.fr>';
     
     // Envoyer l'email au client
     const emailResult = await resend.emails.send({

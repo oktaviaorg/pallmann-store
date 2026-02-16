@@ -83,7 +83,7 @@ export default async function handler(req: any, res: any) {
 
       // Email to admin
       await resend.emails.send({
-        from: 'Pallmann Store <onboarding@resend.dev>',
+        from: 'Pallmann Store <noreply@ponceur-parquet.fr>',
         to: ['j.dietemann@renoline.fr'],
         subject: `🛒 Nouvelle commande #${order?.id?.substring(0, 8)} - ${(session.amount_total! / 100).toFixed(2)}€`,
         html: `
@@ -178,7 +178,7 @@ export default async function handler(req: any, res: any) {
       // Email to customer
       if (customerEmail) {
         await resend.emails.send({
-          from: 'Pallmann Store <onboarding@resend.dev>',
+          from: 'Pallmann Store <noreply@ponceur-parquet.fr>',
           to: [customerEmail],
           subject: `✅ Confirmation de commande #${order?.id?.substring(0, 8)} - Pallmann Store`,
           html: `
