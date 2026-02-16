@@ -86,32 +86,33 @@ const ProBanner: React.FC = () => {
   }
 
   return (
-    <div className="bg-gradient-to-r from-wood-700 via-wood-600 to-primary-600 text-white py-4">
+    <div className="bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 border-y border-amber-200 py-4">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
           {/* Titre */}
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary-300" />
-            <span className="font-bold text-lg bg-blue-500 text-black px-3 py-1 rounded">Vous êtes PRO ?</span>
+            <Sparkles className="w-5 h-5 text-[#FF9900]" />
+            <span className="font-bold text-lg text-[#1A1A1A]">Vous êtes PRO ?</span>
           </div>
           
           {/* Input code */}
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-wood-400" />
+              <Tag className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Entrez votre code remise"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                 onKeyDown={(e) => e.key === 'Enter' && validatePromoCode()}
-                className="pl-10 pr-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:bg-white/20 focus:border-primary-300 focus:outline-none transition-all w-48 md:w-56 font-mono uppercase"
+                className="pl-10 pr-4 py-2.5 rounded-lg bg-white border-2 border-gray-200 text-[#1A1A1A] placeholder-gray-400 focus:border-[#FF9900] focus:ring-2 focus:ring-[#FF9900]/20 focus:outline-none transition-all w-48 md:w-56 font-mono uppercase"
               />
             </div>
             <button
               onClick={validatePromoCode}
               disabled={checkingCode || !promoCode.trim()}
-              className="px-5 py-2.5 bg-white text-wood-700 font-bold rounded-lg hover:bg-primary-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-5 py-2.5 text-white font-bold rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
             >
               {checkingCode ? '...' : 'Appliquer'}
             </button>
@@ -120,7 +121,7 @@ const ProBanner: React.FC = () => {
           {/* Lien inscription */}
           <Link
             to="/pro"
-            className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-sm text-[#1A1A1A] hover:text-[#FF9900] transition-colors"
           >
             <UserPlus className="w-4 h-4" />
             <span>Pas encore inscrit ? <strong className="underline">Créer un compte PRO</strong></span>
@@ -129,19 +130,19 @@ const ProBanner: React.FC = () => {
 
         {/* Messages d'erreur/succès */}
         {codeError && (
-          <div className="mt-3 flex items-center justify-center gap-2 text-red-200 text-sm">
+          <div className="mt-3 flex items-center justify-center gap-2 text-red-600 text-sm font-medium">
             <XCircle className="w-4 h-4" />
             <span>{codeError}</span>
           </div>
         )}
 
         {validatedCode && (
-          <div className="mt-3 flex items-center justify-center gap-2 text-green-200 text-sm">
+          <div className="mt-3 flex items-center justify-center gap-2 text-green-600 text-sm font-medium">
             <CheckCircle className="w-4 h-4" />
             <span>
               Code activé ! <strong>{validatedCode.company_name}</strong> bénéficie de {validatedCode.discount_percent}% de remise
             </span>
-            <button onClick={clearPromoCode} className="ml-2 underline hover:no-underline">
+            <button onClick={clearPromoCode} className="ml-2 underline hover:no-underline text-gray-600 hover:text-red-600">
               Supprimer
             </button>
           </div>
