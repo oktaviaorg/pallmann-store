@@ -1,136 +1,142 @@
 import { Resend } from 'resend';
 
-// Styles inline pour éviter problèmes d'import Vercel
+// Design sobre et professionnel - style corporate
 const emailStyles = `
-  body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #2D3748; background: #F7FAFC; margin: 0; padding: 0; }
-  .wrapper { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-  .container { background: #FFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-  .header { background: linear-gradient(135deg, #D97706, #B45309); color: white; padding: 40px 30px; text-align: center; }
-  .header-icon { font-size: 48px; margin-bottom: 16px; }
-  .header h1 { margin: 0; font-size: 28px; font-weight: 700; }
-  .header p { margin: 12px 0 0; opacity: 0.9; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #374151; background: #F9FAFB; margin: 0; padding: 0; }
+  .wrapper { max-width: 600px; margin: 0 auto; padding: 32px 16px; }
+  .container { background: #FFFFFF; border-radius: 8px; border: 1px solid #E5E7EB; overflow: hidden; }
+  .header { padding: 32px; text-align: center; border-bottom: 1px solid #E5E7EB; }
+  .logo { font-size: 20px; font-weight: 600; color: #111827; letter-spacing: -0.5px; }
+  .header h1 { margin: 16px 0 0; font-size: 24px; font-weight: 600; color: #111827; }
+  .header p { margin: 8px 0 0; color: #6B7280; font-size: 14px; }
   .content { padding: 32px; }
-  .total-box { background: linear-gradient(135deg, #D97706, #B45309); color: white; padding: 24px; border-radius: 12px; text-align: center; margin: 24px 0; }
-  .total-label { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
-  .total-amount { font-size: 36px; font-weight: 700; margin-top: 8px; }
-  .info-card { background: #F7FAFC; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
-  .info-title { font-weight: 600; color: #718096; font-size: 12px; text-transform: uppercase; margin-bottom: 8px; }
-  .info-value { color: #1A202C; font-size: 16px; }
-  .products-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
-  .products-table th { background: #EDF2F7; padding: 14px 16px; text-align: left; font-size: 12px; text-transform: uppercase; color: #4A5568; }
-  .products-table td { padding: 16px; border-bottom: 1px solid #EDF2F7; }
-  .summary-box { background: #F7FAFC; border-radius: 12px; padding: 20px; margin-top: 24px; }
-  .summary-row { display: flex; justify-content: space-between; padding: 8px 0; color: #4A5568; }
-  .summary-total { border-top: 2px solid #E2E8F0; margin-top: 12px; padding-top: 16px; font-weight: 700; color: #1A202C; font-size: 18px; }
-  .highlight-box { background: #FFFBEB; border-left: 4px solid #D97706; border-radius: 0 12px 12px 0; padding: 20px; margin: 24px 0; }
-  .footer { text-align: center; padding: 32px; color: #718096; font-size: 13px; border-top: 1px solid #EDF2F7; }
-  .footer-logo { font-weight: 700; font-size: 18px; color: #D97706; margin-bottom: 12px; }
-  .test-banner { background: #FED7D7; color: #C53030; padding: 12px; text-align: center; font-weight: 600; }
-  a { color: #D97706; }
+  .amount-box { text-align: center; padding: 24px; background: #F9FAFB; border-radius: 8px; margin-bottom: 24px; }
+  .amount-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #6B7280; margin-bottom: 4px; }
+  .amount { font-size: 32px; font-weight: 600; color: #111827; }
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #6B7280; margin-bottom: 12px; }
+  .info-row { padding: 12px 0; border-bottom: 1px solid #F3F4F6; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { font-size: 13px; color: #6B7280; margin-bottom: 2px; }
+  .info-value { font-size: 15px; color: #111827; }
+  .products-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .products-table th { text-align: left; padding: 12px 0; border-bottom: 2px solid #E5E7EB; font-weight: 600; color: #374151; font-size: 12px; text-transform: uppercase; }
+  .products-table td { padding: 12px 0; border-bottom: 1px solid #F3F4F6; color: #374151; }
+  .products-table .qty { text-align: center; }
+  .products-table .price { text-align: right; font-weight: 500; }
+  .summary { background: #F9FAFB; padding: 16px; border-radius: 8px; margin-top: 24px; }
+  .summary-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: #6B7280; }
+  .summary-row.total { padding-top: 12px; margin-top: 8px; border-top: 1px solid #E5E7EB; font-weight: 600; font-size: 16px; color: #111827; }
+  .notice { background: #F3F4F6; padding: 16px; border-radius: 6px; margin: 24px 0; font-size: 14px; color: #4B5563; }
+  .notice strong { color: #111827; }
+  .footer { padding: 24px 32px; background: #F9FAFB; text-align: center; font-size: 13px; color: #6B7280; border-top: 1px solid #E5E7EB; }
+  .footer p { margin: 4px 0; }
+  a { color: #2563EB; text-decoration: none; }
+  .test-banner { background: #FEF2F2; color: #991B1B; padding: 10px; text-align: center; font-size: 13px; font-weight: 500; }
+  .btn { display: inline-block; background: #111827; color: #FFFFFF !important; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none; margin-top: 16px; }
 `;
 
 function generateAdminEmail(order: any) {
-  return `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><style>${emailStyles}</style></head><body>
+  return `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><style>${emailStyles}</style></head><body>
 <div class="wrapper">
-  ${order.isTest ? '<div class="test-banner">⚠️ CECI EST UN EMAIL DE TEST</div>' : ''}
+  ${order.isTest ? '<div class="test-banner">Email de test</div>' : ''}
   <div class="container">
     <div class="header">
-      <div class="header-icon">🛒</div>
-      <h1>Nouvelle commande !</h1>
+      <div class="logo">PALLMANN STORE</div>
+      <h1>Nouvelle commande</h1>
       <p>Commande #${order.orderId}</p>
     </div>
     <div class="content">
-      <div class="total-box">
-        <div class="total-label">Montant total</div>
-        <div class="total-amount">${order.totalTtc}€ TTC</div>
+      <div class="amount-box">
+        <div class="amount-label">Montant total</div>
+        <div class="amount">${order.totalTtc} €</div>
       </div>
       
-      <div class="info-card">
-        <div class="info-title">👤 Client</div>
-        <div class="info-value">${order.customerName}</div>
+      <div class="section">
+        <div class="section-title">Informations client</div>
+        <div class="info-row">
+          <div class="info-label">Nom</div>
+          <div class="info-value">${order.customerName}</div>
+        </div>
+        <div class="info-row">
+          <div class="info-label">Email</div>
+          <div class="info-value"><a href="mailto:${order.customerEmail}">${order.customerEmail}</a></div>
+        </div>
+        ${order.customerPhone ? `<div class="info-row"><div class="info-label">Téléphone</div><div class="info-value">${order.customerPhone}</div></div>` : ''}
+        <div class="info-row">
+          <div class="info-label">Adresse de livraison</div>
+          <div class="info-value">${order.shippingAddress}<br>${order.shippingPostalCode} ${order.shippingCity}</div>
+        </div>
       </div>
       
-      <div class="info-card">
-        <div class="info-title">✉️ Email</div>
-        <div class="info-value"><a href="mailto:${order.customerEmail}">${order.customerEmail}</a></div>
-      </div>
-      
-      ${order.customerPhone ? `<div class="info-card"><div class="info-title">📱 Téléphone</div><div class="info-value">${order.customerPhone}</div></div>` : ''}
-      
-      <div class="info-card">
-        <div class="info-title">📍 Adresse de livraison</div>
-        <div class="info-value">${order.shippingAddress}<br>${order.shippingPostalCode} ${order.shippingCity}</div>
-      </div>
-      
-      <h3 style="margin: 32px 0 16px; color: #1A202C;">📦 Détail de la commande</h3>
-      
-      <table class="products-table">
-        <tr><th>Produit</th><th style="text-align:center">Qté</th><th style="text-align:right">Prix HT</th></tr>
-        ${order.items.map((i: any) => `<tr><td>${i.name}</td><td style="text-align:center">${i.quantity}</td><td style="text-align:right">${i.priceHt.toFixed(2)}€</td></tr>`).join('')}
-      </table>
-      
-      <div class="summary-box">
-        <div class="summary-row"><span>Sous-total HT</span><span>${order.subtotalHt}€</span></div>
-        <div class="summary-row"><span>Livraison HT</span><span>${order.shippingHt === '0' ? '🎁 Offerte' : order.shippingHt + '€'}</span></div>
-        <div class="summary-row summary-total"><span>Total TTC</span><span style="color:#D97706">${order.totalTtc}€</span></div>
+      <div class="section">
+        <div class="section-title">Articles commandés</div>
+        <table class="products-table">
+          <thead><tr><th>Produit</th><th class="qty">Qté</th><th class="price">Prix HT</th></tr></thead>
+          <tbody>
+            ${order.items.map((i: any) => `<tr><td>${i.name}</td><td class="qty">${i.quantity}</td><td class="price">${i.priceHt.toFixed(2)} €</td></tr>`).join('')}
+          </tbody>
+        </table>
+        
+        <div class="summary">
+          <div class="summary-row"><span>Sous-total HT</span><span>${order.subtotalHt} €</span></div>
+          <div class="summary-row"><span>Livraison</span><span>${order.shippingHt === '0' ? 'Offerte' : order.shippingHt + ' €'}</span></div>
+          <div class="summary-row total"><span>Total TTC</span><span>${order.totalTtc} €</span></div>
+        </div>
       </div>
     </div>
     <div class="footer">
-      <div class="footer-logo">PALLMANN STORE</div>
+      <p><strong>Pallmann Store</strong></p>
       <p>6 rue du Commerce, 68420 Herrlisheim près Colmar</p>
-      <p>📞 07 57 82 13 06 • <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a></p>
+      <p>Tél : 07 57 82 13 06 · <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a></p>
     </div>
   </div>
 </div></body></html>`;
 }
 
 function generateClientEmail(order: any) {
-  return `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><style>${emailStyles}</style></head><body>
+  return `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><style>${emailStyles}</style></head><body>
 <div class="wrapper">
-  ${order.isTest ? '<div class="test-banner">⚠️ CECI EST UN EMAIL DE TEST</div>' : ''}
+  ${order.isTest ? '<div class="test-banner">Email de test</div>' : ''}
   <div class="container">
-    <div class="header" style="background: linear-gradient(135deg, #059669, #047857);">
-      <div class="header-icon">✅</div>
-      <h1>Commande confirmée !</h1>
-      <p>Merci pour votre achat</p>
+    <div class="header">
+      <div class="logo">PALLMANN STORE</div>
+      <h1>Commande confirmée</h1>
+      <p>Merci pour votre commande</p>
     </div>
     <div class="content">
-      <p style="font-size:18px;color:#1A202C">Bonjour <strong>${order.customerName}</strong>,</p>
-      <p style="color:#4A5568">Votre commande <strong>#${order.orderId}</strong> a bien été confirmée et est en cours de préparation.</p>
+      <p style="font-size:15px;color:#374151;margin-bottom:24px">Bonjour ${order.customerName},<br><br>Nous avons bien reçu votre commande <strong>#${order.orderId}</strong> et celle-ci est en cours de préparation.</p>
       
-      <div class="total-box" style="background: linear-gradient(135deg, #059669, #047857);">
-        <div class="total-label">Montant total</div>
-        <div class="total-amount">${order.totalTtc}€ TTC</div>
+      <div class="amount-box">
+        <div class="amount-label">Montant total</div>
+        <div class="amount">${order.totalTtc} €</div>
       </div>
       
-      <h3 style="margin: 32px 0 16px; color: #1A202C;">📦 Récapitulatif</h3>
-      
-      <table class="products-table">
-        <tr><th>Produit</th><th style="text-align:center">Qté</th><th style="text-align:right">Prix HT</th></tr>
-        ${order.items.map((i: any) => `<tr><td>${i.name}</td><td style="text-align:center">${i.quantity}</td><td style="text-align:right">${i.priceHt.toFixed(2)}€</td></tr>`).join('')}
-      </table>
-      
-      <div class="highlight-box">
-        <strong>📍 Adresse de livraison</strong><br>
-        ${order.shippingAddress}<br>${order.shippingPostalCode} ${order.shippingCity}
+      <div class="section">
+        <div class="section-title">Récapitulatif</div>
+        <table class="products-table">
+          <thead><tr><th>Produit</th><th class="qty">Qté</th><th class="price">Prix HT</th></tr></thead>
+          <tbody>
+            ${order.items.map((i: any) => `<tr><td>${i.name}</td><td class="qty">${i.quantity}</td><td class="price">${i.priceHt.toFixed(2)} €</td></tr>`).join('')}
+          </tbody>
+        </table>
       </div>
       
-      <div class="highlight-box" style="background:#EBF8FF; border-color:#3B82F6;">
-        <strong style="color:#1E40AF">🚚 Livraison</strong><br>
-        <span style="color:#1E3A5F">Expédition sous 24-48h ouvrées. Vous recevrez un email avec le numéro de suivi.</span>
+      <div class="notice">
+        <strong>Livraison</strong><br>
+        ${order.shippingAddress}, ${order.shippingPostalCode} ${order.shippingCity}<br><br>
+        Expédition sous 24-48h ouvrées. Vous recevrez un email avec le numéro de suivi.
       </div>
       
-      <p style="color:#4A5568;margin-top:24px">
-        Une question ? Contactez-nous au <strong>07 57 82 13 06</strong> ou à <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a>
-      </p>
+      <p style="font-size:14px;color:#6B7280;margin-top:24px">Une question ? Contactez-nous au 07 57 82 13 06 ou par email à <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a></p>
       
-      <p style="margin-top:24px">Merci pour votre confiance,<br><strong style="color:#D97706">L'équipe Pallmann Store</strong></p>
+      <p style="margin-top:24px;font-size:15px">Cordialement,<br><strong style="color:#111827">L'équipe Pallmann Store</strong></p>
     </div>
     <div class="footer">
-      <div class="footer-logo">PALLMANN STORE</div>
+      <p><strong>Pallmann Store</strong></p>
       <p>Produits professionnels pour parquet</p>
       <p>6 rue du Commerce, 68420 Herrlisheim près Colmar</p>
-      <p>📞 07 57 82 13 06 • <a href="mailto:contact@ponceur-parquet.fr">contact@ponceur-parquet.fr</a></p>
+      <p><a href="https://www.pallmann-store.com">www.pallmann-store.com</a></p>
     </div>
   </div>
 </div></body></html>`;
@@ -151,7 +157,7 @@ export default async function handler(req: any, res: any) {
   const testEmail = req.query.email || req.body?.email || 'j.dietemann@renoline.fr';
 
   const testOrder = {
-    orderId: 'TEST123',
+    orderId: 'PS-2026-0042',
     customerName: 'Jean Dupont',
     customerEmail: 'client@example.com',
     customerPhone: '06 12 34 56 78',
@@ -173,13 +179,13 @@ export default async function handler(req: any, res: any) {
   try {
     const html = testType === 'client' ? generateClientEmail(testOrder) : generateAdminEmail(testOrder);
     const subject = testType === 'client' 
-      ? `🧪 TEST - ✅ Confirmation commande #${testOrder.orderId}`
-      : `🧪 TEST - 🛒 Nouvelle commande #${testOrder.orderId} - ${testOrder.totalTtc}€`;
+      ? `Commande #${testOrder.orderId} confirmée - Pallmann Store`
+      : `Nouvelle commande #${testOrder.orderId} - ${testOrder.totalTtc}€`;
 
     const result = await resend.emails.send({
       from: 'Pallmann Store <noreply@ponceur-parquet.fr>',
       to: [testEmail],
-      subject,
+      subject: testOrder.isTest ? `[TEST] ${subject}` : subject,
       html,
     });
 
