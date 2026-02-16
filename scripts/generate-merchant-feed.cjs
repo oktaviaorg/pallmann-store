@@ -74,8 +74,8 @@ function generateXML(products) {
     const availability = 'in_stock'; // Par défaut en stock
     const condition = 'new';
     
-    // URL produit (page boutique avec ancre ou future page produit)
-    const productUrl = `${STORE_URL}/boutique#${product.slug || product.id}`;
+    // URL produit (page dédiée SEO)
+    const productUrl = `${STORE_URL}/produit/${product.slug || product.id}`;
     
     // Image
     const imageUrl = product.image_url || `${STORE_URL}/images/pallmann-default.png`;
