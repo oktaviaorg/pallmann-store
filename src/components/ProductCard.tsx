@@ -67,6 +67,39 @@ const ProductCard: React.FC<ProductCardProps> = ({
     ? product.price_ht - getDiscountedPrice(product.price_ht)
     : 0;
 
+  // Extraire la couleur du nom (pour PALL-X 333 Color)
+  const getProductColor = (): { hex: string; name: string } | null => {
+    const name = product.name.toLowerCase();
+    if (!name.includes('333') && !name.includes('color')) return null;
+    
+    const colorMap: Record<string, string> = {
+      'natural white': '#FAF8F5',
+      'easy white': '#FDFCFA',
+      'brushed white': '#E8E4DB',
+      'luxury black': '#0D0D0D',
+      'almost black': '#2D2D2D',
+      'endless brown': '#5C4033',
+      'authentic brown': '#704214',
+      'silver grey': '#A8A8A8',
+      'solid grey': '#6B6B6B',
+      'bleached grey': '#C4C4C4',
+      'soft grey': '#B0B0B0',
+      'white': '#F5F5F0',
+      'black': '#1A1A1A',
+      'grey': '#808080',
+      'brown': '#6B4423',
+    };
+    
+    for (const [colorName, hex] of Object.entries(colorMap)) {
+      if (name.includes(colorName)) {
+        return { hex, name: colorName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') };
+      }
+    }
+    return null;
+  };
+
+  const productColor = getProductColor();
+
   // Formater la contenance de façon claire
   const formatContenance = (): string | null => {
     const size = product.pack_size || 1;
@@ -105,6 +138,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
           >
             <TrendingUp className="w-3 h-3" />
             BEST-SELLER
+          </span>
+        )}
+        {productColor && (
+          <span 
+            className="px-2 py-0.5 rounded-md text-[10px] font-bold flex items-center gap-1.5 border border-gray-200"
+            style={{ backgroundColor: '#fff' }}
+          >
+            <span 
+              className="w-3 h-3 rounded-full border border-gray-300 shadow-inner"
+              style={{ backgroundColor: productColor.hex }}
+            />
+            <span className="text-gray-700">{productColor.name}</span>
           </span>
         )}
         {product.is_new && (
