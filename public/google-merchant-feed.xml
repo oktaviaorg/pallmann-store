@@ -4,7 +4,7 @@
     <title>Pallmann Store</title>
     <link>https://pallmann-store.com</link>
     <description>Produits professionnels Pallmann pour parquet - Vitrificateurs, huiles, colles</description>
-    <lastBuildDate>2026-02-15T13:54:43.835Z</lastBuildDate>
+    <lastBuildDate>2026-02-16T07:28:05.665Z</lastBuildDate>
 
     <item>
       <g:id>7f8b2c81-25aa-4424-a9a5-7783225be410</g:id>
@@ -19,7 +19,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041060</g:mpn>
-      <g:gtin>041060</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -40,7 +40,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>069379</g:mpn>
-      <g:gtin>069379</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -61,7 +61,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011665</g:mpn>
-      <g:gtin>011665</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -82,7 +82,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041126</g:mpn>
-      <g:gtin>041126</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -103,7 +103,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012667</g:mpn>
-      <g:gtin>012667</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -124,7 +124,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041054</g:mpn>
-      <g:gtin>041054</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -145,7 +145,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>088425</g:mpn>
-      <g:gtin>088425</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -166,7 +166,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>184424</g:mpn>
-      <g:gtin>184424</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -187,7 +187,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064374</g:mpn>
-      <g:gtin>064374</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -208,7 +208,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011479</g:mpn>
-      <g:gtin>011479</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -229,7 +229,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>158420</g:mpn>
-      <g:gtin>158420</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -250,7 +250,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011480</g:mpn>
-      <g:gtin>011480</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -271,7 +271,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>042171</g:mpn>
-      <g:gtin>042171</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -292,7 +292,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>059960</g:mpn>
-      <g:gtin>059960</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -313,7 +313,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011482</g:mpn>
-      <g:gtin>011482</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -334,7 +334,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012621</g:mpn>
-      <g:gtin>012621</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -355,7 +355,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073699</g:mpn>
-      <g:gtin>073699</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -376,7 +376,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Colles</g:product_type>
       <g:mpn>059679</g:mpn>
-      <g:gtin>059679</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -397,7 +397,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>068018</g:mpn>
-      <g:gtin>068018</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -418,7 +418,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012627</g:mpn>
-      <g:gtin>012627</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -439,7 +439,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>014289</g:mpn>
-      <g:gtin>014289</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -460,7 +460,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>063017</g:mpn>
-      <g:gtin>063017</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -481,7 +481,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>181845</g:mpn>
-      <g:gtin>181845</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -502,7 +502,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041055</g:mpn>
-      <g:gtin>041055</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -523,7 +523,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>083906</g:mpn>
-      <g:gtin>083906</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -544,7 +544,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>012461</g:mpn>
-      <g:gtin>012461</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -565,7 +565,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>086314</g:mpn>
-      <g:gtin>086314</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -586,7 +586,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083312</g:mpn>
-      <g:gtin>083312</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -607,7 +607,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083298</g:mpn>
-      <g:gtin>083298</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -628,7 +628,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083300</g:mpn>
-      <g:gtin>083300</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -649,7 +649,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083306</g:mpn>
-      <g:gtin>083306</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -670,7 +670,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083308</g:mpn>
-      <g:gtin>083308</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -691,7 +691,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>163673</g:mpn>
-      <g:gtin>163673</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -712,7 +712,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>086268</g:mpn>
-      <g:gtin>086268</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -733,7 +733,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>087764</g:mpn>
-      <g:gtin>087764</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -754,7 +754,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>175506</g:mpn>
-      <g:gtin>175506</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -775,7 +775,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>182485</g:mpn>
-      <g:gtin>182485</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -796,7 +796,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012628</g:mpn>
-      <g:gtin>012628</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -817,7 +817,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>183780</g:mpn>
-      <g:gtin>183780</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -838,7 +838,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012622</g:mpn>
-      <g:gtin>012622</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -859,7 +859,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012625</g:mpn>
-      <g:gtin>012625</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -880,7 +880,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041119</g:mpn>
-      <g:gtin>041119</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -901,7 +901,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>062005</g:mpn>
-      <g:gtin>062005</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -922,7 +922,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012624</g:mpn>
-      <g:gtin>012624</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -943,7 +943,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012630</g:mpn>
-      <g:gtin>012630</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -964,7 +964,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011481</g:mpn>
-      <g:gtin>011481</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -985,7 +985,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>063016</g:mpn>
-      <g:gtin>063016</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1006,7 +1006,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041117</g:mpn>
-      <g:gtin>041117</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1027,7 +1027,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012629</g:mpn>
-      <g:gtin>012629</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1048,7 +1048,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>014184</g:mpn>
-      <g:gtin>014184</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1069,7 +1069,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>062006</g:mpn>
-      <g:gtin>062006</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1090,7 +1090,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>183781</g:mpn>
-      <g:gtin>183781</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1111,7 +1111,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041056</g:mpn>
-      <g:gtin>041056</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1132,7 +1132,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012668</g:mpn>
-      <g:gtin>012668</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1153,7 +1153,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>088424</g:mpn>
-      <g:gtin>088424</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1174,7 +1174,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041057</g:mpn>
-      <g:gtin>041057</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1195,7 +1195,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064660</g:mpn>
-      <g:gtin>064660</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1216,7 +1216,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012495</g:mpn>
-      <g:gtin>012495</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1237,7 +1237,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041111</g:mpn>
-      <g:gtin>041111</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1258,7 +1258,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>067669</g:mpn>
-      <g:gtin>067669</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1279,7 +1279,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>083923</g:mpn>
-      <g:gtin>083923</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1300,7 +1300,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012598</g:mpn>
-      <g:gtin>012598</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1321,7 +1321,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>040289</g:mpn>
-      <g:gtin>040289</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1342,7 +1342,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011483</g:mpn>
-      <g:gtin>011483</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1363,7 +1363,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>055898</g:mpn>
-      <g:gtin>055898</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1384,7 +1384,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073172</g:mpn>
-      <g:gtin>073172</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1405,7 +1405,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>053297</g:mpn>
-      <g:gtin>053297</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1426,7 +1426,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012510</g:mpn>
-      <g:gtin>012510</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1447,7 +1447,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>055895</g:mpn>
-      <g:gtin>055895</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1468,7 +1468,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>053300</g:mpn>
-      <g:gtin>053300</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1489,7 +1489,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>061482</g:mpn>
-      <g:gtin>061482</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1510,7 +1510,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>055905</g:mpn>
-      <g:gtin>055905</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1531,7 +1531,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>053295</g:mpn>
-      <g:gtin>053295</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1552,7 +1552,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>055898</g:mpn>
-      <g:gtin>055898</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1573,7 +1573,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>013814</g:mpn>
-      <g:gtin>013814</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1594,7 +1594,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041124</g:mpn>
-      <g:gtin>041124</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1615,7 +1615,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083294</g:mpn>
-      <g:gtin>083294</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1636,7 +1636,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Outdoor</g:product_type>
       <g:mpn>179338</g:mpn>
-      <g:gtin>179338</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1657,7 +1657,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084923</g:mpn>
-      <g:gtin>084923</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1678,7 +1678,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>039948</g:mpn>
-      <g:gtin>039948</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1699,7 +1699,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>175506</g:mpn>
-      <g:gtin>175506</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1720,7 +1720,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>014289</g:mpn>
-      <g:gtin>014289</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1741,7 +1741,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>081783</g:mpn>
-      <g:gtin>081783</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1762,7 +1762,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010108</g:mpn>
-      <g:gtin>010108</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1783,7 +1783,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>125420</g:mpn>
-      <g:gtin>125420</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1804,7 +1804,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013271</g:mpn>
-      <g:gtin>013271</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1825,7 +1825,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011478</g:mpn>
-      <g:gtin>011478</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1846,7 +1846,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013267</g:mpn>
-      <g:gtin>013267</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1867,7 +1867,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>182535</g:mpn>
-      <g:gtin>182535</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1888,7 +1888,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>080735</g:mpn>
-      <g:gtin>080735</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1909,7 +1909,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073208</g:mpn>
-      <g:gtin>073208</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1930,7 +1930,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084260</g:mpn>
-      <g:gtin>084260</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1951,7 +1951,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>060022</g:mpn>
-      <g:gtin>060022</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1972,7 +1972,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>010366</g:mpn>
-      <g:gtin>010366</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -1993,7 +1993,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>068044</g:mpn>
-      <g:gtin>068044</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2014,7 +2014,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>182486</g:mpn>
-      <g:gtin>182486</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2035,7 +2035,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>163674</g:mpn>
-      <g:gtin>163674</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2056,7 +2056,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010103</g:mpn>
-      <g:gtin>010103</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2077,7 +2077,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>086314</g:mpn>
-      <g:gtin>086314</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2098,7 +2098,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>086268</g:mpn>
-      <g:gtin>086268</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2119,7 +2119,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>040983</g:mpn>
-      <g:gtin>040983</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2140,7 +2140,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011668</g:mpn>
-      <g:gtin>011668</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2161,7 +2161,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010093</g:mpn>
-      <g:gtin>010093</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2182,7 +2182,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>034053</g:mpn>
-      <g:gtin>034053</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2203,7 +2203,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>012452</g:mpn>
-      <g:gtin>012452</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2224,7 +2224,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>021283</g:mpn>
-      <g:gtin>021283</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2245,7 +2245,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>082958</g:mpn>
-      <g:gtin>082958</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2266,7 +2266,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>068018</g:mpn>
-      <g:gtin>068018</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2287,7 +2287,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>080735</g:mpn>
-      <g:gtin>080735</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2308,7 +2308,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083291</g:mpn>
-      <g:gtin>083291</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2329,7 +2329,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>159665</g:mpn>
-      <g:gtin>159665</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2350,7 +2350,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013697</g:mpn>
-      <g:gtin>013697</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2371,7 +2371,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010094</g:mpn>
-      <g:gtin>010094</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2392,7 +2392,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>086117</g:mpn>
-      <g:gtin>086117</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2413,7 +2413,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>076843</g:mpn>
-      <g:gtin>076843</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2434,7 +2434,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>089453</g:mpn>
-      <g:gtin>089453</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2455,7 +2455,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>089453</g:mpn>
-      <g:gtin>089453</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2476,7 +2476,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>172175</g:mpn>
-      <g:gtin>172175</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2497,7 +2497,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>182537</g:mpn>
-      <g:gtin>182537</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2518,7 +2518,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>088622</g:mpn>
-      <g:gtin>088622</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2539,7 +2539,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011666</g:mpn>
-      <g:gtin>011666</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2560,7 +2560,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011669</g:mpn>
-      <g:gtin>011669</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2581,7 +2581,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>011667</g:mpn>
-      <g:gtin>011667</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2602,7 +2602,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>055890</g:mpn>
-      <g:gtin>055890</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2623,7 +2623,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083540</g:mpn>
-      <g:gtin>083540</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2644,7 +2644,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>021192</g:mpn>
-      <g:gtin>021192</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2665,7 +2665,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>182484</g:mpn>
-      <g:gtin>182484</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2686,7 +2686,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>171590</g:mpn>
-      <g:gtin>171590</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2707,7 +2707,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013953</g:mpn>
-      <g:gtin>013953</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2728,7 +2728,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083293</g:mpn>
-      <g:gtin>083293</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2749,7 +2749,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073208</g:mpn>
-      <g:gtin>073208</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2770,7 +2770,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084566</g:mpn>
-      <g:gtin>084566</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2791,7 +2791,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083288</g:mpn>
-      <g:gtin>083288</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2812,7 +2812,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084564</g:mpn>
-      <g:gtin>084564</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2833,7 +2833,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083316</g:mpn>
-      <g:gtin>083316</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2854,7 +2854,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079318</g:mpn>
-      <g:gtin>079318</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2875,7 +2875,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>158420</g:mpn>
-      <g:gtin>158420</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2896,7 +2896,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>169408</g:mpn>
-      <g:gtin>169408</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2917,7 +2917,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083317</g:mpn>
-      <g:gtin>083317</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2938,7 +2938,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>159665</g:mpn>
-      <g:gtin>159665</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2959,7 +2959,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien</g:product_type>
       <g:mpn>162390</g:mpn>
-      <g:gtin>162390</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -2980,7 +2980,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083292</g:mpn>
-      <g:gtin>083292</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3001,7 +3001,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084565</g:mpn>
-      <g:gtin>084565</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3022,7 +3022,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>181845</g:mpn>
-      <g:gtin>181845</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3043,7 +3043,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079521</g:mpn>
-      <g:gtin>079521</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3064,7 +3064,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Outdoor</g:product_type>
       <g:mpn>185862</g:mpn>
-      <g:gtin>185862</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3085,7 +3085,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Outdoor</g:product_type>
       <g:mpn>159652</g:mpn>
-      <g:gtin>159652</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3106,7 +3106,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083290</g:mpn>
-      <g:gtin>083290</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3127,7 +3127,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083315</g:mpn>
-      <g:gtin>083315</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3148,7 +3148,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>021193</g:mpn>
-      <g:gtin>021193</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3169,7 +3169,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Colles</g:product_type>
       <g:mpn>073479</g:mpn>
-      <g:gtin>073479</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3190,7 +3190,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>021284</g:mpn>
-      <g:gtin>021284</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3211,7 +3211,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083531</g:mpn>
-      <g:gtin>083531</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3232,7 +3232,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Outdoor</g:product_type>
       <g:mpn>081079</g:mpn>
-      <g:gtin>081079</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3253,7 +3253,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>184886</g:mpn>
-      <g:gtin>184886</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3274,7 +3274,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>125420</g:mpn>
-      <g:gtin>125420</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3295,7 +3295,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>159671</g:mpn>
-      <g:gtin>159671</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3316,7 +3316,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>082319</g:mpn>
-      <g:gtin>082319</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3337,7 +3337,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010108</g:mpn>
-      <g:gtin>010108</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3358,7 +3358,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010103</g:mpn>
-      <g:gtin>010103</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3379,7 +3379,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>012570</g:mpn>
-      <g:gtin>012570</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3400,7 +3400,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013085</g:mpn>
-      <g:gtin>013085</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3421,7 +3421,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>162032</g:mpn>
-      <g:gtin>162032</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3442,7 +3442,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083529</g:mpn>
-      <g:gtin>083529</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3463,7 +3463,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>069379</g:mpn>
-      <g:gtin>069379</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3484,7 +3484,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>012732</g:mpn>
-      <g:gtin>012732</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3505,7 +3505,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>182534</g:mpn>
-      <g:gtin>182534</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3526,7 +3526,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>086375</g:mpn>
-      <g:gtin>086375</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3547,7 +3547,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>069378</g:mpn>
-      <g:gtin>069378</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3568,7 +3568,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083318</g:mpn>
-      <g:gtin>083318</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3589,7 +3589,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>184797</g:mpn>
-      <g:gtin>184797</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3610,7 +3610,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013952</g:mpn>
-      <g:gtin>013952</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3631,7 +3631,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083302</g:mpn>
-      <g:gtin>083302</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3652,7 +3652,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083304</g:mpn>
-      <g:gtin>083304</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3673,7 +3673,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083287</g:mpn>
-      <g:gtin>083287</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3694,7 +3694,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Colles</g:product_type>
       <g:mpn>069953</g:mpn>
-      <g:gtin>069953</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3715,7 +3715,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083557</g:mpn>
-      <g:gtin>083557</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3736,7 +3736,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083537</g:mpn>
-      <g:gtin>083537</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3757,7 +3757,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083534</g:mpn>
-      <g:gtin>083534</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3778,7 +3778,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083547</g:mpn>
-      <g:gtin>083547</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3799,7 +3799,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083550</g:mpn>
-      <g:gtin>083550</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3820,7 +3820,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083295</g:mpn>
-      <g:gtin>083295</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3841,7 +3841,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010100</g:mpn>
-      <g:gtin>010100</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3862,7 +3862,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083303</g:mpn>
-      <g:gtin>083303</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3883,7 +3883,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083549</g:mpn>
-      <g:gtin>083549</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3904,7 +3904,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083556</g:mpn>
-      <g:gtin>083556</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3925,7 +3925,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083543</g:mpn>
-      <g:gtin>083543</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3946,7 +3946,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084923</g:mpn>
-      <g:gtin>084923</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3967,7 +3967,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>159671</g:mpn>
-      <g:gtin>159671</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -3988,7 +3988,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083530</g:mpn>
-      <g:gtin>083530</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4009,7 +4009,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>068044</g:mpn>
-      <g:gtin>068044</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4030,7 +4030,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083311</g:mpn>
-      <g:gtin>083311</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4051,7 +4051,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083541</g:mpn>
-      <g:gtin>083541</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4072,7 +4072,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>062194</g:mpn>
-      <g:gtin>062194</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4093,7 +4093,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>169408</g:mpn>
-      <g:gtin>169408</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4114,7 +4114,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083544</g:mpn>
-      <g:gtin>083544</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4135,7 +4135,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>088921</g:mpn>
-      <g:gtin>088921</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4156,7 +4156,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083552</g:mpn>
-      <g:gtin>083552</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4177,7 +4177,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083545</g:mpn>
-      <g:gtin>083545</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4198,7 +4198,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083551</g:mpn>
-      <g:gtin>083551</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4219,7 +4219,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083555</g:mpn>
-      <g:gtin>083555</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4240,7 +4240,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083542</g:mpn>
-      <g:gtin>083542</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4261,7 +4261,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083657</g:mpn>
-      <g:gtin>083657</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4282,7 +4282,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Colles</g:product_type>
       <g:mpn>067689</g:mpn>
-      <g:gtin>067689</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4303,7 +4303,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073173</g:mpn>
-      <g:gtin>073173</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4324,7 +4324,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083546</g:mpn>
-      <g:gtin>083546</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4345,7 +4345,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083548</g:mpn>
-      <g:gtin>083548</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4366,7 +4366,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083553</g:mpn>
-      <g:gtin>083553</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4387,7 +4387,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>082958</g:mpn>
-      <g:gtin>082958</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4408,7 +4408,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083562</g:mpn>
-      <g:gtin>083562</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4429,7 +4429,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083558</g:mpn>
-      <g:gtin>083558</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4450,7 +4450,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079312</g:mpn>
-      <g:gtin>079312</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4471,7 +4471,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>067259</g:mpn>
-      <g:gtin>067259</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4492,7 +4492,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079314</g:mpn>
-      <g:gtin>079314</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4513,7 +4513,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012496</g:mpn>
-      <g:gtin>012496</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4534,7 +4534,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>055889</g:mpn>
-      <g:gtin>055889</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4555,7 +4555,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083535</g:mpn>
-      <g:gtin>083535</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4576,7 +4576,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>163670</g:mpn>
-      <g:gtin>163670</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4597,7 +4597,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>011861</g:mpn>
-      <g:gtin>011861</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4618,7 +4618,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>179263</g:mpn>
-      <g:gtin>179263</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4639,7 +4639,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083538</g:mpn>
-      <g:gtin>083538</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4660,7 +4660,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084757</g:mpn>
-      <g:gtin>084757</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4681,7 +4681,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083559</g:mpn>
-      <g:gtin>083559</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4702,7 +4702,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083560</g:mpn>
-      <g:gtin>083560</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4723,7 +4723,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>163671</g:mpn>
-      <g:gtin>163671</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4744,7 +4744,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>182532</g:mpn>
-      <g:gtin>182532</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4765,7 +4765,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>021283</g:mpn>
-      <g:gtin>021283</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4786,7 +4786,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>084070</g:mpn>
-      <g:gtin>084070</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4807,7 +4807,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083561</g:mpn>
-      <g:gtin>083561</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4828,7 +4828,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084758</g:mpn>
-      <g:gtin>084758</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4849,7 +4849,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083563</g:mpn>
-      <g:gtin>083563</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4870,7 +4870,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>017393</g:mpn>
-      <g:gtin>017393</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4891,7 +4891,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083533</g:mpn>
-      <g:gtin>083533</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4912,7 +4912,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>084756</g:mpn>
-      <g:gtin>084756</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4933,7 +4933,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>011865</g:mpn>
-      <g:gtin>011865</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4954,7 +4954,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>182536</g:mpn>
-      <g:gtin>182536</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4975,7 +4975,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>084072</g:mpn>
-      <g:gtin>084072</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -4996,7 +4996,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079313</g:mpn>
-      <g:gtin>079313</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5017,7 +5017,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079315</g:mpn>
-      <g:gtin>079315</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5038,7 +5038,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079317</g:mpn>
-      <g:gtin>079317</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5059,7 +5059,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064658</g:mpn>
-      <g:gtin>064658</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5080,7 +5080,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064681</g:mpn>
-      <g:gtin>064681</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5101,7 +5101,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>081466</g:mpn>
-      <g:gtin>081466</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5122,7 +5122,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041115</g:mpn>
-      <g:gtin>041115</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5143,7 +5143,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083297</g:mpn>
-      <g:gtin>083297</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5164,7 +5164,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083299</g:mpn>
-      <g:gtin>083299</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5185,7 +5185,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>062002</g:mpn>
-      <g:gtin>062002</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5206,7 +5206,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>062003</g:mpn>
-      <g:gtin>062003</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5227,7 +5227,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041113</g:mpn>
-      <g:gtin>041113</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5248,7 +5248,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083301</g:mpn>
-      <g:gtin>083301</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5269,7 +5269,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083307</g:mpn>
-      <g:gtin>083307</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5290,7 +5290,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041114</g:mpn>
-      <g:gtin>041114</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5311,7 +5311,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041121</g:mpn>
-      <g:gtin>041121</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5332,7 +5332,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>083905</g:mpn>
-      <g:gtin>083905</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5353,7 +5353,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>083655</g:mpn>
-      <g:gtin>083655</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5374,7 +5374,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012506</g:mpn>
-      <g:gtin>012506</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5395,7 +5395,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>083903</g:mpn>
-      <g:gtin>083903</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5416,7 +5416,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>010072</g:mpn>
-      <g:gtin>010072</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5437,7 +5437,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083309</g:mpn>
-      <g:gtin>083309</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5458,7 +5458,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083313</g:mpn>
-      <g:gtin>083313</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5479,7 +5479,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>182533</g:mpn>
-      <g:gtin>182533</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5500,7 +5500,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083285</g:mpn>
-      <g:gtin>083285</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5521,7 +5521,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013269</g:mpn>
-      <g:gtin>013269</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5542,7 +5542,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013271</g:mpn>
-      <g:gtin>013271</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5563,7 +5563,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>181844</g:mpn>
-      <g:gtin>181844</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5584,7 +5584,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>188731</g:mpn>
-      <g:gtin>188731</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5605,7 +5605,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>172175</g:mpn>
-      <g:gtin>172175</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5626,7 +5626,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010100</g:mpn>
-      <g:gtin>010100</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5647,7 +5647,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>187826</g:mpn>
-      <g:gtin>187826</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5668,7 +5668,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>084069</g:mpn>
-      <g:gtin>084069</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5689,7 +5689,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>040181</g:mpn>
-      <g:gtin>040181</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5710,7 +5710,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>089547</g:mpn>
-      <g:gtin>089547</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5731,7 +5731,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>084071</g:mpn>
-      <g:gtin>084071</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5752,7 +5752,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041059</g:mpn>
-      <g:gtin>041059</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5773,7 +5773,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064657</g:mpn>
-      <g:gtin>064657</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5794,7 +5794,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>088472</g:mpn>
-      <g:gtin>088472</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5815,7 +5815,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>041120</g:mpn>
-      <g:gtin>041120</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5836,7 +5836,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>088473</g:mpn>
-      <g:gtin>088473</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5857,7 +5857,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>081061</g:mpn>
-      <g:gtin>081061</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5878,7 +5878,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012665</g:mpn>
-      <g:gtin>012665</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5899,7 +5899,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083310</g:mpn>
-      <g:gtin>083310</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5920,7 +5920,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083539</g:mpn>
-      <g:gtin>083539</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5941,7 +5941,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>088426</g:mpn>
-      <g:gtin>088426</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5962,7 +5962,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Outdoor</g:product_type>
       <g:mpn>081081</g:mpn>
-      <g:gtin>081081</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -5983,7 +5983,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>040983</g:mpn>
-      <g:gtin>040983</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6004,7 +6004,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073172</g:mpn>
-      <g:gtin>073172</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6025,7 +6025,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064376</g:mpn>
-      <g:gtin>064376</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6046,7 +6046,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012679</g:mpn>
-      <g:gtin>012679</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6067,7 +6067,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012680</g:mpn>
-      <g:gtin>012680</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6088,7 +6088,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>064375</g:mpn>
-      <g:gtin>064375</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6109,7 +6109,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>081062</g:mpn>
-      <g:gtin>081062</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6130,7 +6130,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012676</g:mpn>
-      <g:gtin>012676</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6151,7 +6151,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>042727</g:mpn>
-      <g:gtin>042727</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6172,7 +6172,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012677</g:mpn>
-      <g:gtin>012677</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6193,7 +6193,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012693</g:mpn>
-      <g:gtin>012693</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6214,7 +6214,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Abrasifs &amp; Outils</g:product_type>
       <g:mpn>012666</g:mpn>
-      <g:gtin>012666</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6235,7 +6235,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>010093</g:mpn>
-      <g:gtin>010093</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6256,7 +6256,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>013952</g:mpn>
-      <g:gtin>013952</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6277,7 +6277,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>088622</g:mpn>
-      <g:gtin>088622</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6298,7 +6298,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Outdoor</g:product_type>
       <g:mpn>081077</g:mpn>
-      <g:gtin>081077</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6319,7 +6319,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083289</g:mpn>
-      <g:gtin>083289</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6340,7 +6340,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>083305</g:mpn>
-      <g:gtin>083305</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6361,7 +6361,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>073699</g:mpn>
-      <g:gtin>073699</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6382,7 +6382,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079311</g:mpn>
-      <g:gtin>079311</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>
@@ -6403,7 +6403,7 @@
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Vitrificateurs &amp; Huiles</g:product_type>
       <g:mpn>079316</g:mpn>
-      <g:gtin>079316</g:gtin>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:shipping>
         <g:country>FR</g:country>
         <g:service>Standard</g:service>

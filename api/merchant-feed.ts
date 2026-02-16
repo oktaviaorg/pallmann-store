@@ -86,6 +86,7 @@ export default async function handler(req: any, res: any) {
       <g:condition>new</g:condition>
       <g:brand>Pallmann</g:brand>
       <g:mpn>${escapeXml(mpn)}</g:mpn>
+      <g:identifier_exists>false</g:identifier_exists>
       <g:google_product_category>2047</g:google_product_category>
       <g:product_type>Entretien parquet > Produits professionnels</g:product_type>
       <g:shipping>

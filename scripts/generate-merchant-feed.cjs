@@ -81,7 +81,7 @@ function generateXML(products) {
     const imageUrl = product.image_url || `${STORE_URL}/images/pallmann-default.png`;
     
     // Identifiants
-    const gtin = product.ref || ''; // Code EAN si disponible
+    const gtin = product.ean || product.gtin || ''; // Vrai code EAN uniquement (pas la ref Pallmann!)
     const mpn = product.ref || product.id; // Référence fabricant
     const brand = 'Pallmann';
 
