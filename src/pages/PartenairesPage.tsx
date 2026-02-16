@@ -32,9 +32,9 @@ const partners: Partner[] = [
     description: 'Expert en pose et rénovation de parquets. Qualité et savoir-faire au service de vos sols.',
     locations: ['Alsace'],
     phone: '',
-    email: 'e.nuber@parqline.fr',
-    website: '',
-    logo: '',
+    email: 'contact@parqline.fr',
+    website: 'https://parqline.fr',
+    logo: '/logos/parqline-logo.png',
     services: ['Pose de parquet', 'Rénovation', 'Ponçage', 'Finition'],
   },
 ];
