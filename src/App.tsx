@@ -8,6 +8,7 @@ import { CompareProvider } from './lib/CompareContext';
 import CompareBar from './components/CompareBar';
 import MobileCartButton from './components/MobileCartButton';
 import TechnicianPopup from './components/TechnicianPopup';
+import FloatingPhone from './components/FloatingPhone';
 
 // Pages principales
 import HomePage from './pages/HomePage';
@@ -137,6 +138,7 @@ export default function App() {
             <MobileCartButton />
             <TechnicianPopup />
             <CompareBar />
+            <FloatingPhone />
             </CompareProvider>
           </QuoteProvider>
         </CartProvider>
