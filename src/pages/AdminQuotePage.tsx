@@ -5,7 +5,7 @@ import {
   Search, Plus, Minus, Trash2, Send, FileText, Percent, User, Mail, Phone, Lock, 
   Calculator, Lightbulb, ShoppingBag, Package, Ruler, Droplets, CheckCircle, 
   ArrowRight, Sparkles, Zap, ChevronDown, ChevronUp, RefreshCw, ClipboardCopy,
-  MessageCircle, Camera, HelpCircle, CheckSquare, Square
+  MessageCircle, Camera, HelpCircle, CheckSquare, Square, X
 } from 'lucide-react';
 
 interface Product {
@@ -504,28 +504,36 @@ export default function AdminQuotePage() {
     fetchProducts();
   }, []);
 
-  // ===== RECHERCHE =====
+  // ===== RECHERCHE LOCALE INSTANTANÉE =====
+  const normalize = (str: string) => {
+    return str.toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, ' ')
+      .trim();
+  };
+
   useEffect(() => {
-    const searchProducts = async () => {
-      if (searchTerm.length < 2) {
-        setSearchResults([]);
-        return;
-      }
+    if (searchTerm.length < 2) {
+      setSearchResults([]);
+      return;
+    }
 
-      const { data } = await supabase
-        .from('pallmann_products')
-        .select('id, name, slug, price_public_ht, image_url, ref')
-        .eq('published', true)
-        .gt('price_public_ht', 0)
-        .or(`name.ilike.%${searchTerm}%,ref.ilike.%${searchTerm}%,slug.ilike.%${searchTerm}%`)
-        .limit(12);
+    const searchNormalized = normalize(searchTerm);
+    const terms = searchNormalized.split(' ').filter(t => t.length > 0);
+    
+    const results = allProducts
+      .filter(product => {
+        const nameNormalized = normalize(product.name);
+        const refLower = (product.ref || '').toLowerCase();
+        return terms.every(term => 
+          nameNormalized.includes(term) || refLower.includes(term)
+        );
+      })
+      .slice(0, 10);
 
-      setSearchResults(data || []);
-    };
-
-    const debounce = setTimeout(searchProducts, 300);
-    return () => clearTimeout(debounce);
-  }, [searchTerm]);
+    setSearchResults(results);
+  }, [searchTerm, allProducts]);
 
   // ===== ACTIONS DEVIS =====
   const addProduct = (product: Product, qty: number = 1) => {
@@ -1270,37 +1278,70 @@ export default function AdminQuotePage() {
                 Rechercher un produit
               </h2>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${searchTerm ? 'text-orange-500' : 'text-gray-400'}`} />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  placeholder="Nom du produit, référence..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  placeholder="Tapez pour rechercher (ex: pall-x, 041111...)"
+                  className={`w-full pl-10 pr-10 py-3 border-2 rounded-xl transition-all ${
+                    searchTerm 
+                      ? 'border-orange-500 bg-orange-50 focus:ring-2 focus:ring-orange-500/30' 
+                      : 'border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20'
+                  }`}
                 />
+                {searchTerm && (
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                )}
                 
                 {searchResults.length > 0 && (
-                  <div className="absolute z-10 w-full mt-2 bg-white rounded-xl shadow-xl border border-gray-100 max-h-80 overflow-y-auto">
-                    {searchResults.map(product => (
-                      <button
-                        key={product.id}
-                        onClick={() => addProduct(product)}
-                        className="w-full p-3 flex items-center gap-3 hover:bg-orange-50 transition-all text-left border-b border-gray-50 last:border-0"
-                      >
-                        {product.image_url && (
-                          <img src={product.image_url} alt="" className="w-12 h-12 object-contain rounded-lg bg-gray-50" />
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-gray-900 truncate">{product.name}</div>
-                          <div className="text-xs text-gray-500">Réf: {product.ref}</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-bold text-orange-600">{product.price_public_ht?.toFixed(2)}€</div>
-                          <div className="text-xs text-gray-500">HT</div>
-                        </div>
-                        <Plus className="w-5 h-5 text-orange-500" />
-                      </button>
-                    ))}
+                  <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden">
+                    <div className="px-4 py-2 bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase">
+                      {searchResults.length} résultat{searchResults.length > 1 ? 's' : ''} • Cliquez pour ajouter
+                    </div>
+                    <div className="max-h-72 overflow-y-auto">
+                      {searchResults.map((product, index) => (
+                        <button
+                          key={product.id}
+                          onClick={() => addProduct(product)}
+                          className={`w-full p-3 flex items-center gap-3 hover:bg-amber-50 transition-all text-left border-b border-gray-50 last:border-0 ${index === 0 ? 'bg-orange-50' : ''}`}
+                        >
+                          {product.image_url ? (
+                            <img src={product.image_url} alt="" className="w-12 h-12 object-contain rounded-lg bg-gray-50 p-1" />
+                          ) : (
+                            <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
+                              <Package className="w-6 h-6 text-gray-400" />
+                            </div>
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <div className="font-semibold text-gray-900 truncate">{product.name}</div>
+                            <div className="text-xs text-gray-500 font-mono">Réf: {product.ref}</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-bold text-orange-600">{product.price_public_ht?.toFixed(2)}€</div>
+                            <div className="text-xs text-gray-500">HT</div>
+                          </div>
+                          <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+                            <Plus className="w-4 h-4 text-white" />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                    <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 text-xs text-gray-500">
+                      💡 Tapez le nom ou la référence du produit
+                    </div>
+                  </div>
+                )}
+                
+                {searchTerm.length >= 2 && searchResults.length === 0 && (
+                  <div className="absolute z-50 w-full mt-2 bg-white rounded-xl shadow-xl border border-gray-200 p-4 text-center">
+                    <Search className="w-8 h-8 mx-auto text-gray-300 mb-2" />
+                    <p className="text-gray-500 text-sm">Aucun produit trouvé pour "{searchTerm}"</p>
                   </div>
                 )}
               </div>
