@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TechnicianCallout from '../components/TechnicianCallout';
+import AddToCartModal from '../components/AddToCartModal';
 import { useCart } from '../lib/CartContext';
 import { supabase } from '../lib/supabase';
 import { ShoppingCart, ArrowLeft, Package, Truck, Shield, FileText } from 'lucide-react';
@@ -28,6 +29,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [showCartModal, setShowCartModal] = useState(false);
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -132,6 +134,7 @@ export default function ProductPage() {
       quantity,
       image_url: product.image_url,
     });
+    setShowCartModal(true);
   };
 
   // Schema.org Product markup for SEO
@@ -305,6 +308,13 @@ export default function ProductPage() {
       </main>
 
       <Footer />
+
+      {/* Modal après ajout au panier */}
+      <AddToCartModal 
+        isOpen={showCartModal}
+        onClose={() => setShowCartModal(false)}
+        productName={product?.name || ''}
+      />
     </div>
   );
 }
