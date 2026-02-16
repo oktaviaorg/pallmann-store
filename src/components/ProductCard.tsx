@@ -142,14 +142,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
         {productColor && (
           <span 
-            className="px-2 py-0.5 rounded-md text-[10px] font-bold flex items-center gap-1.5 border border-gray-200"
+            className="px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 border-2 border-gray-300 shadow-md"
             style={{ backgroundColor: '#fff' }}
           >
             <span 
-              className="w-3 h-3 rounded-full border border-gray-300 shadow-inner"
+              className="w-5 h-5 rounded-full border-2 border-gray-400 shadow-lg"
               style={{ backgroundColor: productColor.hex }}
             />
-            <span className="text-gray-700">{productColor.name}</span>
+            <span className="text-gray-800">{productColor.name}</span>
           </span>
         )}
         {product.is_new && (
