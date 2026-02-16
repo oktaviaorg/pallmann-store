@@ -5,6 +5,7 @@ import { AuthProvider } from './lib/AuthProvider';
 import { CartProvider } from './lib/CartContext';
 import { QuoteProvider } from './lib/QuoteContext';
 import MobileCartButton from './components/MobileCartButton';
+import TechnicianPopup from './components/TechnicianPopup';
 
 // Pages principales
 import HomePage from './pages/HomePage';
@@ -125,6 +126,7 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
             </Routes>
             <MobileCartButton />
+            <TechnicianPopup />
           </QuoteProvider>
         </CartProvider>
       </AuthProvider>
