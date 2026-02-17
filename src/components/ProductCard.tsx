@@ -100,6 +100,34 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   const productColor = getProductColor();
 
+  // Détecter le type de finition (mat, satiné, brillant, haut-satiné)
+  const getFinishType = (): { type: string; label: string; color: string; bgColor: string } | null => {
+    const name = product.name.toLowerCase();
+    
+    // Ne pas afficher pour les produits qui ne sont pas des vitrificateurs
+    if (!name.includes('pall-x') && !name.includes('vitrificateur')) return null;
+    
+    // Éviter les faux positifs (durcisseur, base, etc.)
+    if (name.includes('durcisseur') || name.includes('base') || name.includes('filler') || name.includes('kitt')) return null;
+    
+    if (name.includes('haut-satin') || name.includes('haut satin')) {
+      return { type: 'haut-satine', label: 'HAUT-SATINÉ', color: '#9333EA', bgColor: 'rgba(147, 51, 234, 0.15)' };
+    }
+    if (name.includes('brillant')) {
+      return { type: 'brillant', label: 'BRILLANT', color: '#7C3AED', bgColor: 'rgba(124, 58, 237, 0.15)' };
+    }
+    if (name.includes('satiné') || name.includes('satine')) {
+      return { type: 'satine', label: 'SATINÉ', color: '#D97706', bgColor: 'rgba(217, 119, 6, 0.15)' };
+    }
+    if (name.includes(' mat ') || name.includes(' mat') || name.endsWith('mat')) {
+      return { type: 'mat', label: 'MAT', color: '#2563EB', bgColor: 'rgba(37, 99, 235, 0.15)' };
+    }
+    
+    return null;
+  };
+
+  const finishType = getFinishType();
+
   // Formater la contenance de façon claire
   const formatContenance = (): string | null => {
     const size = product.pack_size || 1;
@@ -163,8 +191,24 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
 
+      {/* Finish Type Badge (Mat/Satiné/Brillant) */}
+      {finishType && (
+        <div className="absolute top-3 right-3 z-10">
+          <span 
+            className="px-3 py-1.5 rounded-lg text-xs font-black tracking-wide shadow-lg border-2"
+            style={{ 
+              backgroundColor: finishType.bgColor, 
+              color: finishType.color,
+              borderColor: finishType.color
+            }}
+          >
+            {finishType.label}
+          </span>
+        </div>
+      )}
+
       {/* Stock status */}
-      {product.stock_status === 'low_stock' && (
+      {product.stock_status === 'low_stock' && !finishType && (
         <div className="absolute top-3 right-3 z-10">
           <span className="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-md text-[10px] font-bold">
             Stock limité

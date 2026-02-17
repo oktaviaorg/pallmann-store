@@ -63,6 +63,7 @@ const BoutiquePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('popular');
+  const [finishFilter, setFinishFilter] = useState<'all' | 'mat' | 'satine' | 'brillant'>('all');
   const { addItem, items, companyCode, setCompanyCode, totalHT } = useCart();
   const { addItem: addToQuote, removeItem: removeFromQuote, isInQuote } = useQuote();
   
@@ -201,7 +202,14 @@ const BoutiquePage: React.FC = () => {
       normalize(product.description || '').includes(searchNormalized) ||
       (product.ref || '').toLowerCase().includes(searchTerm.toLowerCase());
 
-    return matchesCategory && matchesSearch;
+    // Filtre par type de finition (mat/satiné/brillant)
+    const productName = product.name.toLowerCase();
+    const matchesFinish = finishFilter === 'all' || 
+      (finishFilter === 'mat' && (productName.includes(' mat ') || productName.includes(' mat') || productName.endsWith('mat'))) ||
+      (finishFilter === 'satine' && (productName.includes('satiné') || productName.includes('satine') || productName.includes('haut-satin') || productName.includes('haut satin'))) ||
+      (finishFilter === 'brillant' && productName.includes('brillant'));
+
+    return matchesCategory && matchesSearch && matchesFinish;
   });
 
   // Séparer les produits PALL-X 333C (teintes)
@@ -557,6 +565,56 @@ const BoutiquePage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Filtre par finition (Mat/Satiné/Brillant) */}
+              <div className="mb-4 pt-4 border-t border-gray-100">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg">✨</span>
+                  <span className="text-sm font-semibold text-[#6B6B6B]">Type de finition</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setFinishFilter('all')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                      finishFilter === 'all'
+                        ? 'bg-[#FF9900] text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    Toutes finitions
+                  </button>
+                  <button
+                    onClick={() => setFinishFilter('mat')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border-2 ${
+                      finishFilter === 'mat'
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100'
+                    }`}
+                  >
+                    🔵 MAT
+                  </button>
+                  <button
+                    onClick={() => setFinishFilter('satine')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border-2 ${
+                      finishFilter === 'satine'
+                        ? 'bg-amber-500 text-white border-amber-500'
+                        : 'bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100'
+                    }`}
+                  >
+                    ✨ SATINÉ
+                  </button>
+                  <button
+                    onClick={() => setFinishFilter('brillant')}
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border-2 ${
+                      finishFilter === 'brillant'
+                        ? 'bg-purple-600 text-white border-purple-600'
+                        : 'bg-purple-50 text-purple-600 border-purple-200 hover:bg-purple-100'
+                    }`}
+                  >
+                    💎 BRILLANT
+                  </button>
+                </div>
+              </div>
+
               {/* Code promo PRO */}
               <div className="pt-4 border-t border-gray-100">
                 <div className="flex items-center gap-2 mb-2">
@@ -595,7 +653,7 @@ const BoutiquePage: React.FC = () => {
               </div>
 
               {/* Active filters display */}
-              {(selectedCategory !== 'all' || searchTerm) && (
+              {(selectedCategory !== 'all' || searchTerm || finishFilter !== 'all') && (
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-[#6B6B6B]">
                     <span className="font-bold text-[#1A1A1A]">{sortedProducts.length + (colorVariants.length > 0 ? 1 : 0)}</span> produit{(sortedProducts.length + (colorVariants.length > 0 ? 1 : 0)) > 1 ? 's' : ''} trouvé{(sortedProducts.length + (colorVariants.length > 0 ? 1 : 0)) > 1 ? 's' : ''}
@@ -605,6 +663,7 @@ const BoutiquePage: React.FC = () => {
                     onClick={() => {
                       setSelectedCategory('all');
                       setSearchTerm('');
+                      setFinishFilter('all');
                     }}
                     className="text-[#F0C300] font-semibold hover:underline"
                   >
@@ -667,6 +726,7 @@ const BoutiquePage: React.FC = () => {
                   onClick={() => {
                     setSelectedCategory('all');
                     setSearchTerm('');
+                    setFinishFilter('all');
                   }}
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-bold"
                   style={{ background: 'linear-gradient(135deg, #FF9900 0%, #F0C300 100%)' }}
