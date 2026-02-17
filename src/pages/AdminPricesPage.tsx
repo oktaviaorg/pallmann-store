@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import { 
   Search, Lock, Filter, TrendingUp, DollarSign, Package, 
   Percent, Download, RefreshCw, Eye, EyeOff, ChevronDown, FileText,
-  ImageOff, Camera, AlertTriangle
+  ImageOff, Camera, AlertTriangle, Power, PowerOff
 } from 'lucide-react';
 
 interface Product {
@@ -39,6 +39,7 @@ export default function AdminPricesPage() {
   const [sortBy, setSortBy] = useState<'name' | 'margin' | 'price'>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [zoomedImage, setZoomedImage] = useState<{ url: string; name: string } | null>(null);
+  const [statusFilter, setStatusFilter] = useState<'all' | 'published' | 'unpublished'>('published');
 
   // Protection anti-scrapping: mot de passe simple
   const ADMIN_PASSWORD = 'Lematoubleu1789';
@@ -86,11 +87,10 @@ export default function AdminPricesPage() {
       
       if (catData) setCategories(catData);
 
-      // Charger les produits
+      // Charger les produits (y compris non publiés pour l'admin)
       const { data: prodData } = await supabase
         .from('pallmann_products')
         .select('id, name, ref, unit, pack_size, price_achat, price_public_ht, category_id, published, image_url')
-        .eq('published', true)
         .order('name');
       
       if (prodData) {
@@ -152,6 +152,32 @@ export default function AdminPricesPage() {
     return products.filter(p => p.photo_issue).length;
   }, [products]);
 
+  // Toggle publication d'un produit
+  const togglePublished = async (productId: string, currentValue: boolean) => {
+    const newValue = !currentValue;
+    
+    // Update local state immediately
+    setProducts(prev => prev.map(p => 
+      p.id === productId ? { ...p, published: newValue } : p
+    ));
+    
+    // Update in Supabase
+    try {
+      const { error } = await supabase
+        .from('pallmann_products')
+        .update({ published: newValue })
+        .eq('id', productId);
+      
+      if (error) throw error;
+    } catch (err) {
+      console.error('Erreur mise à jour published:', err);
+      // Revert on error
+      setProducts(prev => prev.map(p => 
+        p.id === productId ? { ...p, published: currentValue } : p
+      ));
+    }
+  };
+
   // Calcul de la marge
   const calculateMargin = (priceAchat: number | null, priceVente: number) => {
     if (!priceAchat || priceAchat === 0 || !priceVente) return { euros: 0, percent: 0 };
@@ -169,7 +195,11 @@ export default function AdminPricesPage() {
       
       const matchCategory = selectedCategory === 'all' || p.category_id === selectedCategory;
       
-      return matchSearch && matchCategory;
+      const matchStatus = statusFilter === 'all' || 
+        (statusFilter === 'published' && p.published) ||
+        (statusFilter === 'unpublished' && !p.published);
+      
+      return matchSearch && matchCategory && matchStatus;
     });
 
     // Tri
@@ -190,7 +220,7 @@ export default function AdminPricesPage() {
     });
 
     return result;
-  }, [products, searchTerm, selectedCategory, sortBy, sortOrder]);
+  }, [products, searchTerm, selectedCategory, sortBy, sortOrder, statusFilter]);
 
   // Export CSV
   const exportCSV = () => {
@@ -421,6 +451,19 @@ export default function AdminPricesPage() {
               </div>
               
               <div className="flex items-center gap-2">
+                <Power className="w-4 h-4 text-gray-500" />
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value as 'all' | 'published' | 'unpublished')}
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500"
+                >
+                  <option value="published">✅ En ligne</option>
+                  <option value="unpublished">⏸️ En attente</option>
+                  <option value="all">📋 Tous</option>
+                </select>
+              </div>
+              
+              <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-500">Trier:</span>
                 <select
                   value={`${sortBy}-${sortOrder}`}
@@ -462,19 +505,20 @@ export default function AdminPricesPage() {
                         <th className="px-4 py-3 text-right text-xs font-semibold text-gray-600 uppercase">Marge %</th>
                       </>
                     )}
+                    <th className="px-3 py-3 text-center text-xs font-semibold text-gray-600 uppercase">Statut</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   {loading ? (
                     <tr>
-                      <td colSpan={8} className="px-4 py-8 text-center text-gray-500">
+                      <td colSpan={9} className="px-4 py-8 text-center text-gray-500">
                         <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2" />
                         Chargement...
                       </td>
                     </tr>
                   ) : filteredProducts.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="px-4 py-8 text-center text-gray-500">
+                      <td colSpan={9} className="px-4 py-8 text-center text-gray-500">
                         Aucun produit trouvé
                       </td>
                     </tr>
@@ -549,6 +593,19 @@ export default function AdminPricesPage() {
                               </td>
                             </>
                           )}
+                          <td className="px-3 py-3 text-center">
+                            <button
+                              onClick={() => togglePublished(product.id, product.published)}
+                              className={`p-2 rounded-lg transition-all ${
+                                product.published
+                                  ? 'bg-green-100 text-green-600 hover:bg-green-200'
+                                  : 'bg-gray-100 text-gray-400 hover:bg-amber-100 hover:text-amber-600'
+                              }`}
+                              title={product.published ? 'En ligne - Cliquer pour mettre en attente' : 'En attente - Cliquer pour publier'}
+                            >
+                              {product.published ? <Power className="w-4 h-4" /> : <PowerOff className="w-4 h-4" />}
+                            </button>
+                          </td>
                         </tr>
                       );
                     })
