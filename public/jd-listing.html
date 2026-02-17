@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📋 Guide de Présentation - Pallmann France</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #FF9900 0%, #e88a00 100%);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #1e293b;
+    }
+    
+    .header p {
+      color: rgba(0,0,0,0.7);
+      font-size: 1.1rem;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+      margin: 40px 0 20px;
+      color: #FF9900;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .step-number {
+      background: #FF9900;
+      color: #1e293b;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    
+    .page-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .page-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .page-card.show {
+      border-left: 4px solid #22c55e;
+    }
+    
+    .page-card.confidential {
+      border-left: 4px solid #dc2626;
+      background: rgba(220,38,38,0.05);
+    }
+    
+    .page-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .badge {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .badge-show {
+      background: #22c55e;
+      color: white;
+    }
+    
+    .badge-secret {
+      background: #dc2626;
+      color: white;
+    }
+    
+    .badge-optional {
+      background: #3b82f6;
+      color: white;
+    }
+    
+    .page-url {
+      font-family: monospace;
+      background: rgba(0,0,0,0.3);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 12px 0;
+      word-break: break-all;
+    }
+    
+    .page-url a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+    
+    .page-url a:hover {
+      text-decoration: underline;
+    }
+    
+    .why {
+      background: rgba(255,153,0,0.1);
+      border-left: 3px solid #FF9900;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .why strong {
+      color: #FF9900;
+    }
+    
+    .script {
+      background: rgba(34,197,94,0.1);
+      border-left: 3px solid #22c55e;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+    
+    .script::before {
+      content: "💬 ";
+    }
+    
+    .points {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    
+    .points li {
+      margin: 8px 0;
+      color: #cbd5e1;
+    }
+    
+    .warning {
+      background: rgba(220,38,38,0.2);
+      border: 1px solid #dc2626;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+    }
+    
+    .warning strong {
+      color: #dc2626;
+    }
+    
+    .summary {
+      background: linear-gradient(135deg, rgba(255,153,0,0.2) 0%, rgba(255,153,0,0.1) 100%);
+      border: 2px solid #FF9900;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+    
+    .summary h3 {
+      color: #FF9900;
+      margin-bottom: 15px;
+      font-size: 1.25rem;
+    }
+    
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .summary-item {
+      text-align: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+    }
+    
+    .summary-item .emoji {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    
+    .summary-item .label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #64748b;
+    }
+    
+    @media (max-width: 600px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      body {
+        padding: 20px 15px;
+      }
+      
+      .header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <h1>📋 Guide de Présentation</h1>
+      <p>Réunion Directeur Commercial Pallmann France</p>
+    </div>
+    
+    <!-- RÉSUMÉ RAPIDE -->
+    <div class="summary">
+      <h3>🎯 Résumé - 3 liens, 2 à montrer</h3>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="emoji">🇫🇷🇩🇪</div>
+          <div><strong>Bilingue</strong></div>
+          <div class="label">Accroche principale</div>
+        </div>
+        <div class="summary-item">
+          <div class="emoji">🇫🇷</div>
+          <div><strong>FR Détaillé</strong></div>
+          <div class="label">Approfondir si intérêt</div>
+        </div>
+        <div class="summary-item">
+          <div class="emoji">🔒</div>
+          <div><strong>Valorisation</strong></div>
+          <div class="label">Pour TOI uniquement</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ÉTAPE 1 -->
+    <h2><span class="step-number">1</span> Accroche</h2>
+    
+    <div class="page-card show">
+      <div class="page-title">
+        🇫🇷🇩🇪 Présentation Bilingue
+        <span class="badge badge-show">À MONTRER</span>
+      </div>
+      
+      <div class="page-url">
+        <a href="https://www.pallmann-store.com/presentation-pallmann.html" target="_blank">
+          pallmann-store.com/presentation-pallmann.html
+        </a>
+      </div>
+      
+      <div class="why">
+        <strong>Pourquoi cette page ?</strong> Elle parle aux Allemands dans leur langue tout en montrant la vision France. Ça prouve ton sérieux et ta capacité à faire le pont.
+      </div>
+      
+      <div class="script">
+        "Voici ce que j'ai développé pour le marché français. J'ai fait une version bilingue pour que vos équipes allemandes puissent aussi comprendre."
+      </div>
+      
+      <ul class="points">
+        <li>✓ Vision stratégique claire</li>
+        <li>✓ Chiffres clés (322 produits, 1000+ articles SEO)</li>
+        <li>✓ Roadmap 2026-2027</li>
+        <li>✓ Proposition de partenariat</li>
+      </ul>
+    </div>
+    
+    <!-- ÉTAPE 2 -->
+    <h2><span class="step-number">2</span> Détails (si intérêt)</h2>
+    
+    <div class="page-card show">
+      <div class="page-title">
+        🇫🇷 Présentation FR Complète
+        <span class="badge badge-optional">SI QUESTIONS</span>
+      </div>
+      
+      <div class="page-url">
+        <a href="https://www.pallmann-store.com/presentation-fr.html" target="_blank">
+          pallmann-store.com/presentation-fr.html
+        </a>
+      </div>
+      
+      <div class="why">
+        <strong>Pourquoi cette page ?</strong> Plus de détails en français. À utiliser seulement s'ils veulent creuser certains points.
+      </div>
+      
+      <div class="script">
+        "Si vous voulez plus de détails sur un point précis, j'ai une version plus complète ici..."
+      </div>
+      
+      <ul class="points">
+        <li>✓ Même contenu, 100% français</li>
+        <li>✓ Pour le directeur FR qui préfère sa langue</li>
+        <li>✓ Détails techniques complémentaires</li>
+      </ul>
+    </div>
+    
+    <!-- ÉTAPE 3 -->
+    <h2><span class="step-number">3</span> Préparation Négociation</h2>
+    
+    <div class="page-card confidential">
+      <div class="page-title">
+        🔒 Document de Valorisation
+        <span class="badge badge-secret">NE PAS MONTRER</span>
+      </div>
+      
+      <div class="page-url">
+        <a href="https://www.pallmann-store.com/jd-valo-2026.html" target="_blank">
+          pallmann-store.com/jd-valo-2026.html
+        </a>
+      </div>
+      
+      <div class="warning">
+        <strong>⚠️ CONFIDENTIEL</strong> - Ce document est uniquement pour toi. À relire AVANT le RDV pour avoir tous les chiffres en tête.
+      </div>
+      
+      <div class="why">
+        <strong>Pourquoi cette page ?</strong> C'est ton mémo de négociation. Les vrais chiffres, les tactiques, ce qu'il faut dire et ne pas dire.
+      </div>
+      
+      <ul class="points">
+        <li>💰 Coût reproduction : 60-108k€</li>
+        <li>🎯 Valeur stratégique : 80-150k€</li>
+        <li>📊 Scénarios (vente / licence / royalties)</li>
+        <li>✅ Ce qu'il faut dire</li>
+        <li>❌ Ce qu'il ne faut PAS dire</li>
+        <li>🎯 Tactiques de négociation</li>
+      </ul>
+    </div>
+    
+    <!-- BONUS -->
+    <h2>🌐 Site Live</h2>
+    
+    <div class="page-card show">
+      <div class="page-title">
+        🛒 Pallmann Store
+        <span class="badge badge-show">DÉMO</span>
+      </div>
+      
+      <div class="page-url">
+        <a href="https://www.pallmann-store.com" target="_blank">
+          pallmann-store.com
+        </a>
+      </div>
+      
+      <div class="why">
+        <strong>Pourquoi ?</strong> C'est la preuve vivante. Montre le site en live, navigue, montre les produits. Ça vaut mieux que tous les slides.
+      </div>
+      
+      <div class="script">
+        "Et voici le site en production. 322 produits, fiches techniques complètes, c'est déjà opérationnel..."
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>📋 Guide préparé par Camille - Février 2026</p>
+      <p style="margin-top: 8px;">→ <a href="jd-antiseche.html" style="color: #FF9900;">Voir l'antisèche condensée</a></p>
+    </div>
+    
+  </div>
+</body>
+</html>

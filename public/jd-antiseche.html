@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎯 Antisèche Négociation Pallmann</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      text-align: center;
+      padding: 20px 0;
+      border-bottom: 2px solid #FF9900;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      font-size: 1.5rem;
+      color: #FF9900;
+    }
+    
+    .header p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    
+    .section {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 15px;
+    }
+    
+    .section h2 {
+      font-size: 1rem;
+      color: #FF9900;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    
+    .number-box {
+      background: rgba(0,0,0,0.3);
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .number-box .value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #22c55e;
+    }
+    
+    .number-box .label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+    }
+    
+    .link-item.show {
+      border-left: 3px solid #22c55e;
+    }
+    
+    .link-item.hide {
+      border-left: 3px solid #dc2626;
+      opacity: 0.7;
+    }
+    
+    .link-item .emoji {
+      font-size: 1.25rem;
+    }
+    
+    .link-item .text {
+      flex: 1;
+    }
+    
+    .link-item .action {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    
+    .action-show { background: #22c55e; color: white; }
+    .action-hide { background: #dc2626; color: white; }
+    
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    
+    .do, .dont {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    
+    .do {
+      background: rgba(34,197,94,0.15);
+      border: 1px solid #22c55e;
+    }
+    
+    .do h3 {
+      color: #22c55e;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    
+    .dont {
+      background: rgba(220,38,38,0.15);
+      border: 1px solid #dc2626;
+    }
+    
+    .dont h3 {
+      color: #dc2626;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    
+    .do li, .dont li {
+      margin: 5px 0;
+      margin-left: 15px;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+    }
+    
+    .phrase {
+      background: linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(59,130,246,0.1) 100%);
+      border-left: 3px solid #3b82f6;
+      padding: 12px;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-size: 0.9rem;
+      margin: 10px 0;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, #FF9900 0%, #e88a00 100%);
+      color: #1e293b;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 15px 0;
+    }
+    
+    .highlight .main {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    
+    .highlight .sub {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+    
+    .checklist {
+      padding-left: 5px;
+    }
+    
+    .checklist li {
+      list-style: none;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+    
+    .check {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #FF9900;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+    
+    .footer a {
+      color: #FF9900;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="header">
+      <h1>🎯 Antisèche Pallmann</h1>
+      <p>Garde ça sur toi pendant le RDV</p>
+    </div>
+    
+    <!-- CHIFFRES CLÉS -->
+    <div class="section">
+      <h2>💰 Chiffres clés</h2>
+      <div class="numbers">
+        <div class="number-box">
+          <div class="value">60-108k€</div>
+          <div class="label">Coût reproduction</div>
+        </div>
+        <div class="number-box">
+          <div class="value">80-150k€</div>
+          <div class="label">Valeur stratégique</div>
+        </div>
+        <div class="number-box">
+          <div class="value">322</div>
+          <div class="label">Produits en ligne</div>
+        </div>
+        <div class="number-box">
+          <div class="value">1000+</div>
+          <div class="label">Articles SEO</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- LIENS -->
+    <div class="section">
+      <h2>🔗 Liens à utiliser</h2>
+      <div class="links">
+        <div class="link-item show">
+          <span class="emoji">🇫🇷🇩🇪</span>
+          <span class="text">Présentation bilingue</span>
+          <span class="action action-show">MONTRER</span>
+        </div>
+        <div class="link-item show">
+          <span class="emoji">🇫🇷</span>
+          <span class="text">Présentation FR</span>
+          <span class="action action-show">SI BESOIN</span>
+        </div>
+        <div class="link-item hide">
+          <span class="emoji">🔒</span>
+          <span class="text">Valorisation</span>
+          <span class="action action-hide">JAMAIS</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PHRASE CLÉ -->
+    <div class="highlight">
+      <div class="main">💬 Si on te demande un prix :</div>
+      <div class="sub">"Combien investiriez-vous pour créer ça from scratch ?"</div>
+    </div>
+    
+    <!-- DO / DON'T -->
+    <div class="section" style="padding: 10px;">
+      <div class="do-dont">
+        <div class="do">
+          <h3>✅ DIRE</h3>
+          <ul>
+            <li>Construire ensemble</li>
+            <li>Partenariat long terme</li>
+            <li>Retour juste sur investissement</li>
+          </ul>
+        </div>
+        <div class="dont">
+          <h3>❌ PAS DIRE</h3>
+          <ul>
+            <li>Un prix en premier</li>
+            <li>"J'ai besoin de..."</li>
+            <li>À prendre ou laisser</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- SCÉNARIO RECOMMANDÉ -->
+    <div class="section">
+      <h2>⭐ Scénario idéal</h2>
+      <div class="phrase">
+        Royalties 5-8% sur le CA généré via pallmann-store.com
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 10px;">
+        → Tu gardes la propriété<br>
+        → Revenus récurrents<br>
+        → Tu peux toujours vendre plus tard
+      </p>
+    </div>
+    
+    <!-- CHECKLIST -->
+    <div class="section">
+      <h2>📋 Avant de partir</h2>
+      <ul class="checklist">
+        <li><span class="check"></span> Plancher en tête (50k€ ?)</li>
+        <li><span class="check"></span> Walk-away point défini</li>
+        <li><span class="check"></span> Ne JAMAIS accepter sur place</li>
+        <li><span class="check"></span> "Je dois réfléchir"</li>
+      </ul>
+    </div>
+    
+    <div class="footer">
+      <p>🔒 Pour Julien uniquement</p>
+      <p style="margin-top: 8px;">
+        <a href="jd-listing.html">← Guide complet</a> • 
+        <a href="jd-valo-2026.html">Valorisation détaillée →</a>
+      </p>
+    </div>
+    
+  </div>
+</body>
+</html>
