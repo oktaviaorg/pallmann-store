@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import TrustBar from '../components/TrustBar';
 import CartReminder from '../components/CartReminder';
 import ProductCard from '../components/ProductCard';
+import ColorVariantCard from '../components/ColorVariantCard';
 import { supabase } from '../lib/supabase';
 import { useCart } from '../lib/CartContext';
 import { useQuote } from '../lib/QuoteContext';
@@ -203,8 +204,33 @@ const BoutiquePage: React.FC = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Trier les produits
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
+  // Séparer les produits PALL-X 333C (teintes)
+  const colorVariants = filteredProducts
+    .filter(p => p.name.includes('333C N°'))
+    .map(p => {
+      const match = p.name.match(/N°(\d+)\s+(.+?)\s+0,2L/);
+      return {
+        id: p.id,
+        name: p.name,
+        slug: p.slug,
+        price_ht: p.price_pack_ht || p.price_public_ht || 0,
+        image_url: p.image_url,
+        ref: p.ref || '',
+        colorName: match ? match[2] : p.name,
+        colorCode: match ? `N°${match[1]}` : '',
+      };
+    })
+    .sort((a, b) => {
+      const numA = parseInt(a.colorCode.replace('N°', '')) || 0;
+      const numB = parseInt(b.colorCode.replace('N°', '')) || 0;
+      return numA - numB;
+    });
+
+  // Exclure les 333C de la liste principale
+  const regularProducts = filteredProducts.filter(p => !p.name.includes('333C N°'));
+
+  // Trier les produits (sans les 333C)
+  const sortedProducts = [...regularProducts].sort((a, b) => {
     const priceA = a.price_pack_ht || a.price_public_ht || 0;
     const priceB = b.price_pack_ht || b.price_public_ht || 0;
     
@@ -572,7 +598,8 @@ const BoutiquePage: React.FC = () => {
               {(selectedCategory !== 'all' || searchTerm) && (
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-[#6B6B6B]">
-                    <span className="font-bold text-[#1A1A1A]">{sortedProducts.length}</span> produit{sortedProducts.length > 1 ? 's' : ''} trouvé{sortedProducts.length > 1 ? 's' : ''}
+                    <span className="font-bold text-[#1A1A1A]">{sortedProducts.length + (colorVariants.length > 0 ? 1 : 0)}</span> produit{(sortedProducts.length + (colorVariants.length > 0 ? 1 : 0)) > 1 ? 's' : ''} trouvé{(sortedProducts.length + (colorVariants.length > 0 ? 1 : 0)) > 1 ? 's' : ''}
+                    {colorVariants.length > 0 && <span className="text-purple-600 ml-2">(dont {colorVariants.length} teintes 333C)</span>}
                   </span>
                   <button
                     onClick={() => {
@@ -588,8 +615,29 @@ const BoutiquePage: React.FC = () => {
             </div>
 
             {/* Products Grid - Utilise ProductCard comme HomePage */}
-            {sortedProducts.length > 0 ? (
+            {(sortedProducts.length > 0 || colorVariants.length > 0) ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {/* PALL-X 333C Color Card - affiché en premier si présent */}
+                {colorVariants.length > 0 && (
+                  <ColorVariantCard
+                    title="PALL-X 333C COLOR"
+                    description="Concentré de teinte premium 0,2L"
+                    variants={colorVariants}
+                    onAddToCart={(variant) => {
+                      addItem({
+                        id: variant.id,
+                        name: variant.name,
+                        price_ht: getDiscountedPrice(variant.price_ht),
+                        image_url: variant.image_url || '',
+                        unit: 'L',
+                      });
+                      setAddedToCart(variant.id);
+                      setTimeout(() => setAddedToCart(null), 2000);
+                    }}
+                    addedToCart={addedToCart}
+                    validatedCode={validatedCode}
+                  />
+                )}
                 {sortedProducts.map(product => (
                   <ProductCard
                     key={product.id}
