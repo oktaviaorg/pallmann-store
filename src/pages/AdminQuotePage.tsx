@@ -1521,6 +1521,37 @@ export default function AdminQuotePage() {
                   <span className="text-gray-600">Total HT</span>
                   <span className="font-bold">{totalHT.toFixed(2)}€</span>
                 </div>
+                
+                {/* INDICATEUR FRANCO 600€ HT */}
+                {totalHT > 0 && (
+                  <div className={`mt-3 p-3 rounded-xl border-2 ${
+                    totalHT >= 600 
+                      ? 'bg-green-50 border-green-400' 
+                      : 'bg-amber-50 border-amber-400'
+                  }`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className={`font-bold ${totalHT >= 600 ? 'text-green-700' : 'text-amber-700'}`}>
+                        {totalHT >= 600 ? '🚚 Franco atteint !' : '📦 Franco (600€ HT)'}
+                      </span>
+                      <span className={`font-bold ${totalHT >= 600 ? 'text-green-600' : 'text-amber-600'}`}>
+                        {totalHT >= 600 ? '✓ Livraison gratuite' : `Manque ${(600 - totalHT).toFixed(0)}€`}
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div 
+                        className={`h-2.5 rounded-full transition-all duration-500 ${
+                          totalHT >= 600 ? 'bg-green-500' : 'bg-amber-500'
+                        }`}
+                        style={{ width: `${Math.min(100, (totalHT / 600) * 100)}%` }}
+                      />
+                    </div>
+                    <div className="flex justify-between mt-1 text-xs text-gray-500">
+                      <span>0€</span>
+                      <span className={totalHT >= 600 ? 'text-green-600 font-bold' : ''}>600€ HT</span>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="flex justify-between text-lg pt-2 border-t border-gray-200">
                   <span className="font-bold">Total TTC</span>
                   <span className="font-extrabold text-orange-600">{totalTTC.toFixed(2)}€</span>
