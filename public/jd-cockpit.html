@@ -281,6 +281,10 @@
         <span class="emoji">📊</span>
         <span>Chiffres</span>
       </div>
+      <div class="tab" data-tab="confidentiel" style="border-left: 1px solid rgba(255,255,255,0.1); margin-left: 10px; padding-left: 24px;">
+        <span class="emoji">🔒</span>
+        <span>Confidentiel</span>
+      </div>
       <button class="fullscreen-btn" onclick="toggleFullscreen()">
         ⛶ Plein écran
       </button>
@@ -302,6 +306,11 @@
       <!-- Site Live -->
       <div class="panel" id="panel-site">
         <iframe src="/" loading="lazy"></iframe>
+      </div>
+      
+      <!-- Confidentiel -->
+      <div class="panel" id="panel-confidentiel">
+        <iframe src="jd-valo-2026.html" loading="lazy"></iframe>
       </div>
       
       <!-- Stats -->
@@ -358,7 +367,7 @@
     </div>
     
     <div class="keyboard-hint">
-      <kbd>←</kbd> <kbd>→</kbd> ou <kbd>1</kbd>-<kbd>4</kbd> pour naviguer
+      <kbd>←</kbd> <kbd>→</kbd> ou <kbd>1</kbd>-<kbd>5</kbd> pour naviguer
     </div>
     
   </div>
@@ -366,7 +375,7 @@
   <script>
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
-    const tabKeys = ['bilingue', 'fr', 'site', 'stats'];
+    const tabKeys = ['bilingue', 'fr', 'site', 'stats', 'confidentiel'];
     
     function switchTab(tabId) {
       tabs.forEach(t => t.classList.remove('active'));
@@ -402,7 +411,7 @@
         e.preventDefault();
         const prevIndex = (currentIndex - 1 + tabKeys.length) % tabKeys.length;
         switchTab(tabKeys[prevIndex]);
-      } else if (e.key >= '1' && e.key <= '4') {
+      } else if (e.key >= '1' && e.key <= '5') {
         e.preventDefault();
         switchTab(tabKeys[parseInt(e.key) - 1]);
       } else if (e.key === 'f' || e.key === 'F') {
