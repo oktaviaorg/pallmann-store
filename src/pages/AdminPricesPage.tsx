@@ -38,6 +38,7 @@ export default function AdminPricesPage() {
   const [showMargins, setShowMargins] = useState(true);
   const [sortBy, setSortBy] = useState<'name' | 'margin' | 'price'>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [zoomedImage, setZoomedImage] = useState<{ url: string; name: string } | null>(null);
 
   // Protection anti-scrapping: mot de passe simple
   const ADMIN_PASSWORD = 'Lematoubleu1789';
@@ -492,7 +493,8 @@ export default function AdminPricesPage() {
                                 <img 
                                   src={product.image_url} 
                                   alt={product.name}
-                                  className={`w-12 h-12 object-contain rounded border ${product.photo_issue ? 'border-red-400' : 'border-gray-200'}`}
+                                  onClick={() => setZoomedImage({ url: product.image_url!, name: product.name })}
+                                  className={`w-12 h-12 object-contain rounded border cursor-zoom-in hover:scale-110 transition-transform ${product.photo_issue ? 'border-red-400' : 'border-gray-200'}`}
                                 />
                               ) : (
                                 <div className="w-12 h-12 bg-gray-100 rounded border border-gray-200 flex items-center justify-center">
@@ -563,6 +565,30 @@ export default function AdminPricesPage() {
           </div>
         </div>
       </div>
+
+      {/* Modal Zoom Image */}
+      {zoomedImage && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setZoomedImage(null)}
+        >
+          <div className="relative max-w-3xl max-h-[90vh] bg-white rounded-2xl p-4 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setZoomedImage(null)}
+              className="absolute -top-3 -right-3 w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors z-10"
+            >
+              ✕
+            </button>
+            <img 
+              src={zoomedImage.url} 
+              alt={zoomedImage.name}
+              className="max-w-full max-h-[70vh] object-contain mx-auto rounded-lg"
+            />
+            <p className="text-center mt-4 font-semibold text-gray-800">{zoomedImage.name}</p>
+            <p className="text-center text-sm text-gray-500 mt-1">Cliquez n'importe où pour fermer</p>
+          </div>
+        </div>
+      )}
     </>
   );
 }
