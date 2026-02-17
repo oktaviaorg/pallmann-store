@@ -88,15 +88,32 @@ export default function AdminPricesPage() {
       // Charger les produits
       const { data: prodData } = await supabase
         .from('pallmann_products')
-        .select('id, name, ref, unit, pack_size, price_achat, price_public_ht, category_id, published, image_url, photo_issue')
+        .select('id, name, ref, unit, pack_size, price_achat, price_public_ht, category_id, published, image_url')
         .eq('published', true)
         .order('name');
       
-      if (prodData) setProducts(prodData);
+      if (prodData) {
+        // Merge with localStorage photo issues
+        const savedIssues = JSON.parse(localStorage.getItem('pallmann_photo_issues') || '{}');
+        const productsWithIssues = prodData.map(p => ({
+          ...p,
+          photo_issue: p.photo_issue || savedIssues[p.id] || false
+        }));
+        setProducts(productsWithIssues);
+      }
     } catch (err) {
       console.error('Erreur chargement:', err);
     }
     setLoading(false);
+  };
+
+  // Load photo issues from localStorage
+  const getPhotoIssues = (): Record<string, boolean> => {
+    try {
+      return JSON.parse(localStorage.getItem('pallmann_photo_issues') || '{}');
+    } catch {
+      return {};
+    }
   };
 
   // Toggle photo issue
@@ -108,18 +125,24 @@ export default function AdminPricesPage() {
       p.id === productId ? { ...p, photo_issue: newValue } : p
     ));
     
-    // Update in Supabase
+    // Save to localStorage (fallback until Supabase column is added)
+    const issues = getPhotoIssues();
+    if (newValue) {
+      issues[productId] = true;
+    } else {
+      delete issues[productId];
+    }
+    localStorage.setItem('pallmann_photo_issues', JSON.stringify(issues));
+    
+    // Try to update in Supabase (will work once column is added)
     try {
       await supabase
         .from('pallmann_products')
         .update({ photo_issue: newValue })
         .eq('id', productId);
     } catch (err) {
-      console.error('Erreur mise à jour photo_issue:', err);
-      // Revert on error
-      setProducts(prev => prev.map(p => 
-        p.id === productId ? { ...p, photo_issue: currentValue } : p
-      ));
+      // Silently fail - localStorage is the fallback
+      console.log('photo_issue column not yet in Supabase, using localStorage');
     }
   };
 
